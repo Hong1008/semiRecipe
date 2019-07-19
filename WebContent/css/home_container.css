@@ -1,0 +1,182 @@
+#main_contents{
+    width: 1200px;
+    height: 2000px;
+    background-color: rgb(233,233,233);
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+
+/************사이드메뉴 시작***********/
+#side_menu{
+    width: 700px;
+    height: 700px;
+    background-color: rgb(255,245,233);
+    position: fixed;
+    top: 200px;
+    /*right: -700px;*/
+    right: -700px;
+    border-radius: 50px;
+}
+
+/*사이드버튼*/
+#side_btn{
+    width: 100px;
+    height: 100px;
+    margin-top: 300px;
+    margin-left: -100px;
+    position: fixed;
+}
+#side_btn img{
+    width: 100px;
+    transform: rotate(180deg);
+}
+
+/*검색*/
+#search_div{    
+    position: fixed;
+    margin-left: 200px;
+    margin-top: 40px;
+}
+#search_div input{
+    width: 320px;
+    height: 36px;
+    position: fixed;
+    margin-top: 4px;
+    border: 1px ;
+    border-radius:11px;
+    margin-left: 40px;
+}
+#search_div label img{
+    margin-left: -50px;
+    width: 100px;
+    position: fixed;
+}
+
+
+
+
+/************************삭제할 부분***********************/
+#ing_menu :nth-child(2n){
+    background-color: rgb(204, 147, 147);
+}
+#ing_menu :nth-child(2n+1){
+    background-color: rgb(121, 96, 96);
+}/************************삭제할 부분***********************/
+/*재료부분*/
+#ingredients_div{
+    width: 600px;
+    height: 550px;
+    position: fixed;
+    margin-left: 80px;
+    margin-top: 120px;
+    /*overflow: hidden;*/
+}
+
+/*재료 메뉴부분*/
+#ing_menu{
+    list-style-type: none;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+
+}
+.ing_menu_li{
+    width: 150px;
+    height: 70px;
+    float: left;
+}
+
+/*재료부분*/
+#ing_maker{
+    width: 620px;
+    overflow-y: scroll;
+    height: 480px;
+}
+.ingredients{
+    width: 120px;
+    height: 120px;
+    float: left;
+    box-sizing: border-box;
+    border: 1px rgb(20, 20, 20) solid;
+}
+
+/************사이드메뉴 끝***********/
+
+
+/************메인콘텐츠 시작***********/
+/* 선택된 재료부분*/
+#selected_ing_div{
+    width: 900px;
+    background-color: black;
+    margin: 0 auto;
+}
+
+.selected_ing{
+    width: 90px;
+    height: 38px;
+    background-color: rgb(180,180,180);
+    margin: 2px;
+    float: left;
+    margin-top: 30px;
+}
+
+.selected_ing p{
+    display: inline-block;
+    margin-top: 8px;
+    margin-left: 7px;
+    font-size: 12px;
+    color: antiquewhite;
+}
+
+.close_ing{
+    float: right;
+    margin-right:10px;
+    margin-top:10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    border: none;
+    background-color: black;
+    opacity: 0.3;
+}
+
+.빵{
+	background-image: url("/semiRecipe/img/home_bread.png");
+	background-size: 80%;
+}
+
+.해산물{
+	background-image: url("/semiRecipe/img/home_shell.png");
+	background-size: 80%;	
+}
+
+.생선{
+	background-image: url("/semiRecipe/img/home_fish.png");
+	background-size: 80%;	
+}
+
+.조류{
+	background-image: url("/semiRecipe/img/home_chicken.png");
+	background-size: 80%;	
+}
+
+.소고기{
+	background-image: url("/semiRecipe/img/home_cow.png");
+	background-size: 80%;	
+}
+
+.돼지고기{
+	background-image: url("/semiRecipe/img/home_pig.png");
+	background-size: 80%;	
+}
+
+.채소{
+	background-image: url("/semiRecipe/img/home_vegetables.png");
+	background-size: 80%;	
+}
+
+.양념{
+	background-image: url("/semiRecipe/img/home_salt.png");
+	background-size: 80%;	
+}
