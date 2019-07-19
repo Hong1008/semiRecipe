@@ -20,16 +20,19 @@
 
 </head>
 <body>
-    <header id='header'>
+    <header id='header'>    
+    	<div id='logo_container'>
+    		<img  src="/semiRecipe/img/LOGO.png">
+    	</div>
         <div id='log_container'>
             <img src="/semiRecipe/img/menu_login.png" id='login'>
         </div>
         <div id='menu_container'>
             <ul id="menu_ul">
-                <li class="menu_li" id='menu1'><img src="/semiRecipe/img/menu_01.jpg"></li>
-                <li class="menu_li" id='menu2'><img src="/semiRecipe/img/menu_02.jpg"></li>
-                <li class="menu_li" id='menu3'><img src="/semiRecipe/img/menu_03.jpg"></li>
-                <li class="menu_li" id='menu4'><img src="/semiRecipe/img/menu_04.jpg"></li>
+                <li class="menu_li" id='menu1'><img src="/semiRecipe/img/menu_01.png"></li>
+                <li class="menu_li" id='menu2'><img src="/semiRecipe/img/menu_02.png"></li>
+                <li class="menu_li" id='menu3'><img src="/semiRecipe/img/menu_03.png"></li>
+                <li class="menu_li" id='menu4'><img src="/semiRecipe/img/menu_04.png"></li>
             </ul>
         </div>
     </header>

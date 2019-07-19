@@ -1,14 +1,17 @@
 #header{
     width: 100%;
-    height: 80px;
-    background-color: rgb(255,116,47);
+    height: 650px;
+    background-image: url("/semiRecipe/img/menu_back_01.jpg");
+    background-size: 2500px;
+    background-position: 0px -600px;
+    background-attachment :fixed;
 }
 
 #menu_container{
     width: 800px;
     height: 80px;
-    margin: 0 auto;
-    background-color:blue;
+    position: fixed;
+    margin-left:100px;
 }
 
 #menu_ul{
@@ -20,13 +23,11 @@
 .menu_li{
     width: 200px;
     height: 80px;
-    background-color: aliceblue;
     float: left;  
-    overflow: hidden;
 }  
 
 .menu_li img{
-    margin-top: -80px;
+    width: 100%;
 }
 
 #log_container{
@@ -35,7 +36,8 @@
     position: absolute;
     right: 30px;
     top: 20px;
-    z-index: 0;
+    z-index: 0;    
+    position: fixed;
 }
 
 #login{
@@ -44,4 +46,17 @@
 
 #menu1 img{
     margin-top:0px;
+}
+
+#logo_container{	
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    left: 30px;
+    top: 10px;
+    z-index: 0;
+}
+
+#logo_container img{
+	width: 100%;
 }
