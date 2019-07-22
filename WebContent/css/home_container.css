@@ -16,8 +16,7 @@
     height: 700px;
     background-color: rgb(250,235,223);
     position: fixed;
-    top: 200px;
-    /*right: -700px;*/
+    top: 700px;
     right: -700px;
     border-radius: 50px;
 }
@@ -26,7 +25,7 @@
 #side_btn{
     width: 100px;
     height: 100px;
-    margin-top: 300px;
+    margin-top: 0px;
     margin-left: -100px;
     position: fixed;
 }
@@ -56,9 +55,6 @@
     position: fixed;
 }
 
-
-
-
 /************************삭제할 부분***********************/
 #ing_menu :nth-child(2n){
     background-color: rgb(204, 147, 147);
@@ -66,7 +62,7 @@
 #ing_menu :nth-child(2n+1){
     background-color: rgb(121, 96, 96);
 }/************************삭제할 부분***********************/
-/*재료부분*/
+/*재료div*/
 #ingredients_div{
     width: 600px;
     height: 550px;
@@ -76,17 +72,43 @@
     /*overflow: hidden;*/
 }
 
+
+
 /*재료 메뉴부분*/
+
+#ingredients_menu_div{
+    height: 50px;
+    width:600px;	
+    overflow:hidden;
+    margin: 0;
+    padding: 0;	
+}
+
+#ingredients_menu_div img{
+	position: fixed;
+	width: 30px;
+	height:30px;
+	margin-top:10px;
+	cursor: pointer;
+}
+
+#ing_m_right{
+	margin-left: 570px;
+	opacity:0.6;
+}
+
+#ing_m_left{
+	transform: rotate(180deg);
+	opacity:0.6;
+}
 #ing_menu{
     list-style-type: none;
-    height: 70px;
-    margin: 0;
-    padding: 0;
-
+    height: 50px;
+    width:1200px;	
 }
 .ing_menu_li{
     width: 150px;
-    height: 70px;
+    height: 50px;
     float: left;
 }
 
@@ -142,44 +164,4 @@
     border: none;
     background-color: black;
     opacity: 0.3;
-}
-
-.빵{
-	background-image: url("/semiRecipe/img/home_bread.png");
-	background-size: 80%;
-}
-
-.해산물{
-	background-image: url("/semiRecipe/img/home_shell.png");
-	background-size: 80%;	
-}
-
-.생선{
-	background-image: url("/semiRecipe/img/home_fish.png");
-	background-size: 80%;	
-}
-
-.조류{
-	background-image: url("/semiRecipe/img/home_chicken.png");
-	background-size: 80%;	
-}
-
-.소고기{
-	background-image: url("/semiRecipe/img/home_cow.png");
-	background-size: 80%;	
-}
-
-.돼지고기{
-	background-image: url("/semiRecipe/img/home_pig.png");
-	background-size: 80%;	
-}
-
-.채소{
-	background-image: url("/semiRecipe/img/home_vegetables.png");
-	background-size: 80%;	
-}
-
-.양념{
-	background-image: url("/semiRecipe/img/home_salt.png");
-	background-size: 80%;	
 }
