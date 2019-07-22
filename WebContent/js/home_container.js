@@ -194,7 +194,17 @@ $(document)
 					ing_m_cnt++;
 				$('#ing_menu').animate({'margin-left':(ing_m_cnt*150)+'px'},200);
 			});
-
-
+			
+			
+			//재료 항목 별 클릭
+			$('#ingredients_menu_div ul li').click(function(){
+				var ty = $(this).text();
+				$('.ingredients').hide();
+				$('.ingredients input').each(function(i,v){
+					if($(v).attr('id')==ty){
+						$(v).parent().show();
+					}
+				})
+			})
 
 		});

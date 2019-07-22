@@ -59,27 +59,25 @@ public class PrimDAO extends RecipeDAO {
 			while(rs.next()) {
 				PrimDTO dto = new PrimDTO();
 				dto.setRECIPE_ID(rs.getInt("RECIPE_ID"));
-				dto.setRECIPE_NM_KO(rs.getString("RECIPE_NM_KO"));
-				dto.setSUMRY(rs.getString("SUMRY").toString());
-				dto.setNATION_CODE(rs.getString("NATION_CODE"));
-				dto.setNATION_NM(rs.getString("NATION_NM"));
-				dto.setTY_CODE(rs.getString("TY_CODE"));
-				dto.setTY_NM(rs.getString("TY_NM"));
-				dto.setCOOKING_TIME(rs.getString("COOKING_TIME"));
-				dto.setCALORIE(rs.getString("CALORIE"));
-				dto.setQNT(rs.getString("QNT"));
-				dto.setLEVEL_NM(rs.getString("LEVEL_NM"));
-				dto.setIRDNT_CODE(rs.getString("IRDNT_CODE"));
-				dto.setPC_NM(rs.getString("PC_NM"));
-				dto.setIMG_URL(rs.getString("IMG_URL"));
-				dto.setDET_URL(rs.getString("DET_URL"));
+				dto.setRECIPE_NM_KO(rs.getString("RECIPE_NM_KO").replaceAll("\"", ""));
+				dto.setSUMRY(rs.getString("SUMRY").toString().replaceAll("\"", ""));
+				dto.setNATION_CODE(rs.getString("NATION_CODE").replaceAll("\"", ""));
+				dto.setNATION_NM(rs.getString("NATION_NM").replaceAll("\"", ""));
+				dto.setTY_CODE(rs.getString("TY_CODE").replaceAll("\"", ""));
+				dto.setTY_NM(rs.getString("TY_NM").replaceAll("\"", ""));
+				dto.setCOOKING_TIME(rs.getString("COOKING_TIME").replaceAll("\"", ""));
+				dto.setCALORIE(rs.getString("CALORIE").replaceAll("\"", ""));
+				dto.setQNT(rs.getString("QNT").replaceAll("\"", ""));
+				dto.setLEVEL_NM(rs.getString("LEVEL_NM").replaceAll("\"", ""));
+				dto.setIRDNT_CODE(rs.getString("IRDNT_CODE").replaceAll("\"", ""));
+				dto.setPC_NM(rs.getString("PC_NM").replaceAll("\"", ""));
+				dto.setIMG_URL(rs.getString("IMG_URL").replaceAll("\"", ""));
+				dto.setDET_URL(rs.getString("DET_URL").replaceAll("\"", ""));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			exit();
 		}
 		return aList;
 	}

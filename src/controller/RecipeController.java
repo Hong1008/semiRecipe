@@ -37,6 +37,8 @@ public class RecipeController extends HttpServlet {
 		if(path.equals("recipe/")) {
 			IrdntTYDAO dao = new IrdntTYDAO();
 			req.setAttribute("aList", dao.list());
+			req.setAttribute("tList", dao.tyList());
+			dao.exit();
 			next = "/home/home.jsp";
 		}else if(path.equals("recipe/view")) {
 			ViewAction act = new ViewAction();

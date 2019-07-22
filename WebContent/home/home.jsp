@@ -24,7 +24,10 @@
 
 <script type="text/javascript" src="/semiRecipe/js/home_container.js"></script>
 
+<script type="text/javascript">
+
 </script>
+
 
 
 </head>
@@ -36,6 +39,7 @@
 		<div id='container'>
 			<div id='main_contents'>
 				<div id='selected_ing_div'></div>
+				<div id='selected_recipe_view'></div>
 			</div>
 			<div id='side_menu'>
 				<div id='side_btn'>
@@ -51,19 +55,14 @@
 						<img src="/semiRecipe/img/home_arrow.png" id='ing_m_left'>
 						<img src="/semiRecipe/img/home_arrow.png" id='ing_m_right'>
 						<ul id='ing_menu'>
-							<li class='ing_menu_li'></li>
-							<li class='ing_menu_li'></li>
-							<li class='ing_menu_li'></li>
-							<li class='ing_menu_li'></li>
-							<li class='ing_menu_li'></li>
-							<li class='ing_menu_li'></li>
-							<li class='ing_menu_li'></li>
-							<li class='ing_menu_li'></li>
+							<c:forEach items="${requestScope.tList }" var="ty">
+								<li class='ing_menu_li' id="${ty }">${ty }</li>							
+							</c:forEach>
 						</ul>
 					</div>
 					<div id='ing_maker'>
-						<c:forEach items="${aList }" var="dto">
-							<div class='ingredients' id='${dto.irdnt_nm}'>${dto.irdnt_nm}</div>
+						<c:forEach items="${requestScope.aList }" var="dto">
+							<div class='ingredients' id='${dto.irdnt_nm}'>${dto.irdnt_nm}<input type="hidden" id='${dto.ty_nm }' /></div>
 						</c:forEach>
 					</div>
 				</div>

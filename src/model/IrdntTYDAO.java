@@ -26,16 +26,28 @@ public class IrdntTYDAO extends RecipeDAO{
 			while(rs.next()) {
 				IrdntTYDTO dto = new IrdntTYDTO();
 				dto.setIrdnt_nm(rs.getString(1).replaceAll("\"", ""));
-				dto.setTy_nm(rs.getString(2));
+				dto.setTy_nm(rs.getString(2).replaceAll("\"", ""));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			exit();
 		}
 		return aList;
 	}
 	
+	public List<String> tyList(){
+		List<String> tList = new ArrayList<String>();
+		String sql = "select distinct(type_nm) from irdnt_type";
+		try {
+			rs = queryStmt(sql);
+			while(rs.next()) {
+				tList.add(rs.getString(1).replaceAll("\"", ""));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return tList;
+	}
 }

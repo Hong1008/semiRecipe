@@ -11,5 +11,6 @@ public class ViewAction {
 		String irdnt_nm = req.getParameter("irdnt_nm");
 		PrimDAO dao = new PrimDAO();
 		req.setAttribute("viewPrim", dao.searchView(irdnt_nm));
+		dao.exit();
 	}
 }
