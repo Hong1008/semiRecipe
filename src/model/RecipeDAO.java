@@ -38,7 +38,7 @@ public class RecipeDAO {
 	}
 
 	public ResultSet queryStmt(String sql) throws SQLException {
-		stmt = conn.createStatement();
+		stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 		rs = stmt.executeQuery(sql);
 		return rs;
 	}
