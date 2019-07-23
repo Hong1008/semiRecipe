@@ -32,7 +32,6 @@ public class RecipeController extends HttpServlet {
 		String next = "";
 
 		path = path.substring(path.indexOf("/", 2)+1);
-		System.out.println(path);
 		if(path.equals("recipe/home")) {
 			IrdntTYDAO dao = new IrdntTYDAO();
 			req.setAttribute("aList", dao.list());
