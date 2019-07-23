@@ -41,6 +41,8 @@ $(document)
 				opacity : 0.90
 			});
 
+			var select_num = 0;
+			//더블클릭하는 부분
 			$('.ingredients')
 			.on(
 					'dblclick',
@@ -58,10 +60,24 @@ $(document)
 						} else {
 							alert("재료는 10개까지만 선택 가능합니다.");
 						}
+						
+						//드롭된 재료들 삭제
+						$('.close_ing')
+						.on(
+								'click',
+								function() {
+									$(this)
+									.parents(
+									'.selected_ing')
+									.remove();
+									select_num--;
+									viewList();
+								})
 					});
+			
 
-			//드롭하는부분
-			var select_num = 0;
+
+			//드롭하는부분			
 			$('#main_contents')
 			.droppable(
 					{
@@ -180,14 +196,14 @@ $(document)
 
 			//재료 항목 이동 버튼
 			var ing_m_cnt=0;
-			$('#ing_m_right').on('click',function(){
+			$('#ing_m_left').on('click',function(){
 				var left = $('#ing_menu').css('margin-left').split('p')[0];
 				if(ing_m_cnt>-4)
 					ing_m_cnt--;
 				$('#ing_menu').animate({'margin-left':(ing_m_cnt*150)+'px'},200);
 			});
 
-			$('#ing_m_left').on('click',function(){
+			$('#ing_m_right').on('click',function(){
 				var left = $('#ing_menu').css('margin-left').split('p')[0];
 				if(ing_m_cnt<0)
 					ing_m_cnt++;
@@ -197,7 +213,7 @@ $(document)
 			
 			//재료 항목 별 클릭
 			$('#ingredients_menu_div ul li').click(function(){
-				var ty = $(this).text();
+				var ty = $(this).attr('id');
 				$('.ingredients').hide();
 				$('.ingredients input').each(function(i,v){
 					if($(v).attr('id')==ty){
