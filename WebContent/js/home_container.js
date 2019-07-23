@@ -122,7 +122,6 @@ $(document)
 			for (var i = 0; i < ingredients_num; i++) {
 				ingredients_name[i] = $('.ingredients').eq(i).attr(
 				'id');
-				console.log(i + ":" + ingredients_name[i]);
 			} //배열에 이름들을 저장
 
 			$('input')

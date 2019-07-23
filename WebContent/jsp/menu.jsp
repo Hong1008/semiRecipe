@@ -20,7 +20,6 @@
 	padding: 0;
 }
 </style>
-
 </head>
 <body>
 	<header id='header'>
