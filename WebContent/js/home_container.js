@@ -108,8 +108,8 @@ $(document)
 	            $.ajax({
 	                type:'POST',
 	                dataType:'text',
-	                data:"irdnt_nm={name:"+jsonString+"}",
-	                url:'view',
+	                data:'irdnt_nm='+jsonString,
+	                url:'viewResult',
 	                success: function(res){
 	                   $("#selected_recipe_view").html(res);
 	                }

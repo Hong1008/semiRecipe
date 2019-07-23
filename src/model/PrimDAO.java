@@ -30,8 +30,7 @@ public class PrimDAO extends RecipeDAO {
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
 		String sql = "select * from primary where recipe_id in(";
 		JsonParser pas = new JsonParser();
-		JsonObject obj = (JsonObject) pas.parse(irdnt_nm);
-		JsonArray jarr = (JsonArray) obj.get("name");
+		JsonArray jarr = (JsonArray) pas.parse(irdnt_nm);
 		for (int i = 0; i < jarr.size(); i++) {
 			if(i == jarr.size()-1) {
 				sql += "select recipe_id from irdnt where irdnt_nm = '"+jarr.get(i)+"')";

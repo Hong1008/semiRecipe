@@ -38,7 +38,7 @@ public class IrdntTYDAO extends RecipeDAO{
 	
 	public List<String> tyList(){
 		List<String> tList = new ArrayList<String>();
-		String sql = "select distinct(type_nm) from irdnt_type";
+		String sql = "select distinct(type_nm) from irdnt_type order by type_nm desc";
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {

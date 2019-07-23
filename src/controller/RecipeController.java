@@ -30,7 +30,6 @@ public class RecipeController extends HttpServlet {
 		String method = req.getMethod();
 		String path = req.getRequestURI();
 		String next = "";
-		System.out.println(path);
 
 		path = path.substring(path.indexOf("/", 2)+1);
 		System.out.println(path);
@@ -40,7 +39,7 @@ public class RecipeController extends HttpServlet {
 			req.setAttribute("tList", dao.tyList());
 			dao.exit();
 			next = "/jsp/home.jsp";
-		}else if(path.equals("recipe/view")) {
+		}else if(path.equals("recipe/viewResult")) {
 			ViewAction act = new ViewAction();
 			act.execute(req, resp);
 			next = "/ajax/viewResult.jsp";
@@ -53,6 +52,7 @@ public class RecipeController extends HttpServlet {
 		}
 		
 		if(next!="") {
+			System.out.println(next);
 			req.getRequestDispatcher(next).forward(req, resp);
 		}
 	}
