@@ -35,8 +35,9 @@
 
 <body>
 	<div id='wrap' class='test'>
+	<!-- hr -->
 		<!--여기서부터 컨테이너시작-->
-		<div id='container'>
+		<div id='container' class='test'>
 			<div id='main_contents'>
 				<div id='selected_ing_div'></div>
 				<div id='selected_recipe_view'></div>
