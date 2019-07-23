@@ -120,7 +120,6 @@ $(document)
 	                irdnt_nms[i] = $(v).text();
 	            })
 	            var jsonString = JSON.stringify(irdnt_nms);
-	            console.log(jsonString);
 	            $.ajax({
 	                type:'POST',
 	                dataType:'text',
