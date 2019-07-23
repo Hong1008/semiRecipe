@@ -25,7 +25,8 @@ public class IrdntTYDAO extends RecipeDAO{
 			rs = queryStmt(sql);
 			while(rs.next()) {
 				IrdntTYDTO dto = new IrdntTYDTO();
-				dto.setIrdnt_nm(rs.getString(1).replaceAll("\"", ""));
+				dto.setIrdnt_nm(rs.getString(1).replaceAll("\"", "").replaceAll("/", "").replaceAll("\\(", "")
+						.replaceAll("\\)", "").replaceAll("\\[", "").replaceAll("\\]", ""));
 				dto.setTy_nm(rs.getString(2).replaceAll("\"", ""));
 				aList.add(dto);
 			}

@@ -58,13 +58,6 @@
     position: fixed;
 }
 
-/************************삭제할 부분***********************/
-#ing_menu :nth-child(2n){
-    background-color: rgb(204, 147, 147);
-}
-#ing_menu :nth-child(2n+1){
-    background-color: rgb(121, 96, 96);
-}/************************삭제할 부분***********************/
 /*재료div*/
 #ingredients_div{
     width: 600px;
@@ -113,6 +106,11 @@
     width: 150px;
     height: 50px;
     float: left;
+    font-family: 'Noto Sans KR';
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
 }
 
 /*재료부분*/
@@ -129,6 +127,10 @@
     border: 1px rgb(20, 20, 20) solid;
     text-align: center;
     padding-top:45px;
+    font-family: 'Noto Sans KR';
+    font-size: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 /************사이드메뉴 끝***********/
