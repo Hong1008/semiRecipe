@@ -37,6 +37,7 @@
 	<div id='wrap' class='test'>
 	<!-- hr -->
 	<!-- hong -->
+	<!-- ram -->
 		<!--여기서부터 컨테이너시작-->
 		<div id='container' class='test'>
 			<div id='main_contents'>
