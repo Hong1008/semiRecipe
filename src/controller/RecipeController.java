@@ -34,7 +34,7 @@ public class RecipeController extends HttpServlet {
 
 		path = path.substring(path.indexOf("/", 2)+1);
 		System.out.println(path);
-		if(path.equals("recipe/")) {
+		if(path.equals("recipe/home")) {
 			IrdntTYDAO dao = new IrdntTYDAO();
 			req.setAttribute("aList", dao.list());
 			req.setAttribute("tList", dao.tyList());
@@ -44,6 +44,12 @@ public class RecipeController extends HttpServlet {
 			ViewAction act = new ViewAction();
 			act.execute(req, resp);
 			next = "/ajax/viewResult.jsp";
+		}else if(path.equals("recipe/review")) {
+			next = "/jsp/reviewBoard.jsp";
+		}else if(path.equals("recipe/myRecipe")) {
+			next = "/jsp/recipeBoard.jsp";
+		}else if(path.equals("recipe/qna")) {
+			next = "/jsp/qna.jsp";
 		}
 		
 		if(next!="") {

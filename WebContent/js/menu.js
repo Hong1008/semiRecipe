@@ -22,5 +22,9 @@ $(document).ready(function(){
 		}else{  			
 		}
 	})
-
+	
+	$('.menu_li').click(function(){
+		var id = $(this).attr('id');
+		location.href='/semiRecipe/recipe/'+id;
+	})
 })

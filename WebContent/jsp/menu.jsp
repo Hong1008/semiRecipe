@@ -35,13 +35,14 @@
 		</div>
 		<div id='menu_container'>
 			<ul id="menu_ul">
-				<li class="menu_li" id='menu1'><img
-					src="/semiRecipe/img/menu01.PNG"></li>
-				<li class="menu_li" id='menu2'><img
+				<li class="menu_li" id='home'><img
+					src="/semiRecipe/img/menu01.PNG">
+					</li>
+				<li class="menu_li" id='review'><img
 					src="/semiRecipe/img/menu02.PNG"></li>
-				<li class="menu_li" id='menu3'><img
+				<li class="menu_li" id='myRecipe'><img
 					src="/semiRecipe/img/menu03.PNG"></li>
-				<li class="menu_li" id='menu4'><img
+				<li class="menu_li" id='qna'><img
 					src="/semiRecipe/img/menu04.PNG"></li>
 			</ul>
 		</div>
