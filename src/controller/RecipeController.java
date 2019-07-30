@@ -48,6 +48,7 @@ public class RecipeController extends HttpServlet {
 			next = "/jsp/recipeBoard.jsp";
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
+		}
 		}else if(path.equals("recipe/login")) {
 			next = "/jsp/login.jsp";
 		}
