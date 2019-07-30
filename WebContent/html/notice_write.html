@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="../smartEditor2/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript">
+var oEditors = [];
+$(document).ready(function(){
+	nhn.husky.EZCreator.createInIFrame({
+	 oAppRef: oEditors,
+	 elPlaceHolder: "ir1",
+	 sSkinURI: "../smartEditor2/SmartEditor2Skin.html",
+	 fCreator: "createSEditor2"
+	});
+})
+
+function submitContents(){
+	oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD",[]);
+	console.log($('#ir1').val());
+	try {
+		$('form').submit();
+	} catch (error) {
+		console.log(error);
+	}
+}
+</script>
+</head>
+<body>
+<form action="notice_write.html">
+<textarea name="ir1" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea>
+<input type="button" value="확인" id="sub" onclick="submitContents();">
+</form>
+</body>
+</html>
