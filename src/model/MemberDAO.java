@@ -43,9 +43,7 @@ public class MemberDAO {
 			conn.close();
 	}// end exit()
 	
-	public int registerMethod(MemberDTO dto) {
-		int result = 0;
-		
+	public void registerMethod(MemberDTO dto) {
 		try {
 			conn = init();
 			String sql = "insert into semimember values(?,?,?,?)";
@@ -55,7 +53,7 @@ public class MemberDAO {
 			pstmt.setString(3, dto.getNickname());
 			pstmt.setDate(4, dto.getBirthday());
 			
-			result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -66,8 +64,6 @@ public class MemberDAO {
 				e.printStackTrace();
 			}
 		}
-		
-		return result;
 	}
 	
 	public String checkID(String id) {
@@ -121,5 +117,30 @@ public class MemberDAO {
 		
 		return chk;
 	}
-
+	
+	public int login(MemberDTO dto) {
+		int cnt=0;
+		try {
+			conn = init();
+			String sql = "select count(id) from semimember where id=? and pw=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPw());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return cnt;
+	}
 }
