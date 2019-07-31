@@ -27,6 +27,12 @@ $(document).ready(function(){
 	
 	$('#login').click(function(){
 		var id = $(this).attr('id');
+		location.href='/semiRecipe/recipe/'+id+'Form';
+	})
+	
+	$('#logout').click(function(){
+		alert("로그아웃 되셨습니다.");
+		var id = $(this).attr('id');
 		location.href='/semiRecipe/recipe/'+id;
 	})
 	

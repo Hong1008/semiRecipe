@@ -7,7 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import action.CheckIdAction;
+import action.CheckNicknameAction;
+import action.LoginAction;
+import action.LogoutAction;
+import action.RegisterAction;
 import action.ViewAction;
 import model.IrdntTYDAO;
 
@@ -48,8 +54,32 @@ public class RecipeController extends HttpServlet {
 			next = "/jsp/recipeBoard.jsp";
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
-		}else if(path.equals("recipe/login")) {
+		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
+		}else if(path.equals("recipe/login")) {
+			LoginAction login = new LoginAction();
+			login.execute(req, resp);
+		}else if(path.equals("recipe/logout")) {
+			LogoutAction logout = new LogoutAction();
+			logout.execute(req, resp);
+			resp.sendRedirect("home");
+		}else if(path.equals("recipe/registerForm")) {
+			next = "/jsp/register.jsp";
+		}else if(path.equals("recipe/register")) {
+			RegisterAction register = new RegisterAction();
+			register.execute(req, resp);
+			
+			HttpSession session = req.getSession();
+			session.setAttribute("logOk", req.getParameter("id")); 	// logOk라는 이름으로 fid 값을 세션에 저장
+			session.setMaxInactiveInterval(30*60); 	// 30분
+			
+			resp.sendRedirect("home");
+		}else if(path.equals("recipe/checkID")) {
+			CheckIdAction checkId = new CheckIdAction();
+			checkId.execute(req, resp);
+		}else if(path.equals("recipe/checkNickname")) {
+			CheckNicknameAction checkNickname = new CheckNicknameAction();
+			checkNickname.execute(req, resp);
 		}
 		
 		if(next!="") {
