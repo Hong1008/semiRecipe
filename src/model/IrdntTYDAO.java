@@ -14,8 +14,6 @@ public class IrdntTYDAO extends RecipeDAO{
 	private PreparedStatement pstmt;
 
 	public IrdntTYDAO() {
-		// TODO Auto-generated constructor stub
-		super();
 	}
 	
 	public List<IrdntTYDTO> list(){
@@ -31,7 +29,6 @@ public class IrdntTYDAO extends RecipeDAO{
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return aList;
@@ -46,7 +43,6 @@ public class IrdntTYDAO extends RecipeDAO{
 				tList.add(rs.getString(1).replaceAll("\"", ""));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return tList;
