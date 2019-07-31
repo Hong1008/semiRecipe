@@ -60,7 +60,7 @@ $(document)
 						} else {
 							alert("재료는 10개까지만 선택 가능합니다.");
 						}
-						
+
 						//드롭된 재료들 삭제
 						$('.close_ing')
 						.on(
@@ -74,7 +74,7 @@ $(document)
 									viewList();
 								})
 					});
-			
+
 
 
 			//드롭하는부분			
@@ -111,26 +111,26 @@ $(document)
 									})
 						}
 					});
-			
+
 			//추천 레시피 부분
-	        function viewList(){
-	        	var irdnt_nms = new Array();
-	            
-	            $(".selected_ing p").each(function(i,v){
-	                irdnt_nms[i] = $(v).text();
-	            })
-	            var jsonString = JSON.stringify(irdnt_nms);
-	            $.ajax({
-	                type:'POST',
-	                dataType:'text',
-	                data:'irdnt_nm='+jsonString,
-	                url:'viewResult',
-	                success: function(res){
-	                   $("#selected_recipe_view").html(res);
-	                }
-	            })
-	        }
-			
+			function viewList(){
+				var irdnt_nms = new Array();
+
+				$(".selected_ing p").each(function(i,v){
+					irdnt_nms[i] = $(v).text();
+				})
+				var jsonString = JSON.stringify(irdnt_nms);
+				$.ajax({
+					type:'POST',
+					dataType:'text',
+					data:'irdnt_nm='+jsonString,
+					url:'viewResult',
+					success: function(res){
+						$("#selected_recipe_view").html(res);
+					}
+				})
+			}
+
 			//검색기능 구현
 			var ingredients_num = $('.ingredients').length;//처음 DB에서 받아온 갯수를 저장
 			var ingredients_name = new Array();
@@ -172,26 +172,36 @@ $(document)
 					});
 
 			//스크롤 내리기전 사이드메뉴
-			$(document)
-			.scroll(
-					function() {
-						if ($(document).scrollTop() < 500) {
-							var marginT = 700 - $(document)
-							.scrollTop();
-							$('#side_menu').css('top',
-									marginT + 'px');
-							if ($(document).scrollTop() > 200)
-								$('#side_btn')
-								.css(
-										'margin-top',
-										($(document)
-												.scrollTop() - 200)
-												+ 'px');
-						} else {
-							$('#side_menu').css('top',
-							'200px');
-						}
-					});
+			$(document).scroll(function() {
+				
+				//사이드메뉴
+				if ($(document).scrollTop() < 500) {
+					var marginT = 700 - $(document).scrollTop();
+					$('#side_menu').css('top',marginT + 'px');
+					if ($(document).scrollTop() > 200)
+						$('#side_btn').css('margin-top',($(document).scrollTop() - 200)+ 'px');
+				} else {
+					$('#side_menu').css('top',
+					'200px');
+				}
+				
+				//선택된 메뉴들
+				if ($(document).scrollTop() < 680) {
+					var marginT = 800 - $(document).scrollTop();
+					$('#selected_ing_div').css({'top':marginT + 'px','opacity':1});
+				} else {
+					$('#selected_ing_div').css({'top':	'120px','opacity':0.5});					
+				}
+			});
+			
+			//마우스 올리면 투명도 제거
+			$('#selected_ing_div').on('mouseover',function(){
+				$(this).clearQueue().animate({'opacity':1},300);
+			})
+			$('#selected_ing_div').on('mouseleave',function(){
+				if($(document).scrollTop() >= 650)
+				$(this).clearQueue().animate({'opacity':0.5},300);
+			})
 
 			//재료 항목 이동 버튼
 			var ing_m_cnt=0;
@@ -208,8 +218,8 @@ $(document)
 					ing_m_cnt++;
 				$('#ing_menu').animate({'margin-left':(ing_m_cnt*150)+'px'},200);
 			});
-			
-			
+
+
 			//재료 항목 별 클릭
 			$('#ingredients_menu_div ul li').click(function(){
 				var ty = $(this).attr('id');

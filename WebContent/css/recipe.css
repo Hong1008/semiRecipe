@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+#R_header{
+	margin: 0 auto;	
+    width: 1000px;
+    height:800px;
+    text-align: center;
+    background: red;
+    margin-top: 200px;
+}
+
+#R_header img{
+	width: 570px;
+	height: 350px;	
+    margin-top: 50px;
+}
+
+#R_body{
+	background: blue;
+	
+}
+
+#R_footer{
+	background: yellow;
+}
