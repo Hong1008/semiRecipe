@@ -49,7 +49,7 @@
 					src="/semiRecipe/img/menu02.PNG"></li>
 				<li class="menu_li" id='myRecipe'><img
 					src="/semiRecipe/img/menu03.PNG"></li>
-				<li class="menu_li" id='qna'><img
+				<li class="menu_li" id='notice'><img
 					src="/semiRecipe/img/menu04.PNG"></li>
 			</ul>
 		</div>
