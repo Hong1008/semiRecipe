@@ -24,4 +24,9 @@ $(document).ready(function(){
 		var id = $(this).attr('id');
 		location.href='/semiRecipe/recipe/'+id;
 	})
+	
+	$('#login').click(function(){
+		var id = $(this).attr('id');
+		location.href='/semiRecipe/recipe/'+id;
+	})
 })

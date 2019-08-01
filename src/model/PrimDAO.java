@@ -50,7 +50,6 @@ public class PrimDAO extends RecipeDAO {
 				}
 				rs = queryStmt(sql);
 			}
-			System.out.println(sql);
 			rs.previous();
 			while (rs.next()) {
 				PrimDTO dto = new PrimDTO();

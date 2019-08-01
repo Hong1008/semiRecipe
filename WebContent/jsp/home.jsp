@@ -21,7 +21,7 @@
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 <!--플러그인 연결-->
 
-
+<link rel="stylesheet" href="/semiRecipe/css/recipe.css">
 <script type="text/javascript" src="/semiRecipe/js/home_container.js"></script>
 
 <script type="text/javascript">
@@ -35,15 +35,12 @@
 
 <body>
 	<div id='wrap' class='test'>
-	<!-- hr -->
-	<!-- hong -->
-	<!-- ram -->
-	<!-- choi -->
 		<!--여기서부터 컨테이너시작-->
 		<div id='container' class='test'>
 			<div id='main_contents'>
 				<div id='selected_ing_div'></div>
 				<div id='selected_recipe_view'></div>
+				<jsp:include page="../jsp/showRecipe.jsp"/>
 			</div>
 			<div id='side_menu'>
 				<div id='side_btn'>

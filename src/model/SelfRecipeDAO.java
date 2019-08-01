@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,9 +46,10 @@ public class SelfRecipeDAO {
 			conn.close();
 	}// end exit()
 
+	
+	// 
 	public List<SelfRecipeDTO> listMethod(String recipe_nm) {
 		List<SelfRecipeDTO> aList = new ArrayList<SelfRecipeDTO>();
-
 		try {
 			conn = init();
 			String sql = "select recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm, importance, cooking_no ";
@@ -83,26 +85,20 @@ public class SelfRecipeDAO {
 	public void viewMethod() {
 		
 	}// end viewMethod()
-	 //조회수 증가
-	public void readCountMethod(int num) {
-		try {
-			conn = init();
-			String sql = "update board set readcount = readcount + 1 where num = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.executeUpdate();
-
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-	}// end readCountMethod() 조회수 올리기
 	
+	
+	//글쓰기 
 	public void insertMethod(SelfRecipeDTO dto) {
 		try {
 			conn = init();
-			String sql = "insert into selfrecipe ('recipe_nm_ko', 'sumry', 'img_url', 'ty_nm', ";
-			sql += "'cooking_time', 'calorie', 'level_nm', 'importance', 'cooking_no') ";
-			sql += "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert all ";
+			sql += "into selfrecipe(recipe_id, user_id, self_date) values (?, ?, ?) ";
+			sql += "into primary(recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm) ";
+			sql += "values(?, ?, ?, ?, ?, ?, ?, ?) ";
+			sql += "into irdnt(importance) values (?) ";
+			sql += "into step(step) values(?) ";
+			sql += "from primary p, irdnt i, step s, selfrecipe sr ";
+			sql += "where p.recipe = i.recipe and p.recipe = i.recipe and p.recipe = se.recipe and recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getRecipe_nm_ko());
 			pstmt.setString(2, dto.getSumry());
@@ -113,6 +109,7 @@ public class SelfRecipeDAO {
 			pstmt.setString(7, dto.getLevel_nm());
 			pstmt.setString(8, dto.getImportance());
 			pstmt.setInt(9, dto.getCooking_no());
+			pstmt.setString(10,dto.getUser_id());
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -125,6 +122,8 @@ public class SelfRecipeDAO {
 		}
 	}// end insertMethod()
 	
+	
+	// 수정하기
 	public void updateMethod(SelfRecipeDTO dto) {
 		try {
 			conn = init();
@@ -155,6 +154,8 @@ public class SelfRecipeDAO {
 		}
 	}// end updateMethod()
 	
+	
+	// 삭제하기
 	public void deleteMethod(SelfRecipeDTO dto) {
 		try {
 			conn = init();
@@ -172,24 +173,19 @@ public class SelfRecipeDAO {
 			}
 		}
 	}// end deleteMethod()
-	
-	/*
-	public String fileMethod(int recipe_id) {
-		String filePath = null;
+
+	// 조회수 증가
+	public void readCountMethod(int num) {
 		try {
 			conn = init();
-			String sql = "";
-		
+			String sql = "update board set readcount = readcount + 1 where num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.executeUpdate();
+
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				exit();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
-		return filePath;
-	}// end fileMethod()
-	*/
+	}// end readCountMethod() 조회수 올리기
+
 }// end class

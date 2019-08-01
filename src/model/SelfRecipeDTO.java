@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class SelfRecipeDTO {
 	private int recipe_id, cooking_no, review_views, self_num;
-	private String id, importance, recipe_nm_ko, sumry, ty_nm, cooking_time, calorie, level_nm, img_url, det_url, rating, cooking_dc, stre_step_image_url, step_tip, review_rate, review_url, rcom_content, scom_content;
-	private Date review_date;
+	private String user_id, importance, recipe_nm_ko, sumry, ty_nm, cooking_time, calorie, level_nm, img_url, det_url, rating, cooking_dc, stre_step_image_url, step_tip, review_rate, review_url, rcom_content, scom_content;
+	private Date review_date, self_date;
 		
 	public SelfRecipeDTO() {
 	}
@@ -41,13 +41,13 @@ public class SelfRecipeDTO {
 	public void setSelf_num(int self_num) {
 		this.self_num = self_num;
 	}
-
-	public String getId() {
-		return id;
+	
+	public String getUser_id() {
+		return user_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getImportance() {
@@ -194,6 +194,15 @@ public class SelfRecipeDTO {
 		this.review_date = review_date;
 	}
 
+	public Date getSelf_date() {
+		return self_date;
+	}
+
+	public void setSelf_date(Date self_date) {
+		this.self_date = self_date;
+	}
+	
+	
 	
 }// end class
 

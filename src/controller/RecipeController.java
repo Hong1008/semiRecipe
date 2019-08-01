@@ -16,11 +16,13 @@ public class RecipeController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		execute(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		execute(req, resp);
 	}
 
@@ -30,7 +32,6 @@ public class RecipeController extends HttpServlet {
 		String next = "";
 
 		path = path.substring(path.indexOf("/", 2)+1);
-		System.out.println(path);
 		if(path.equals("recipe/home")) {
 			IrdntTYDAO dao = new IrdntTYDAO();
 			req.setAttribute("aList", dao.list());
@@ -47,11 +48,13 @@ public class RecipeController extends HttpServlet {
 			next = "/jsp/recipeBoard.jsp";
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
+		}else if(path.equals("recipe/login")) {
+			next = "/jsp/login.jsp";
 		}
 		
 		if(next!="") {
 			System.out.println(next);
 			req.getRequestDispatcher(next).forward(req, resp);
 		}
-	}// end execute()
-}// end class
+	}
+}
