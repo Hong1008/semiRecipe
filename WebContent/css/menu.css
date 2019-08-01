@@ -54,7 +54,7 @@
     position: fixed;
 }
 
-#login{
+#login, #logout{
     width: 32px;
     cursor: pointer;
 }

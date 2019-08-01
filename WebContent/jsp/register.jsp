@@ -39,7 +39,7 @@ input.result {
 }
 
 .error_next_box {
-    margin: 9px 0 -2px;
+    display: inline-block;
     font-size: 12px;
     line-height: 14px;
     color: red;
@@ -49,19 +49,19 @@ input.result {
 </head>
 <body id="register">
 <div class="wrap">
-	<form action="register.do" id="registerForm" method="post">
+	<form id="registerForm" method="post">
 		<h3><label for="id">아이디</label></h3>
 		<input type="text" id="id" name="id" maxlength="20" required="required" />
-	    <span class="error_next_box" id="idMsg" style="display:none" role="alert"></span>
+	    <p><span class="error_next_box" id="idMsg" role="alert"></span></p>
 		<h3><label for="pw">비밀번호</label></h3>
 		<input type="password" id="pw" name="pw" maxlength="20" required="required" />
-		<span class="error_next_box" id="pwMsg" style="display:none" role="alert"></span>
+		<p><span class="error_next_box" id="pwMsg" role="alert"></span></p>
 		<h3><label for="pwConfirm">비밀번호 확인</label></h3>
 		<input type="password" id="pwConfirm" name="pwConfirm" maxlength="20" required="required" />
-		<span class="error_next_box" id="pwConfimMsg" style="display:none" role="alert"></span>
+		<p><span class="error_next_box" id="pwConfirmMsg" role="alert"></span></p>
 		<h3><label for="nickname">닉네임</label></h3>
 		<input type="text" id="nickname" name="nickname" maxlength="20" required="required" />
-		<span class="error_next_box" id="nicknameMsg" style="display:none" role="alert"></span>
+		<p><span class="error_next_box" id="nicknameMsg" role="alert"></span></p>
 		<div class="join_row join_birthday">
 			<h3 class="join_title"><label for="yy">생년월일</label></h3>
 		    <div class="bir_wrap">
@@ -89,11 +89,11 @@ input.result {
 					</span>
 				</div>
 			</div>
-			<p><span class="error_next_box" id="birthdayMsg" style="display:none" role="alert"></span></p>
+			<p><span class="error_next_box" id="birthdayMsg" role="alert"></span></p>
 		</div>
 		<p>
 			<input class="result" type="reset" value="취소" />
-			<input class="result" type="submit" value="회원가입" />
+			<input class="result" type="button" value="회원가입" />
 		</p>
 	</form>
 </div>
