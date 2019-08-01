@@ -19,6 +19,7 @@
 
 <script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
+
 <!--플러그인 연결-->
 
 <link rel="stylesheet" href="/semiRecipe/css/recipe.css">
@@ -27,6 +28,12 @@
 <script type="text/javascript">
 
 </script>
+<style type="text/css">
+*{
+	margin:0;
+	padding: 0;
+}
+</style>
 
 
 
@@ -38,7 +45,9 @@
 		<!--여기서부터 컨테이너시작-->
 		<div id='container' class='test'>
 			<div id='main_contents'>
-				<div id='selected_ing_div'></div>
+				<div id='selected_ing_div'>
+					<span id='tt'>이곳에 재료를 끌어다 놓으세요</span>
+				</div>
 				<div id='selected_recipe_view'></div>
 				<jsp:include page="../jsp/showRecipe.jsp"/>
 			</div>
