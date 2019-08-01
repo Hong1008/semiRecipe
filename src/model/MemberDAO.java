@@ -143,4 +143,34 @@ public class MemberDAO {
 		}
 		return cnt;
 	}
+	
+	public MemberDTO myPage(String sessionChkId) {
+		MemberDTO dto = new MemberDTO();
+		
+		try {
+			conn=init();
+			String sql = "select * from semimember where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sessionChkId);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setId(rs.getString("id"));
+				dto.setPw(rs.getString("pw"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setBirthday(rs.getDate("birthday"));
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dto;
+	}
 }

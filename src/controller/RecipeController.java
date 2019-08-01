@@ -13,6 +13,7 @@ import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.LoginAction;
 import action.LogoutAction;
+import action.MyPageAction;
 import action.RegisterAction;
 import action.ReviewListAction;
 import action.ViewAction;
@@ -82,6 +83,9 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/checkNickname")) {
 			CheckNicknameAction checkNickname = new CheckNicknameAction();
 			checkNickname.execute(req, resp);
+		}else if(path.equals("recipe/myPage")) {
+			MyPageAction myPage = new MyPageAction();
+			myPage.execute(req, resp);
 		}
 		
 		if(next!="") {
