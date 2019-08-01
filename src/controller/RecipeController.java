@@ -30,7 +30,6 @@ public class RecipeController extends HttpServlet {
 		String method = req.getMethod();
 		String path = req.getRequestURI();
 		String next = "";
-
 		path = path.substring(path.indexOf("/", 2)+1);
 		if(path.equals("recipe/home")) {
 			IrdntTYDAO dao = new IrdntTYDAO();
@@ -48,7 +47,6 @@ public class RecipeController extends HttpServlet {
 			next = "/jsp/recipeBoard.jsp";
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
-		}
 		}else if(path.equals("recipe/login")) {
 			next = "/jsp/login.jsp";
 		}
