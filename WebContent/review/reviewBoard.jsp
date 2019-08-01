@@ -50,13 +50,13 @@
    	border-bottom : 2px solid rgba(247,206,173,0.3);
    	border-bottom-left-radius: 0.2rem; 
     border-bottom-right-radius: 0.2rem; 
-    padding : 2rem;
+    padding : 1rem;
     text-align : center;
     background-color: rgba(255,255,255,0.1);
     color : #8D4738;
     font-size : 0.8rem;
     font-weight : 200;
-    max-width: 320px;
+    max-width: 314px;
    }
    
    #main .thumbnails h3:hover{
