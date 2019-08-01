@@ -14,6 +14,7 @@ import action.CheckNicknameAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.RegisterAction;
+import action.ReviewListAction;
 import action.ViewAction;
 import model.IrdntTYDAO;
 
@@ -48,7 +49,9 @@ public class RecipeController extends HttpServlet {
 			act.execute(req, resp);
 			next = "/ajax/viewResult.jsp";
 		}else if(path.equals("recipe/review")) {
-			next = "/jsp/reviewBoard.jsp";
+			ReviewListAction revList = new ReviewListAction();
+			revList.execute(req, resp);
+			next = "/review/reviewBoard.jsp";
 		}else if(path.equals("recipe/myRecipe")) {
 			next = "/jsp/recipeBoard.jsp";
 		}else if(path.equals("recipe/qna")) {
