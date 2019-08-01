@@ -22,6 +22,7 @@ public class PrimDAO extends RecipeDAO {
 	private ResultSet rs;
 
 	public PrimDAO() {
+		super();
 	}
 
 	public List<PrimDTO> searchView(String irdnt_nm) {
