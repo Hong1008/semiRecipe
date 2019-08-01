@@ -14,6 +14,7 @@ public class IrdntTYDAO extends RecipeDAO{
 	private PreparedStatement pstmt;
 
 	public IrdntTYDAO() {
+		super();
 	}
 	
 	public List<IrdntTYDTO> list(){
