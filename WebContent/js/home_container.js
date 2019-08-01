@@ -48,7 +48,7 @@ $(document)
 					'dblclick',
 					function() {
 						select_num++;
-						if (select_num < 10) {
+						if (select_num < 6) {
 							var selected = $(
 							'#selected_ing_div')
 							.html()
@@ -58,7 +58,7 @@ $(document)
 									selected);
 							viewList();
 						} else {
-							alert("재료는 10개까지만 선택 가능합니다.");
+							alert("재료는 5개까지만 선택 가능합니다.");
 						}
 
 						//드롭된 재료들 삭제
@@ -83,7 +83,7 @@ $(document)
 					{
 						drop : function(event, ui) {
 							select_num++;
-							if (select_num < 10) {
+							if (select_num < 6) {
 								var selected = $(
 								'#selected_ing_div')
 								.html()
@@ -94,7 +94,7 @@ $(document)
 								.html(selected);
 								viewList();
 							} else {
-								alert("재료는 10개까지만 선택 가능합니다.");
+								alert("재료는 5개까지만 선택 가능합니다.");
 							}
 
 							//드롭된 재료들 삭제
@@ -186,8 +186,8 @@ $(document)
 				}
 				
 				//선택된 메뉴들
-				if ($(document).scrollTop() < 680) {
-					var marginT = 800 - $(document).scrollTop();
+				if ($(document).scrollTop() < 580) {
+					var marginT = 700 - $(document).scrollTop();
 					$('#selected_ing_div').css({'top':marginT + 'px','opacity':1});
 				} else {
 					$('#selected_ing_div').css({'top':	'120px','opacity':0.5});					

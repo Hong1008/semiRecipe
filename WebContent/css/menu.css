@@ -45,7 +45,7 @@
 }
 
 #log_container{
-    width: 50px;
+    width: 120px;
     height: 30px;
     position: absolute;
     right: 30px;
@@ -54,9 +54,19 @@
     position: fixed;
 }
 
+#myPage{
+	width: 65px;
+	height:18px;
+	float: left;
+    cursor: pointer;
+    margin-right: 15px;    
+    margin-top: 10px;
+}
+
 #login, #logout{
     width: 32px;
     cursor: pointer;
+	float: left;
 }
 
 #menu1 img{
