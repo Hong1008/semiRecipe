@@ -14,6 +14,7 @@ import action.CheckNicknameAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
+import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
 import action.ViewAction;
@@ -49,6 +50,10 @@ public class RecipeController extends HttpServlet {
 			ViewAction act = new ViewAction();
 			act.execute(req, resp);
 			next = "/ajax/viewResult.jsp";
+		}else if(path.equals("recipe/list")) {
+			RecipeListAction list = new RecipeListAction();
+			list.execute(req, resp);
+			next = "/jsp/list.jsp";
 		}else if(path.equals("recipe/review")) {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
