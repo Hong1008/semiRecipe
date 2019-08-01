@@ -149,6 +149,7 @@
 /* 선택된 재료부분*/
 #selected_ing_div {
 	width: 900px;
+	height: 60px;
 	position: fixed;
 	top: 700px;
 	left: 50%;
@@ -156,7 +157,15 @@
 	background-color: rgba(240, 240, 240);
 	border-radius: 20px;
     padding-left: 20px;
+    text-align: center;
+}
 
+#tt{	
+    font-size: 26px;
+    font-style: italic;    
+    left: 300px;
+    position: fixed;
+    z-index: -1;
 }
 
 /* 선택된 재료 박스 */
