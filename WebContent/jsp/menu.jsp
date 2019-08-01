@@ -31,6 +31,8 @@
 			<img src="/semiRecipe/img/LOGO_white.png">
 		</div>
 		<div id='log_container'>
+			<!--------------------------- 이미지 수정해야됨 ------------------------->
+			<img src="/semiRecipe/img/food_test.jpg" id='myPage'>
 			<c:choose>
 				<c:when test="${empty sessionScope.logOk}">
 					<img src="/semiRecipe/img/menu_login.png" id='login'>
