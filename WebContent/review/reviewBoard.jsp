@@ -206,7 +206,7 @@ body {
 			</section>
 			<form action="#" method="post">
 			<div id="searchLine">
-				<p class = "icon-search"/>
+				<div class = "icon-search"/>
 				<select name="searchDrop">
 					<option value="title_content" selected>전체</option>
 					<option value="title">제목</option>
