@@ -38,13 +38,14 @@ public class ReviewDAO {
 		List<ReviewDTO> aList = new ArrayList<ReviewDTO>();
 		
 		try {
-			String sql = "select review_subject, review_url from review order by review_num";
+			String sql = "select review_subject, review_url, review_num from review order by review_num desc";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
 				ReviewDTO dto = new ReviewDTO();
 				dto.setReview_subject(rs.getString("review_subject"));
 				dto.setReview_url(rs.getString("review_url"));
+				dto.setReview_num(rs.getInt("review_num"));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
