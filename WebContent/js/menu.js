@@ -25,6 +25,16 @@ $(document).ready(function(){
 		location.href='/semiRecipe/recipe/'+id;
 	})
 	
+	$('#myPage').click(function(){
+		var id = $(this).attr('id');
+		location.href='/semiRecipe/recipe/'+id;
+	})
+	
+	$('.home').click(function(){
+		var id = $(this).attr('class');
+		location.href='/semiRecipe/recipe/'+id;
+	})
+	
 	$('#login').click(function(){
 		var id = $(this).attr('id');
 		location.href='/semiRecipe/recipe/'+id+'Form';

@@ -78,7 +78,7 @@ $(document)
 
 
 			//드롭하는부분			
-			$('#main_contents')
+			$('#selected_ing_div')
 			.droppable(
 					{
 						drop : function(event, ui) {
@@ -175,14 +175,14 @@ $(document)
 			$(document).scroll(function() {
 				
 				//사이드메뉴
-				if ($(document).scrollTop() < 500) {
+				if ($(document).scrollTop() < 550) {
 					var marginT = 700 - $(document).scrollTop();
 					$('#side_menu').css('top',marginT + 'px');
 					if ($(document).scrollTop() > 200)
 						$('#side_btn').css('margin-top',($(document).scrollTop() - 200)+ 'px');
 				} else {
 					$('#side_menu').css('top',
-					'200px');
+					'150px');
 				}
 				
 				//선택된 메뉴들

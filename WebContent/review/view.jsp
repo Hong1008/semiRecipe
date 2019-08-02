@@ -21,11 +21,13 @@
 </head>
 <body>
 	<div>
-		<%@ include file="../jsp/menu.jsp" %>
+		<jsp:include page="../jsp/menu.jsp"></jsp:include>
 	</div>
 	<div id="view_post" >
 		<h1>게시글 본문</h1>
 	</div>
-	
+	<div>
+		<jsp:include page="../review/reviewBoard.jsp"></jsp:include>
+	</div>
 </body>
 </html>
