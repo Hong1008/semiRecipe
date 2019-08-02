@@ -21,7 +21,6 @@ public class IrdntDAO extends RecipeDAO {
 	private ResultSet rs;
 
 	public IrdntDAO() {
-		// TODO Auto-generated constructor stub
 		super();
 	}
 	
@@ -38,7 +37,6 @@ public class IrdntDAO extends RecipeDAO {
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return aList;

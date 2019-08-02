@@ -9,7 +9,6 @@ public class StepDTO {
 	private String STEP_TIP;
 	
 	public StepDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public StepDTO(int rOW_NUM, int rECIPE_ID, int cOOKING_NO, String cOOKING_DC, String sTRE_STEP_IMAGE_URL,

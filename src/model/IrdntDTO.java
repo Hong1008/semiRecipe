@@ -7,14 +7,14 @@ public class IrdntDTO {
 	private String IRDNT_NM;
 	private String IRDNT_CPCTY;
 	private String IRDNT_TY_CODE;
-	private String IRDNT_TY_NM;
+	private String IRDNT_TY_NM, IMPORTANCE;
 	
 	public IrdntDTO() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public IrdntDTO(int rOW_NUM, int rECIPE_ID, int iRDNT_SN, String iRDNT_NM, String iRDNT_CPCTY, String iRDNT_TY_CODE,
-			String iRDNT_TY_NM) {
+			String iRDNT_TY_NM, String iMPORTANCE) {
+		super();
 		ROW_NUM = rOW_NUM;
 		RECIPE_ID = rECIPE_ID;
 		IRDNT_SN = iRDNT_SN;
@@ -22,6 +22,15 @@ public class IrdntDTO {
 		IRDNT_CPCTY = iRDNT_CPCTY;
 		IRDNT_TY_CODE = iRDNT_TY_CODE;
 		IRDNT_TY_NM = iRDNT_TY_NM;
+		IMPORTANCE = iMPORTANCE;
+	}
+
+	public String getIMPORTANCE() {
+		return IMPORTANCE;
+	}
+
+	public void setIMPORTANCE(String iMPORTANCE) {
+		IMPORTANCE = iMPORTANCE;
 	}
 
 	public int getROW_NUM() {

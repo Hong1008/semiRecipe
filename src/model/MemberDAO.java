@@ -173,4 +173,24 @@ public class MemberDAO {
 		
 		return dto;
 	}
+	
+	public void update(MemberDTO dto) {
+		try {
+			conn = init();
+			String sql = "update semimember set "+dto.getUpdateName()+"= ? where id = ?";
+			pstmt = conn.prepareStatement(sql);
+			if(dto.getUpdateName().equals("pw")) {
+				pstmt.setString(1, dto.getPw());
+			} else if(dto.getUpdateName().equals("nickname")) {
+				pstmt.setString(1, dto.getNickname());
+			} else if(dto.getUpdateName().equals("birthday")) {
+				pstmt.setDate(1, dto.getBirthday());
+			}
+			pstmt.setString(2, dto.getId());
+			rs = pstmt.executeQuery();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
