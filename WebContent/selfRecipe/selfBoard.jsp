@@ -1,16 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../jsp/menu.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
-<title></title>
+<title>Review Board</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
-<script src="/semiRecipe/js/primList.js"></script>
 <style>
    body{
      background-color: #FFF5E6;
@@ -39,7 +37,7 @@
    
    
    #main .thumbnails img{
-     width : 100px;
+     width : 100%;
      max-width: 350px;
      border-top-left-radius: 0.2rem; 
      border-top-right-radius: 0.2rem; 
@@ -52,13 +50,13 @@
    	border-bottom : 2px solid rgba(247,206,173,0.3);
    	border-bottom-left-radius: 0.2rem; 
     border-bottom-right-radius: 0.2rem; 
-    padding : 1rem;
+    padding : 2rem;
     text-align : center;
     background-color: rgba(255,255,255,0.1);
     color : #8D4738;
     font-size : 0.8rem;
     font-weight : 200;
-    max-width: 314px;
+    max-width: 320px;
    }
    
    #main .thumbnails h3:hover{
@@ -95,6 +93,9 @@
 
 </head>
 <body>
+	<div>
+		<%@ include file="../jsp/menu.jsp" %>
+	</div>
 	<!-- hidden div -->
 	<div id="hidden"></div>
 	
@@ -108,7 +109,13 @@
 			
 			<section class="thumbnails">
 				
-				<%@include file="../ajax/listResult.jsp"%>
+				<c:forEach items="${requestScope.aList}" var="revList">
+				<div>
+					<a href="#"> <img src="${revList.review_url}" alt="" />
+						<h3>${revList.review_subject}</h3>
+					</a> 
+				</div>
+				</c:forEach>
 				
 			</section>
 			<div id = "buttonLine">
@@ -119,20 +126,6 @@
 
 	</div>
 
-	<input type="text" id="search">
-	
-	<a href="#" class="sort" id="sortView">
-		<input type="hidden" class="column" value="prim_view">
-		<input type="hidden" class="order" value="desc">
-	조회수순</a>
-	<a href="#" class="sort" id="sortRate">
-		<input type="hidden" class="column" value="rating">
-		<input type="hidden" class="order" value="desc">
-	별점순</a>
-	<a href="#" class="sort" id="sortNM">
-		<input type="hidden" class="column" value="recipe_nm_ko">
-		<input type="hidden" class="order" value="asc">
-	가나다순</a>
 	<!-- Scripts -->
 	<script src="/semiRecipe/assets/js/jquery.min.js"></script>
 	<script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>

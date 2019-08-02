@@ -63,6 +63,10 @@
     background-color: rgba(247,206,173,0.8);
    }
    
+   #main .thumbnails .listLine{
+     display : block;
+   }
+   
    #buttonLine{
    	 max-width : 68rem;
    	 margin : 0 auto;
@@ -108,14 +112,35 @@
 			<!-- Thumbnails -->
 			
 			<section class="thumbnails">
-				
-				<c:forEach items="${requestScope.aList}" var="revList">
+				<%-- 
+				<c:forEach items="${requestScope.aList}" var="revList" varStatus="status">
+					<c:if test =${status.count%3==0} ></c:if>
+					
 				<div>
 					<a href="/semiRecipe/review/view.jsp"> <img src="${revList.review_url}" alt="" />
 						<h3>${revList.review_subject}</h3>
 					</a> 
 				</div>
+				
 				</c:forEach>
+				 --%>
+				<div class = "listLine">
+				<c:forEach items="${requestScope.aList}" var="revList" begin = "0" end="3">
+					<div>
+						<a href="view.jsp"> <img src="${revList.review_url}" alt="" />
+							<h3>${revList.review_subject}</h3></a>
+					</div>
+				</c:forEach>
+				</div>
+				<div class ="listLine">
+				<c:forEach items="${requestScope.aList}" var="revList" begin="4" end="7">
+					<div>
+						<a href="view.jsp"> <img src="${revList.review_url}" alt="" />
+						<h3>${revList.review_subject}</h3></a>
+					</div>
+				</c:forEach>
+				</div>			
+				
 				
 			</section>
 			<div id = "buttonLine">
@@ -127,8 +152,8 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="/semiRecipe/assets/js/jquery.min.js"></script>
-	<script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>
-	<script src="/semiRecipe/assets/js/skel.min.js"></script>
+	<script src="../assets/js/jquery.min.js"></script>
+	<script src="../assets/js/jquery.poptrox.min.js"></script>
+	<script src="../assets/js/skel.min.js"></script>
 </body>
 </html>

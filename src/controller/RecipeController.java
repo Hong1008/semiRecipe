@@ -55,12 +55,16 @@ public class RecipeController extends HttpServlet {
 			RecipeListAction list = new RecipeListAction();
 			list.execute(req, resp);
 			next = "/jsp/list.jsp";
+			if(method.equalsIgnoreCase("POST")) {
+				next = "/ajax/listResult.jsp";
+			}
 		}else if(path.equals("recipe/review")) {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
-		}else if(path.equals("recipe/myRecipe")) {
-			next = "/jsp/recipeBoard.jsp";
+		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
+			
+			next = "/selfRecipe/selfBoard.jsp";
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
 		}else if(path.equals("recipe/loginForm")) {
