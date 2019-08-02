@@ -8,7 +8,7 @@
 <title>Review Board</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
-<link rel="stylesheet" href="/semiRecipe/review/fontello-ea422c41/css/fontello.css">
+<link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
 <style>
    body{
      background-color: #FFF5E6;
@@ -50,13 +50,13 @@
    	border-bottom : 2px solid rgba(247,206,173,0.3);
    	border-bottom-left-radius: 0.2rem; 
     border-bottom-right-radius: 0.2rem; 
-    padding : 2rem;
+    padding : 1rem;
     text-align : center;
     background-color: rgba(255,255,255,0.1);
     color : #8D4738;
     font-size : 0.8rem;
     font-weight : 200;
-    max-width: 320px;
+    max-width: 314px;
    }
    
    #main .thumbnails h3:hover{
@@ -127,8 +127,8 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.poptrox.min.js"></script>
-	<script src="assets/js/skel.min.js"></script>
+	<script src="/semiRecipe/assets/js/jquery.min.js"></script>
+	<script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>
+	<script src="/semiRecipe/assets/js/skel.min.js"></script>
 </body>
 </html>

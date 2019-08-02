@@ -11,7 +11,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class PrimDAO extends RecipeDAO {
@@ -23,6 +22,29 @@ public class PrimDAO extends RecipeDAO {
 
 	public PrimDAO() {
 		super();
+	}
+	public List<PrimDTO> listView(){
+		List<PrimDTO> aList = new ArrayList<PrimDTO>();
+		String sql = "select recipe_nm_ko, img_url from primary";
+		try {
+			rs = queryStmt(sql);
+			while(rs.next()) {
+				PrimDTO dto = new PrimDTO();
+				dto.setRECIPE_NM_KO(rs.getString(1).replaceAll("\"", ""));
+				String url = rs.getString(2);
+				if(url!=null && !url.isEmpty()) {
+					url = url.replaceAll("\"", "");
+				}
+				dto.setIMG_URL(url);
+				aList.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			exit();
+		}
+		return aList;
 	}
 
 	public List<PrimDTO> searchView(String irdnt_nm) {

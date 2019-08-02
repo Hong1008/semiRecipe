@@ -9,8 +9,8 @@
 <title>Insert title here</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
-<link rel="stylesheet" href="fontello-ea422c41/css/fontello.css">
-<script src="./ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
+<script src="../ckeditor/ckeditor.js"></script>
 <style type="text/css">
    body{
      background-color: #FFF5E6;
