@@ -7,13 +7,10 @@
 <meta charset="UTF-8" name="viewport"
 	content="width=device-width, initial-scale=1" />
 <title>Review Board</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="/semiRecipe/fontello-ea422c41/css/fontello.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
+<link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
+<link rel="stylesheet" href="/semiRecipe/fontello-searchicon/css/fontello.css">
 <style>
 body {
 	background-color: #FFF5E6;
@@ -99,6 +96,20 @@ body {
 	border-radius: 0.2rem;
 	font-size: 20px;
 }
+
+#searchLine{
+	text-align : center;
+}
+
+#searchLine .icon-search{
+	padding: 3px;
+	text-decoration: none;
+	color: #FFF5E6;
+	background-color: rgba(141, 71, 56, 0.7);
+	border: 1px solid rgba(141, 71, 56, 0.3);
+	border-radius: 0.2rem;
+	font-size: 20px;
+}
 </style>
 
 </head>
@@ -139,7 +150,8 @@ body {
 				</c:forEach>
 				 --%>
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList">
+					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
+						<c:set var="i" value="${status.count%4 }" />
 						<c:if test="${revList.review_num%4==1}">
 
 							<div>
@@ -149,10 +161,10 @@ body {
 							</div>
 						</c:if>
 					</c:forEach>
-
 				</div>
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList">
+					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
+					<c:set var="i" value="${status.count%4 }" />
 						<c:if test="${revList.review_num%4==2}">
 							<div>
 								<a href="../review/view.jsp"> <img
@@ -164,9 +176,10 @@ body {
 				</div>
 
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList">
+					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
+					<c:set var="i" value="${status.count%4 }" />
 						<c:if test="${revList.review_num%4==3}">
-							<div>
+							<div> 
 								<a href="../review/view.jsp"> <img
 									src="${revList.review_url}" alt="" />
 									<h3>${revList.review_subject}</h3></a>
@@ -177,7 +190,8 @@ body {
 				
 
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList">
+					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
+					<c:set var="i" value="${status.count%4 }" />
 						<c:if test="${revList.review_num%4==0}">
 							<div>
 								<a href="../review/view.jsp"> <img
@@ -190,15 +204,21 @@ body {
 
 
 			</section>
+			<form action="#" method="post">
 			<div id="searchLine">
+				<p class = "icon-search"/>
 				<select name="searchDrop">
-
+					<option value="title_content" selected>전체</option>
+					<option value="title">제목</option>
+					<option value="content">검색</option>
 				</select>
+				<input type ="text" name = "search_keyword" value/>
+				<input type ="submit" class="icon-search" value="검색" >
 			</div>
-
+			</form>
 			<div id="buttonLine">
-				<a href="../review/reviewBoard.jsp" class="icon-th-large-outline">
-					목록</a> <a href="../review/write.jsp" class="icon-comment"> 쓰기</a>
+				<a href="../review/reviewBoard.jsp" class="icon-th-large-outline">목록</a> 
+				<a href="../review/write.jsp" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>
 
