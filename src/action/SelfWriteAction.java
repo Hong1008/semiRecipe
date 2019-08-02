@@ -32,7 +32,7 @@ public class SelfWriteAction extends HttpServlet{
 			e.printStackTrace();
 		}
 		/*-----------------파일 업로드 처리------------------------------------*/
-		
+		/*
 		SelfRecipeDAO dao = SelfRecipeDAO.getInstance();
 		SelfRecipeDTO dto = new SelfRecipeDTO();
 		dto.setRecipe_nm_ko(multi.getParameter("recipe_nm_ko"));
@@ -47,7 +47,8 @@ public class SelfWriteAction extends HttpServlet{
 		// form으로 넘오오기 때문에 parameter으로 받는다.
 		dao.insertMethod(dto);
 		// 받아온 값을 넘겨준다.
+
+		*/
 		return multi;
-		
 	}// end executeMulti()
 }// end selfWriteAction()
