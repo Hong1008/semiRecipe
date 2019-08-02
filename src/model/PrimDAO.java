@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -26,7 +27,7 @@ public class PrimDAO extends RecipeDAO {
 	
 	public List<PrimDTO> listView(){
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
-		String sql = "select recipe_nm_ko, img_url from primary";
+		String sql = "select recipe_nm_ko, img_url from primary where recipe_type = 'p'";
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
@@ -47,10 +48,35 @@ public class PrimDAO extends RecipeDAO {
 		}
 		return aList;
 	}
-
-	public List<PrimDTO> searchView(String irdnt_nm) {
+	
+	public List<PrimDTO> sortView(String column, String order){
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
-		String sql = "select * from primary where recipe_id in(";
+		String sql = "select recipe_nm_ko, img_url from primary where recipe_type = 'p' order by "+column+" "+order;
+		try {
+			rs = queryStmt(sql);
+			while(rs.next()) {
+				PrimDTO dto = new PrimDTO();
+				dto.setRECIPE_NM_KO(rs.getString(1).replaceAll("\"", ""));
+				String url = rs.getString(2);
+				if(url!=null && !url.isEmpty()) {
+					url = url.replaceAll("\"", "");
+				}
+				dto.setIMG_URL(url);
+				aList.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			exit();
+		}
+		return aList;
+	}
+
+	public List<PrimDTO> searchRecipe(String irdnt_nm) {
+		List<PrimDTO> aList = new ArrayList<PrimDTO>();
+		String sql = "select * from primary where recipe_type = 'p' and recipe_id in(";
 		JsonParser pas = new JsonParser();
 		JsonArray jarr = (JsonArray) pas.parse(irdnt_nm);
 		for (int i = 0; i < jarr.size(); i++) {

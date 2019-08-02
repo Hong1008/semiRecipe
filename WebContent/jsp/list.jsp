@@ -10,6 +10,7 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
+<script src="/semiRecipe/js/primList.js"></script>
 <style>
    body{
      background-color: #FFF5E6;
@@ -38,7 +39,7 @@
    
    
    #main .thumbnails img{
-     width : 100%;
+     width : 100px;
      max-width: 350px;
      border-top-left-radius: 0.2rem; 
      border-top-right-radius: 0.2rem; 
@@ -107,13 +108,7 @@
 			
 			<section class="thumbnails">
 				
-				<c:forEach items="${requestScope.recList}" var="recList">
-				<div>
-					<a href="#"> <img src="${recList.IMG_URL}" alt="" />
-						<h3>${recList.RECIPE_NM_KO}</h3>
-					</a> 
-				</div>
-				</c:forEach>
+				<%@include file="../ajax/listResult.jsp"%>
 				
 			</section>
 			<div id = "buttonLine">
@@ -124,6 +119,20 @@
 
 	</div>
 
+	<input type="text" id="search">
+	
+	<a href="#" class="sort" id="sortView">
+		<input type="hidden" class="column" value="prim_view">
+		<input type="hidden" class="order" value="desc">
+	조회수순</a>
+	<a href="#" class="sort" id="sortRate">
+		<input type="hidden" class="column" value="rating">
+		<input type="hidden" class="order" value="desc">
+	별점순</a>
+	<a href="#" class="sort" id="sortNM">
+		<input type="hidden" class="column" value="recipe_nm_ko">
+		<input type="hidden" class="order" value="asc">
+	가나다순</a>
 	<!-- Scripts -->
 	<script src="/semiRecipe/assets/js/jquery.min.js"></script>
 	<script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>
