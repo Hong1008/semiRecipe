@@ -9,8 +9,8 @@
 <title>Review Board</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
-<link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
-<link rel="stylesheet" href="/semiRecipe/fontello-searchicon/css/fontello.css">
+<link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
+
 <style>
 body {
 	background-color: #FFF5E6;
@@ -101,7 +101,7 @@ body {
 	text-align : center;
 }
 
-#searchLine .icon-search{
+#search_button{
 	padding: 3px;
 	text-decoration: none;
 	color: #FFF5E6;
@@ -150,8 +150,7 @@ body {
 				</c:forEach>
 				 --%>
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
-						<c:set var="i" value="${status.count%4 }" />
+					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==1}">
 
 							<div>
@@ -163,8 +162,7 @@ body {
 					</c:forEach>
 				</div>
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
-					<c:set var="i" value="${status.count%4 }" />
+					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==2}">
 							<div>
 								<a href="../review/view.jsp"> <img
@@ -176,8 +174,7 @@ body {
 				</div>
 
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
-					<c:set var="i" value="${status.count%4 }" />
+					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==3}">
 							<div> 
 								<a href="../review/view.jsp"> <img
@@ -190,8 +187,7 @@ body {
 				
 
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
-					<c:set var="i" value="${status.count%4 }" />
+					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==0}">
 							<div>
 								<a href="../review/view.jsp"> <img
@@ -206,14 +202,14 @@ body {
 			</section>
 			<form action="#" method="post">
 			<div id="searchLine">
-				<div class = "icon-search"/>
+				<p class="search_icon"></p>
 				<select name="searchDrop">
 					<option value="title_content" selected>전체</option>
 					<option value="title">제목</option>
 					<option value="content">검색</option>
 				</select>
 				<input type ="text" name = "search_keyword" value/>
-				<input type ="submit" class="icon-search" value="검색" >
+				<input type ="submit" id = "search_button" value="검색" >
 			</div>
 			</form>
 			<div id="buttonLine">
