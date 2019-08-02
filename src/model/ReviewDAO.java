@@ -38,7 +38,7 @@ public class ReviewDAO {
 		List<ReviewDTO> aList = new ArrayList<ReviewDTO>();
 		
 		try {
-			String sql = "select review_subject, review_url, review_num from review order by review_num";
+			String sql = "select review_subject, review_url, review_num from review order by review_num desc";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
