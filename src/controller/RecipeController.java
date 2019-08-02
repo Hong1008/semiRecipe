@@ -86,6 +86,11 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/myPage")) {
 			MyPageAction myPage = new MyPageAction();
 			myPage.execute(req, resp);
+		}else if(path.equals("recipe/infoUpdate/pw") ||
+				path.equals("recipe/infoUpdate/nickname")||
+				path.equals("recipe/infoUpdate/birthday")) {
+			InfoUpdate update = new InfoUpdate(); 
+			update.execute(req, resp);
 		}
 		
 		if(next!="") {
