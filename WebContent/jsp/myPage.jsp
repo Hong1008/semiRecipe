@@ -48,6 +48,18 @@ input {
 	padding: 15px;
 }
 
+span {
+	width: 50px;
+}
+
+td p {
+	height: 25px;
+}
+
+td p input {
+	height : 20px;
+}
+
 </style>
 </head>
 <body>
@@ -56,11 +68,20 @@ input {
 		<caption>마이페이지</caption>
 		<tr class="content">
 			<td class="myPageList">아이디</td>
-			<td>${dto.id}</td>
+			<td colspan="4">${dto.id}</td>
 		</tr>
 		<tr class="content">
 			<td class="myPageList">비밀번호</td>
-			<td ><a href="#" type="button">변경</a></td>
+			<td><a href="#" type="button">변경</a></td>
+			<td>
+				<p>현재 비밀번호 :</p>
+				<p>변경 비밀번호 :</p>
+			</td>
+			<td>
+				<p><input type="password"></p>
+				<p><input type="password"></p>
+			</td>
+			<td><input type="button" value="변경" id="pwChangeFinish" /></td>
 		</tr>
 		<tr class="content">
 			<td class="myPageList">닉네임</td>

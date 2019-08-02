@@ -1,13 +1,10 @@
-package controller;
+package model;
 
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import model.MemberDAO;
-import model.MemberDTO;
 
 public class InfoUpdate {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {

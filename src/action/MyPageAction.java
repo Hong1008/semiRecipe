@@ -24,7 +24,7 @@ public class MyPageAction {
 			req.setAttribute("dto", dto);
 			dis = req.getRequestDispatcher("../jsp/myPage.jsp");
 		}else {
-			dis = req.getRequestDispatcher("../jsp/register.jsp");
+			dis = req.getRequestDispatcher("../jsp/login.jsp");
 		}
 		
 		dis.forward(req, resp);
@@ -34,3 +34,4 @@ public class MyPageAction {
 		
 	}
 }
+

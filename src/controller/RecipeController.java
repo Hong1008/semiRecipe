@@ -18,6 +18,7 @@ import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
 import action.ViewAction;
+import model.InfoUpdate;
 import model.IrdntTYDAO;
 
 @WebServlet("/recipe/*")
@@ -91,9 +92,7 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/myPage")) {
 			MyPageAction myPage = new MyPageAction();
 			myPage.execute(req, resp);
-		}else if(path.equals("recipe/infoUpdate/pw") ||
-				path.equals("recipe/infoUpdate/nickname")||
-				path.equals("recipe/infoUpdate/birthday")) {
+		}else if(path.indexOf("recipe/infoUpdate/")>-1) {
 			InfoUpdate update = new InfoUpdate(); 
 			update.execute(req, resp);
 		}
