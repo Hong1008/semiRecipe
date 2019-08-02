@@ -1,9 +1,9 @@
 package model;
 
 public class PrimDTO {
-	private int ROW_NUM;
+	private int ROW_NUM, PRIM_VIEWS;
 	private int RECIPE_ID;
-	private String RECIPE_NM_KO;
+	private String RECIPE_NM_KO, RATING;
 	private String SUMRY;
 	private String NATION_CODE;
 	private String NATION_NM;
@@ -19,16 +19,17 @@ public class PrimDTO {
 	private String DET_URL;
 	
 	public PrimDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public PrimDTO(int rOW_NUM, int rECIPE_ID, String rECIPE_NM_KO, String sUMRY, String nATION_CODE, String nATION_NM,
-			String tY_CODE, String tY_NM, String cOOKING_TIME, String cALORIE, String qNT, String lEVEL_NM,
-			String iRDNT_CODE, String pC_NM, String iMG_URL, String dET_URL) {
+	public PrimDTO(int rOW_NUM, int pRIM_VIEWS, int rECIPE_ID, String rECIPE_NM_KO, String rATING, String sUMRY,
+			String nATION_CODE, String nATION_NM, String tY_CODE, String tY_NM, String cOOKING_TIME, String cALORIE,
+			String qNT, String lEVEL_NM, String iRDNT_CODE, String pC_NM, String iMG_URL, String dET_URL) {
 		super();
 		ROW_NUM = rOW_NUM;
+		PRIM_VIEWS = pRIM_VIEWS;
 		RECIPE_ID = rECIPE_ID;
 		RECIPE_NM_KO = rECIPE_NM_KO;
+		RATING = rATING;
 		SUMRY = sUMRY;
 		NATION_CODE = nATION_CODE;
 		NATION_NM = nATION_NM;
@@ -43,7 +44,29 @@ public class PrimDTO {
 		IMG_URL = iMG_URL;
 		DET_URL = dET_URL;
 	}
-	
+
+	public int getPRIM_VIEWS() {
+		return PRIM_VIEWS;
+	}
+
+
+
+	public void setPRIM_VIEWS(int pRIM_VIEWS) {
+		PRIM_VIEWS = pRIM_VIEWS;
+	}
+
+
+
+	public String getRATING() {
+		return RATING;
+	}
+
+
+
+	public void setRATING(String rATING) {
+		RATING = rATING;
+	}
+
 	public int getROW_NUM() {
 		return ROW_NUM;
 	}

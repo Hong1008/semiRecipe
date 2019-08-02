@@ -5,7 +5,6 @@ public class IrdntTYDTO {
 	private String ty_nm;
 	
 	public IrdntTYDTO() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public IrdntTYDTO(String irdnt_nm, String ty_nm) {
