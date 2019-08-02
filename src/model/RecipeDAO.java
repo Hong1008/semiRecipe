@@ -19,11 +19,9 @@ public class RecipeDAO {
 	private ResultSet rs;
 
 	public RecipeDAO() {
-		// TODO Auto-generated constructor stub
 		try {
 			conn = JdbcTemplate.getConnection();
 		} catch (SQLException | NamingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

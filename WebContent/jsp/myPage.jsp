@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/semiRecipe/js/myPage.js"></script>
 <style type="text/css">
 * {
 	margin: 0;
@@ -29,53 +30,56 @@
 	border-bottom: 1px solid #e8e9ed;
 }
 
+#myPageBody .content {
+	height: 25%;
+}
+
 .myPageList {
 	font-weight: bold;
 	width: 30%;
 }
+
+input {
+	height: 23px;
+}
+
+#finish {
+	text-align: center;
+	padding: 15px;
+}
+
 </style>
-<script>
-	$(document).ready(function() {
-		$('#nChangeBtn').on('click',function() {
-			$('#nValue').css('display','none');
-			$('#nBox').css('display','inline');
-			$('#nChangeCancleBtn').css('display','inline');
-		});
-		
-		$('#nChangeCancleBtn').on('click', function() {
-			$('#nBox').css('display','none');
-			$('#nChangeCancleBtn').css('display','none');
-		});
-		
-	});
-</script>
 </head>
 <body>
 	<c:set value="${requestScope.dto}" var="dto" />
 	<table id="myPageBody">
 		<caption>마이페이지</caption>
-		<tr>
+		<tr class="content">
 			<td class="myPageList">아이디</td>
 			<td>${dto.id}</td>
 		</tr>
-		<tr>
-			<td class="myPageList">비밀d번호</td>
+		<tr class="content">
+			<td class="myPageList">비밀번호</td>
 			<td ><a href="#" type="button">변경</a></td>
 		</tr>
-		<tr>
+		<tr class="content">
 			<td class="myPageList">닉네임</td>
 			<td id="nickname">
-				<span id="nValue">${dto.nickname}</span>
-				<input type="text" id="nBox" style="display: none;" value="${dto.nickname}"/>
-				<input type="button" value="변경" id="nChangeBtn" />
-				<input type="button" value="취소" id="nChangeCancleBtn" style="display: none;" />
+				<form action="checkNickname" id="nicknameChange">
+					<span id="nValue">${dto.nickname}</span>
+					<input type="text" class="box" id="nBox" style="display: none;" value="${dto.nickname}"/>
+					<input type="button" value="변경" id="nChangeBtn" />
+					<input type="button" value="취소" id="nChangeCancleBtn" style="display: none;" />
+				</form>
 			</td>
 		</tr>
-		<tr>
+		<tr class="content">
 			<td class="myPageList">생년월일</td>
 			<td>${dto.birthday}</td>
 		</tr>
 	</table>
+
+	<div id="finish"><input type="button" value="수정 완료" id="finishBtn" /></div>
 	
 </body>
 </html>

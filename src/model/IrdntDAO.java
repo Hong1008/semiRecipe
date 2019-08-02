@@ -21,7 +21,6 @@ public class IrdntDAO extends RecipeDAO {
 	private ResultSet rs;
 
 	public IrdntDAO() {
-		// TODO Auto-generated constructor stub
 		super();
 	}
 	
@@ -33,12 +32,11 @@ public class IrdntDAO extends RecipeDAO {
 			rs =stmt.executeQuery(sql);
 			while(rs.next()) {
 				IrdntDTO dto = new IrdntDTO();
-				dto.setIRDNT_NM(rs.getString(1).replaceAll("\"", ""));
-				dto.setIRDNT_TY_CODE(rs.getString(2).replaceAll("\"", ""));
+				dto.setIRDNT_NM(rs.getString(1));
+				dto.setIRDNT_TY_CODE(rs.getString(2));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return aList;

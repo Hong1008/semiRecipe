@@ -68,15 +68,16 @@
 #R_importance {
 	padding-top: 10px;
 	padding-bottom: 30px;
+	
 }
 
-#R_importance  h3 {
+#R_importance  h3{
 	font-size: 23px
 }
 
 .R_ig_div {
-	width: 378px;
-	display: inline-grid;
+    width: 378px;
+    display: inline-block;
 }
 
 .R_ing {

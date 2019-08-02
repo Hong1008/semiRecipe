@@ -7,9 +7,18 @@ public class MemberDTO {
 	private String pw;
 	private String nickname;
 	private Date birthday;
+	private String updateName;
 
 	public String getId() {
 		return id;
+	}
+
+	public String getUpdateName() {
+		return updateName;
+	}
+
+	public void setUpdateName(String updateName) {
+		this.updateName = updateName;
 	}
 
 	public void setId(String id) {
