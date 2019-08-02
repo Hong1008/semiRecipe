@@ -27,7 +27,7 @@ public class PrimDAO extends RecipeDAO {
 	
 	public List<PrimDTO> listView(){
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
-		String sql = "select recipe_nm_ko, img_url from primary where recipe_type = 'p'";
+		String sql = "select recipe_nm_ko, img_url, prim_views, rating from primary where recipe_type = 'p'";
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
@@ -35,6 +35,8 @@ public class PrimDAO extends RecipeDAO {
 				dto.setRECIPE_NM_KO(rs.getString(1));
 				String url = rs.getString(2);
 				dto.setIMG_URL(url);
+				dto.setPRIM_VIEWS(rs.getInt(3));
+				dto.setRATING(rs.getString(4));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
@@ -48,7 +50,7 @@ public class PrimDAO extends RecipeDAO {
 	
 	public List<PrimDTO> sortView(String column, String order){
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
-		String sql = "select recipe_nm_ko, img_url from primary where recipe_type = 'p' order by "+column+" "+order;
+		String sql = "select recipe_nm_ko, img_url, prim_views, rating from primary where recipe_type = 'p' order by "+column+" "+order;
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
@@ -56,6 +58,8 @@ public class PrimDAO extends RecipeDAO {
 				dto.setRECIPE_NM_KO(rs.getString(1));
 				String url = rs.getString(2);
 				dto.setIMG_URL(url);
+				dto.setPRIM_VIEWS(rs.getInt(3));
+				dto.setRATING(rs.getString(4));
 				aList.add(dto);
 			}
 			
@@ -112,6 +116,8 @@ public class PrimDAO extends RecipeDAO {
 				dto.setPC_NM(rs.getString("PC_NM"));
 				dto.setIMG_URL(rs.getString("IMG_URL"));
 				dto.setDET_URL(rs.getString("DET_URL"));
+				dto.setPRIM_VIEWS(rs.getInt("PRIM_VIEWS"));
+				dto.setRATING(rs.getString("RATING"));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {

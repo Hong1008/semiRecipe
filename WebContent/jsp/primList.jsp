@@ -39,7 +39,7 @@
    
    
    #main .thumbnails img{
-     width : 100px;
+     width : 200px;
      max-width: 350px;
      border-top-left-radius: 0.2rem; 
      border-top-right-radius: 0.2rem; 
@@ -113,7 +113,6 @@
 			</section>
 			<div id = "buttonLine">
 				<a href="#" class="icon-th-large-outline"> 목록</a>
-				<a href="#" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>
 
