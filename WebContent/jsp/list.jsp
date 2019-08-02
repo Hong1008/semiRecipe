@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file="../jsp/menu.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
-<title>Review Board</title>
+<title></title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
@@ -93,9 +94,6 @@
 
 </head>
 <body>
-	<div>
-		<%@ include file="../jsp/menu.jsp" %>
-	</div>
 	<!-- hidden div -->
 	<div id="hidden"></div>
 	
@@ -109,18 +107,18 @@
 			
 			<section class="thumbnails">
 				
-				<c:forEach items="${requestScope.aList}" var="revList">
+				<c:forEach items="${requestScope.recList}" var="recList">
 				<div>
-					<a href="/semiRecipe/review/view.jsp"> <img src="${revList.review_url}" alt="" />
-						<h3>${revList.review_subject}</h3>
+					<a href="#"> <img src="${recList.IMG_URL}" alt="" />
+						<h3>${recList.RECIPE_NM_KO}</h3>
 					</a> 
 				</div>
 				</c:forEach>
 				
 			</section>
 			<div id = "buttonLine">
-				<a href="../review/reviewBoard.jsp" class="icon-th-large-outline"> 목록</a>
-				<a href="../review/write.jsp" class="icon-comment"> 쓰기</a>
+				<a href="#" class="icon-th-large-outline"> 목록</a>
+				<a href="#" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>
 
