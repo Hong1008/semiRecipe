@@ -143,4 +143,54 @@ public class MemberDAO {
 		}
 		return cnt;
 	}
+	
+	public MemberDTO myPage(String sessionChkId) {
+		MemberDTO dto = new MemberDTO();
+		
+		try {
+			conn=init();
+			String sql = "select * from semimember where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sessionChkId);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setId(rs.getString("id"));
+				dto.setPw(rs.getString("pw"));
+				dto.setNickname(rs.getString("nickname"));
+				dto.setBirthday(rs.getDate("birthday"));
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return dto;
+	}
+	
+	public void update(MemberDTO dto) {
+		try {
+			conn = init();
+			String sql = "update semimember set "+dto.getUpdateName()+"= ? where id = ?";
+			pstmt = conn.prepareStatement(sql);
+			if(dto.getUpdateName().equals("pw")) {
+				pstmt.setString(1, dto.getPw());
+			} else if(dto.getUpdateName().equals("nickname")) {
+				pstmt.setString(1, dto.getNickname());
+			} else if(dto.getUpdateName().equals("birthday")) {
+				pstmt.setDate(1, dto.getBirthday());
+			}
+			pstmt.setString(2, dto.getId());
+			rs = pstmt.executeQuery();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

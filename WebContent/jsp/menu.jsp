@@ -27,7 +27,7 @@
 		<div id='menu_bar'>
 			<img src="/semiRecipe/img/menu_back.jpg">
 		</div>
-		<div id='logo_container'>
+		<div class="home" id='logo_container'>
 			<img src="/semiRecipe/img/LOGO_white.png">
 		</div>
 		<div id='log_container'>
@@ -44,7 +44,7 @@
 		</div>
 		<div id='menu_container'>
 			<ul id="menu_ul">
-				<li class="menu_li" id='home'><img
+				<li class="menu_li" id='list'><img
 					src="/semiRecipe/img/menu01.PNG">
 					</li>
 				<li class="menu_li" id='review'><img

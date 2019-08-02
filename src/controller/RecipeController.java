@@ -13,6 +13,8 @@ import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.LoginAction;
 import action.LogoutAction;
+import action.MyPageAction;
+import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
 import action.ViewAction;
@@ -48,6 +50,10 @@ public class RecipeController extends HttpServlet {
 			ViewAction act = new ViewAction();
 			act.execute(req, resp);
 			next = "/ajax/viewResult.jsp";
+		}else if(path.equals("recipe/list")) {
+			RecipeListAction list = new RecipeListAction();
+			list.execute(req, resp);
+			next = "/jsp/list.jsp";
 		}else if(path.equals("recipe/review")) {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
@@ -82,6 +88,14 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/checkNickname")) {
 			CheckNicknameAction checkNickname = new CheckNicknameAction();
 			checkNickname.execute(req, resp);
+		}else if(path.equals("recipe/myPage")) {
+			MyPageAction myPage = new MyPageAction();
+			myPage.execute(req, resp);
+		}else if(path.equals("recipe/infoUpdate/pw") ||
+				path.equals("recipe/infoUpdate/nickname")||
+				path.equals("recipe/infoUpdate/birthday")) {
+			InfoUpdate update = new InfoUpdate(); 
+			update.execute(req, resp);
 		}
 		
 		if(next!="") {
