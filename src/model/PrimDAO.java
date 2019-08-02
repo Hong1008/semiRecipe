@@ -23,7 +23,6 @@ public class PrimDAO extends RecipeDAO {
 	public PrimDAO() {
 		super();
 	}
-	
 	public List<PrimDTO> listView(){
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
 		String sql = "select recipe_nm_ko, img_url from primary";
