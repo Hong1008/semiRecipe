@@ -1,6 +1,7 @@
 package action;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,6 +27,10 @@ public class MyPageAction {
 		}else {
 			dis = req.getRequestDispatcher("../jsp/login.jsp");
 		}
+		
+		ArrayList<Integer> aList = new ArrayList<Integer>();
+		aList.indexOf(1);
+		
 		
 		dis.forward(req, resp);
 		
