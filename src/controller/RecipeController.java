@@ -54,6 +54,9 @@ public class RecipeController extends HttpServlet {
 			RecipeListAction list = new RecipeListAction();
 			list.execute(req, resp);
 			next = "/jsp/list.jsp";
+			if(method.equalsIgnoreCase("POST")) {
+				next = "/ajax/listResult.jsp";
+			}
 		}else if(path.equals("recipe/review")) {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
