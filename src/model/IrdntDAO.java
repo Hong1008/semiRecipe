@@ -33,8 +33,8 @@ public class IrdntDAO extends RecipeDAO {
 			rs =stmt.executeQuery(sql);
 			while(rs.next()) {
 				IrdntDTO dto = new IrdntDTO();
-				dto.setIRDNT_NM(rs.getString(1).replaceAll("\"", ""));
-				dto.setIRDNT_TY_CODE(rs.getString(2).replaceAll("\"", ""));
+				dto.setIRDNT_NM(rs.getString(1));
+				dto.setIRDNT_TY_CODE(rs.getString(2));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
