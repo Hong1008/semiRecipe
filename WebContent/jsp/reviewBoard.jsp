@@ -108,9 +108,8 @@
          <!-- Thumbnails -->
          
          <section class="thumbnails">
-            <%-- 
             <c:forEach items="${requestScope.aList}" var="revList" varStatus="status">
-               <c:if test =${status.count%3==0} ></c:if>
+               
                
             <div>
                <a href="/semiRecipe/review/view.jsp"> <img src="${revList.review_url}" alt="" />
@@ -119,7 +118,6 @@
             </div>
             
             </c:forEach>
-             --%>
             <c:forEach items="${requestScope.aList}" var="revList" end="4">
                <div>
                   <a href="view.jsp"> <img src="${revList.review_url}" alt="" />
