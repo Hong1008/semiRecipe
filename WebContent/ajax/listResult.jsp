@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:forEach items="${requestScope.recList}" var="recList" varStatus="i">
-	<div>
+	<div class="js-load">
 		<a href="#"> <img src="${recList.IMG_URL}" alt="" />
 			<h3>${recList.RECIPE_NM_KO}</h3>
 		</a>

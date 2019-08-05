@@ -48,6 +48,32 @@ public class PrimDAO extends RecipeDAO {
 		return aList;
 	}
 	
+	public PrimDTO listView(int recipe_id){
+		PrimDTO dto = new PrimDTO();
+		String sql = "select recipe_nm_ko, img_url, prim_views, rating, nation_nm, ty_nm, cooking_time, calorie, level_nm from primary where recipe_type = 'p' and recipe_id = "+recipe_id;
+		try {
+			rs = queryStmt(sql);
+			while(rs.next()) {
+				dto.setRECIPE_NM_KO(rs.getString(1));
+				String url = rs.getString(2);
+				dto.setIMG_URL(url);
+				dto.setPRIM_VIEWS(rs.getInt(3));
+				dto.setRATING(rs.getString(4));
+				dto.setNATION_NM(rs.getString(5));
+				dto.setTY_NM(rs.getString(6));
+				dto.setCOOKING_TIME(rs.getString(7));
+				dto.setCALORIE(rs.getString(8));
+				dto.setLEVEL_NM(rs.getString(9));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			exit();
+		}
+		return dto;
+	}
+	
 	public List<PrimDTO> sortView(String column, String order){
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
 		String sql = "select recipe_nm_ko, img_url, prim_views, rating from primary where recipe_type = 'p' order by "+column+" "+order;
@@ -79,10 +105,10 @@ public class PrimDAO extends RecipeDAO {
 		JsonArray jarr = (JsonArray) pas.parse(irdnt_nm);
 		for (int i = 0; i < jarr.size(); i++) {
 			if (i == jarr.size() - 1) {
-				sql += "select recipe_id from irdnt where irdnt_nm = '" + jarr.get(i) + "')";
+				sql += "select recipe_id from irdnt where irdnt_nm = '" + jarr.get(i).toString().replace("\"", "") + "')";
 				break;
 			}
-			sql += "select recipe_id from irdnt where irdnt_nm = '" + jarr.get(i) + "' intersect ";
+			sql += "select recipe_id from irdnt where irdnt_nm = '" + jarr.get(i).toString().replace("\"", "") + "' intersect ";
 		}
 
 		try {
@@ -91,10 +117,10 @@ public class PrimDAO extends RecipeDAO {
 				sql = "select * from primary where recipe_id in " + "(select recipe_id from irdnt where irdnt_nm in (";
 				for (int i = 0; i < jarr.size(); i++) {
 					if (i == jarr.size() - 1) {
-						sql += "'" + jarr.get(i) + "') and irdnt_ty_nm = '\"주재료\"')";
+						sql += "'" + jarr.get(i).toString().replace("\"", "") + "') and irdnt_ty_nm = '주재료')";
 						break;
 					}
-					sql += "'" + jarr.get(i) + "',";
+					sql += "'" + jarr.get(i).toString().replace("\"", "") + "',";
 				}
 				rs = queryStmt(sql);
 			}
@@ -103,21 +129,7 @@ public class PrimDAO extends RecipeDAO {
 				PrimDTO dto = new PrimDTO();
 				dto.setRECIPE_ID(rs.getInt("RECIPE_ID"));
 				dto.setRECIPE_NM_KO(rs.getString("RECIPE_NM_KO"));
-				dto.setSUMRY(rs.getString("SUMRY").toString());
-				dto.setNATION_CODE(rs.getString("NATION_CODE"));
-				dto.setNATION_NM(rs.getString("NATION_NM"));
-				dto.setTY_CODE(rs.getString("TY_CODE"));
-				dto.setTY_NM(rs.getString("TY_NM"));
-				dto.setCOOKING_TIME(rs.getString("COOKING_TIME"));
-				dto.setCALORIE(rs.getString("CALORIE"));
-				dto.setQNT(rs.getString("QNT"));
-				dto.setLEVEL_NM(rs.getString("LEVEL_NM"));
-				dto.setIRDNT_CODE(rs.getString("IRDNT_CODE"));
-				dto.setPC_NM(rs.getString("PC_NM"));
 				dto.setIMG_URL(rs.getString("IMG_URL"));
-				dto.setDET_URL(rs.getString("DET_URL"));
-				dto.setPRIM_VIEWS(rs.getInt("PRIM_VIEWS"));
-				dto.setRATING(rs.getString("RATING"));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
@@ -125,4 +137,5 @@ public class PrimDAO extends RecipeDAO {
 		}
 		return aList;
 	}
+	
 }// end searchView()

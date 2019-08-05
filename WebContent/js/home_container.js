@@ -130,7 +130,8 @@ $(document)
 					}
 				})
 			}
-
+			
+			
 			//검색기능 구현
 			var ingredients_num = $('.ingredients').length;//처음 DB에서 받아온 갯수를 저장
 			var ingredients_name = new Array();

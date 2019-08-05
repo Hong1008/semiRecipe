@@ -49,7 +49,8 @@
 					<span id='tt'>이곳에 재료를 끌어다 놓으세요</span>
 				</div>
 				<div id='selected_recipe_view'></div>
-				<jsp:include page="../jsp/showRecipe.jsp"/>
+				<div id='selected_recipe'></div>
+				<%-- <jsp:include page="../jsp/showRecipe.jsp"/> --%>
 			</div>
 			<div id='side_menu'>
 				<div id='side_btn'>
