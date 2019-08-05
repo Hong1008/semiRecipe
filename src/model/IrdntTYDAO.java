@@ -14,7 +14,6 @@ public class IrdntTYDAO extends RecipeDAO{
 	private PreparedStatement pstmt;
 
 	public IrdntTYDAO() {
-		// TODO Auto-generated constructor stub
 		super();
 	}
 	
@@ -25,13 +24,12 @@ public class IrdntTYDAO extends RecipeDAO{
 			rs = queryStmt(sql);
 			while(rs.next()) {
 				IrdntTYDTO dto = new IrdntTYDTO();
-				dto.setIrdnt_nm(rs.getString(1).replaceAll("\"", "").replaceAll("/", "").replaceAll("\\(", "")
+				dto.setIrdnt_nm(rs.getString(1).replaceAll("/", "").replaceAll("\\(", "")
 						.replaceAll("\\)", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-				dto.setTy_nm(rs.getString(2).replaceAll("\"", ""));
+				dto.setTy_nm(rs.getString(2));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return aList;
@@ -43,10 +41,9 @@ public class IrdntTYDAO extends RecipeDAO{
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
-				tList.add(rs.getString(1).replaceAll("\"", ""));
+				tList.add(rs.getString(1));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return tList;

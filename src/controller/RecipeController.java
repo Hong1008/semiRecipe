@@ -13,7 +13,10 @@ import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.LoginAction;
 import action.LogoutAction;
+import action.MyPageAction;
+import action.RecipeListAction;
 import action.RegisterAction;
+import action.ReviewListAction;
 import action.ViewAction;
 import model.IrdntTYDAO;
 
@@ -47,10 +50,20 @@ public class RecipeController extends HttpServlet {
 			ViewAction act = new ViewAction();
 			act.execute(req, resp);
 			next = "/ajax/viewResult.jsp";
+		}else if(path.equals("recipe/list")) {
+			RecipeListAction list = new RecipeListAction();
+			list.execute(req, resp);
+			next = "/jsp/primList.jsp";
+			if(method.equalsIgnoreCase("POST")) {
+				next = "/ajax/listResult.jsp";
+			}
 		}else if(path.equals("recipe/review")) {
-			next = "/jsp/reviewBoard.jsp";
-		}else if(path.equals("recipe/myRecipe")) {
-			next = "/jsp/recipeBoard.jsp";
+			ReviewListAction revList = new ReviewListAction();
+			revList.execute(req, resp);
+			next = "/review/reviewBoard.jsp";
+		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
+			
+			next = "/selfRecipe/selfBoard.jsp";
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
 		}else if(path.equals("recipe/loginForm")) {
@@ -79,6 +92,14 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/checkNickname")) {
 			CheckNicknameAction checkNickname = new CheckNicknameAction();
 			checkNickname.execute(req, resp);
+		}else if(path.equals("recipe/myPage")) {
+			MyPageAction myPage = new MyPageAction();
+			myPage.execute(req, resp);
+		}else if(path.equals("recipe/infoUpdate/pw") ||
+				path.equals("recipe/infoUpdate/nickname")||
+				path.equals("recipe/infoUpdate/birthday")) {
+			InfoUpdate update = new InfoUpdate(); 
+			update.execute(req, resp);
 		}
 		
 		if(next!="") {

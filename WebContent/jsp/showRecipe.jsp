@@ -32,6 +32,7 @@
 </div>
 
 
+
 <div id='R_importance' class='R_div'>
 	<h3>재료 중요도</h3>
 	<div id='일반재료' class='R_ig_div'>
