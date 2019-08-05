@@ -38,7 +38,8 @@
 					<div id='selected_ing_list'></div>
 				</div>
 				<div id='selected_recipe_view'></div>
-				<jsp:include page="../jsp/showRecipe.jsp"/>
+				<div id='selected_recipe'></div>
+				<%-- <jsp:include page="../jsp/showRecipe.jsp"/> --%>
 			</div>
 			<jsp:include page="../jsp/sideMenu.jsp"/>			
 		</div>
