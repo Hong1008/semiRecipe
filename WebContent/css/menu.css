@@ -39,7 +39,8 @@
     margin-left:10px;
 }  
 
-.menu_li img{
+
+.menu_li img, .home{
     width: 100%;
 	cursor: pointer;
 }

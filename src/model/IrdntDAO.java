@@ -35,8 +35,6 @@ public class IrdntDAO extends RecipeDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			exit();
 		}
 		return aList;
 	}
@@ -45,8 +43,7 @@ public class IrdntDAO extends RecipeDAO {
 		List<IrdntDTO> aList = new ArrayList<IrdntDTO>();
 		String sql = "select irdnt_nm, irdnt_cpcty, importance from irdnt where recipe_id = "+recipe_id+"and irdnt_ty_nm = '양념'";
 		try {
-			queryStmt(sql);
-			rs =stmt.executeQuery(sql);
+			rs =queryStmt(sql);
 			while(rs.next()) {
 				IrdntDTO dto = new IrdntDTO();
 				dto.setIRDNT_NM(rs.getString(1));
@@ -56,8 +53,6 @@ public class IrdntDAO extends RecipeDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
-			exit();
 		}
 		return aList;
 	}

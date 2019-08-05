@@ -14,106 +14,19 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
+<link rel="stylesheet" href="/semiRecipe/css/sideMenu.css">
+<link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 <script src="/semiRecipe/js/primList.js"></script>
 <style>
-body {
-	background-color: #FFF5E6;
-}
-
-#wrapper {
-	max-width: 68rem;
-	margin: 0 auto;
-	margin-top: 10px;
-	text-align: center;
-}
-
 #main .thumbnails {
-	display: block;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden;
+    height: 1100px;
 }
 
-#main .thumbnails>div {
-	flex-grow: 1;
-	margin-right: 1rem;
-	margin-left: 1rem;
-}
-
-#main .thumbnails a {
-	margin-bottom: 1.5rem;
-	display: block;
-	text-decoration: none;
-}
-
-#main .thumbnails img {
+#main .thumbnails img{
 	width: 200px;
-	max-width: 350px;
-	border-top-left-radius: 0.2rem;
-	border-top-right-radius: 0.2rem;
-	display: block;
-}
-
-#main .thumbnails h3 {
-	border-left: 2px solid rgba(247, 206, 173, 0.3);
-	border-right: 2px solid rgba(247, 206, 173, 0.3);
-	border-bottom: 2px solid rgba(247, 206, 173, 0.3);
-	border-bottom-left-radius: 0.2rem;
-	border-bottom-right-radius: 0.2rem;
-	padding: 1rem;
-	text-align: center;
-	background-color: rgba(255, 255, 255, 0.1);
-	color: #8D4738;
-	font-size: 0.8rem;
-	font-weight: 200;
-	max-width: 314px;
-}
-
-#main .thumbnails h3:hover {
-	background-color: rgba(247, 206, 173, 0.8);
-}
-
-#main .thumbnails .listLine {
-	display: block;
-}
-
-#buttonLine {
-	max-width: 68rem;
-	margin: 0 auto;
-	margin-bottom: 50px;
-}
-
-#buttonLine .icon-th-large-outline {
-	padding: 3px;
-	float: left;
-	text-decoration: none;
-	color: #FFF5E6;
-	background-color: rgba(141, 71, 56, 0.7);
-	border: 1px solid rgba(141, 71, 56, 0.3);
-	border-radius: 0.2rem;
-	font-size: 20px;
-}
-
-#buttonLine .icon-comment {
-	padding: 3px;
-	float: right;
-	text-decoration: none;
-	color: #FFF5E6;
-	background-color: rgba(141, 71, 56, 0.7);
-	border: 1px solid rgba(141, 71, 56, 0.3);
-	border-radius: 0.2rem;
-	font-size: 20px;
-}
-
-#searchLine {
-	text-align: center;
-}
-
-#search_button {
-	padding: 3px;
-	text-decoration: none;
-	color: #FFF5E6;
-	background-color: rgba(141, 71, 56, 0.7);
-	border: 1px solid rgba(141, 71, 56, 0.3);
-	border-radius: 0.2rem;
-	font-size: 20px;
 }
 
 .button {
@@ -133,19 +46,32 @@ body {
 	margin-bottom: 4rem;
 }
 
-.js-load {
-	display: none;
-}
-
-.js-load.active {
+.js-load{
 	display: inline-block;
 }
-#quick_menu{
-	width:95px;text-align:center;
-	position:absolute;
-	top:80%;
-	left:90%;
-	
+
+#quick_menu {
+	width: 95px;
+	text-align: center;
+	position: absolute;
+	top: 80%;
+	left: 90%;
+}
+#ing_menu {
+	list-style-type: none;
+	height: 50px;
+	width: 1200px;
+}
+
+.ing_menu_li {
+	width: 150px;
+	height: 50px;
+	float: left;
+	font-family: 'Noto Sans KR';
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
 }
 </style>
 
@@ -161,26 +87,38 @@ body {
 				<option value="title_content" selected>전체</option>
 				<option value="title">제목</option>
 				<option value="content">검색</option>
-			</select> <input type="text" name="search_keyword" /> <input
-				type="submit" id="search_button" value="검색">
+			</select> <input type="text" name="search_keyword" /> <input type="submit"
+				id="search_button" value="검색">
 		</div>
 	</form>
+	
+	<div id='selected_recipe'></div>
+	
 	<a href="#" class="sort" id="sortView"> <input type="hidden"
 		class="column" value="prim_views"> <input type="hidden"
-		class="order" value="desc"> 조회수순
+		class="order" value="desc"> <input type="hidden"
+		class="nation_nm" value=""> 조회수순
 	</a>
 	<a href="#" class="sort" id="sortRate"> <input type="hidden"
 		class="column" value="rating"> <input type="hidden"
-		class="order" value="desc"> 별점순
+		class="order" value="desc"> <input type="hidden"
+		class="nation_nm" value=""> 별점순
 	</a>
 	<a href="#" class="sort" id="sortNM"> <input type="hidden"
 		class="column" value="recipe_nm_ko"> <input type="hidden"
-		class="order" value="asc"> 가나다순
+		class="order" value="asc"> <input type="hidden"
+		class="nation_nm" value=""> 가나다순
 	</a>
-
 	<!-- Wrapper -->
 	<div id="wrapper">
-		
+
+		<section id="category">
+			<ul id='ing_menu'>
+				<c:forEach items="${requestScope.nation_nm }" var="ty">
+					<li class='ing_menu_li' id="${ty}">${ty}</li>
+				</c:forEach>
+			</ul>
+		</section>
 
 		<!-- Main -->
 		<section id="main">
@@ -194,13 +132,16 @@ body {
 
 			</section>
 
+
 			<!-- <div id="js-btn-wrap" class="btn-wrap">
 				<a href="javascript:;" class="button">더보기</a>
 			</div> -->
-			</section>
+		</section>
 	</div>
-<div id="quick_menu"><a href="#"><img src="/semiRecipe/img/quick_top_btn.png" 
-     alt="상단으로 이동" /></a></div>
+	<div id="quick_menu">
+		<a href="#"><img src="/semiRecipe/img/quick_top_btn.png"
+			alt="상단으로 이동" /></a>
+	</div>
 
 	<!-- Scripts -->
 	<script src="/semiRecipe/assets/js/jquery.min.js"></script>

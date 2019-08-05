@@ -10,19 +10,10 @@
 	</div>
 </c:forEach>
 
+<script src="/semiRecipe/js/showRecipe.js"></script>
 <script type="text/javascript">
 
 $('#selected_recipe_view>div').on('click',function(){
-	var selected = $(this).attr('id');
-	console.log(selected);
-	$.ajax({
-		type:'POST',
-		dataType:'text',
-		data:'recipe_id='+selected,
-		url:'showRecipe',
-		success: function(res){
-			$("#selected_recipe").html(res);
-		}
-	})
-})
+	showRecipe($(this).attr('id'),"#selected_recipe");
+});
 </script>
