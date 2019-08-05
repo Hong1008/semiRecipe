@@ -55,4 +55,8 @@ public class ReviewDAO {
 		}
 		return aList;
 	}//end listmethod
+	
+	public void reviewWriteMethod(ReviewDTO dto) {
+		String sql = "insert into review(review_num, review_subject, review_content, values() ";
+	}
 }//end class
