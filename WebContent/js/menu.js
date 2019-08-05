@@ -6,7 +6,7 @@ $(document).ready(function(){
 		
 		
 		if(loc=='home'){
-			$('#header').css('height',$(window).height()+'px');
+			$('#header').css('height','1200px');
 		}
 	
 	

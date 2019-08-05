@@ -1,14 +1,20 @@
-var a = true;
+var startPage = true;
 $(document)
 .ready(
-		function() {
-			//드롭하는부분
+		function() {			
+			$("html, body").animate({ scrollTop: 0 }, 1);
 
+			
+			//드롭하는부분
 			var select_num = 0;			
 			$('#selected_ing_div')
 			.droppable(
 					{
 						drop : function(event, ui) {
+							if(startPage){
+								$('html, body').animate({scrollTop : '1200px'}, 800);
+								startPage=false;
+							}
 							select_num++;
 							if (select_num < 6) {
 								var selected = $(
@@ -62,14 +68,15 @@ $(document)
 			$(document).scroll(function() {				
 				
 				//선택된 메뉴들
-				if ($(document).scrollTop() < 540) {
-					var marginT = 700 - $(document).scrollTop();
+				if($(document).scrollTop() < 600 ){
+					$('#selected_ing_div').css({'top':	'700px','opacity':1});	
+				}else if ($(document).scrollTop() < 1200 && $(document).scrollTop() >= 600) {
+					var marginT = 1300 - $(document).scrollTop();
 					$('#selected_ing_div').css({'top':marginT + 'px','opacity':1});
 				} else {
 					$('#selected_ing_div').css({'top':	'160px','opacity':0.5});					
 				}
 			});
-			
 			//마우스 올리면 투명도 제거
 			$('#selected_ing_div').on('mouseover',function(){
 				$(this).clearQueue().animate({'opacity':1},300);
