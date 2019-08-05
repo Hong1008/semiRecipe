@@ -34,6 +34,7 @@ $(document)
 			//드래그하는 부분
 			$('.ingredients').on('mousedown', function() {
 				name = $(this).prop('id');
+				$('#selected_ing_div').clearQueue().animate({'opacity':1},300);
 			}).draggable({
 				scroll : false,
 				helper : "clone",
