@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <div id='R_header' class='R_div'>
@@ -29,6 +30,7 @@
 		<span>상</span>
 	</div>
 </div>
+
 
 
 <div id='R_importance' class='R_div'>
@@ -97,27 +99,4 @@
 		<span class='R_num'>5.</span><span>오번은 이렇게짧</span>
 		<hr>
 	</div>
-	 <div id='양념' class='R_ig_div'>
-	 		<div class='R_ing'>
-			<span>양념1</span>
-			<div class='R_rate_div'>
-				<div class="R_rate"></div>
-			</div>
-		</div>
-		
-				<div class='R_ing'>
-			<span>양념2</span>
-			<div class='R_rate_div'>
-				<div class="R_rate"></div>
-			</div>
-		</div>
-	 </div>
-</div>
-
-<div id='R_recipeDiv' class='R_div'>
-	<div class='R_recipe'>1</div>
-	<div class='R_recipe'>2</div>
-	<div class='R_recipe'>3</div>
-	<div class='R_recipe'>4</div>
-	<div class='R_recipe'>5</div>
 </div>

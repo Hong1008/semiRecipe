@@ -1,4 +1,15 @@
 $(document).ready(function(){
+		//어떤 메뉴인지 loc에 저장
+		var loc = $(location).attr('href');
+		loc = loc.split('/');
+		loc=loc[loc.length-1];
+		
+		console.log(loc=='home');
+		if(loc=='home'){
+			$('#header').css('height','800px');
+		}
+	
+	
 	$('.menu_li img').on('mouseover',function(){
 		var src = $(this).prop('src');
 		src = src.substring(0,src.length-4);
