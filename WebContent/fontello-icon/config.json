@@ -7,15 +7,21 @@
   "ascent": 850,
   "glyphs": [
     {
+      "uid": "id8wp0cygl9trzbhlbd9o0fygiesi629",
+      "css": "search",
+      "code": 59392,
+      "src": "modernpics"
+    },
+    {
       "uid": "08db5357646aae59e018ba87f2d466cd",
       "css": "th-large-outline",
-      "code": 59392,
+      "code": 59393,
       "src": "typicons"
     },
     {
       "uid": "679d36f8485f05180a2719c91b3f621e",
       "css": "comment",
-      "code": 59393,
+      "code": 59394,
       "src": "iconic"
     }
   ]
