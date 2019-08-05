@@ -111,6 +111,7 @@
 				<%@include file="../ajax/listResult.jsp"%>
 				
 			</section>
+			
 			<div id = "buttonLine">
 				<a href="#" class="icon-th-large-outline"> 목록</a>
 			</div>
