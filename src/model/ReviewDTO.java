@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class ReviewDTO {
 	private int review_num;
+	private int rn;
 	
 	private String review_subject;
 	private String review_content;
@@ -77,6 +78,12 @@ public class ReviewDTO {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
 	}
 	
 }//end class

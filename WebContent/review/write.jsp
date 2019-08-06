@@ -61,7 +61,6 @@ $(document).ready(function() {
 	}
 	.starR.on{
 	  background-position:0 0;
-	  text-color : #ff0000;
 	  }
    
    .icon-th-large-outline{
@@ -110,15 +109,15 @@ $(document).ready(function() {
 				<td width="80%">
 				<div class="starRev">
 				  <span class="starR on">별1</span>
-				  <span class="starR">별2</span>
-				  <span class="starR">별3</span>
-				  <span class="starR">별4</span>
-				  <span class="starR">별5</span>
-				  <span class="starR">별6</span>
-				  <span class="starR">별7</span>
-				  <span class="starR">별8</span>
-				  <span class="starR">별9</span>
-				  <span class="starR">별10</span>
+				  <span class="starR on">별2</span>
+				  <span class="starR on">별3</span>
+				  <span class="starR on">별4</span>
+				  <span class="starR on">별5</span>
+				  <span class="starR on">별6</span>
+				  <span class="starR on">별7</span>
+				  <span class="starR on">별8</span>
+				  <span class="starR on">별9</span>
+				  <span class="starR on">별10</span>
 				</div></td>
 			</tr>
 
