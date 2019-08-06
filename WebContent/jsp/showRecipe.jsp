@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/semiRecipe/css/recipe.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
+	rel="stylesheet">	
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
+
 <div id='R_header' class='R_div'>
 	<div id='R_image'>
 		<img src="${requestScope.prim.IMG_URL }">
@@ -36,22 +41,22 @@
 	<h3>재료 중요도</h3>
 	<div id='일반재료' class='R_ig_div'>
 		<c:forEach items="${requestScope.irdntMain }" var="idto">
-		<div class='R_ing'>
-			<span>${idto.IRDNT_NM }</span>
-			<div class='R_rate_div'>
-				<div class="R_rate" id="${idto.IMPORTANCE }"></div>
+			<div class='R_ing'>
+				<span>${idto.IRDNT_NM }</span>
+				<div class='R_rate_div'>
+					<div class="R_rate" id="${idto.IMPORTANCE }"></div>
+				</div>
 			</div>
-		</div>
 		</c:forEach>
 	</div>
 	<div id='양념' class='R_ig_div'>
-	<c:forEach items="${requestScope.irdntSub }" var="idto">
-		<div class='R_ing'>
-			<span>${idto.IRDNT_NM }</span>
-			<div class='R_rate_div'>
-				<div class="R_rate" id="${idto.IMPORTANCE }"></div>
+		<c:forEach items="${requestScope.irdntSub }" var="idto">
+			<div class='R_ing'>
+				<span>${idto.IRDNT_NM }</span>
+				<div class='R_rate_div'>
+					<div class="R_rate" id="${idto.IMPORTANCE }"></div>
+				</div>
 			</div>
-		</div>
 		</c:forEach>
 	</div>
 </div>
@@ -59,8 +64,12 @@
 <div id='R_recipeDiv' class='R_div'>
 	<c:forEach items="${requestScope.step }" var="sdto">
 		<div class='R_recipe'>
-		<span class='R_num'>${sdto.COOKING_NO }</span><span>${sdto.COOKING_DC }</span>
-		<hr>
-	</div>
+			<span class='R_num'>${sdto.COOKING_NO }</span><span>${sdto.COOKING_DC }</span>
+			<hr>
+		</div>
 	</c:forEach>
+</div>
+
+<div id='CMT' class='R_div'>
+	<jsp:include page="../jsp/comment.jsp"/>	
 </div>

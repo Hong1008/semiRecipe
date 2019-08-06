@@ -2,7 +2,7 @@ var startPage = true;
 $(document)
 .ready(
 		function() {			
-			$("html, body").animate({ scrollTop: 0 }, 1);
+			//$("html, body").animate({ scrollTop: 0 }, 1);
 
 			
 			//드롭하는부분

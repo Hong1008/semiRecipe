@@ -69,7 +69,7 @@ public class PrimDAO extends RecipeDAO {
 	
 	public PrimDTO listView(int recipe_id){
 		PrimDTO dto = new PrimDTO();
-		String sql = "select recipe_nm_ko, img_url, prim_views, rating, nation_nm, ty_nm, cooking_time, calorie, level_nm, sumry from primary where recipe_type = 'p' and recipe_id = "+recipe_id;
+		String sql = "select recipe_nm_ko, img_url, prim_views, rating, nation_nm, ty_nm, cooking_time, calorie, level_nm,sumry from primary where recipe_type = 'p' and recipe_id = "+recipe_id;
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {

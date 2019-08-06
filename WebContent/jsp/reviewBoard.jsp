@@ -96,6 +96,8 @@
    <div>
       <%@ include file="../jsp/menu.jsp" %>
    </div>
+		
+		
    <!-- hidden div -->
    <div id="hidden"></div>
    
@@ -119,7 +121,10 @@
             </div>
             
             </c:forEach>
-             --%>
+             --%>   
+
+		
+		
             <c:forEach items="${requestScope.aList}" var="revList" end="4">
                <div>
                   <a href="view.jsp"> <img src="${revList.review_url}" alt="" />
@@ -141,6 +146,8 @@
             <a href="../review/write.jsp" class="icon-comment"> 쓰기</a>
          </div>
       </section>
+
+
 
    </div>
 

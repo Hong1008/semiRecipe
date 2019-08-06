@@ -4,7 +4,7 @@
 
 /************************************************/
 #selected_recipe_view{
-	display: inline-block;
+	display: none;
 }
 
 #container{
