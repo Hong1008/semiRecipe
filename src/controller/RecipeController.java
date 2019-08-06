@@ -18,6 +18,7 @@ import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
+import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
 import model.IrdntTYDAO;
@@ -27,13 +28,11 @@ public class RecipeController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		execute(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		execute(req, resp);
 	}
 
@@ -52,6 +51,10 @@ public class RecipeController extends HttpServlet {
 			ViewAction act = new ViewAction();
 			act.execute(req, resp);
 			next = "/ajax/viewResult.jsp";
+		}else if(path.equals("recipe/showRecipe")) {
+			ShowRecipeAction act = new ShowRecipeAction();
+			act.execute(req, resp);
+			next = "/jsp/showRecipe.jsp";
 		}else if(path.equals("recipe/list")) {
 			RecipeListAction list = new RecipeListAction();
 			list.execute(req, resp);
