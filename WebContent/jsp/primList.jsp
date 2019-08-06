@@ -19,13 +19,13 @@
 <script src="/semiRecipe/js/primList.js"></script>
 <style>
 #main .thumbnails {
-    display: inline-block;
-    text-align: center;
-    overflow: hidden;
-    height: 1100px;
+	display: inline-block;
+	text-align: center;
+	overflow: hidden;
+	height: 1100px;
 }
 
-#main .thumbnails img{
+#main .thumbnails img {
 	width: 200px;
 }
 
@@ -46,7 +46,7 @@
 	margin-bottom: 4rem;
 }
 
-.js-load{
+.js-load {
 	display: inline-block;
 }
 
@@ -57,6 +57,7 @@
 	top: 80%;
 	left: 90%;
 }
+
 #ing_menu {
 	list-style-type: none;
 	height: 50px;
@@ -74,13 +75,16 @@
 	cursor: pointer;
 }
 
-.sort{
+.sort {
 	float: right;
 	margin-right: 20px;
+	text-decoration: none;
+	color: inherit;
 }
 
-#category{
+#category {
 	margin-top: 30px;
+	display: inline-block;
 }
 </style>
 
@@ -89,37 +93,25 @@
 	<!-- hidden div -->
 	<div id="hidden"></div>
 
-	<form action="#" method="post" id="searchform">
-			<div id="searchLine">
-				<select name="searchDrop" id="searchDrop">
-					<option value="title_content" selected>전체</option>
-					<option value="title">제목</option>
-					<option value="content">검색</option>
-				</select>
-				<input type ="text" name = "search_keyword" id ="searchText"/>
-				<button class="icon-search">검색</button>
-			</div>
-			</form>
-	
 	<div id='selected_recipe'></div>
-	
-	<a href="#" class="sort" id="sortView"> <input type="hidden"
-		class="column" value="prim_views"> <input type="hidden"
-		class="order" value="desc"> <input type="hidden"
-		class="nation_nm" value=""> 조회수순
-	</a>
-	<a href="#" class="sort" id="sortRate"> <input type="hidden"
-		class="column" value="rating"> <input type="hidden"
-		class="order" value="desc"> <input type="hidden"
-		class="nation_nm" value=""> 별점순
-	</a>
-	<a href="#" class="sort" id="sortNM"> <input type="hidden"
-		class="column" value="recipe_nm_ko"> <input type="hidden"
-		class="order" value="asc"> <input type="hidden"
-		class="nation_nm" value=""> 가나다순
-	</a>
+
+
 	<!-- Wrapper -->
 	<div id="wrapper">
+
+		<a href="#" class="sort" id="sortView"> <input type="hidden"
+			class="column" value="prim_views"> <input type="hidden"
+			class="order" value="desc"> <input type="hidden"
+			class="nation_nm" value=""> 조회수순
+		</a> <a href="#" class="sort" id="sortRate"> <input type="hidden"
+			class="column" value="rating"> <input type="hidden"
+			class="order" value="desc"> <input type="hidden"
+			class="nation_nm" value=""> 별점순
+		</a> <a href="#" class="sort" id="sortNM"> <input type="hidden"
+			class="column" value="recipe_nm_ko"> <input type="hidden"
+			class="order" value="asc"> <input type="hidden"
+			class="nation_nm" value=""> 가나다순
+		</a>
 
 		<section id="category">
 			<ul id='ing_menu'>
@@ -135,9 +127,9 @@
 			<!-- Thumbnails -->
 
 			<section class="thumbnails">
-
+				<div id="listSize">
 				<%@include file="../ajax/listResult.jsp"%>
-
+</div>
 
 			</section>
 

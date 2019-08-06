@@ -32,7 +32,7 @@
 			<!--------------------------- 이미지 수정해야됨 ------------------------->
 			<img src="/semiRecipe/img/food_test.jpg" id='myPage'>
 			<c:choose>
-				<c:when test="${empty sessionScope.logOk}">
+				<c:when test="${empty sessionScope.loginID}">
 					<img src="/semiRecipe/img/menu_login.png" id='login'>
 				</c:when>
 				<c:otherwise>
