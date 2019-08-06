@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
-<title>Review Board</title>
+<title>selfReview Board</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
+
 <style>
    body{
      background-color: #FFF5E6;
@@ -109,10 +109,10 @@
 			
 			<section class="thumbnails">
 				
-				<c:forEach items="${requestScope.aList}" var="revList">
+				<c:forEach items="${requestScope.prList}" var="prList">
 				<div>
-					<a href="#"> <img src="${revList.review_url}" alt="" />
-						<h3>${revList.review_subject}</h3>
+					<a href="#"> <img src="${prList.img_url}" alt="main_image" />
+						<h3>${prList.recipe_nm_ko}</h3>
 					</a> 
 				</div>
 				</c:forEach>
@@ -123,6 +123,8 @@
 				<a href="#" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>
+		
+		
 
 	</div>
 

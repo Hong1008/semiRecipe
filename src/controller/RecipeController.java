@@ -12,17 +12,19 @@ import javax.servlet.http.HttpSession;
 import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.CheckNowPw;
+import action.CommentAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
-import action.ReviewWriteAction;
+import action.SelfListAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
 import model.IrdntTYDAO;
+import model.SelfRecipeDAO;
 
 @WebServlet("/recipe/*")
 public class RecipeController extends HttpServlet {
@@ -38,6 +40,8 @@ public class RecipeController extends HttpServlet {
 	}
 
 	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
 		String method = req.getMethod();
 		String path = req.getRequestURI();
 		String next = "";
@@ -72,8 +76,9 @@ public class RecipeController extends HttpServlet {
 			revWrite.execute(req, resp);
 			next = "/review/write.jsp";
 		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
-			
-			next = "/selfRecipe/selfBoard.jsp";
+			SelfListAction selfList = new SelfListAction();
+			selfList.execute(req);
+			next = "/selfRecipe/selfBoard.jsp";				
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
 		}else if(path.equals("recipe/loginForm")) {
@@ -92,7 +97,7 @@ public class RecipeController extends HttpServlet {
 			register.execute(req, resp);
 			
 			HttpSession session = req.getSession();
-			session.setAttribute("logOk", req.getParameter("id")); 	// logOk라는 이름으로 fid 값을 세션에 저장
+			session.setAttribute("loginID", req.getParameter("id")); 	// loginID라는 이름으로 id 값을 세션에 저장
 			session.setMaxInactiveInterval(30*60); 	// 30분
 			
 			resp.sendRedirect("home");
@@ -108,6 +113,11 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/myPage")) {
 			MyPageAction myPage = new MyPageAction();
 			myPage.execute(req, resp);
+		}else if(path.equals("recipe/comment")) {
+			//////////////////////////////////////////////////////////
+			CommentAction comment = new CommentAction();
+			comment.execute(req, resp);
+			//////////////////////////////////////////////////////////
 		}else if(path.indexOf("recipe/infoUpdate/")>-1) {
 			InfoUpdate update = new InfoUpdate(); 
 			update.execute(req, resp);

@@ -15,20 +15,20 @@ public class InfoUpdate {
 		MemberDTO dto = new MemberDTO();
 		
 		if(path.equals("/pw")) {
-			dto.setPw(req.getParameter("pw"));
-			dto.setUpdateName("pw");
+			dto.setUser_pw(req.getParameter("pw"));
+			dto.setUpdateName("user_pw");
 		}else if(path.equals("/nickname")) {
-			dto.setNickname(req.getParameter("nickname"));
-			dto.setUpdateName("nickname");
+			dto.setUser_nickname(req.getParameter("nickname"));
+			dto.setUpdateName("user_nickname");
 		}else if(path.equals("/birthday")) {
 			Date birthday = Date.valueOf(req.getParameter("birthday"));
-			dto.setBirthday(birthday);
-			dto.setUpdateName("birthday");
+			dto.setUser_birthday(birthday);
+			dto.setUpdateName("user_birthday");
 		}
 		
 		HttpSession session = req.getSession();
 		
-		dto.setId((String) session.getAttribute("logOk"));
+		dto.setUser_id((String) session.getAttribute("loginID"));
 		dao.update(dto);
 	}
 }
