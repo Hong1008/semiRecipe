@@ -73,7 +73,6 @@
 	text-align: center;
 	cursor: pointer;
 }
-
 .sort{
 	float: right;
 	margin-right: 20px;

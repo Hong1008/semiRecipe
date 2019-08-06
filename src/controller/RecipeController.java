@@ -39,6 +39,8 @@ public class RecipeController extends HttpServlet {
 	}
 
 	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
 		String method = req.getMethod();
 		String path = req.getRequestURI();
 		String next = "";
@@ -90,7 +92,7 @@ public class RecipeController extends HttpServlet {
 			register.execute(req, resp);
 			
 			HttpSession session = req.getSession();
-			session.setAttribute("logOk", req.getParameter("id")); 	// logOk라는 이름으로 fid 값을 세션에 저장
+			session.setAttribute("loginID", req.getParameter("id")); 	// loginID라는 이름으로 id 값을 세션에 저장
 			session.setMaxInactiveInterval(30*60); 	// 30분
 			
 			resp.sendRedirect("home");

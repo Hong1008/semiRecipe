@@ -141,7 +141,7 @@ function appendYear() {
 	var year = date.getFullYear();
 	var selectValue = document.getElementById("yy");
 
-	for(var i=1900;i<=year;i++) {
+	for(var i=year;i>=1900;i--) {
 		selectValue.add(new Option(i+"년",i));                        
 	}
 }

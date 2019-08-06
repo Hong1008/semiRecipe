@@ -13,8 +13,8 @@ import model.MemberDTO;
 public class LoginAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		MemberDTO dto = new MemberDTO();
-		dto.setId(req.getParameter("id"));
-		dto.setPw(req.getParameter("pw"));
+		dto.setUser_id(req.getParameter("id"));
+		dto.setUser_pw(req.getParameter("pw"));
 		
 		System.out.println(req.getParameter("id"));
 		
@@ -28,12 +28,9 @@ public class LoginAction {
 		HttpSession session = null;
 		if(cnt==1) {	// 회원일 때
 			session = req.getSession();
-			session.setAttribute("logOk", req.getParameter("id")); 	// logOk라는 이름으로 fid 값을 세션에 저장
+			session.setAttribute("loginID", req.getParameter("id")); 	// loginID라는 이름으로 id 값을 세션에 저장
 			session.setMaxInactiveInterval(30*60); 	// 30분
 		}
-		
-		
-		
 		
 	} // end execute()
 }
