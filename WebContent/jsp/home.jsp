@@ -9,80 +9,40 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--웹폰트-->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap" rel="stylesheet">
 
+<!--home js/css  -->
 <link rel="stylesheet" href="/semiRecipe/css/home_container.css">
-<!-- container연결-->
+<script type="text/javascript" src="/semiRecipe/js/home_container.js"></script>
 
+<!-- 드래그/드랍 + 한글-->
 <script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 
-<!--플러그인 연결-->
-
-<link rel="stylesheet" href="/semiRecipe/css/recipe.css">
-<script type="text/javascript" src="/semiRecipe/js/home_container.js"></script>
-
-<!-- selfRecipe -->
-<script type="text/javascript" src=/selfRecipe/calorie_time.js></script>
-
-
-<script type="text/javascript">
-
-</script>
 <style type="text/css">
 *{
 	margin:0;
 	padding: 0;
 }
+
 </style>
-
-
-
 </head>
-
-
 <body>
 	<div id='wrap' class='test'>
-		<!--여기서부터 컨테이너시작-->
 		<div id='container' class='test'>
 			<div id='main_contents'>
 				<div id='selected_ing_div'>
 					<span id='tt'>이곳에 재료를 끌어다 놓으세요</span>
+					<div id='selected_ing_list'></div>
 				</div>
 				<div id='selected_recipe_view'></div>
-				<jsp:include page="../jsp/showRecipe.jsp"/>
+				<div id='selected_recipe'></div>
+				<%-- <jsp:include page="../jsp/showRecipe.jsp"/> --%>
 			</div>
-			<div id='side_menu'>
-				<div id='side_btn'>
-					<img src="/semiRecipe/img/home_open_btn.png">
-				</div>
-				<div id='search_div'>
-					<label for='search'><img
-						src="/semiRecipe/img/home_search_img.PNG"></label><input type="text"
-						name="search" autocomplete="off">
-				</div>
-				<div id='ingredients_div'>
-					<div id='ingredients_menu_div'>
-						<img src="/semiRecipe/img/home_arrow.png" id='ing_m_left'>
-						<img src="/semiRecipe/img/home_arrow.png" id='ing_m_right'>
-						<ul id='ing_menu'>
-							<c:forEach items="${requestScope.tList }" var="ty">
-								<li class='ing_menu_li' id="${ty }">${ty }</li>							
-							</c:forEach>
-						</ul>
-					</div>
-					<div id='ing_maker'>
-						<c:forEach items="${requestScope.aList }" var="dto">
-							<div class='ingredients' id='${dto.irdnt_nm}'>${dto.irdnt_nm}<input type="hidden" id='${dto.ty_nm }' /></div>
-						</c:forEach>
-					</div>
-				</div>
-			</div>
+			<jsp:include page="../jsp/sideMenu.jsp"/>			
 		</div>
-		<!--여기까지 컨테이너 끝-->
 		<footer></footer>
 	</div>
 </body>

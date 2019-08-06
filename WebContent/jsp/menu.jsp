@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="URI" value="${pageContext.request.requestURI}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +23,7 @@
 	padding: 0;
 }
 </style>
+
 </head>
 <body>
 	<header id='header'>
@@ -45,14 +48,12 @@
 		<div id='menu_container'>
 			<ul id="menu_ul">
 				<li class="menu_li" id='list'><img
-					src="/semiRecipe/img/menu01.PNG">
-					</li>
+					src="/semiRecipe/img/menu01.PNG"></li>
 				<li class="menu_li" id='review'><img
 					src="/semiRecipe/img/menu02.PNG"></li>
 				<li class="menu_li" id='selfRecipe'><img
 					src="/semiRecipe/img/menu03.PNG"></li>
-				<li class="menu_li" id='notice'><img
-					src="/semiRecipe/img/menu04.PNG"></li>
+					
 			</ul>
 		</div>
 
