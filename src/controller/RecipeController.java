@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.CheckNowPw;
+import action.CommentAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
@@ -103,6 +104,11 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/myPage")) {
 			MyPageAction myPage = new MyPageAction();
 			myPage.execute(req, resp);
+		}else if(path.equals("recipe/comment")) {
+			//////////////////////////////////////////////////////////
+			CommentAction comment = new CommentAction();
+			comment.execute(req, resp);
+			//////////////////////////////////////////////////////////
 		}else if(path.indexOf("recipe/infoUpdate/")>-1) {
 			InfoUpdate update = new InfoUpdate(); 
 			update.execute(req, resp);

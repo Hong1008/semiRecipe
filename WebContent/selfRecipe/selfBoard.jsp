@@ -123,6 +123,8 @@
 				<a href="#" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>
+		
+		
 
 	</div>
 
