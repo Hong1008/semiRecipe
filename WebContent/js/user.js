@@ -49,7 +49,7 @@ $(document).ready(function() {
 			$.ajax({
                 type:'POST',
                 dataType:'text',
-                url:'../recipe/checkID',
+                url:'/semiRecipe/recipe/checkID',
                 data:'id='+$(this).val(),
                 success: function(res) {
                 	showErrorMsg = res;
@@ -113,7 +113,7 @@ $(document).ready(function() {
 			$.ajax({
                 type:'POST',
                 dataType:'text',
-                url:'../recipe/checkNickname',
+                url:'/semiRecipe/recipe/checkNickname',
                 data:'nickname='+$(this).val(),
                 success: function(res) {
                 	showErrorMsg = res;
@@ -132,23 +132,10 @@ $(document).ready(function() {
 	var year = $('#yy').val();
 	var month = $('#mm').val();
 	var day = $('#dd').val();
-	var birthday = yy + mm + dd;
-	
-	if(birthday!=""){
-		isValidDate(birthday)
-	}
-	
-	
+		
 });
 
-function isValidDate(birthday) {
-	var today = new Date(); // 날짜 변수 선언
-    var yearNow = today.getFullYear(); // 올해 연도 가져옴
-    
-}
-
 // option 추가 new Option("option text", "value");
-
 function appendYear() {
 	var date = new Date();
 	var year = date.getFullYear();
@@ -169,7 +156,6 @@ function appendMonth() {
 
 function removeMonth() {
 	$("#mm.sel option:gt(0)").remove();
-	
 }
 
 
