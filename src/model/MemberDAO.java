@@ -179,6 +179,9 @@ public class MemberDAO {
 			conn = init();
 			String sql = "update semimember set "+dto.getUpdateName()+"= ? where id = ?";
 			pstmt = conn.prepareStatement(sql);
+			
+			System.out.println(sql);
+			
 			if(dto.getUpdateName().equals("pw")) {
 				pstmt.setString(1, dto.getPw());
 			} else if(dto.getUpdateName().equals("nickname")) {
@@ -186,6 +189,7 @@ public class MemberDAO {
 			} else if(dto.getUpdateName().equals("birthday")) {
 				pstmt.setDate(1, dto.getBirthday());
 			}
+			
 			pstmt.setString(2, dto.getId());
 			rs = pstmt.executeQuery();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -193,4 +197,45 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public int checkNowPw(MemberDTO dto) {
+		int chk=0;
+		try {
+			conn = init();
+			String sql = "select count(*) from semimember where id=? and pw=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getPw());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				chk = rs.getInt(1);
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return chk;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

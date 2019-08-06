@@ -1,13 +1,10 @@
-package controller;
+package model;
 
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import model.MemberDAO;
-import model.MemberDTO;
 
 public class InfoUpdate {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
@@ -24,16 +21,7 @@ public class InfoUpdate {
 			dto.setNickname(req.getParameter("nickname"));
 			dto.setUpdateName("nickname");
 		}else if(path.equals("/birthday")) {
-			String year = req.getParameter("yy");
-			String month = req.getParameter("mm");
-			String day = req.getParameter("dd");
-			
-			if(Integer.parseInt(req.getParameter("mm"))<10) {
-				month = "0"+month;
-			}
-			
-			Date birthday = Date.valueOf(year+"-"+month+"-"+day);
-			
+			Date birthday = Date.valueOf(req.getParameter("birthday"));
 			dto.setBirthday(birthday);
 			dto.setUpdateName("birthday");
 		}

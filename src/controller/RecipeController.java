@@ -11,13 +11,16 @@ import javax.servlet.http.HttpSession;
 
 import action.CheckIdAction;
 import action.CheckNicknameAction;
+import action.CheckNowPw;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
+import action.ShowRecipeAction;
 import action.ViewAction;
+import model.InfoUpdate;
 import model.IrdntTYDAO;
 
 @WebServlet("/recipe/*")
@@ -48,10 +51,14 @@ public class RecipeController extends HttpServlet {
 			ViewAction act = new ViewAction();
 			act.execute(req, resp);
 			next = "/ajax/viewResult.jsp";
+		}else if(path.equals("recipe/showRecipe")) {
+			ShowRecipeAction act = new ShowRecipeAction();
+			act.execute(req, resp);
+			next = "/jsp/showRecipe.jsp";
 		}else if(path.equals("recipe/list")) {
 			RecipeListAction list = new RecipeListAction();
 			list.execute(req, resp);
-			next = "/jsp/list.jsp";
+			next = "/jsp/primList.jsp";
 			if(method.equalsIgnoreCase("POST")) {
 				next = "/ajax/listResult.jsp";
 			}
@@ -90,12 +97,13 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/checkNickname")) {
 			CheckNicknameAction checkNickname = new CheckNicknameAction();
 			checkNickname.execute(req, resp);
+		}else if(path.equals("recipe/checkNowPw")) {
+			CheckNowPw checkNowPw = new CheckNowPw();
+			checkNowPw.execute(req, resp);
 		}else if(path.equals("recipe/myPage")) {
 			MyPageAction myPage = new MyPageAction();
 			myPage.execute(req, resp);
-		}else if(path.equals("recipe/infoUpdate/pw") ||
-				path.equals("recipe/infoUpdate/nickname")||
-				path.equals("recipe/infoUpdate/birthday")) {
+		}else if(path.indexOf("recipe/infoUpdate/")>-1) {
 			InfoUpdate update = new InfoUpdate(); 
 			update.execute(req, resp);
 		}
