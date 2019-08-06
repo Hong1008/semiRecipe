@@ -132,10 +132,10 @@ public class PrimDAO extends RecipeDAO {
 		JsonArray jarr = (JsonArray) pas.parse(irdnt_nm);
 		for (int i = 0; i < jarr.size(); i++) {
 			if (i == jarr.size() - 1) {
-				sql += "select recipe_id from irdnt where recipe_type = 'p' and irdnt_nm = '" + jarr.get(i).toString() + "')";
+				sql += "select recipe_id from irdnt where recipe_type = 'p' and irdnt_nm = '" + jarr.get(i).toString().replace("\"", "") + "')";
 				break;
 			}
-			sql += "select recipe_id from irdnt where recipe_type = 'p' and irdnt_nm = '" + jarr.get(i).toString() + "' intersect ";
+			sql += "select recipe_id from irdnt where recipe_type = 'p' and irdnt_nm = '" + jarr.get(i).toString().replace("\"", "") + "' intersect ";
 		}
 
 		try {
@@ -144,10 +144,10 @@ public class PrimDAO extends RecipeDAO {
 				sql = "select * from primary where recipe_type = 'p' and recipe_id in " + "(select recipe_id from irdnt where irdnt_nm in (";
 				for (int i = 0; i < jarr.size(); i++) {
 					if (i == jarr.size() - 1) {
-						sql += "'" + jarr.get(i).toString() + "') and irdnt_ty_nm = '주재료')";
+						sql += "'" + jarr.get(i).toString().replace("\"", "") + "') and irdnt_ty_nm = '주재료')";
 						break;
 					}
-					sql += "'" + jarr.get(i).toString() + "',";
+					sql += "'" + jarr.get(i).toString().replace("\"", "") + "',";
 				}
 				rs = queryStmt(sql);
 			}
