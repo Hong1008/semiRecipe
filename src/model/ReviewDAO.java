@@ -38,7 +38,7 @@ public class ReviewDAO {
 		List<ReviewDTO> aList = new ArrayList<ReviewDTO>();
 		
 		try {
-			String sql = "select rownum as rn, a.* from (select review_subject, review_url, review_num from review order by review_num desc)a";
+			String sql = "select rownum as rn, a.* from (select review_subject, review_url, review_num, nickname from review order by review_num desc)a";
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
 			while(rs.next()) {
@@ -46,6 +46,7 @@ public class ReviewDAO {
 				dto.setReview_subject(rs.getString("review_subject"));
 				dto.setReview_url(rs.getString("review_url"));
 				dto.setReview_num(rs.getInt("rn"));
+				dto.setNickname(rs.getString("nickname"));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
@@ -56,7 +57,7 @@ public class ReviewDAO {
 		return aList;
 	}//end listmethod
 	
-	public void reviewWriteMethod(ReviewDTO dto) {
-		String sql = "insert into review(review_num, review_subject, review_content, values() ";
-	}
+	//public void reviewWriteMethod(ReviewDTO dto) {
+	//	String sql = "insert into review(review_num, review_subject, review_content, review_rate, review_date, review_url, user_id, recipe_id, nickname values(review_num_seq.nextval, ) ";
+	//}
 }//end class
