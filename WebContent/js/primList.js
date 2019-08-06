@@ -1,6 +1,6 @@
 $(document).ready(
 		function() {
-			var list_cnt = 1100;
+			var list_cnt = 550;
 			var column = '';
 			var order = '';
 			var nation_nm = '';
@@ -22,9 +22,9 @@ $(document).ready(
 									+ '&nation_nm=' + nation_nm,
 							url : 'list',
 							success : function(res) {
-								$('.thumbnails div').remove();
-								$('.thumbnails').html(res);
-								load('.thumbnails', list_cnt);
+								$('.thumbnails>div div').remove();
+								$('.thumbnails>div').html(res);
+								$('.thumbnails').height(550);
 							}
 						})
 						if (column == 'recipe_nm_ko') {
@@ -39,7 +39,9 @@ $(document).ready(
 			function load(id, cnt) {
 				var hei = $('.thumbnails').height();
 				hei = hei + cnt;
-				$('.thumbnails').height(hei);
+				if($('.thumbnails').height()<=$('.thumbnails #listSize').height()){
+					$('.thumbnails').height(hei);
+				}
 			}
 
 			var defTop = parseInt($('#quick_menu').css("top"));
