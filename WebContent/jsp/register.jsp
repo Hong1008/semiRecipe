@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="../js/user.js"></script>
+<script type="text/javascript" src="/semiRecipe/js/user.js"></script>
 
 <style type="text/css">
 * {
@@ -51,7 +51,7 @@ input.result {
 <div class="wrap">
 	<form id="registerForm" method="post">
 		<h3><label for="id">아이디</label></h3>
-		<input type="text" id="id" name="id" maxlength="20" required="required" />
+		<input type="text" id="id" name="id" maxlength="20" required="required" value="${session.jsessionID }" />
 	    <p><span class="error_next_box" id="idMsg" role="alert"></span></p>
 		<h3><label for="pw">비밀번호</label></h3>
 		<input type="password" id="pw" name="pw" maxlength="20" required="required" />
