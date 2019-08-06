@@ -18,10 +18,12 @@ import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
+import action.SelfListAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
 import model.IrdntTYDAO;
+import model.SelfRecipeDAO;
 
 @WebServlet("/recipe/*")
 public class RecipeController extends HttpServlet {
@@ -67,8 +69,9 @@ public class RecipeController extends HttpServlet {
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
 		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
-			
-			next = "/selfRecipe/selfBoard.jsp";
+			SelfListAction selfList = new SelfListAction();
+			selfList.execute(req);
+			next = "/selfRecipe/selfBoard.jsp";				
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
 		}else if(path.equals("recipe/loginForm")) {
