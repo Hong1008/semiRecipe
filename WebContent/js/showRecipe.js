@@ -1,5 +1,4 @@
 function showRecipe(selected,selector){
-	console.log(selected);
 	$.ajax({
 		type:'POST',
 		dataType:'text',
