@@ -14,12 +14,9 @@ public class CheckNowPw {
 		String loginId = req.getParameter("loginId");
 		String now_pw = req.getParameter("now_pw");
 		
-		System.out.println(loginId);
-		System.out.println(now_pw);
-		
 		MemberDTO dto = new MemberDTO();
-		dto.setId(loginId);
-		dto.setPw(now_pw);
+		dto.setUser_id(loginId);
+		dto.setUser_pw(now_pw);
 		
 		MemberDAO dao = MemberDAO.getInstance();
 		int chk = dao.checkNowPw(dto);
