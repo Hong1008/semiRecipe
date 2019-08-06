@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import action.CheckIdAction;
 import action.CheckNicknameAction;
+import action.CheckNowPw;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
@@ -93,6 +94,9 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/checkNickname")) {
 			CheckNicknameAction checkNickname = new CheckNicknameAction();
 			checkNickname.execute(req, resp);
+		}else if(path.equals("recipe/checkNowPw")) {
+			CheckNowPw checkNowPw = new CheckNowPw();
+			checkNowPw.execute(req, resp);
 		}else if(path.equals("recipe/myPage")) {
 			MyPageAction myPage = new MyPageAction();
 			myPage.execute(req, resp);
