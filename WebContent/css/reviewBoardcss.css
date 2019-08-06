@@ -59,6 +59,8 @@ body {
 #main .thumbnails .listLine {
 	display: block;
 }
+
+
 /* 게시글 끝 */
 
 
@@ -74,8 +76,8 @@ body {
 	float: left;
 	text-decoration: none;
 	color: #FFF5E6;
-	background-color: rgba(141, 71, 56, 0.7);
-	border: 1px solid rgba(141, 71, 56, 0.3);
+	background-color: rgba(242, 159, 5, 0.8);
+	border: 1px solid #F29F05;
 	border-radius: 0.2rem;
 	font-size: 20px;
 }
@@ -85,8 +87,8 @@ body {
 	float: right;
 	text-decoration: none;
 	color: #FFF5E6;
-	background-color: rgba(141, 71, 56, 0.7);
-	border: 1px solid rgba(141, 71, 56, 0.3);
+	background-color: rgba(242, 159, 5, 0.8);
+	border: 1px solid #F29F05;
 	border-radius: 0.2rem;
 	font-size: 20px;
 }
@@ -117,8 +119,8 @@ body {
 	padding: 3px;
 	text-decoration: none;
 	color: #FFF5E6;
-	background-color: rgba(141, 71, 56, 0.7);
-	border: 1px solid rgba(141, 71, 56, 0.3);
+	background-color: rgba(242, 159, 5, 0.8);
+	border: 1px solid #F29F05;
 	border-radius: 0.2rem;
 	font-size: 20px;
 }

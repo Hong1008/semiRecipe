@@ -71,6 +71,10 @@ public class RecipeController extends HttpServlet {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
+		}else if(path.equals("recipe/reviewwrite")) {
+			ReviewWriteAction revWrite = new ReviewWriteAction();
+			revWrite.execute(req, resp);
+			next = "/review/write.jsp";
 		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
 			SelfListAction selfList = new SelfListAction();
 			selfList.execute(req);
