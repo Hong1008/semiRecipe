@@ -10,10 +10,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
+
+import common.JdbcTemplate;
 
 public class PrimDAO extends RecipeDAO {
 	private DataSource ds; // DataSource ds 는 아파치톰캣이 제공하는 DBCP(DB Connection Pool)이다.
@@ -125,6 +128,33 @@ public class PrimDAO extends RecipeDAO {
 		return aList;
 	}
 
+	public List<PrimDTO> revSearch(String recipe_nm_ko) {
+		List<PrimDTO> aList = new ArrayList<PrimDTO>();
+		String sql = "select recipe_id, recipe_nm_ko from primary where recipe_type='p' and recipe_nm_ko like '%' || ? || '%'";
+		try {
+			conn = JdbcTemplate.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, recipe_nm_ko);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				PrimDTO dto = new PrimDTO();
+				dto.setRECIPE_ID(rs.getInt("RECIPE_ID"));
+				dto.setRECIPE_NM_KO(rs.getString("RECIPE_NM_KO"));
+				aList.add(dto);
+				System.out.println(rs.getString("RECIPE_NM_KO")+"   dto");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			exit();
+		}
+		return aList;
+	}
+	
 	public List<PrimDTO> searchRecipe(String irdnt_nm) {
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
 		String sql = "select * from primary where recipe_type = 'p' and recipe_id in(";

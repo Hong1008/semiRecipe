@@ -18,6 +18,7 @@ import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
+import action.ReviewWriteAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
@@ -66,6 +67,10 @@ public class RecipeController extends HttpServlet {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
+		}else if(path.equals("recipe/reviewwrite")) {
+			ReviewWriteAction revWrite = new ReviewWriteAction();
+			revWrite.execute(req, resp);
+			next = "/review/write.jsp";
 		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
 			
 			next = "/selfRecipe/selfBoard.jsp";

@@ -111,8 +111,8 @@
 			</div>
 			</form>
 			<div id="buttonLine">
-				<a href="../review/reviewBoard.jsp" class="icon-th-large-outline"> 목록</a> 
-				<a href="../review/write.jsp" class="icon-comment"> 쓰기</a>
+				<a href="review" class="icon-th-large-outline"> 목록</a> 
+				<a href="reviewwrite" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>
 	</div>
