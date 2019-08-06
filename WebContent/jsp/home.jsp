@@ -25,6 +25,10 @@
 <link rel="stylesheet" href="/semiRecipe/css/recipe.css">
 <script type="text/javascript" src="/semiRecipe/js/home_container.js"></script>
 
+<!-- selfRecipe -->
+<script type="text/javascript" src=/selfRecipe/calorie_time.js></script>
+
+
 <script type="text/javascript">
 
 </script>
