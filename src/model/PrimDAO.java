@@ -166,5 +166,4 @@ public class PrimDAO extends RecipeDAO {
 		}
 		return aList;
 	}
-	
 }// end searchView()

@@ -27,10 +27,10 @@ public class RegisterAction {
 		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = MemberDAO.getInstance();
 		
-		dto.setId(id);
-		dto.setPw(pw);
-		dto.setNickname(nickname);
-		dto.setBirthday(birthday);
+		dto.setUser_id(id);
+		dto.setUser_pw(pw);
+		dto.setUser_nickname(nickname);
+		dto.setUser_birthday(birthday);
 		
 		dao.registerMethod(dto);
 		
