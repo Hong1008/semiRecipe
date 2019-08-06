@@ -21,10 +21,17 @@ public class SelfListAction extends HttpServlet{
 		int cnt = dao.rowTotalCount();
 		if(cnt > 0) {
 		PageDTO pdto = new PageDTO(currentPage, cnt);
-		//req.setAttribute("aList", dao.selfRecipeListMethod(pdto));
+		req.setAttribute("prList", dao.primListMethod(pdto));
+		req.setAttribute("srlist", dao.selfRecipeListMethod(pdto));
+		req.setAttribute("irList", dao.irdntListMethod(pdto));
+		req.setAttribute("stList", dao.stepListMethod(pdto));
 		req.setAttribute("pdto", pdto);
 
 		}
+		
+		
+		
+		
 		
 	}// end exectue()
 }// end class

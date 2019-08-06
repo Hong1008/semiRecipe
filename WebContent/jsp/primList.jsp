@@ -73,6 +73,14 @@
 	text-align: center;
 	cursor: pointer;
 }
+.sort{
+	float: right;
+	margin-right: 20px;
+}
+
+#category{
+	margin-top: 30px;
+}
 </style>
 
 </head>
@@ -80,17 +88,17 @@
 	<!-- hidden div -->
 	<div id="hidden"></div>
 
-	<form action="#" method="post">
-		<div id="searchLine">
-			<p class="search_icon"></p>
-			<select name="searchDrop">
-				<option value="title_content" selected>전체</option>
-				<option value="title">제목</option>
-				<option value="content">검색</option>
-			</select> <input type="text" name="search_keyword" /> <input type="submit"
-				id="search_button" value="검색">
-		</div>
-	</form>
+	<form action="#" method="post" id="searchform">
+			<div id="searchLine">
+				<select name="searchDrop" id="searchDrop">
+					<option value="title_content" selected>전체</option>
+					<option value="title">제목</option>
+					<option value="content">검색</option>
+				</select>
+				<input type ="text" name = "search_keyword" id ="searchText"/>
+				<button class="icon-search">검색</button>
+			</div>
+			</form>
 	
 	<div id='selected_recipe'></div>
 	

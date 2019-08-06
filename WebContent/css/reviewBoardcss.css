@@ -29,7 +29,7 @@ body {
 
 #main .thumbnails img {
 	width: 100%;
-	max-width: 350px;
+	max-width: 330px;
 	border-top-left-radius: 0.2rem;
 	border-top-right-radius: 0.2rem;
 	display: block;
@@ -41,14 +41,16 @@ body {
 	border-bottom: 2px solid rgba(247, 206, 173, 0.3);
 	border-bottom-left-radius: 0.2rem;
 	border-bottom-right-radius: 0.2rem;
-	padding: 1rem;
+	padding: 0.5rem;
 	text-align: center;
 	background-color: rgba(255, 255, 255, 0.1);
 	color: #8D4738;
 	font-size: 0.8rem;
 	font-weight: 200;
-	max-width: 314px;
+	max-width: 300px;
+	padding-top: 0.5rem+2px;
 }
+
 
 #main .thumbnails h3:hover {
 	background-color: rgba(247, 206, 173, 0.8);
