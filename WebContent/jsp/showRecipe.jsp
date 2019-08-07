@@ -22,7 +22,7 @@
 	</div>
 	<div id='조리시간'>
 		<p>조리시간</p>
-		<span id="R_hour">0</span> <span>h</span> <span id="R_minute">${requestScope.prim.COOKING_TIME }</span>
+		<span id="R_hour">${requestScope.hour }</span> <span>h</span> <span id="R_minute">${requestScope.minute }</span>
 		<span>m</span>
 	</div>
 	<div id='칼로리'>

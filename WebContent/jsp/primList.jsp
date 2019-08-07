@@ -48,6 +48,7 @@
 
 .js-load {
 	display: inline-block;
+	margin: 10px 10px;
 }
 
 #quick_menu {
@@ -80,11 +81,27 @@
 	margin-right: 20px;
 	text-decoration: none;
 	color: inherit;
+	font-size: 14px;
 }
 
 #category {
 	margin-top: 30px;
 	display: inline-block;
+}
+
+.js-load span{
+	color:#8D4738;
+	font-size: 0.75rem;
+	display: inline-block;
+}
+
+#main .thumbnails .js-load span>img{
+	width: 20px;
+	display: inline;
+	vertical-align: bottom;
+}
+#searchDrop{
+	width: 120px;
 }
 </style>
 
@@ -92,6 +109,16 @@
 <body>
 	<!-- hidden div -->
 	<div id="hidden"></div>
+	
+	<div id="searchLine">
+				<select name="searchDrop" id="searchDrop">
+					<option id="both" value="both" selected>전체</option>
+					<option id="recipe_nm_ko" value="recipe_nm_ko">레시피이름</option>
+					<option id="irdnt_nm" value="irdnt_nm">재료이름</option>
+				</select>
+				<input type ="text" name = "recipe_nm_ko" id ="searchText"/>
+				<input type="button" class="icon-search" value="검색">
+			</div>
 
 	<div id='selected_recipe'></div>
 
