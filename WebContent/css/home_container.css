@@ -79,3 +79,18 @@
 	background-color: black;
 	opacity: 0.3;
 }
+
+.recipeBtn img{
+	width: 100px;
+	height: 100px;
+	position: fixed;
+	top: 50%;
+}
+
+.recipeBtn#nextBtn img{
+	right: 15%;	
+}
+
+.recipeBtn#prevBtn img{
+	left: 15%;	
+}

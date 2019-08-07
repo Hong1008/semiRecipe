@@ -5,14 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <link rel="stylesheet" href="/semiRecipe/css/menu.css">
 <script type="text/javascript" src="/semiRecipe/js/menu.js"></script>
@@ -37,7 +32,7 @@
 			<!--------------------------- 이미지 수정해야됨 ------------------------->
 			<img src="/semiRecipe/img/food_test.jpg" id='myPage'>
 			<c:choose>
-				<c:when test="${empty sessionScope.logOk}">
+				<c:when test="${empty sessionScope.loginID}">
 					<img src="/semiRecipe/img/menu_login.png" id='login'>
 				</c:when>
 				<c:otherwise>
