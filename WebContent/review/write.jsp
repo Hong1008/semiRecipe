@@ -19,16 +19,16 @@
 <script src="../ckeditor/ckeditor.js"></script>
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	$('.starRev span').click(function(){
-	  $(this).parent().children('span').removeClass('on');
-	  $(this).addClass('on').prevAll('span').addClass('on');
-	  return false;
-	});
-	
-	search();
-		
-	function search(){
+	$(document).ready(function() {
+		$('.starRev span').click(function() {
+			$(this).parent().children('span').removeClass('on');
+			$(this).addClass('on').prevAll('span').addClass('on');
+			return false;
+		});
+
+		search();
+
+		function search() {
 			//검색기능 구현
 			var recipes_num = $('.recipes').length;//처음 DB에서 받아온 갯수를 저장
 			var recipes_name = new Array();
@@ -36,39 +36,69 @@ $(document).ready(function() {
 				recipes_name[i] = $('.recipes').eq(i).text();
 			} //배열에 이름들을 저장
 
-			$('#revRecipeSelect')
-			.on(
-					'keyup',
-					function() {
-						var search = $(this).val();//현재 인풋창의 값을 받아옴
-						var search_len = Hangul
-						.disassemble(search).length;//현재 인풋창의 자음+모음수
-						search = Hangul.assemble(search);
-
-						$('.recipes').hide();
-						for (var i = 0; i < recipes_num; i++) {
-							//맞는것 실행시켜줌
-							var ing_id = Hangul
-							.disassemble(recipes_name[i]
-							+ "");//i번쨰 재료의 이름 를 자름
-							var ing_len = ing_id.length;
-							var ing_hangul = "";
-
-							for (var j = 0; j < search_len; j++) {
-								if (j < ing_len)
-									ing_hangul += ing_id[j];
-							}
-							ing_hangul = Hangul
-							.assemble(ing_hangul);//타자 친 숫자만큼 이름에서 가져옴            	
-							if (search == ing_hangul) {
-								$('#' + recipes_name[i]).show();
-							}
-
-						}
-					});		
 			
-	}
-});
+			$('#revRecipeSelect').on('keyup', function() {
+				var search = $('#revRecipeSelect').val();//현재 인풋창의 값을 받아옴
+				var search_len = Hangul.disassemble(search).length;//현재 인풋창의 자음+모음수
+				search = Hangul.assemble(search);
+				
+				$('.recipes').hide();
+				for (var i = 0; i < recipes_num; i++) {
+					//맞는것 실행시켜줌
+					var ing_id = Hangul.disassemble(recipes_name[i] + "");//i번쨰 재료의 이름 를 자름
+					var ing_len = ing_id.length;
+					var ing_hangul = "";
+
+					for (var j = 0; j < search_len; j++) {
+						if (j < ing_len)
+							ing_hangul += ing_id[j];
+					}
+					ing_hangul = Hangul.assemble(ing_hangul);//타자 친 숫자만큼 이름에서 가져옴            	
+					if (search == ing_hangul) {
+						$('#' + recipes_name[i]).show();
+					}
+
+				}
+				var height = $("#recipeSelectList").height();
+				$('.view').css({
+					'height' : '100%',
+				});
+			});
+
+		}
+
+		$('#recipeSelectList li').on('click', function() {
+			$('#revRecipeSelect').val(($(this).text()));
+			$('#revRecipeSelect').attr('readonly', 'readonly');
+			$('#deleteBtn').css('display', 'inline-block');
+			$('.view').css({
+				'height' : '100%',
+			});
+			$.ajax({
+				type : 'POST',
+				dataType : 'text',
+				data : 'recipe_id=' + $(this).val(),
+				url : 'irdnt',
+				success : function(res) {
+					$('#irdntList').html(res);
+				}
+			})
+
+			$('#irdntList').css('display', 'block');
+			$('#recipeSelectList').css('display', 'none');
+
+		});
+
+		$('#deleteBtn').on('click', function() {
+			$('#revRecipeSelect').val('');
+			$('#revRecipeSelect').removeAttr('readonly');
+			$('#deleteBtn').css('display', 'none');
+			$('#irdntList').css('display', 'none');
+			$('#recipeSelectList').css('display', 'block');
+			$('#revRecipeSelect').keyup();
+		});
+
+	});
 </script>
 <style type="text/css">
 body {
@@ -111,9 +141,17 @@ td, tr {
 	background-position: 0 0;
 }
 
-.recipes{
-	display:inline-block;
-	width:190px;
+.recipes {
+	display: inline-block;
+	width: 190px;
+}
+.irdnts{
+	display: inline-block;
+	width: 250px;
+}
+
+#deleteBtn {
+	display: none;
 }
 
 #revRecipeSelect::placeholder {
@@ -123,18 +161,31 @@ td, tr {
 #recipeSelectList {
 	background-color: white;
 	border: 1px solid #a9a9a9;
-	list-style-type: none;
-}
-.scrollBlind{
-    height:100%;
-    overflow-y:scroll;
-    
+	list-style: none;
 }
 
-.view{
-	height: 500px;
-	overflow-y: hidden;
+#irdntList {
+	background-color: white;
+	border: 1px solid #a9a9a9;
+	list-style: none;
 }
+
+#choo {
+	height: 100%;
+	max-height: 500px;
+}
+
+.scrollBlind {
+	width: 820px;
+	height: 100%;
+	max-height: 500px;
+	overflow-y: scroll;
+}
+
+.view {
+	overflow: hidden;
+}
+
 .icon-th-large-outline {
 	padding: 3px;
 	float: left;
@@ -156,7 +207,6 @@ td, tr {
 	border-radius: 0.2rem;
 	font-size: 20px;
 }
-
 </style>
 </head>
 <body>
@@ -172,20 +222,26 @@ td, tr {
 					<td width="20%" align="center">레시피 선택</td>
 					<td width="800%"><input type="text" id="revRecipeSelect"
 						name="recipe" placeholder="레시피 검색"
-						style="width: 800px; height: 20px; font-size: 15px;" /></td>
+						style="width: 300px; height: 20px; font-size: 15px;" /><input
+						type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
 
 				<tr id="choo">
 					<td width='20%' align='center'></td>
 					<td width='800px'>
-						<div class="view">
-						<div class="scrollBlind" style="width:800px;">
-						<ul id='recipeSelectList'>
-							<c:forEach items="${requestScope.recipes }" var="dto">
-								<li class="recipes" id="${dto.RECIPE_NM_KO }">${dto.RECIPE_NM_KO }</li>
-							</c:forEach>
-						</ul>
-						</div>
+						<div class="view" style="width: 820px; height: 500px;">
+							<div class="scrollBlind">
+								<ul id='recipeSelectList'>
+									<c:forEach items="${requestScope.recipes }" var="dto">
+										<li class="recipes" id="${dto.RECIPE_NM_KO}"
+											value="${dto.RECIPE_ID }" style="font-size: 15px;">${dto.RECIPE_NM_KO }</li>
+
+									</c:forEach>
+								</ul>
+								<ul id='irdntList' style="display: none;">
+
+								</ul>
+							</div>
 						</div>
 					</td>
 				</tr>
@@ -215,8 +271,8 @@ td, tr {
 							rows="30" cols="80"></textarea></td>
 				</tr>
 				<script>
-                CKEDITOR.replace('editor1');
-            </script>
+					CKEDITOR.replace('editor1');
+				</script>
 
 				<tr>
 					<td width="20%" align="center">파일첨부</td>
