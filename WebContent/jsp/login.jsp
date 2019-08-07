@@ -53,15 +53,22 @@
 			url : '/semiRecipe/recipe/kakao_login',
 			data : 'kakao_id=' + kakao_id,
 			success : function(res) {
-				alert(res);
 				if (res != 1) {
 					var chk = confirm("등록되지 않은 회원입니다. 카카오톡 정보로 회원가입 하시겠습니까?");
 					if(chk){
-						email = "zz9448@hanmail.net";
-						id = email.split("@")[0];
+						var id = "";
+						var nickname = "";
+						
+						if(!typeof email=="undefined"){
+							id = email.split("@")[0];
+						}
+						
+						if(!typeof userNickName=="undefined"){
+							nickname = userNickName;
+						}
 						
 						location.href = '/semiRecipe/recipe/registerForm?id='+id+
-								'&nickname='+userNickName+'&kakao_id=' + kakao_id;
+								'&nickname='+nickname+'&kakao_id=' + kakao_id;
 					}
 				} else {
 					location.href = '/semiRecipe/recipe/home';

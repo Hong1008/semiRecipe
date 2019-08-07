@@ -34,6 +34,7 @@ $(document).ready(function() {
 			return false;
 	});
 	
+	
 	$('#id').blur(function(){
 		var eventId = $(this).attr('id');
 		var id = $("#id").val();
@@ -63,6 +64,11 @@ $(document).ready(function() {
 		
 		return false;
 	});
+	
+	if($('#id').val()){
+		$('#id').trigger('blur');
+	};
+	
 	
 	$('#pw').blur(function(){
 		var eventId = $(this).attr('id');
@@ -128,6 +134,11 @@ $(document).ready(function() {
 		return false;
 		
 	});
+	
+	if($('#nickname').val()){
+		$('#nickname').trigger('blur');
+	};
+	
 	
 	var year = $('#yy').val();
 	var month = $('#mm').val();
