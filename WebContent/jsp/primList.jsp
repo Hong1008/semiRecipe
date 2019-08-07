@@ -128,17 +128,6 @@
 				<input type="button" class="icon-search" value="검색">
 			</div>
 
-	<form action="#" method="post" id="searchform">
-			<div id="searchLine">
-				<select name="searchDrop" id="searchDrop">
-					<option value="title_content" selected>전체</option>
-					<option value="title">제목</option>
-					<option value="content">검색</option>
-				</select>
-				<input type ="text" name = "search_keyword" id ="searchText"/>
-				<button class="icon-search">검색</button>
-			</div>
-			</form>
 	
 	<div id='selected_recipe'></div>
 	
