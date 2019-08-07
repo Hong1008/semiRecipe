@@ -12,7 +12,8 @@
 	border: solid 1px rgb(200, 200, 200);
 	background: rgb(250, 250, 250);
 	margin-top: 40px;
-	margin-bottom: 400px;
+	margin-bottom: 400px;	
+    padding-bottom: 50px;
 }
 
 
@@ -55,14 +56,14 @@
 }
 #CMT form{
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 55px;
 }
 #CMT_input{	
-    width: 620px;
+    width: 520px;
     border: none;
-    border-bottom: 1px solid rgba(10,10,10,0.2);
+    border-bottom: 1px solid rgba(10,10,10,0.2);    
+    background: rgb(250, 250, 250);
     margin-top: 10px;
-    margin-left: -11px;
     font-size: 20px;    
     resize: none;    
     overflow: hidden;
@@ -71,16 +72,17 @@
 
 #CMT_submit{
 	border: none;
-    margin-left: 100px;
+    margin-left: 551px;
     width: 64px;
     height: 36px;
     margin-top: 10px;
     background: #F29F05;
     display: none;
     font-weight: bold;
-    color: rgb(215,215,215);
+    color: rgb(245,245,245);
     font-size: 15px;
 }
+
 
 #CMT_reset{	
 	border: none;
@@ -95,11 +97,44 @@
 }
 
 #star_div{
-	margin-left:100px;	
-    display: none;
+    float: right;
+    margin-left: 3px;
+    margin-top: -19px;
+    margin-right: 50px;
+}
+
+#star_div span{	
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .star{
-	width: 36px;
-	float:left;
+	width: 15px;
+    height: 30px;
+    float: right;
+    background: #F29F05;
+    opacity: 0.3;
+    margin-left:1px;
+}
+
+.rated_div{
+    float: right;
+    width: 120px;
+    height: 31px;
+    margin-right: 50px;
+    margin-bottom: -5px;
+}
+
+.rated{	
+	width: 15px;
+    height: 30px;
+    float: right;
+    background: #F29F05;
+    opacity: 0.3;
+    margin-left:1px;
+}
+
+.rate_num{
+	display: none;
 }

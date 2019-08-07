@@ -39,7 +39,6 @@
 				</div>
 				<div id='selected_recipe_view'></div>
 				<div id='selected_recipe'></div>
-		<%-- 		<jsp:include page="../jsp/showRecipe.jsp"/> --%>
 			</div>
 			<jsp:include page="../jsp/sideMenu.jsp"/>			
 		</div>
