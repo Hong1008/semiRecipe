@@ -13,8 +13,8 @@ import model.MemberDTO;
 public class CommentAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		MemberDTO dto = new MemberDTO();
-		dto.setId(req.getParameter("id"));
-		dto.setPw(req.getParameter("pw"));
+		dto.setUser_id(req.getParameter("id"));
+		dto.setUser_pw(req.getParameter("pw"));
 		
 		System.out.println(req.getParameter("id"));
 		
