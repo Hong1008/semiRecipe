@@ -8,7 +8,9 @@
 	content="width=device-width, initial-scale=1" />
 <title>Review Board</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
+<script type="text/javascript">
+</script>
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 <link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 
@@ -53,23 +55,21 @@
 				<div class="listLine">
 					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==1}">
-
-							<div>
-								<a href="../review/view.jsp"> <img
-									src="${revList.review_url}" alt="" />
-									<h3>${revList.review_subject}</h3></a>
-							</div>
+							<a href="../review/view.jsp?subject=${revList.review_subject}"> <img src="${revList.review_url}" alt="" />				
+								<h3>${revList.review_subject}
+								<br/><font color="#BC8F8F">${revList.nickname}</font></h3>
+							
+							</a>
 						</c:if>
 					</c:forEach>
 				</div>
 				<div class="listLine">
 					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==2}">
-							<div>
-								<a href="../review/view.jsp"> <img
-									src="${revList.review_url}" alt="" />
-									<h3>${revList.review_subject}</h3></a>
-							</div>
+							<a href="../review/view.jsp?subject=${revList.review_subject}"> <img src="${revList.review_url}" alt="" />
+								<h3>${revList.review_subject} 
+								<br/><font color="#BC8F8F">${revList.nickname}</font></h3>
+							</a>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -77,11 +77,10 @@
 				<div class="listLine">
 					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==3}">
-							<div> 
-								<a href="../review/view.jsp"> <img
-									src="${revList.review_url}" alt="" />
-									<h3>${revList.review_subject}</h3></a>
-							</div>
+							<a href="../review/view.jsp?subject=${revList.review_subject}"> <img src="${revList.review_url}" alt="" />
+								<h3>${revList.review_subject}
+								<br/><font color="#BC8F8F">${revList.nickname}</font></h3>
+							</a>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -90,11 +89,10 @@
 				<div class="listLine">
 					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==0}">
-							<div>
-								<a href="../review/view.jsp"> <img
-									src="${revList.review_url}" alt="" />
-									<h3>${revList.review_subject}</h3></a>
-							</div>
+							<a href="../review/view.jsp?subject=${revList.review_subject}"><img src="${revList.review_url}" alt="" /> 
+								<h3>${revList.review_subject}   
+								<br/><font color="#BC8F8F">${revList.nickname}</font></h3>
+							</a>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -113,11 +111,10 @@
 			</div>
 			</form>
 			<div id="buttonLine">
-				<a href="../review/reviewBoard.jsp" class="icon-th-large-outline"> 목록</a> 
-				<a href="../review/write.jsp" class="icon-comment"> 쓰기</a>
+				<a href="review" class="icon-th-large-outline"> 목록</a> 
+				<a href="reviewwrite" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>
-
 	</div>
 
 	<!-- Scripts -->

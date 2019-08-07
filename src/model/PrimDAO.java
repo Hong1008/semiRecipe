@@ -67,6 +67,18 @@ public class PrimDAO extends RecipeDAO {
 		return aList;
 	}
 	
+	public void primViewsCnt(int recipe_id) {
+		String sql = "update primary set prim_views = prim_views + 1 where recipe_id ="+recipe_id;
+		
+		try {
+			pstmt = updatePstmt(sql);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public PrimDTO listView(int recipe_id){
 		PrimDTO dto = new PrimDTO();
 		String sql = "select recipe_nm_ko, img_url, prim_views, rating, nation_nm, ty_nm, cooking_time, calorie, level_nm,sumry from primary where recipe_type = 'p' and recipe_id = "+recipe_id;
@@ -166,5 +178,4 @@ public class PrimDAO extends RecipeDAO {
 		}
 		return aList;
 	}
-	
 }// end searchView()
