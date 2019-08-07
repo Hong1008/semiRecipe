@@ -4,7 +4,9 @@ $(document)
 		function() {			
 			//$("html, body").animate({ scrollTop: 0 }, 1);
 
+			$('html, body').css({'overflow': 'hidden', 'height': '100%'});
 			
+
 			//드롭하는부분
 			var select_num = 0;			
 			$('#selected_ing_div')
@@ -13,6 +15,7 @@ $(document)
 						drop : function(event, ui) {
 							if(startPage){
 								$('html, body').animate({scrollTop : '1200px'}, 800);
+								$('html, body').css({'overflow': 'auto', 'height': 'auto'});
 								startPage=false;
 							}
 							select_num++;
@@ -66,7 +69,7 @@ $(document)
 
 			//스크롤 내리기전 사이드메뉴
 			$(document).scroll(function() {				
-				
+
 				//선택된 메뉴들
 				if($(document).scrollTop() < 600 ){
 					$('#selected_ing_div').css({'top':	'700px','opacity':1});	
@@ -83,9 +86,9 @@ $(document)
 			})
 			$('#selected_ing_div').on('mouseleave',function(){
 				if($(document).scrollTop() >= 650)
-				$(this).clearQueue().animate({'opacity':0.5},300);
+					$(this).clearQueue().animate({'opacity':0.5},300);
 			})
 
-			
+
 
 		});

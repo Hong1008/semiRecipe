@@ -51,12 +51,22 @@
 }
 
 #quick_menu {
-	width: 95px;
+    width: 65px;
+    height: 36px;
+	background:#F29F05;
 	text-align: center;
 	position: absolute;
 	top: 80%;
 	left: 90%;
 }
+
+#quick_menu a{
+	font-size: 20px;
+    text-decoration: none;
+    color: rgb(250,250,250);
+}
+
+
 #ing_menu {
 	list-style-type: none;
 	height: 50px;
@@ -148,8 +158,7 @@
 		</section>
 	</div>
 	<div id="quick_menu">
-		<a href="#"><img src="/semiRecipe/img/quick_top_btn.png"
-			alt="상단으로 이동" /></a>
+		<a href="#">top</a>
 	</div>
 
 	<!-- Scripts -->
