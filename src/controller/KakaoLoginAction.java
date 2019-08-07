@@ -1,4 +1,4 @@
-package action;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,15 +10,19 @@ import javax.servlet.http.HttpSession;
 import model.MemberDAO;
 import model.MemberDTO;
 
-public class LoginAction {
+public class KakaoLoginAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		MemberDTO dto = new MemberDTO();
-		dto.setUser_id(req.getParameter("user_id"));
-		dto.setUser_pw(req.getParameter("user_pw"));
+		dto.setKakao_id(req.getParameter("kakao_id"));
 		
 		MemberDAO dao = MemberDAO.getInstance();
-		int cnt = dao.login(dto);
-
+		String user_id = dao.kakaoLogin(dto);
+		
+		int cnt = 0;
+		if(!user_id.equals("")) {
+			cnt = 1;
+		}
+		
 		resp.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = resp.getWriter();
 		out.write(String.valueOf(cnt));
@@ -26,11 +30,14 @@ public class LoginAction {
 		HttpSession session = null;
 		if(cnt==1) {	// 회원일 때
 			session = req.getSession();
-			session.setAttribute("loginID", req.getParameter("user_id")); 	// loginID라는 이름으로 id 값을 세션에 저장
+			
+			dao.login(dto);
+			
+			session.setAttribute("loginID", user_id); 	// loginID라는 이름으로 id 값을 세션에 저장
 			session.setMaxInactiveInterval(30*60); 	// 30분
 		}else {
-			System.out.println("실패!");
+			System.out.println("!실패!");
 		}
-		
-	} // end execute()
+	
+	}
 }

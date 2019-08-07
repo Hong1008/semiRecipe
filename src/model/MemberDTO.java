@@ -7,6 +7,8 @@ public class MemberDTO {
 	private String user_pw;
 	private String user_nickname;
 	private Date user_birthday;
+	private String user_icon;
+	private String kakao_id;
 	private String updateName;
 
 	public String getUser_id() {
@@ -39,6 +41,22 @@ public class MemberDTO {
 
 	public void setUser_birthday(Date user_birthday) {
 		this.user_birthday = user_birthday;
+	}
+	
+	public String getUser_icon() {
+		return user_icon;
+	}
+
+	public void setUser_icon(String user_icon) {
+		this.user_icon = user_icon;
+	}
+
+	public String getKakao_id() {
+		return kakao_id;
+	}
+
+	public void setKakao_id(String kakao_id) {
+		this.kakao_id = kakao_id;
 	}
 
 	public String getUpdateName() {
