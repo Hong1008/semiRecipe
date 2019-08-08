@@ -18,6 +18,8 @@ public class RegisterAction {
 		String month = req.getParameter("mm");
 		String day = req.getParameter("dd");
 		
+		String kakao_id = req.getParameter("kakao_id");
+		
 		if(Integer.parseInt(req.getParameter("mm"))<10) {
 			month = "0"+month;
 		}
@@ -27,10 +29,11 @@ public class RegisterAction {
 		MemberDTO dto = new MemberDTO();
 		MemberDAO dao = MemberDAO.getInstance();
 		
-		dto.setId(id);
-		dto.setPw(pw);
-		dto.setNickname(nickname);
-		dto.setBirthday(birthday);
+		dto.setUser_id(id);
+		dto.setUser_pw(pw);
+		dto.setUser_nickname(nickname);
+		dto.setUser_birthday(birthday);
+		dto.setKakao_id(kakao_id);
 		
 		dao.registerMethod(dto);
 		

@@ -26,9 +26,9 @@ public class MemberDAO {
 
 	private Connection init() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.OracleDriver");
-		String url = "jdbc:oracle:thin://@127.0.0.1:1521:xe";
-		String user = "hr";
-		String password = "a1234";
+		String url = "jdbc:oracle:thin://@192.168.30.72:1521:xe";
+		String user = "hong";
+		String password = "1234";
 		return DriverManager.getConnection(url, user, password);
 	}// end init()
 
@@ -46,12 +46,14 @@ public class MemberDAO {
 	public void registerMethod(MemberDTO dto) {
 		try {
 			conn = init();
-			String sql = "insert into semimember values(?,?,?,?)";
+			String sql = "insert into user_table values(?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPw());
-			pstmt.setString(3, dto.getNickname());
-			pstmt.setDate(4, dto.getBirthday());
+			pstmt.setString(1, dto.getUser_id());
+			pstmt.setString(2, dto.getUser_pw());
+			pstmt.setString(3, dto.getUser_nickname());
+			pstmt.setDate(4, dto.getUser_birthday());
+			pstmt.setString(5, dto.getUser_icon());
+			pstmt.setString(6, dto.getKakao_id());
 			
 			pstmt.executeUpdate();
 			
@@ -70,7 +72,7 @@ public class MemberDAO {
 		String chk = "";
 		try {
 			conn = init();
-			String sql = "select id from semimember where id = ?";
+			String sql = "select user_id from user_table where user_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -96,7 +98,7 @@ public class MemberDAO {
 		String chk = "";
 		try {
 			conn = init();
-			String sql = "select id from semimember where nickname = ?";
+			String sql = "select user_id from user_table where user_nickname = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, nickname);
 			rs = pstmt.executeQuery();
@@ -122,10 +124,13 @@ public class MemberDAO {
 		int cnt=0;
 		try {
 			conn = init();
-			String sql = "select count(id) from semimember where id=? and pw=?";
+
+			System.out.println(dto.getKakao_id());
+			
+			String sql = "select count(user_id) from user_table where user_id=? and user_pw=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPw());
+			pstmt.setString(1, dto.getUser_id());
+			pstmt.setString(2, dto.getUser_pw());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -144,21 +149,45 @@ public class MemberDAO {
 		return cnt;
 	}
 	
+	public String kakaoLogin(MemberDTO dto) {		// 카카오 로그인 했을 때 회원등록되어있는지 여부
+		String user_id = "";
+		try {
+			conn = init();
+			String sql = "select user_id from user_table where kakao_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getKakao_id());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				user_id = rs.getString(1);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return user_id;
+	}
+	
 	public MemberDTO myPage(String sessionChkId) {
 		MemberDTO dto = new MemberDTO();
 		
 		try {
 			conn=init();
-			String sql = "select * from semimember where id=?";
+			String sql = "select * from user_table where user_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, sessionChkId);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				dto.setId(rs.getString("id"));
-				dto.setPw(rs.getString("pw"));
-				dto.setNickname(rs.getString("nickname"));
-				dto.setBirthday(rs.getDate("birthday"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setUser_pw(rs.getString("user_pw"));
+				dto.setUser_nickname(rs.getString("user_nickname"));
+				dto.setUser_birthday(rs.getDate("user_birthday"));
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -177,20 +206,18 @@ public class MemberDAO {
 	public void update(MemberDTO dto) {
 		try {
 			conn = init();
-			String sql = "update semimember set "+dto.getUpdateName()+"= ? where id = ?";
+			String sql = "update user_table set "+dto.getUpdateName()+"= ? where user_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			
-			System.out.println(sql);
-			
-			if(dto.getUpdateName().equals("pw")) {
-				pstmt.setString(1, dto.getPw());
-			} else if(dto.getUpdateName().equals("nickname")) {
-				pstmt.setString(1, dto.getNickname());
-			} else if(dto.getUpdateName().equals("birthday")) {
-				pstmt.setDate(1, dto.getBirthday());
+			if(dto.getUpdateName().equals("user_pw")) {
+				pstmt.setString(1, dto.getUser_pw());
+			} else if(dto.getUpdateName().equals("user_nickname")) {
+				pstmt.setString(1, dto.getUser_nickname());
+			} else if(dto.getUpdateName().equals("user_birthday")) {
+				pstmt.setDate(1, dto.getUser_birthday());
 			}
 			
-			pstmt.setString(2, dto.getId());
+			pstmt.setString(2, dto.getUser_id());
 			rs = pstmt.executeQuery();
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
@@ -202,10 +229,10 @@ public class MemberDAO {
 		int chk=0;
 		try {
 			conn = init();
-			String sql = "select count(*) from semimember where id=? and pw=?";
+			String sql = "select count(*) from user_table where user_id=? and user_pw=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getPw());
+			pstmt.setString(1, dto.getUser_id());
+			pstmt.setString(2, dto.getUser_pw());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -218,6 +245,7 @@ public class MemberDAO {
 		
 		return chk;
 	}
+
 }
 
 

@@ -12,12 +12,15 @@ import javax.servlet.http.HttpSession;
 import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.CheckNowPw;
+import action.IrdntAction;
+import action.CommentAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
+import action.ReviewWriteAction;
 import action.SelfListAction;
 import action.SelfViewAction;
 import action.SelfInsertAction;
@@ -41,6 +44,8 @@ public class RecipeController extends HttpServlet {
 	}
 
 	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
 		String method = req.getMethod();
 		String path = req.getRequestURI();
 		String next = "";
@@ -70,7 +75,15 @@ public class RecipeController extends HttpServlet {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
-		}else if(path.equals("recipe/selfRecipe")) { //  셀프 리스트
+		}else if(path.equals("recipe/reviewwrite")) {
+			ReviewWriteAction revWrite = new ReviewWriteAction();
+			revWrite.execute(req, resp);
+			next = "/review/write.jsp";
+		}else if(path.equals("recipe/irdnt")) {
+			IrdntAction irdnt = new IrdntAction();
+			irdnt.execute(req, resp);
+			next = "/review/irdntList.jsp";
+		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
 			SelfListAction selfList = new SelfListAction();
 			selfList.execute(req, resp);
 			next = "/selfRecipe/selfBoard.jsp";				
@@ -97,6 +110,9 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/login")) {
 			LoginAction login = new LoginAction();
 			login.execute(req, resp);
+		}else if(path.equals("recipe/kakao_login")) {
+			KakaoLoginAction kLogin = new KakaoLoginAction();
+			kLogin.execute(req, resp);
 		}else if(path.equals("recipe/logout")) {
 			LogoutAction logout = new LogoutAction();
 			logout.execute(req, resp);
@@ -108,7 +124,7 @@ public class RecipeController extends HttpServlet {
 			register.execute(req, resp);
 			
 			HttpSession session = req.getSession();
-			session.setAttribute("logOk", req.getParameter("id")); 	// logOk라는 이름으로 fid 값을 세션에 저장
+			session.setAttribute("loginID", req.getParameter("id")); 	// loginID라는 이름으로 id 값을 세션에 저장
 			session.setMaxInactiveInterval(30*60); 	// 30분
 			
 			resp.sendRedirect("home");
@@ -124,6 +140,11 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/myPage")) {
 			MyPageAction myPage = new MyPageAction();
 			myPage.execute(req, resp);
+		}else if(path.equals("recipe/comment")) {
+			//////////////////////////////////////////////////////////
+			CommentAction comment = new CommentAction();
+			comment.execute(req, resp);
+			//////////////////////////////////////////////////////////
 		}else if(path.indexOf("recipe/infoUpdate/")>-1) {
 			InfoUpdate update = new InfoUpdate(); 
 			update.execute(req, resp);

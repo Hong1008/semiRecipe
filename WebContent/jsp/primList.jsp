@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" name="viewport"
-	content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8"/>
+ <!-- name="viewport"
+	content="width=device-width, initial-scale=1"  -->
 <title></title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -48,15 +49,26 @@
 
 .js-load{
 	display: inline-block;
+	margin: 10px 10px;
 }
 
 #quick_menu {
-	width: 95px;
+    width: 65px;
+    height: 36px;
+	background:#F29F05;
 	text-align: center;
 	position: absolute;
 	top: 80%;
 	left: 90%;
 }
+
+#quick_menu a{
+	font-size: 20px;
+    text-decoration: none;
+    color: rgb(250,250,250);
+}
+
+
 #ing_menu {
 	list-style-type: none;
 	height: 50px;
@@ -77,10 +89,28 @@
 .sort{
 	float: right;
 	margin-right: 20px;
+	text-decoration: none;
+	color: inherit;
+	font-size: 14px;
 }
 
 #category{
 	margin-top: 30px;
+}
+
+.js-load span{
+	color:#8D4738;
+	font-size: 0.75rem;
+	display: inline-block;
+}
+
+#main .thumbnails .js-load span>img{
+	width: 20px;
+	display: inline;
+	vertical-align: bottom;
+}
+#searchDrop{
+	width: 120px;
 }
 </style>
 
@@ -88,18 +118,17 @@
 <body>
 	<!-- hidden div -->
 	<div id="hidden"></div>
-
-	<form action="#" method="post" id="searchform">
-			<div id="searchLine">
+	
+	<div id="searchLine">
 				<select name="searchDrop" id="searchDrop">
-					<option value="title_content" selected>전체</option>
-					<option value="title">제목</option>
-					<option value="content">검색</option>
+					<option id="both" value="both" selected>전체</option>
+					<option id="recipe_nm_ko" value="recipe_nm_ko">레시피이름</option>
+					<option id="irdnt_nm" value="irdnt_nm">재료이름</option>
 				</select>
-				<input type ="text" name = "search_keyword" id ="searchText"/>
-				<button class="icon-search">검색</button>
+				<input type ="text" name = "recipe_nm_ko" id ="searchText"/>
+				<input type="button" class="icon-search" value="검색">
 			</div>
-			</form>
+
 	
 	<div id='selected_recipe'></div>
 	
@@ -134,10 +163,10 @@
 
 			<!-- Thumbnails -->
 
-			<section class="thumbnails">
-
+		<section class="thumbnails">
+				<div id="listSize">
 				<%@include file="../ajax/listResult.jsp"%>
-
+</div>
 
 			</section>
 
@@ -148,13 +177,12 @@
 		</section>
 	</div>
 	<div id="quick_menu">
-		<a href="#"><img src="/semiRecipe/img/quick_top_btn.png"
-			alt="상단으로 이동" /></a>
+		<a href="#">top</a>
 	</div>
 
 	<!-- Scripts -->
-	<script src="/semiRecipe/assets/js/jquery.min.js"></script>
-	<script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>
-	<script src="/semiRecipe/assets/js/skel.min.js"></script>
+	<!-- <script src="/semiRecipe/assets/js/jquery.min.js"></script> -->
+	<!-- <script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script> -->
+	<!-- <script src="/semiRecipe/assets/js/skel.min.js"></script> -->
 </body>
 </html>

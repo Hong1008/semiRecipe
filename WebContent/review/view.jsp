@@ -10,28 +10,31 @@
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
    #view_post{
-   	height : 300px;
-   	width : 68rem;
+   	height : 400px;
+   	width : 760px;
    	margin : 0 auto;
-   	border : 2px solid red;
+   	border: solid 1px rgb(200, 200, 200);
+   	background: rgb(250, 250, 250);
    	margin-bottom : 20px;
    	margin-top : 20px;
    }
    .review_title{
-     width : 68rem;
-   	 display:inline-block;
-   	 height :40px;
-   	 
+     width : 760px;
+	 text-align: center;
+   }
+   #review_title_first{
+   	 height: 50px;
+   }
+   #review_title_second{
+   	 height: 40px;
    }
    
-   #revTit, #revTitle {
-   	float:left;
-   	text-align: center;
+   #revTitle, #revTitleSpace{
+     font-weight: 800;
    }
-   
-   #revViewcount, #revCommcount, #revWriter{
-   	float:right;
-   }
+   #revWriter, #revWriterSpace{
+   	 border-bottom: solid 1px rgb(200, 200, 200);
+   	}
 </style>
 
 </head>
@@ -42,13 +45,20 @@
 	</div>
 	
 	<div id="view_post" >
-		<div class="review_title">
-		<span id="revTit" style="width : 80px; font-weight:bold;">제목</span><span id="revTitle" style="width : 250px; font-weight:bold;">${param.subject}</span>
-		<span id="revViewcount">조회수</span><span id="revCommcount">댓글수</span>
-		<br/>
-		<span id="revWriter">글쓴이</span><span></span>
-		</div>
-		<hr/>
+		<table class="review_title">
+		<tr id="review_title_first">
+			<td width = "80px" id="revTitle">제목</td>
+			<td width = "350px" id="revTitleSpace">${param.subject}</td>  
+			<td width = "70px" id="revViewcount">조회수</td>
+			<td width = "70px" id="revViewcountSpace"></td>
+			<td width = "70px" id="revCommcount">댓글수</td>
+			<td width = "70px" id="revCommcountSpace"></td>		
+		</tr>
+		<tr id="review_title_second">
+			<td id="revWriter">글쓴이</td>
+			<td id="revWriterSpace"></td>			
+		</tr>		
+		</table>
 	</div>
 	
 	<div>

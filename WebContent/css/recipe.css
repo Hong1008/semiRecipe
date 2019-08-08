@@ -68,16 +68,15 @@
 #R_importance {
 	padding-top: 10px;
 	padding-bottom: 30px;
-	
 }
 
-#R_importance  h3{
+#R_importance  h3 {
 	font-size: 23px
 }
 
 .R_ig_div {
-    width: 378px;
-    display: inline-block;
+	width: 375px;
+	display: inline-block;
 }
 
 .R_ing {
@@ -117,7 +116,6 @@
 	width: 50%;
 } /***********삭제할부분**************/
 #R_recipeDiv {
-	margin-bottom: 100px;
 	padding: 20px 0;
 }
 

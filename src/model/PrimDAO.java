@@ -67,9 +67,21 @@ public class PrimDAO extends RecipeDAO {
 		return aList;
 	}
 	
+	public void primViewsCnt(int recipe_id) {
+		String sql = "update primary set prim_views = prim_views + 1 where recipe_id ="+recipe_id;
+		
+		try {
+			pstmt = updatePstmt(sql);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public PrimDTO listView(int recipe_id){
 		PrimDTO dto = new PrimDTO();
-		String sql = "select recipe_nm_ko, img_url, prim_views, rating, nation_nm, ty_nm, cooking_time, calorie, level_nm from primary where recipe_type = 'p' and recipe_id = "+recipe_id;
+		String sql = "select recipe_nm_ko, img_url, prim_views, rating, nation_nm, ty_nm, cooking_time, calorie, level_nm,sumry from primary where recipe_type = 'p' and recipe_id = "+recipe_id;
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
@@ -80,9 +92,10 @@ public class PrimDAO extends RecipeDAO {
 				dto.setRATING(rs.getString(4));
 				dto.setNATION_NM(rs.getString(5));
 				dto.setTY_NM(rs.getString(6));
-				dto.setCOOKING_TIME(rs.getString(7));
-				dto.setCALORIE(rs.getString(8));
+				dto.setCOOKING_TIME(rs.getString(7).replace("분", ""));
+				dto.setCALORIE(rs.getString(8).replace("Kcal", ""));
 				dto.setLEVEL_NM(rs.getString(9));
+				dto.setSUMRY(rs.getString(10));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -93,15 +106,24 @@ public class PrimDAO extends RecipeDAO {
 		return dto;
 	}
 	
-	public List<PrimDTO> sortView(String column, String order, String nation_nm){
+	public List<PrimDTO> sortView(String column, String order, String nation_nm, String recipe_nm_ko, String searchType){
 		List<PrimDTO> aList = new ArrayList<PrimDTO>();
 		String sql = "select recipe_nm_ko, img_url, prim_views, rating, recipe_id, nation_nm from primary where recipe_type = 'p' ";
 		if(nation_nm!= null && !nation_nm.isEmpty()) {
 			sql += "and nation_nm = '"+nation_nm+"' ";
 		}
+		if(recipe_nm_ko!= null && !recipe_nm_ko.isEmpty()) {
+			switch(searchType) {
+			case "both": sql += "and recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' or"
+					+ " recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%')"; break;
+			case "recipe_nm_ko": sql += "and recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' "; break;
+			case "irdnt_nm": sql += "and recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%') "; break;
+			}
+		}
 		if(column!=null && !column.isEmpty() && order!=null && !order.isEmpty()) {
 			sql += "order by "+column+" "+order;
 		}
+		System.out.println(sql);
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
@@ -165,5 +187,4 @@ public class PrimDAO extends RecipeDAO {
 		}
 		return aList;
 	}
-	
 }// end searchView()

@@ -19,10 +19,8 @@ import model.SelfRecipeDTO;
 import model.StepDTO;
 
 public class SelfInsertAction extends HttpServlet{
-		
 	public MultipartRequest executeMulti(HttpServletRequest req, HttpServletResponse resp) {
 		
-		System.out.println("2");
 		MultipartRequest multi = null;
 		String saveDirectory = "C:\\Users\\user1\\git\\semiRecipe\\WebContent\\selfRecipe\\img_self";
 		File file = new File(saveDirectory);

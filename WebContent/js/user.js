@@ -34,6 +34,7 @@ $(document).ready(function() {
 			return false;
 	});
 	
+	
 	$('#id').blur(function(){
 		var eventId = $(this).attr('id');
 		var id = $("#id").val();
@@ -63,6 +64,11 @@ $(document).ready(function() {
 		
 		return false;
 	});
+	
+	if($('#id').val()){
+		$('#id').trigger('blur');
+	};
+	
 	
 	$('#pw').blur(function(){
 		var eventId = $(this).attr('id');
@@ -129,6 +135,11 @@ $(document).ready(function() {
 		
 	});
 	
+	if($('#nickname').val()){
+		$('#nickname').trigger('blur');
+	};
+	
+	
 	var year = $('#yy').val();
 	var month = $('#mm').val();
 	var day = $('#dd').val();
@@ -139,18 +150,15 @@ $(document).ready(function() {
 function appendYear() {
 	var date = new Date();
 	var year = date.getFullYear();
-	var selectValue = document.getElementById("yy");
 
-	for(var i=1900;i<=year;i++) {
-		selectValue.add(new Option(i+"년",i));                        
+	for(var i=year;i>=1900;i--) {
+		$('#yy').append(new Option(i+"년",i));                        
 	}
 }
 
 function appendMonth() {
-	var selectValue = document.getElementById("mm"); 
-
 	for(var i=1;i<=12;i++){
-		selectValue.add(new Option(i+"월",i));
+		$('#mm').append(new Option(i+"월",i));
 	}
 }
 
@@ -183,10 +191,8 @@ function validDate(year, month) {
 };
 
 function appendDay(day) {
-	var selectValue = document.getElementById("dd");
-
 	for(var i=1;i<=day;i++) {
-			selectValue.add(new Option(i+"일",i));
+		$('#dd').append(new Option(i+"일",i));
 	}
 } 
 
