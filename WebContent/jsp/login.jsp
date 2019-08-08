@@ -100,6 +100,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	background-image: url(/semiRecipe/img/food_test.jpg);
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
 	font-family: '돋움';
@@ -181,17 +182,13 @@ html, body {
 	margin-top: 10px;
 	border-top: 1px solid #ebebeb;
 	padding-top: 20px;
+	text-align: center;
 }
 
 .login_box .last #join {
-	float: left;
 	color: #00a6de;
 }
 
-.login_box .last #search {
-	float: right;
-	color: #626262;
-}
 </style>
 
 </head>
@@ -225,9 +222,6 @@ html, body {
 				<div class="last">
 					<div>
 						<a href="/semiRecipe/recipe/registerForm" id="join">회원가입</a>
-					</div>
-					<div class="search">
-						<a href="" id="search">비밀번호 찾기</a>
 					</div>
 				</div>
 			</div>
