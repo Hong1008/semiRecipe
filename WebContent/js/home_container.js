@@ -68,7 +68,15 @@ $(document)
 			}
 
 			//스크롤 내리기전 사이드메뉴
-			$(document).scroll(function() {				
+			$(document).scroll(function() {		
+				
+				if($(document).scrollTop() < 700){
+					$('.recipeBtn#nextBtn img').animate({'opacity':0},300);	
+					$('.recipeBtn#prevBtn img').animate({'opacity':0},300);	
+				}else{
+					$('.recipeBtn#nextBtn img').clearQueue().animate({'opacity':1},300);	
+					$('.recipeBtn#prevBtn img').clearQueue().animate({'opacity':1},300);	
+				}
 
 				//선택된 메뉴들
 				if($(document).scrollTop() < 600 ){
