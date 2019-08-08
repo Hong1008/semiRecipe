@@ -1,10 +1,15 @@
 var name = "";
-
+var anim=true;
+var isopen = false;
 $(document)
 .ready(
 		function() {
+			setInterval(function() {
+				if(anim)
+				$('#side_btn').animate({'margin-left':'-120px'},500).animate({'margin-left':'-100px'},500);
+			},1000);
+			
 			//재로 사이드메뉴 열기/닫기
-			var isopen = false;
 			$('#side_btn').on('click', function() {
 				if (isopen) {
 					$('#side_menu').animate({
@@ -13,10 +18,11 @@ $(document)
 					$('#side_btn img').css({
 						'transform' : 'rotate(180deg)'
 					});
-					$('#side_btn').animate({
+					$('#side_btn').clearQueue().animate({
 						'margin-left' : -100
 					}, 1200);
 					isopen = false;
+					anim = true;
 				} else {
 					$('#side_menu').animate({
 						right : 0
@@ -24,10 +30,11 @@ $(document)
 					$('#side_btn img').css({
 						'transform' : 'rotate(0)'
 					});
-					$('#side_btn').animate({
+					$('#side_btn').clearQueue().animate({
 						'margin-left' : 0
 					}, 300);
 					isopen = true;
+					anim = false;
 				}
 			});
 
