@@ -99,6 +99,8 @@
 	<!-- hidden div -->
 	<div id="hidden"></div>
 	
+	<div id="selected_recipe"></div>
+	
 	<!-- Wrapper -->
 	<div id="wrapper">
 
@@ -109,18 +111,23 @@
 			
 			<section class="thumbnails">
 				
-				<c:forEach items="${requestScope.prList}" var="prList">
-				<div>
-					<a href="#"> <img src="${prList.img_url}" alt="main_image" />
-						<h3>${prList.recipe_nm_ko}</h3>
+				<c:forEach items="${requestScope.prList}" var="prList" varStatus="i">
+				<div class="self_recipe" id="${prList.RECIPE_ID }">
+					<a href="selfView"> <img src="${prList.IMG_URL}" alt="main_image" />
+					<h3>${prList.RECIPE_NM_KO}</h3>
 					</a> 
+					<%-- <c:forEach items="${requestScope.srList }" var="srList" begin="${i.index }" end="${i.index }">
+						<span>${srList.user_id }</span>
+						<span>${srList.self_date }</span>
+						<input type="text" name="recipe_id" value="${srList.recipe_id }">
+					</c:forEach> --%>
 				</div>
 				</c:forEach>
 				
 			</section>
 			<div id = "buttonLine">
-				<a href="#" class="icon-th-large-outline"> 목록</a>
-				<a href="#" class="icon-comment"> 쓰기</a>
+				<a href="selfRecipe" class="icon-th-large-outline"> 목록</a>
+				<a href="insertSelfRecipe" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>
 		
@@ -132,5 +139,23 @@
 	<script src="/semiRecipe/assets/js/jquery.min.js"></script>
 	<script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>
 	<script src="/semiRecipe/assets/js/skel.min.js"></script>
+	<script type="text/javascript">
+	$('.self_recipe').on('click', function(){
+		console.log($(this).attr('id'));
+		$.ajax({
+			type:'POST',
+			dataType:'text',
+			data:'recipe_id='+$(this).attr('id'),
+			url:'selfView',
+			success: function(res){
+				console.log(res);
+				$('#selected_recipe').html(res);
+			}
+		})
+		return false;
+	})
+
+	</script>
+	
 </body>
 </html>
