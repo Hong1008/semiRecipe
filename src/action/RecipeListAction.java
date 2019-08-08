@@ -17,7 +17,9 @@ public class RecipeListAction {
 			String column = req.getParameter("column");
 			String order = req.getParameter("order");
 			String nation_nm = req.getParameter("nation_nm");
-			req.setAttribute("recList", dao.sortView(column, order,nation_nm));
+			String recipe_nm_ko = req.getParameter("recipe_nm_ko");
+			String searchType = req.getParameter("searchType");
+			req.setAttribute("recList", dao.sortView(column, order,nation_nm,recipe_nm_ko,searchType));
 		}
 	}
 }

@@ -12,7 +12,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import model.SelfRecipeDAO;
 import model.SelfRecipeDTO;
 
-public class SelfWriteAction extends HttpServlet{
+public class SelfInsertAction extends HttpServlet{
 	
 	
 	public MultipartRequest executeMulti(HttpServletRequest req) {

@@ -4,22 +4,33 @@ $(document).ready(
 			var column = '';
 			var order = '';
 			var nation_nm = '';
-			$('.sort,.ing_menu_li').click(
-					function listAjax() {
+			var recipe_nm_ko = '';
+			var searchType = '';
+			$('.sort,.ing_menu_li,.icon-search,#searchText').on('click keydown',
+					function listAjax(key) {
 						if ($(this).is('.sort')) {
-							console.log($(this).attr('class'))
 							column = $(this).children('.column').val();
 							order = $(this).children('.order').val();
 						}
 						if ($(this).is('.ing_menu_li')) {
-							console.log($(this).attr('class'))
 							nation_nm = $(this).attr('id');
+						}
+						if($(this).is('#searchText')){
+							if(key.keyCode != 13){
+								return;
+							}
+						}
+						
+						if(key.keyCode == 13 || $(this).is('.icon-search')){
+							recipe_nm_ko = $('#searchText').val();
+							searchType = $('#searchDrop').val();
 						}
 						$.ajax({
 							type : 'POST',
 							dataType : 'text',
 							data : 'column=' + column + '&order=' + order
-									+ '&nation_nm=' + nation_nm,
+									+ '&nation_nm=' + nation_nm + '&recipe_nm_ko=' + recipe_nm_ko
+									+ '&searchType=' + searchType,
 							url : 'list',
 							success : function(res) {
 								$('.thumbnails>div div').remove();

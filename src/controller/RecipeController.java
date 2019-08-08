@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.CheckNowPw;
+import action.IrdntAction;
 import action.CommentAction;
 import action.LoginAction;
 import action.LogoutAction;
@@ -19,6 +20,7 @@ import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
+import action.ReviewWriteAction;
 import action.SelfListAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
@@ -71,11 +73,15 @@ public class RecipeController extends HttpServlet {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
-		} /*
-			 * else if(path.equals("recipe/reviewwrite")) { ReviewWriteAction revWrite = new
-			 * ReviewWriteAction(); revWrite.execute(req, resp); next = "/review/write.jsp";
-			 * }
-			 */else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
+		}else if(path.equals("recipe/reviewwrite")) {
+			ReviewWriteAction revWrite = new ReviewWriteAction();
+			revWrite.execute(req, resp);
+			next = "/review/write.jsp";
+		}else if(path.equals("recipe/irdnt")) {
+			IrdntAction irdnt = new IrdntAction();
+			irdnt.execute(req, resp);
+			next = "/review/irdntList.jsp";
+		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
 			SelfListAction selfList = new SelfListAction();
 			selfList.execute(req);
 			next = "/selfRecipe/selfBoard.jsp";				
