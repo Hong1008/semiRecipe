@@ -19,6 +19,8 @@ import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
 import action.SelfListAction;
+import action.SelfViewAction;
+import action.SelfInsertAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
@@ -68,10 +70,26 @@ public class RecipeController extends HttpServlet {
 			ReviewListAction revList = new ReviewListAction();
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
-		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
+		}else if(path.equals("recipe/selfRecipe")) { //  셀프 리스트
 			SelfListAction selfList = new SelfListAction();
-			selfList.execute(req);
+			selfList.execute(req, resp);
 			next = "/selfRecipe/selfBoard.jsp";				
+		}else if(path.equals("recipe/selfView")) { //  셀프 뷰
+			SelfViewAction viewList = new SelfViewAction();
+			viewList.execute(req, resp);
+			next = "/selfRecipe/selfView.jsp";	
+		}else if(path.equals("recipe/insertSelfRecipe")) { //  셀프 인서트
+			if(method.equalsIgnoreCase("get")){
+				IrdntTYDAO dao = new IrdntTYDAO();
+				req.setAttribute("aList", dao.list());
+				req.setAttribute("tList", dao.tyList());
+				dao.exit();
+				next = "/selfRecipe/insertSelfRecipe.jsp";				
+			}else {				
+				SelfInsertAction insertList = new SelfInsertAction();
+				insertList.executeMulti(req, resp);
+				next = "/selfRecipe/selfView.jsp";
+			}
 		}else if(path.equals("recipe/qna")) {
 			next = "/jsp/qna.jsp";
 		}else if(path.equals("recipe/loginForm")) {
@@ -116,4 +134,4 @@ public class RecipeController extends HttpServlet {
 			req.getRequestDispatcher(next).forward(req, resp);
 		}
 	}
-}
+}// end class
