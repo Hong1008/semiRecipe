@@ -53,6 +53,8 @@ public class MemberDAO {
 			pstmt.setString(3, dto.getUser_nickname());
 			pstmt.setDate(4, dto.getUser_birthday());
 			
+			System.out.println("여기까진 되나요");
+			
 			pstmt.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {

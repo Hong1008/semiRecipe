@@ -20,6 +20,7 @@ import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
+import action.ReviewViewAction;
 import action.ReviewWriteAction;
 import action.SelfListAction;
 import action.ShowRecipeAction;
@@ -74,10 +75,27 @@ public class RecipeController extends HttpServlet {
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
 		}else if(path.equals("recipe/reviewwrite")) {
-			ReviewWriteAction revWrite = new ReviewWriteAction();
-			revWrite.execute(req, resp);
-			next = "/review/write.jsp";
-		}else if(path.equals("recipe/irdnt")) {
+			HttpSession session = req.getSession();
+			String loginID = (String) session.getAttribute("loginID");
+			
+			if(loginID==null) {
+				next ="/recipe/loginForm";
+			}else {
+				ReviewWriteAction revWrite = new ReviewWriteAction();
+				revWrite.execute(req, resp);
+				next = "/review/write.jsp";
+			}
+			
+		}else if(path.equals("recipe/reviewinsert")) {
+			ReviewInsertAction revInsert = new ReviewInsertAction();
+			revInsert.execute(req, resp);
+			next="/review/view.jsp";
+		}else if(path.equals("recipe/reviewview")) {
+			ReviewViewAction revView = new ReviewViewAction();
+			revView.execute(req, resp);
+			next="/review/view.jsp";
+		}
+		else if(path.equals("recipe/irdnt")) {
 			IrdntAction irdnt = new IrdntAction();
 			irdnt.execute(req, resp);
 			next = "/review/irdntList.jsp";

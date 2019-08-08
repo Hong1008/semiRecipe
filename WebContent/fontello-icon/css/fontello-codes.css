@@ -1,4 +1,6 @@
 
 .icon-search:before { content: '\e800'; } /* '' */
-.icon-th-large-outline:before { content: '\e801'; } /* '' */
-.icon-comment:before { content: '\e802'; } /* '' */
+.icon-comment:before { content: '\e801'; } /* '' */
+.icon-chat:before { content: '\e802'; } /* '' */
+.icon-book-open:before { content: '\e803'; } /* '' */
+.icon-th-thumb-empty:before { content: '\f00b'; } /* '' */
