@@ -5,8 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" name="viewport"
-	content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8"/>
+ <!-- name="viewport"
+	content="width=device-width, initial-scale=1"  -->
 <title></title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -128,17 +129,6 @@
 				<input type="button" class="icon-search" value="검색">
 			</div>
 
-	<form action="#" method="post" id="searchform">
-			<div id="searchLine">
-				<select name="searchDrop" id="searchDrop">
-					<option value="title_content" selected>전체</option>
-					<option value="title">제목</option>
-					<option value="content">검색</option>
-				</select>
-				<input type ="text" name = "search_keyword" id ="searchText"/>
-				<button class="icon-search">검색</button>
-			</div>
-			</form>
 	
 	<div id='selected_recipe'></div>
 	
@@ -173,10 +163,10 @@
 
 			<!-- Thumbnails -->
 
-			<section class="thumbnails">
-
+		<section class="thumbnails">
+				<div id="listSize">
 				<%@include file="../ajax/listResult.jsp"%>
-
+</div>
 
 			</section>
 
@@ -191,8 +181,8 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="/semiRecipe/assets/js/jquery.min.js"></script>
-	<script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>
-	<script src="/semiRecipe/assets/js/skel.min.js"></script>
+	<!-- <script src="/semiRecipe/assets/js/jquery.min.js"></script> -->
+	<!-- <script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script> -->
+	<!-- <script src="/semiRecipe/assets/js/skel.min.js"></script> -->
 </body>
 </html>
