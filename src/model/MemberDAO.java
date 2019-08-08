@@ -55,6 +55,8 @@ public class MemberDAO {
 			pstmt.setString(5, dto.getUser_icon());
 			pstmt.setString(6, dto.getKakao_id());
 			
+			System.out.println("여기까진 되나요");
+			
 			pstmt.executeUpdate();
 			
 		} catch (ClassNotFoundException | SQLException e) {

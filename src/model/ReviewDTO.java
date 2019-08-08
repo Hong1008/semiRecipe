@@ -14,7 +14,7 @@ public class ReviewDTO {
 	private String review_url;
 	private String user_id;
 	private int recipe_id;
-	private String nickname;
+	private String user_nickname;
 	
 	public ReviewDTO() {
 
@@ -73,17 +73,18 @@ public class ReviewDTO {
 	public void setReview_subject(String review_subject) {
 		this.review_subject = review_subject;
 	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+
 	public int getRn() {
 		return rn;
 	}
 	public void setRn(int rn) {
 		this.rn = rn;
+	}
+	public String getUser_nickname() {
+		return user_nickname;
+	}
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
 	}
 	
 }//end class

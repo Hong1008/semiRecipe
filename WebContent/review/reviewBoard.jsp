@@ -9,10 +9,27 @@
 <title>Review Board</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+$(document).ready(function() {
+	$('.listLine a').on('click', function() {
+		console.log($(this).attr('id'));
+		$.ajax({
+ 			type: 'POST',
+ 			dataType: 'text',
+ 			data : 'review_num='+$(this).attr('id'),
+ 			url: 'reviewview',
+ 			success: function(res){
+ 				$('#view').html(res);
+ 			}
+     	
+ 		});
+		return false;
+	});
+});
 </script>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 <link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
+
 
 
 </head>
@@ -27,9 +44,14 @@
 		<c:if test="${i == '/reviewBoard.jsp'}">
 			<%@ include file="../jsp/menu.jsp"%>
 		</c:if>
+		
 	</div>
 	<!-- hidden div -->
 	<div id="hidden"></div>
+
+	<div id="view">
+		
+	</div>
 
 	<!-- Wrapper -->
 	<div id="wrapper">
@@ -55,9 +77,9 @@
 				<div class="listLine">
 					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==1}">
-							<a href="../review/view.jsp?subject=${revList.review_subject}"> <img src="${revList.review_url}" alt="" />				
+							<a href="#" id="${revList.review_num}"> <img src="${revList.review_url}" alt="" />				
 								<h3>${revList.review_subject}
-								<br/><font color="#BC8F8F">${revList.nickname}</font></h3>
+								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
 							
 							</a>
 						</c:if>
@@ -66,9 +88,9 @@
 				<div class="listLine">
 					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==2}">
-							<a href="../review/view.jsp?subject=${revList.review_subject}"> <img src="${revList.review_url}" alt="" />
+							<a href="#" id="${revList.review_num}"> <img src="${revList.review_url}" alt="" />
 								<h3>${revList.review_subject} 
-								<br/><font color="#BC8F8F">${revList.nickname}</font></h3>
+								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
 							</a>
 						</c:if>
 					</c:forEach>
@@ -77,9 +99,9 @@
 				<div class="listLine">
 					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==3}">
-							<a href="../review/view.jsp?subject=${revList.review_subject}"> <img src="${revList.review_url}" alt="" />
+							<a href="#" id="${revList.review_num}"> <img src="${revList.review_url}" alt="" />
 								<h3>${revList.review_subject}
-								<br/><font color="#BC8F8F">${revList.nickname}</font></h3>
+								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
 							</a>
 						</c:if>
 					</c:forEach>
@@ -89,9 +111,9 @@
 				<div class="listLine">
 					<c:forEach items="${sessionScope.reviewList}" var="revList">
 						<c:if test="${revList.review_num%4==0}">
-							<a href="../review/view.jsp?subject=${revList.review_subject}"><img src="${revList.review_url}" alt="" /> 
+							<a href="#" id="${revList.review_num}"><img src="${revList.review_url}" alt="" /> 
 								<h3>${revList.review_subject}   
-								<br/><font color="#BC8F8F">${revList.nickname}</font></h3>
+								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
 							</a>
 						</c:if>
 					</c:forEach>
@@ -111,7 +133,7 @@
 			</div>
 			</form>
 			<div id="buttonLine">
-				<a href="review" class="icon-th-large-outline"> 목록</a> 
+				<a href="review" class="icon-th-thumb-empty"> 목록</a> 
 				<a href="reviewwrite" class="icon-comment"> 쓰기</a>
 			</div>
 		</section>

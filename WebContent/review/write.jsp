@@ -1,6 +1,5 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +13,6 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
-<link rel="stylesheet" href="../fontello-ea422c41/css/fontello.css">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 <script src="../ckeditor/ckeditor.js"></script>
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
@@ -97,6 +95,41 @@
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
 		});
+		
+        var recipe_id="";
+		
+        $('.icon-comment').on('click', function() {
+			// alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
+			//alert($('#revRecipeSelect').val());
+			 $('#recipeSelectList li').each(function(index,element){
+            //	alert($(this).attr('id'));
+            
+            	if($(this).attr('id')==$('#revRecipeSelect').val()){
+            		recipe_id = $(this).val();
+            	}
+       		 });
+			 
+         	var text = CKEDITOR.instances.editor1.getData();
+         	text = text.replace(/<br\/>/ig, "\n"); 
+         	text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
+         	
+         	$.ajax({
+     			type: 'POST',
+     			dataType: 'text',
+     			data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val(),
+     			url: 'reviewinsert',
+     			success: function(){
+     				location.href="/semiRecipe/recipe/review";
+     			}
+         	
+     		});
+         	
+         	return false;
+         	
+         	
+
+		//	$('form').submit();
+		});
 
 	});
 </script>
@@ -116,7 +149,7 @@ body {
 	margin: 0 auto;
 }
 
-table {
+#recipeTable {
 	float: center;
 	margin: 0 auto;
 }
@@ -144,10 +177,6 @@ td, tr {
 .recipes {
 	display: inline-block;
 	width: 190px;
-}
-.irdnts{
-	display: inline-block;
-	width: 250px;
 }
 
 #deleteBtn {
@@ -186,7 +215,11 @@ td, tr {
 	overflow: hidden;
 }
 
-.icon-th-large-outline {
+#irdntsTable {
+	text-align: left;
+}
+
+.icon-th-thumb-empty {
 	padding: 3px;
 	float: left;
 	text-decoration: none;
@@ -215,12 +248,15 @@ td, tr {
 	</div>
 	<div id="writeframe">
 		<form name="frm" method="post" enctype="multipart/form-data"
-			action="#" id="writeform">
-			<table>
-
+			action="/semiRecipe/recipe/reviewinsert" id="writeform">
+			<input type="hidden" name="user_nickname"
+				value="${requestScope.mdto.user_nickname}" id="user_nickname" /> <input
+				type="hidden" name="user_id" value="${requestScope.mdto.user_id}"
+				id="user_id" />
+			<table id="recipeTable">
 				<tr>
 					<td width="20%" align="center">레시피 선택</td>
-					<td width="800%"><input type="text" id="revRecipeSelect"
+					<td width="80%"><input type="text" id="revRecipeSelect"
 						name="recipe" placeholder="레시피 검색"
 						style="width: 300px; height: 20px; font-size: 15px;" /><input
 						type='button' id="deleteBtn" value="메뉴 삭제"></td>
@@ -234,7 +270,8 @@ td, tr {
 								<ul id='recipeSelectList'>
 									<c:forEach items="${requestScope.recipes }" var="dto">
 										<li class="recipes" id="${dto.RECIPE_NM_KO}"
-											value="${dto.RECIPE_ID }" style="font-size: 15px;">${dto.RECIPE_NM_KO }</li>
+											value="${dto.RECIPE_ID }" name="recipe_id"
+											style="font-size: 15px;">${dto.RECIPE_NM_KO }</li>
 
 									</c:forEach>
 								</ul>
@@ -261,13 +298,13 @@ td, tr {
 
 				<tr>
 					<td width="20%" align="center">제목</td>
-					<td width="80%"><input type="text" name="subject"
-						style="width: 800px; height: 20px;" /></td>
+					<td width="80%"><input type="text" name="review_subject"
+						id="review_subject" style="width: 800px; height: 20px;" /></td>
 				</tr>
 
 				<tr>
 					<td width="20%" align="center">내용</td>
-					<td width="80%"><textarea name="editor1" id="editor1"
+					<td width="80%"><textarea name="review_content" id="editor1"
 							rows="30" cols="80"></textarea></td>
 				</tr>
 				<script>
@@ -282,15 +319,15 @@ td, tr {
 					<td height="10px"></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><button class="icon-comment">
-							확인</button>
+					<td colspan="2" align="center">
+						<button class="icon-comment">확인</button>
 				</tr>
 				<tr>
 					<td height="20px"></td>
 				</tr>
 				<tr>
 					<td align="right" colspan="2"><a href="review"
-						class="icon-th-large-outline"> 목록</a></td>
+						class="icon-th-thumb-empty"> 목록</a></td>
 				</tr>
 			</table>
 		</form>
