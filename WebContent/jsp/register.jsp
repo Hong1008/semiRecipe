@@ -50,8 +50,9 @@ input.result {
 <body id="register">
 <div class="wrap">
 	<form id="registerForm" method="post">
+		<input type="text" id="kakao_id" name="kakao_id" value="${param.kakao_id}" />
 		<h3><label for="id">아이디</label></h3>
-		<input type="text" id="id" name="id" maxlength="20" required="required" value="${session.jsessionID }" />
+		<input type="text" id="id" name="id" maxlength="20" required="required" value="${param.id }" />
 	    <p><span class="error_next_box" id="idMsg" role="alert"></span></p>
 		<h3><label for="pw">비밀번호</label></h3>
 		<input type="password" id="pw" name="pw" maxlength="20" required="required" />
@@ -60,7 +61,7 @@ input.result {
 		<input type="password" id="pwConfirm" name="pwConfirm" maxlength="20" required="required" />
 		<p><span class="error_next_box" id="pwConfirmMsg" role="alert"></span></p>
 		<h3><label for="nickname">닉네임</label></h3>
-		<input type="text" id="nickname" name="nickname" maxlength="20" required="required" />
+		<input type="text" id="nickname" name="nickname" maxlength="20" required="required" value="${param.nickname }" />
 		<p><span class="error_next_box" id="nicknameMsg" role="alert"></span></p>
 		<div class="join_row join_birthday">
 			<h3 class="join_title"><label for="yy">생년월일</label></h3>

@@ -45,6 +45,40 @@
 			alert("아이디와 비밀번호를 모두 입력해주세요.");
 		}
 	}
+	
+	function kakaoLogin(kakao_id, email, userNickName) {
+		$.ajax({
+			type : 'POST',
+			dataType : 'text',
+			url : '/semiRecipe/recipe/kakao_login',
+			data : 'kakao_id=' + kakao_id,
+			success : function(res) {
+				if (res != 1) {
+					var chk = confirm("등록되지 않은 회원입니다. 카카오톡 정보로 회원가입 하시겠습니까?");
+					if(chk){
+						var id = "";
+						var nickname = "";
+						
+						if(!typeof email=="undefined"){
+							id = email.split("@")[0];
+						}
+						
+						if(!typeof userNickName=="undefined"){
+							nickname = userNickName;
+						}
+						
+						location.href = '/semiRecipe/recipe/registerForm?id='+id+
+								'&nickname='+nickname+'&kakao_id=' + kakao_id;
+					}
+				} else {
+					location.href = '/semiRecipe/recipe/home';
+				}
+			}
+		});
+		return;
+		
+	}
+	
 </script>
 <style type="text/css">
 body {
@@ -217,8 +251,12 @@ html, body {
 					url : '/v1/user/me',
 					success : function(res) {
 						console.log(res);
-						var userId = res.kaccount_email; //유저가 등록한 계정
+						var kakao_id = res.id; //유저가 등록한 계정
+						console.log(kakao_id, email, userNickName);
+						var email = res.kaccount_email; //유저가 등록한 계정
 						var userNickName = res.properties.nickname; //유저가 등록한 별명
+						
+						kakaoLogin(kakao_id);
 					},
 					fail : function(error) {
 						alert(JSON.stringify(error));

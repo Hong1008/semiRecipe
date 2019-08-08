@@ -92,6 +92,9 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/login")) {
 			LoginAction login = new LoginAction();
 			login.execute(req, resp);
+		}else if(path.equals("recipe/kakao_login")) {
+			KakaoLoginAction kLogin = new KakaoLoginAction();
+			kLogin.execute(req, resp);
 		}else if(path.equals("recipe/logout")) {
 			LogoutAction logout = new LogoutAction();
 			logout.execute(req, resp);

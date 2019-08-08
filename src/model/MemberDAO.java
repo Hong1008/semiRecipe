@@ -46,12 +46,14 @@ public class MemberDAO {
 	public void registerMethod(MemberDTO dto) {
 		try {
 			conn = init();
-			String sql = "insert into user_table values(?,?,?,?)";
+			String sql = "insert into user_table values(?,?,?,?,?,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getUser_id());
 			pstmt.setString(2, dto.getUser_pw());
 			pstmt.setString(3, dto.getUser_nickname());
 			pstmt.setDate(4, dto.getUser_birthday());
+			pstmt.setString(5, dto.getUser_icon());
+			pstmt.setString(6, dto.getKakao_id());
 			
 			pstmt.executeUpdate();
 			
@@ -122,6 +124,9 @@ public class MemberDAO {
 		int cnt=0;
 		try {
 			conn = init();
+
+			System.out.println(dto.getKakao_id());
+			
 			String sql = "select count(user_id) from user_table where user_id=? and user_pw=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getUser_id());
@@ -142,6 +147,30 @@ public class MemberDAO {
 			}
 		}
 		return cnt;
+	}
+	
+	public String kakaoLogin(MemberDTO dto) {		// 카카오 로그인 했을 때 회원등록되어있는지 여부
+		String user_id = "";
+		try {
+			conn = init();
+			String sql = "select user_id from user_table where kakao_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getKakao_id());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				user_id = rs.getString(1);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return user_id;
 	}
 	
 	public MemberDTO myPage(String sessionChkId) {
@@ -216,6 +245,7 @@ public class MemberDAO {
 		
 		return chk;
 	}
+
 }
 
 
