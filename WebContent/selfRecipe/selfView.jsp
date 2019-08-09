@@ -2,16 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/semiRecipe/css/recipe.css">
+<link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_recipe.css">
 
 <div id='R_header' class='R_div'>
-	<p>아이디</p>
+		
 	<span id='user_id'>${requestScope.srdto.user_id } </span>
-	<p>번호</p>
 	<span id='recipe_id'>${requestScope.prdto.RECIPE_ID } </span>
-	<p>조회수</p>
-	<span id='self_views'>${requestScope.srdto.self_views } </span>
-	<p>작성일</p>
-	<span id='self_date'>${requestScope.srdto.self_date } </span>
+	<span id='self_views'><img width="14" height="14" alt="조회수" src="/semiRecipe/img/views.png"> ${requestScope.srdto.self_views } </span>
+	<span id='self_date'>D:${requestScope.srdto.self_date } </span>
 
 	<div id='R_image'>
 		<img src="/semiRecipe/selfRecipe/img_self/${requestScope.prdto.IMG_URL }">
@@ -75,3 +73,15 @@
 	</div>
 	</c:forEach>
 </div>
+
+<div id='CMT' class='R_div'>
+	<input type="hidden" id="key" value="${prdto.RECIPE_ID}">
+	<div id="selfrecipe">
+
+		
+	</div>	
+	</div>
+	
+	<script type="text/javascript">
+		comList();
+	</script>

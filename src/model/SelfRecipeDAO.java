@@ -257,14 +257,14 @@ public class SelfRecipeDAO {
 		List<StepDTO> stList = new ArrayList<StepDTO>();
 		try {
 			conn = init();
-			String sql = "select cooking_no, recipe_id, step_tip from step where recipe_id = ?";
+			String sql = "select cooking_no, recipe_id, cooking_dc from step where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, recipe_id);
 			rs = pstmt.executeQuery();
 		while (rs.next()) {
 			StepDTO stdto = new StepDTO();
 			stdto.setCOOKING_NO(rs.getInt("cooking_no"));
-			stdto.setSTEP_TIP(rs.getString("step_tip"));
+			stdto.setCOOKING_DC(rs.getString("cooking_dc"));
 			stdto.setRECIPE_ID(rs.getInt("recipe_id"));
 			stList.add(stdto);
 		}
@@ -496,17 +496,19 @@ public class SelfRecipeDAO {
 		}
 	}// end irdntInsertMethod()
 
-	public void stepInsertMethod(StepDTO stdto) {
+	public void stepInsertMethod(List<StepDTO> stdto) {
 		try {
 			conn = init();
-			int riMax = recipeIdMax();
 			String sql = "insert into step (recipe_id, cooking_no, cooking_dc) ";
-			sql += "valuse(?, ?, ?)";
+			sql += "values(?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, stdto.getRECIPE_ID());
-			pstmt.setInt(2, stdto.getCOOKING_NO());
-			pstmt.setString(3, stdto.getCOOKING_DC());
-			pstmt.executeUpdate();
+			for (int i = 0; i < stdto.size(); i++) {
+				pstmt.setInt(1, stdto.get(i).getRECIPE_ID());
+				pstmt.setInt(2, stdto.get(i).getCOOKING_NO());
+				pstmt.setString(3, stdto.get(i).getCOOKING_DC());
+				pstmt.executeUpdate();
+			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {

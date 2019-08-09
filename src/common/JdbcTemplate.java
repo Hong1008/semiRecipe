@@ -22,6 +22,7 @@ public class JdbcTemplate {
 	public static Connection getConnection() throws NamingException, SQLException{
 		Context init = new InitialContext();
 		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/xe");
+		init.close();
 		return ds.getConnection();
 	}
 	

@@ -4,11 +4,14 @@ $(document).ready(function() {
 	cookingTime();
 	irdntDrop();
 	totalCalorie();
-	
+	backAction();
 	
 	$("#imgInput").change(function(){
 		imagePreview(this);
 	});
+	
+	
+	
 });// end ready()
 
 
@@ -46,8 +49,10 @@ function totalCalorie(){
 function cookingTime(){
 	$('.cook_time').on('mousedown', function(){
 		var time = 0;
-		if($('#R_hour').text()!='0' && $('#R_minute').text()!='0' )
-		time = $('#R_hour').text()*60 +$('#R_minute').text()*1;
+		if($('#R_hour').text()!='0' ||  $('#R_minute_two').text()!='0' || $('#R_minute_one').text()!='0'){
+		var min = ($('#R_minute_two').text() + $('#R_minute_one').text())*1;
+			time = $('#R_hour').text()*60 + min;
+		}	
 		$('#cooking_time').val(time);
 		console.log(time);
 		})	
@@ -72,8 +77,7 @@ function selfRecipeDivAddDel() {
 		$('#w_add').on('click', function() {
 			if (i == 20) {return};
 			i++;
-			$('.self_recipeDiv_part').append("<tr><td><span>"+ i +"</span></td><td><textarea class='R_recipe' rows='3' cols='100' name='recipe_dc"+i+"'></textarea></td></tr>");
-					
+			$('.self_recipeDiv_part').append("<tr><td><span>"+ i +"</span></td><td><textarea class='R_recipe' rows='3' cols='100' name='recipe_dc'></textarea></td></tr>");
 		});
 		
 		$('#w_del').on('click', function() {
@@ -83,11 +87,20 @@ function selfRecipeDivAddDel() {
 		});
 	}
 	/*서브밋*/
-function submitAction() {
+/*function submitAction() {
 		$('#rg_add').on('click', function(){
 			$('#frm').submit();
 		});	
+}*/
+
+/*취소시 뒤로가기*/
+function backAction() {
+	$('#reset').on('click', function(){
+		location.href="/semiRecipe/selfRecipe/selfBoard.jsp";
+	})
+	
 }
+
 
 	/*시간, 칼로리 클릭 업다운*/
 function numberClick(){
@@ -96,7 +109,8 @@ function numberClick(){
 	var y = 0;
 	var z = 0;
 	var h = 0;
-	var m = 0;
+	var mt = 0;
+	var mo = 0;
 	
 	/* 시간 */
 	$('#R_hour').mousedown(function(e) {
@@ -109,18 +123,33 @@ function numberClick(){
 			}
 		}
 	});
-	/* 분 */
-	$('#R_minute').mousedown(function(e) {
-		if(m >= 59 ) {
-			m = -1;
+	/* 분(십단위) */
+	$('#R_minute_two').mousedown(function(e) {
+		if(mt >= 5 ) {
+			mt = -1;
 		}
 		if (e.which == 1){
-			$('#R_minute').text(m += 1);
+			$('#R_minute_two').text(mt += 1);
 		}
 		
-		if (m > 0) {
+		if (mt > 0) {
 			if (e.which == 3){
-				$('#R_minute').text(m -= 1);
+				$('#R_minute_two').text(mt -= 1);
+			}
+		}
+	});
+	/* 분(일단위) */
+	$('#R_minute_one').mousedown(function(e) {
+		if(mo >= 9 ) {
+			mo = -1;
+		}
+		if (e.which == 1){
+			$('#R_minute_one').text(mo += 1);
+		}
+		
+		if (mo > 0) {
+			if (e.which == 3){
+				$('#R_minute_one').text(mo -= 1);
 			}
 		}
 	});

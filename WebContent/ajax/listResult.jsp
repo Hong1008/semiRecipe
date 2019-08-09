@@ -13,12 +13,3 @@
 		</a>
 	</div>
 </c:forEach>
-<script src="/semiRecipe/js/showRecipe.js"></script>
-
-<script type="text/javascript">
-$('.thumbnails .js-load').on('click',function(){
-	showRecipe($(this).attr('id'),"#selected_recipe");
-	return false;
-});
-
-</script>

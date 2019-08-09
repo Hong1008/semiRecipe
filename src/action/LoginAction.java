@@ -29,7 +29,7 @@ public class LoginAction {
 			session.setAttribute("loginID", req.getParameter("user_id")); 	// loginID라는 이름으로 id 값을 세션에 저장
 			session.setMaxInactiveInterval(30*60); 	// 30분
 		}else {
-			System.out.println("실패!");
+		//	System.out.println("실패!");
 		}
 		
 	} // end execute()

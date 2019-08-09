@@ -19,6 +19,7 @@ public class SelfViewAction {
 		req.setAttribute("stList", dao.stepViewMethod(recipe_id));
 		PrimDTO prdto = dao.primViewMethod(recipe_id);
 		System.out.println(dao.selfRecipeViewMethod(recipe_id).getSelf_date());
+		
 		int hour = 0;
 		int miute = 0;
 		String zero = "";

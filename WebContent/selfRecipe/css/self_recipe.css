@@ -2,10 +2,15 @@
 
 * {	font-family: 'Noto Sans KR'; }
 
-body { background-color: #ccccff; }
+body { background-color: #FFF5E6; }
 
 /* <!-- 이미지 요리이름 간략소개 --> */
-.SR_div {
+#R_header span{
+	display: inline-block;
+	font-size:  16x;
+}
+
+.R_div {
 	margin: 0 auto;
 	width: 760px;
 	text-align: center;
@@ -14,40 +19,40 @@ body { background-color: #ccccff; }
 	margin-top: 40px;
 }
 
-#SR_header {
+#R_header {
 	height: 590px;
 	margin-top: 100px;
 	padding-top: 50px;
 }
 
-#SR_header ul#SR_image {
+#R_header ul#R_image {
 	list-style: none;
 	padding: 0px, 20px, 0, 0;
 	margin: 10px;
 }
 /* 리스트 간격 */
-#SR_header #SR_image li.image_part {  
+#R_header #R_image li.image_part {  
 	margin: 10px;
 } 
 /* 이미지 보여주는 크기 */
-#SR_header #SR_image #image_preview {
+#R_header #R_image #image_preview {
 	/* visibility: hidden; */
 	width: 450px;
 	height: 300px;
 	border: 1px, solid, black;
 }
 /* 요리이름 */
-#SR_header #SR_image .image_part #recipe_nm_ko{
+#R_header #R_image .image_part #recipe_nm_ko{
 	width: 500px;
 	height: 50px;
 	font-size: 25px;
 }
 /*********** 음식 정보 시작 ***********/
-#SR_info {
+#R_info {
 	height: 200px;
 }
 
-#SR_info>* {
+#R_info>* {
 	width: 190px;
 	height: 150px;
 	float: left;
@@ -56,46 +61,46 @@ body { background-color: #ccccff; }
 	border-left: solid 1px rgb(178, 178, 178);
 }
 
-#SR_info p {
+#R_info p {
 	margin-bottom: 36px;
 }
 
-#SR_info div:nth-child(1) {
+#R_info div:nth-child(1) {
 	border-left: none;
 }
 
-.R_cal, #R_hour, #R_minute {
+.R_cal, #R_hour, #R_minute_two, #R_minute_one{
 	font-size: 51px;
 	letter-spacing: -4px;
 }
 
 /*************재료 중요도 시작****************/
-#SR_importance {
+#R_importance {
 	padding-top: 10px;
 	padding-bottom: 30px;
 	
 }
 
-#SR_importance  h3{
+#R_importance  h3{
 	font-size: 23px;
 	line-height: 30px;
 }
 
 /*************세부레시피 작성란****************/
 
-#SR_recipeDiv  h3{
+#R_recipeDiv  h3{
 	font-size: 23px;
 	line-height: 30px;
 }
 
-#SR_recipeDiv .self_recipeDiv_part  {
+#R_recipeDiv .self_recipeDiv_part  {
 	border: 0px, solid, black;
 	text-align: center;
     display: inline-block;
 	
 }
 
-.SR_div table.self_recipeDiv_part #self_recipeDiv_btn{
+.R_div table.self_recipeDiv_part #self_recipeDiv_btn{
 	text-align: right;
 }
 
