@@ -72,8 +72,7 @@ function selfRecipeDivAddDel() {
 		$('#w_add').on('click', function() {
 			if (i == 20) {return};
 			i++;
-			$('.self_recipeDiv_part').append("<tr><td><span>"+ i +"</span></td><td><textarea class='R_recipe' rows='3' cols='100' name='recipe_dc"+i+"'></textarea></td></tr>");
-					
+			$('.self_recipeDiv_part').append("<tr><td><span>"+ i +"</span></td><td><textarea class='R_recipe' rows='3' cols='100' name='recipe_dc'></textarea></td></tr>");
 		});
 		
 		$('#w_del').on('click', function() {

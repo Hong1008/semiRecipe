@@ -61,10 +61,11 @@ public class SelfInsertAction extends HttpServlet{
 		System.out.println(multi.getParameter("calorie"));
 		System.out.println(multi.getParameter("level_nm"));
 		System.out.println(multi.getParameter("cooking_time"));
-		//SelfRecipeDTO srdto = new SelfRecipeDTO();
-		//srdto.setRecipe_id(riMax);
-		//srdto.setUser_id(multi.getParameter("user_id"));
-		//dao.selfRecipeInsertMethod(srdto);
+		
+		SelfRecipeDTO srdto = new SelfRecipeDTO();
+		srdto.setRecipe_id(riMax);
+		srdto.setUser_id(multi.getParameter("user_id"));
+		dao.selfRecipeInsertMethod(srdto);
 		
 		//List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
 		//IrdntDTO irdto = new IrdntDTO();
@@ -77,17 +78,20 @@ public class SelfInsertAction extends HttpServlet{
 		//}
 		
 		
-		//List<StepDTO> stList = new ArrayList<StepDTO>();
-		//StepDTO stdto = new StepDTO();
-		//for (int i = 0; i < stList.size(); i++) {
-		//	stdto.setCOOKING_NO(Integer.parseInt(multi.getParameter("cooking_no")));
-		//	stdto.setCOOKING_DC(multi.getParameter("cooking_dc"));
-		//	stList.add(stdto);
-		//}
+		List<StepDTO> stList = new ArrayList<StepDTO>();
+		StepDTO stdto = new StepDTO();
+		for (int i = 0; i < stList.size(); i++) {
+			int num= i+1;
+			stdto.setCOOKING_NO(num);
+			stdto.setCOOKING_DC(multi.getParameter("cooking_dc"));
+			stList.add(stdto);
+		}
 		
-		
-		// form으로 넘오오기 때문에 parameter으로 받는다.
-		System.out.println("3");
+		for (StepDTO sO : stList) {
+			System.out.println(sO.getCOOKING_NO());
+			System.out.println(sO.getCOOKING_DC());
+		}
+
 		return multi;
 	}// end executeMulti()
 }// end selfWriteAction()

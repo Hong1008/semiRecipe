@@ -501,7 +501,7 @@ public class SelfRecipeDAO {
 			conn = init();
 			int riMax = recipeIdMax();
 			String sql = "insert into step (recipe_id, cooking_no, cooking_dc) ";
-			sql += "valuse(?, ?, ?)";
+			sql += "values(?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, stdto.getRECIPE_ID());
 			pstmt.setInt(2, stdto.getCOOKING_NO());
