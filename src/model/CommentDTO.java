@@ -8,8 +8,14 @@ public class CommentDTO {
 				+ com_board + ", com_time=" + com_time + ", user_icon=" + user_icon + "]";
 	}
 	private int com_num,recipe_id,review_num,rating;
-	private String com_content,user_id,com_board,com_time,user_icon;
+	private String com_content,user_id,com_board,com_time,user_icon,user_nickname;
 	
+	public String getUser_nickname() {
+		return user_nickname;
+	}
+	public void setUser_nickname(String user_nickname) {
+		this.user_nickname = user_nickname;
+	}
 	public String getUser_icon() {
 		return user_icon;
 	}

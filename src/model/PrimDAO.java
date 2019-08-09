@@ -80,7 +80,7 @@ public class PrimDAO extends RecipeDAO {
 	}
 	
 	public void primRating(int recipe_id) {
-		String sql = "update primary set rating = (select avg(rating) from recipe_comment where recipe_id = ?) where recipe_id = ?";
+		String sql = "update primary set rating = (select round(avg(rating),2) from recipe_comment where recipe_id = ?) where recipe_id = ?";
 		
 		try {
 			pstmt = updatePstmt(sql);
@@ -165,7 +165,7 @@ public class PrimDAO extends RecipeDAO {
 		JsonArray jarr = (JsonArray) pas.parse(irdnt_nm);
 		for (int i = 0; i < jarr.size(); i++) {
 			if (i == jarr.size() - 1) {
-				sql += "select recipe_id from irdnt where recipe_type = 'p' and irdnt_nm = '" + jarr.get(i).toString().replace("\"", "") + "')";
+				sql += "select recipe_id from irdnt where recipe_type = 'p' and irdnt_nm = '" + jarr.get(i).toString().replace("\"", "") + "') order by rating desc";
 				break;
 			}
 			sql += "select recipe_id from irdnt where recipe_type = 'p' and irdnt_nm = '" + jarr.get(i).toString().replace("\"", "") + "' intersect ";
@@ -177,7 +177,7 @@ public class PrimDAO extends RecipeDAO {
 				sql = "select * from primary where recipe_type = 'p' and recipe_id in " + "(select recipe_id from irdnt where irdnt_nm in (";
 				for (int i = 0; i < jarr.size(); i++) {
 					if (i == jarr.size() - 1) {
-						sql += "'" + jarr.get(i).toString().replace("\"", "") + "') and irdnt_ty_nm = '주재료')";
+						sql += "'" + jarr.get(i).toString().replace("\"", "") + "') and irdnt_ty_nm = '주재료') order by rating desc";
 						break;
 					}
 					sql += "'" + jarr.get(i).toString().replace("\"", "") + "',";

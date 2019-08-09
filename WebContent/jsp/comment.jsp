@@ -28,13 +28,13 @@
 		type="reset" id='CMT_reset' value='취소'>
 </div>
 
-<c:forEach items="${ comList}" var='cmt'>
+<c:forEach items="${ comList}" var='cmt' varStatus="i">
 	<div class='CMT_comment'>
 		<div class='CMT_icon'><%-- ${cmt.user_icon } --%></div>
 		<div class='CMT_info'>
-			<span class='CMT_ID'>${cmt.user_id }</span><span class='CMT_date'>${cmt.com_time}</span>
+			<span class='CMT_ID'>${cmt.user_nickname }</span><span class='CMT_date'>${cmt.com_time}</span>
 		</div>
-		<div class='rated_div' id="${cmt.rating }" >
+		<div class='rated_div' id="${i.index+1 }" >
 			<div class= 'rate_num'  id='${cmt.rating }'></div>
 			<div class='rated' id='rate_5'></div>
 			<div class='rated' id='rate_4'></div>

@@ -9,6 +9,7 @@ public class RecipeListAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {	
 		String method = req.getMethod();
 		PrimDAO dao = new PrimDAO();
+		
 		if(method.equalsIgnoreCase("GET")) {
 			req.setAttribute("recList", dao.listView());
 			req.setAttribute("nation_nm", dao.getNation_nms());

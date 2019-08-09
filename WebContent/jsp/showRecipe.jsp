@@ -5,7 +5,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
 	rel="stylesheet">	
-
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 <div id='R_header' class='R_div'>
 	<div id='R_image'>
 		<img src="${requestScope.prim.IMG_URL }">
