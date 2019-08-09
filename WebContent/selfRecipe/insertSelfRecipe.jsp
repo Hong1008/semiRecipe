@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
+<%@include file="../jsp/menu.jsp"%>
 <!DOCTYPE html>
 
 <html>
@@ -123,7 +124,7 @@
 				</tr>
 				<tr>
 					<td><span>1</span></td>
-					<td><textarea class='R_recipe' rows="3" cols="100" name="recipe_dc1"></textarea></td>
+					<td><textarea class='R_recipe' rows="3" cols="100" name="recipe_dc"></textarea></td>
 				</tr>
 			</table>
 		</section>
