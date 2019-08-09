@@ -73,3 +73,15 @@
 	</div>
 	</c:forEach>
 </div>
+
+<div id='CMT' class='R_div'>
+	<input type="hidden" id="key" value="${prdto.RECIPE_ID}">
+	<div id="selfrecipe">
+
+		
+	</div>	
+	</div>
+	
+	<script type="text/javascript">
+		comList();
+	</script>
