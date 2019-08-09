@@ -19,6 +19,7 @@ public class RegisterAction {
 		String day = req.getParameter("dd");
 		
 		String kakao_id = req.getParameter("kakao_id");
+		String user_icon = req.getParameter("user_icon");
 		
 		if(Integer.parseInt(req.getParameter("mm"))<10) {
 			month = "0"+month;
@@ -34,7 +35,7 @@ public class RegisterAction {
 		dto.setUser_nickname(nickname);
 		dto.setUser_birthday(birthday);
 		dto.setKakao_id(kakao_id);
-		
+		dto.setUser_icon(user_icon);
 		dao.registerMethod(dto);
 		
 	}

@@ -45,8 +45,6 @@ public class RecipeController extends HttpServlet {
 	}
 
 	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		
 		String method = req.getMethod();
 		String path = req.getRequestURI();
 		String next = "";
