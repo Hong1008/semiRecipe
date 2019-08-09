@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
 <%@include file="../jsp/menu.jsp"%>
+<%@include file="../jsp/sideMenu.jsp" %>
 <!DOCTYPE html>
 
 <html>
@@ -28,11 +29,10 @@
 <script type="text/javascript" src="/semiRecipe/selfRecipe/js/insertSelfRecipe.js"></script>
 <link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_recipe.css">
 
-
 </head>
 
 <body onContextmenu="return false">
-	<jsp:include page="../jsp/sideMenu.jsp" />
+	
 	<form name="frm" method="post" enctype="multipart/form-data" action="insertSelfRecipe">
 		<c:if test="${!empty param.user_id }">
 			<input type="text" name="user_id" value="${param.user_id }"/>

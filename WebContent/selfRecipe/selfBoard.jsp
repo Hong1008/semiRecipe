@@ -11,7 +11,7 @@
 <script src="/semiRecipe/assets/js/jquery.min.js"></script>
 <script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>
 <script src="/semiRecipe/assets/js/skel.min.js"></script>
-<script type="text/javascript" src="semiRecipe/selfRecipe/js/self_board.js"></script>
+<script type="text/javascript" src="/semiRecipe/selfRecipe/js/self_board.js"></script>
 <link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 <link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_board.css">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">

@@ -71,7 +71,8 @@ $(document).ready(function(){
 	
 	
 	/*recipe_id 보내주는 부분*/
-	$('.self_recipe').on('click', function() {
+	$('.js-load').on('click', function() {
+		console.log('js-load');
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
