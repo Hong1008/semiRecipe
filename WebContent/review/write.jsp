@@ -110,13 +110,19 @@
        		 });
 			 
          	var text = CKEDITOR.instances.editor1.getData();
-         	text = text.replace(/<br\/>/ig, "\n"); 
-         	text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
          	
          	$.ajax({
      			type: 'POST',
      			dataType: 'text',
-     			data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val(),
+     		//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
+     			data : {
+     				recipe_id : recipe_id,
+     				review_content : text,
+     				user_id : $('#user_id').val(),
+     				review_subject : $('#review_subject').val(),
+     				user_nickname : $('#user_nickname').val(),
+     				review_rate : $('.starR.on').length
+     			},
      			url: 'reviewinsert',
      			success: function(){
      				location.href="/semiRecipe/recipe/review";
@@ -289,9 +295,7 @@ td, tr {
 						<div class="starRev">
 							<span class="starR on">별1</span> <span class="starR on">별2</span>
 							<span class="starR on">별3</span> <span class="starR on">별4</span>
-							<span class="starR on">별5</span> <span class="starR on">별6</span>
-							<span class="starR on">별7</span> <span class="starR on">별8</span>
-							<span class="starR on">별9</span> <span class="starR on">별10</span>
+							<span class="starR on">별5</span>
 						</div>
 					</td>
 				</tr>

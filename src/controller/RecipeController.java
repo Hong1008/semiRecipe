@@ -29,6 +29,7 @@ import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
 import model.IrdntTYDAO;
+import model.ReviewInsertAction;
 import model.SelfRecipeDAO;
 
 @WebServlet("/recipe/*")
@@ -89,7 +90,7 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/reviewinsert")) {
 			ReviewInsertAction revInsert = new ReviewInsertAction();
 			revInsert.execute(req, resp);
-			next="/review/view.jsp";
+			next="/review/reviewBoard.jsp";
 		}else if(path.equals("recipe/reviewview")) {
 			ReviewViewAction revView = new ReviewViewAction();
 			revView.execute(req, resp);
