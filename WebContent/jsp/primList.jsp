@@ -74,7 +74,7 @@
 #ing_menu {
 	list-style-type: none;
 	height: 50px;
-	width: 1200px;
+	width: 900px;
 }
 
 .ing_menu_li {
@@ -98,6 +98,7 @@
 
 #category{
 	margin-top: 30px;
+	margin-left: 10%;
 	display: inline-block;
 }
 

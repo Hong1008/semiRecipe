@@ -18,7 +18,7 @@ public class CommentDAO extends RecipeDAO {
 	
 	public List<CommentDTO> listMethod(String com_board, int key){
 		List<CommentDTO> aList = new ArrayList<CommentDTO>();
-		String sql = "select c.user_id,com_time,com_content,rating,user_icon "
+		String sql = "select c.user_id,com_time,com_content,rating,user_icon,user_nickname "
 				+ "from recipe_comment c, user_table u "
 				+ "where com_board='"+com_board+"'";
 		if(com_board.equalsIgnoreCase("primary")||com_board.equalsIgnoreCase("selfrecipe")) {
@@ -37,6 +37,7 @@ public class CommentDAO extends RecipeDAO {
 				dto.setCom_content(rs.getString(3));
 				dto.setRating(rs.getInt(4));
 				dto.setUser_icon(rs.getString(5));
+				dto.setUser_nickname(rs.getString(6));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {

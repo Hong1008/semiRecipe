@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/semiRecipe/css/recipe.css">
-
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 <div id='R_header' class='R_div'>
 	<p>아이디</p>
 	<span id='user_id'>${requestScope.srdto.user_id } </span>
@@ -75,3 +75,15 @@
 	</div>
 	</c:forEach>
 </div>
+
+<div id='CMT' class='R_div'>
+	<input type="hidden" id="key" value="${prdto.RECIPE_ID}">
+	<div id="selfrecipe">
+
+		
+	</div>	
+	</div>
+	
+	<script type="text/javascript">
+		comList();
+	</script>

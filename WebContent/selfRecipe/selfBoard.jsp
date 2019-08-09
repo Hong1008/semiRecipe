@@ -94,7 +94,8 @@
 		<section>
 			<div id = "buttonLine">
 				<a href="selfRecipe" class="icon-th-large-outline"> 목록</a>
-				<a href="insertSelfRecipe" class="icon-comment"> 쓰기</a>
+				<a href="insertSelfRecipe" class="icon-comment" > 쓰기</a>
+				<input type="hidden" id="user_id" value="${sessionScope.loginID }">
 			</div>
 		</section>
 <!-- 하단 버튼 부분 끝 -->
