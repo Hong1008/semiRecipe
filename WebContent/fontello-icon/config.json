@@ -13,16 +13,40 @@
       "src": "modernpics"
     },
     {
-      "uid": "08db5357646aae59e018ba87f2d466cd",
-      "css": "th-large-outline",
+      "uid": "5eb43711f62fb4dcbef10d0224c28065",
+      "css": "th-thumb-empty",
+      "code": 61451,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "b90868gfogj970a1g0dnot6hm5r4uj55",
+      "css": "comment",
       "code": 59393,
       "src": "typicons"
     },
     {
-      "uid": "679d36f8485f05180a2719c91b3f621e",
-      "css": "comment",
+      "uid": "2hqh2lidoqvaujgq29tdkrtiay5s6tyk",
+      "css": "chat",
       "code": 59394,
+      "src": "typicons"
+    },
+    {
+      "uid": "8fc56819afcd07e2786e34f18d39b71b",
+      "css": "book-open",
+      "code": 59395,
       "src": "iconic"
+    },
+    {
+      "uid": "bcdc294bb787b15203b82f2be8096548",
+      "css": "star",
+      "code": 59396,
+      "src": "typicons"
+    },
+    {
+      "uid": "1e77a2yvsq3owssduo2lcgsiven57iv5",
+      "css": "pencil",
+      "code": 59397,
+      "src": "typicons"
     }
   ]
 }

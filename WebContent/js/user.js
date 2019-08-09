@@ -2,15 +2,44 @@ var showErrorMsg="";
 
 $(document).ready(function() {
 	appendYear();
+	$('.iconwrap').css('visibility', 'hidden');
 	
-	$('input[value="회원가입"]').click(function(){
-		if($('.error_next_box').text()!=""){
-			alert("입력한 값을 확인해주세요.");
-			return false;
+	$('#user_icon').val($('#icon').attr('src'));
+	
+	$('a').click(function(){
+		var src = $(this).children().attr('src');
+		$('#icon').attr('src',src);
+		return false;
+	});	
+	
+	$('#iconSelectBtn').on('click', function() {	// 아이콘 선택하기 버튼 누르면
+		$('#user_icon').val($('#icon').attr('src'));
+		if($('.iconwrap').css('visibility')=='hidden'){	// 맨 처음 눌렀을 때
+			$('.iconwrap').css('visibility', 'visible');
+			$(this).text('아이콘 선택완료');
 		}else{
-			$('form').attr('action','register?id='+$('#id').val());
+			$('.iconwrap').css('visibility', 'hidden');
+			$(this).text('아이콘 선택하기');
+		}
+		
+		return false;
+	});
+	
+	$('input[value="회원가입"]').click(function(){		// 회원가입 버튼을 누르면
+		if(!inputChk()) { 	// return값이 false이면
+			alert('빈 칸을 모두 입력해 주세요.'); 
+		}else if($('.error_next_box').text()!=""){
+			alert("입력한 값을 확인해주세요.");
+		}else if($('.iconwrap').css('visibility')=='visible') {
+			alert("아이콘 선택을 완료해주세요");
+		}else if($('#icon').attr('src').indexOf('default')>-1) {
+			alert("아이콘 선택을 완료해주세요");
+		}else{
+			$('form').attr('action','register');
 			$('form').submit();
 		}
+		
+		return false;
 	});
 	
 	$('#yy').change(function(){
@@ -29,9 +58,11 @@ $(document).ready(function() {
 	});
 	
 	$('input[type="reset"]').on('click', function() {
-		var chk = confirm("초기화 하시겠습니까?");
+		var chk = confirm("돌아가시겠습니까?");
 		if(!chk)	// 취소이면
 			return false;
+		else
+			location.href="/semiRecipe/recipe/home";
 	});
 	
 	
@@ -201,7 +232,17 @@ function removeDay() {
 }
 
 function changeErrorMsg(eventId, showErrorMsg){
-	console.log(eventId);
-	console.log(showErrorMsg);
 	$('#'+eventId+'Msg').text(showErrorMsg);
+}
+
+function inputChk() {
+	var input=$('input').not('#kakao_id');
+	var num=input.length-1;
+	for(i=0;i<=num;i++){
+		if(input.val()==""){
+			alert($(this).attr('id'));
+			return false;
+		}
+	}
+	return true;
 }

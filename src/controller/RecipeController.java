@@ -21,12 +21,16 @@ import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
 import action.ReviewListAction;
+import action.ReviewViewAction;
 import action.ReviewWriteAction;
 import action.SelfListAction;
+import action.SelfViewAction;
+import action.SelfInsertAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
 import model.IrdntTYDAO;
+import model.ReviewInsertAction;
 import model.SelfRecipeDAO;
 
 @WebServlet("/recipe/*")
@@ -43,8 +47,6 @@ public class RecipeController extends HttpServlet {
 	}
 
 	protected void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		
 		String method = req.getMethod();
 		String path = req.getRequestURI();
 		String next = "";
@@ -75,16 +77,33 @@ public class RecipeController extends HttpServlet {
 			revList.execute(req, resp);
 			next = "/review/reviewBoard.jsp";
 		}else if(path.equals("recipe/reviewwrite")) {
-			ReviewWriteAction revWrite = new ReviewWriteAction();
-			revWrite.execute(req, resp);
-			next = "/review/write.jsp";
-		}else if(path.equals("recipe/irdnt")) {
+			HttpSession session = req.getSession();
+			String loginID = (String) session.getAttribute("loginID");
+			
+			if(loginID==null) {
+				next ="/recipe/loginForm";
+			}else {
+				ReviewWriteAction revWrite = new ReviewWriteAction();
+				revWrite.execute(req, resp);
+				next = "/review/write.jsp";
+			}
+			
+		}else if(path.equals("recipe/reviewinsert")) {
+			ReviewInsertAction revInsert = new ReviewInsertAction();
+			revInsert.execute(req, resp);
+			next="/review/reviewBoard.jsp";
+		}else if(path.equals("recipe/reviewview")) {
+			ReviewViewAction revView = new ReviewViewAction();
+			revView.execute(req, resp);
+			next="/review/view.jsp";
+		}
+		else if(path.equals("recipe/irdnt")) {
 			IrdntAction irdnt = new IrdntAction();
 			irdnt.execute(req, resp);
 			next = "/review/irdntList.jsp";
 		}else if(path.equals("recipe/selfRecipe")) {
 			SelfListAction selfList = new SelfListAction();
-			selfList.execute(req);
+			selfList.execute(req, resp);
 			next = "/selfRecipe/selfBoard.jsp";				
 		}else if(path.equals("recipe/comList")) {
 			ComListAction comList = new ComListAction();
@@ -92,7 +111,24 @@ public class RecipeController extends HttpServlet {
 			next = "/jsp/comment.jsp";				
 		}else if(path.equals("recipe/insertCom")) {
 			ComInsertAction insertCom = new ComInsertAction();
-			insertCom.execute(req,resp);		
+			insertCom.execute(req,resp);
+		}else if(path.equals("recipe/selfView")) { //  셀프 뷰
+			SelfViewAction viewList = new SelfViewAction();
+			viewList.execute(req, resp);
+			next = "/selfRecipe/selfView.jsp";	
+		}else if(path.equals("recipe/insertSelfRecipe")) { //  셀프 인서트
+			if(method.equalsIgnoreCase("get")){
+				IrdntTYDAO dao = new IrdntTYDAO();
+				req.setAttribute("aList", dao.list());
+				req.setAttribute("tList", dao.tyList());
+				dao.exit();
+				next = "/selfRecipe/insertSelfRecipe.jsp";				
+			}else {				
+				SelfInsertAction insertList = new SelfInsertAction();
+				insertList.executeMulti(req, resp);
+				next = "/selfRecipe/selfView.jsp";
+			}
+		}
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
 		}else if(path.equals("recipe/login")) {
@@ -138,4 +174,4 @@ public class RecipeController extends HttpServlet {
 			req.getRequestDispatcher(next).forward(req, resp);
 		}
 	}
-}
+}// end class

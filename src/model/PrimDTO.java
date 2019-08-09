@@ -7,7 +7,6 @@ public class PrimDTO {
 	private String SUMRY;
 	private String NATION_CODE;
 	private String NATION_NM;
-	private String TY_CODE;
 	private String TY_NM;
 	private String COOKING_TIME;
 	private String CALORIE;
@@ -22,7 +21,7 @@ public class PrimDTO {
 	}
 
 	public PrimDTO(int rOW_NUM, int pRIM_VIEWS, int rECIPE_ID, String rECIPE_NM_KO, String rATING, String sUMRY,
-			String nATION_CODE, String nATION_NM, String tY_CODE, String tY_NM, String cOOKING_TIME, String cALORIE,
+			String nATION_CODE, String nATION_NM, String tY_NM, String cOOKING_TIME, String cALORIE,
 			String qNT, String lEVEL_NM, String iRDNT_CODE, String pC_NM, String iMG_URL, String dET_URL) {
 		super();
 		ROW_NUM = rOW_NUM;
@@ -33,7 +32,6 @@ public class PrimDTO {
 		SUMRY = sUMRY;
 		NATION_CODE = nATION_CODE;
 		NATION_NM = nATION_NM;
-		TY_CODE = tY_CODE;
 		TY_NM = tY_NM;
 		COOKING_TIME = cOOKING_TIME;
 		CALORIE = cALORIE;
@@ -113,14 +111,6 @@ public class PrimDTO {
 
 	public void setNATION_NM(String nATION_NM) {
 		NATION_NM = nATION_NM;
-	}
-
-	public String getTY_CODE() {
-		return TY_CODE;
-	}
-
-	public void setTY_CODE(String tY_CODE) {
-		TY_CODE = tY_CODE;
 	}
 
 	public String getTY_NM() {

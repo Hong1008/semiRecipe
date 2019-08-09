@@ -15,6 +15,7 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
+
 <link rel="stylesheet" href="/semiRecipe/css/sideMenu.css">
 <link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 <script src="/semiRecipe/js/primList.js"></script>

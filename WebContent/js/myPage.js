@@ -5,12 +5,15 @@ $(document).ready(function() {
 		} else {
 			var now_pw = $('#now_pw').val();
 			var new_pw = $('#new_pw').val();
+			var new_pw_confirm = $('#new_pw_confirm').val();
 			var isPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{8,16}$/;
 			
 			if (now_pw == "" || new_pw == "") {
 				alert("현재 비밀번호와 변경 비밀번호를 모두 입력하셔야 합니다.");
 			} else if (!isPW.test(new_pw)) {
 				alert("8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+			} else if (new_pw!=new_pw_confirm) {
+				alert("비밀번호를 다시 확인해주세요.");
 			} else {
 				$.ajax({
 					type : 'POST',

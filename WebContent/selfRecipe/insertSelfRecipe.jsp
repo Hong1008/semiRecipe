@@ -1,186 +1,140 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
+<%@include file="../jsp/menu.jsp"%>
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="UTF-8">
-<title>writeSelfRecipe</title>
+
+<title>insertSelfRecipe</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" >
 
-$(document).ready(function() {
-	var o = 0;
-	var x = 0;
-	var y = 0;
-	var z = 0;
-	var h = 0;
-	var m = 0;
-	/* 시간 */
-	$('#R_hour').click(function() {
-		if (h >= 12) {
-			h = -1;
-		}
-		$('#R_hour').text(h += 1);
-	});
-	/* 분 */
-	$('#R_minute').click(function() {
-		if (m >= 59) {
-			m = -1;
-		}
-		$('#R_minute').text(x += 1);
-	});
-	
-	/* 천단위 */
-	$('#R_cal_four').click(function() {
-		if (o >= 9) {
-			o = -1;
-		}
-		$('#R_cal_four').text(o += 1);
-	});
-	/* 백단위 */
-	$('#R_cal_three').click(function() {
-		if (x >= 9) {
-			x = -1;
-		}
-		$('#R_cal_three').text(x += 1);
-	});
-	/* 십단위 */
-	$('#R_cal_two').click(function() {
-		if (y >= 9) {
-			y = -1;
-		}
-		$('#R_cal_two').text(y += 1);
-	});
-	/* 일단위 */
-	$('#R_cal_one').click(function() {
-		if (z >= 9) {
-			z = -1;
-		}
-		$('#R_cal_one').text(z += 1);
-	});
-	
-	selfRecipeDivAddDel();
+<!--웹폰트-->
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap" rel="stylesheet">
 
-});
-/* 세부 레시피 목록 추가 삭제 */
-function selfRecipeDivAddDel(){
-	var i = 1;
-	$('#w_add').on('click', function(){
-		if(i == 20){return};
-		i++;
-			$('#self_recipeDiv').append("<li>"+i+"<textarea class='R_recipe' rows='3' cols='100'></textarea></li>");
-		});
+<!--sidemenu js/css  -->
+<link rel="stylesheet" href="/semiRecipe/css/sideMenu.css">
+<script type="text/javascript" src="/semiRecipe/js/sideMenu.js"></script>
 
-	$('#w_del').on('click', function(){
-		if(i==1){return};
-		$("#self_recipeDiv li").last().remove();
-		i--
-	});
-}
 
-</script>
+<!-- 드래그/드랍 + 한글-->
+<script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
+
+<!-- insertSelfTecipe js/css-->
+<script type="text/javascript" src="/semiRecipe/selfRecipe/js/insertSelfRecipe.js"></script>
+<link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_recipe.css">
+
+
 </head>
 
-<body>
-	<!-- 이미지 요리이름 간략소개 -->
-	<section id='R_header' class='R_div'>
-		<div id='R_image'>
-			<img src="#">
-		</div>
-		<input type="text" name="self_title" id="self_tilte"
-			placeholder="요리 이름을 알려주세요!" /><br />
-		<textarea name="self_sumry" id="self_sumry" rows="3" cols="100">요리를 소개해 주세요!</textarea>
-	</section>
-	
-	<!-- 세부항목 -->
-	<section id='R_info' class='R_div'>
-		<!------------------ 아이디 바꿔야함 -------------->
-		<div id='음식분류'>
-			<p>음식분류 <select name="self_food">
-				<option>한식</option>
-				<option>중식</option>
-				<option>일식</option></select>
-			</p>
-		</div>
-		<div id='조리시간'>
-			<p>조리시간</p>
-			<span id="R_hour">-</span> <span>h</span> <span id="R_minute">--</span>
-			<span>m</span>
-		</div>
-		<div id='R_cal'>
-			<p>칼로리</p>
-			<span id="R_cal_four">-</span> <span id="R_cal_three">-</span> 
-			<span id="R_cal_two">-</span> <span id="R_cal_one">-</span> 
-			<span>kcal</span>
-		</div>
-		<div id='난이도'>
-			<p>
-				난이도 <select name="self_grade">
-				<option>상</option>
-					<option>중</option>
-					<option>하</option></select>
-			</p>
-
-		</div>
-	</section>
-	
-	<!-- 재료 작성란 -->
-	<section id='R_importance' class='R_div'>
-		<h3>재료 중요도</h3>
-
-		<div id='일반재료' class='R_ig_div'>
-			<div class='R_ing'>
-				<span>재료1</span>
-				<div class='R_rate_div'>
-					<div class="R_rate"></div>
-				</div>
-			</div>
-			<div class='R_ing'>
-				<span>재료2</span>
-				<div class='R_rate_div'>
-					<div class="R_rate"></div>
-				</div>
-			</div>
-			<div class='R_ing'>
-				<span>재료3</span>
-				<div class='R_rate_div'>
-					<div class="R_rate"></div>
-				</div>
-			</div>
-			<div class='R_ing'>
-				<span>재료4</span>
-				<div class='R_rate_div'>
-					<div class="R_rate"></div>
-				</div>
-			</div>
-		</div>
-		<div id='양념' class='R_ig_div'>
-			<div class='R_ing'>
-				<span>양념1</span>
-				<div class='R_rate_div'>
-					<div class="R_rate"></div>
-				</div>
-			</div>
-
-			<div class='R_ing'>
-				<span>양념2</span>
-				<div class='R_rate_div'>
-					<div class="R_rate"></div>
-				</div>
-			</div>
-		</div>
-	</section>
-	
-	<!-- 세부레시피 작성란 -->
-	<section id='R_recipeDiv' class='R_div'>
-	<h3>세부 레시피</h3>
-		<button class="w_btn" id="w_add" >추가</button>
-		<button class="w_btn" id="w_del" >삭제</button>
-		<ul id="self_recipeDiv">
-		<li>1<textarea class='R_recipe' rows="3" cols="100"></textarea></li>
+<body onContextmenu="return false">
+	<jsp:include page="../jsp/sideMenu.jsp" />
+	<form name="frm" method="post" enctype="multipart/form-data" action="insertSelfRecipe">
+		<c:if test="${!empty param.user_id }">
+			<input type="text" name="user_id" value="${param.user_id }"/>
+		</c:if>
 		
-	</ul>
+		<!-- 이미지 요리이름 간략소개 -->
+		<section id='SR_header' class='SR_div'>
+				<ul id='SR_image'>
+					<li class="image_part" ><img id='image_preview' class="image_preview" src='#' /></li>
+					<li class="image_part"><input type="file" id='imgInput' name="img_url" required="required" /></li>
+					<li class="image_part"><input type="text" id="recipe_nm_ko" name="recipe_nm_ko" required="required" placeholder="나만의 요리 이름을 지어주세요!" /></li>
+					<li class="image_part"><textarea id="sumry" name="sumry" rows="4" cols="100" required="required" placeholder="요리를 소개해 주세요!" required="required" /></textarea></li>
+				</ul>
+		</section>
+	
+		<!-- 세부항목 -->
+		<section id='SR_info' class='SR_div'>
+			<!------------------ 아이디 바꿔야함 -------------->
+			<div id='food_class_part'>
+				<p>음식분류 </p>
+				<input type="radio" name="natioin_nm" value="한식"> 한식<br>
+	  			<input type="radio" name="natioin_nm" value="중식"> 중식<br>
+	  			<input type="radio" name="natioin_nm" value="일식"> 일식<br>
+			</div>
+			
+			<div id='cooking_time_part'>
+				<p>조리시간</p>
+				<input type="hidden" id="cooking_time" name="cooking_time" />
+				<span id="R_hour"  class='cook_time'>0</span> <span>h</span> 
+				<span id="R_minute" class='cook_time'>00</span>	<span>m</span>
+			</div>
 		
-	</section>
+			<div id='SR_cal_part' >
+				<input type="hidden" id="calorie" name="calorie"/>
+				<p>칼로리</p>
+				<span id="R_cal_four" class="R_cal">0</span> <span id="R_cal_three" class="R_cal">0</span> 
+				<span id="R_cal_two" class="R_cal">0</span> <span id="R_cal_one" class="R_cal">0</span> <span>kcal</span>
+			</div>
+			
+			<div id='level_nm_part' >
+				<p>난이도 </p>
+				<input type="radio" name="level_nm" value="초보환영"> 초보환영<br>
+	  			<input type="radio" name="level_nm" value="보통"> 보통&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+	  			<input type="radio" name="level_nm" value="어려움"> 어려움&nbsp;&nbsp;&nbsp;&nbsp;<br>
+			</div>
+		</section>
+	
+		<!-- 재료 작성란 -->
+		<section id='SR_importance' class='SR_div'>
+			<h3>장바구니</h3>
+			<div id='container' class='test'>
+				<div id='main_contents'>
+					<div id='selected_ing_div'>
+						<span id='tt'>이곳에 재료를 끌어다 놓으세요!</span>
+						<div id='selected_ing_list'></div>
+					</div>
+					<div id='selected_recipe_view'></div>
+					<div id='selected_recipe'></div>
+				</div>
+			</div>
+			<div id='normal_irdnt' class='R_ig_div'>
+				<div class='R_ing'>
+					<span></span>
+					<div class='R_rate_div'>
+						<div class="R_rate" id="${irdto.IMPORTANCE }"></div>
+					</div>
+					</div>
+	
+				<div id='' class='R_ig_div'>
+					<div class='R_ing'>
+						<span></span>
+						<div class='R_rate_div'>
+							<div class="R_rate" id=""></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 세부레시피 작성란 -->
+		<section id='SR_recipeDiv' class='SR_div'>
+			<h3>조리 순서</h3>
+			<table class="self_recipeDiv_part">
+				<tr>
+					<th colspan="2"  class="self_recipeDiv" id="self_recipeDiv_btn">
+					<input type="button" class="w_btn" id="w_add" value="추가"/>
+					<input type="button" class="w_btn" id="w_del" value="삭제"/>
+					</th>
+				</tr>
+				<tr>
+					<td><span>1</span></td>
+					<td><textarea class='R_recipe' rows="3" cols="100" name="recipe_dc"></textarea></td>
+				</tr>
+			</table>
+		</section>
+		
+		
+		
+		<section id='rg_section' class='SR_div'>
+		<input type="submit" class="w_btn" id="rg_add" value="레시피 등록"/>
+		</section>
+	</form>
+
 </body>
 </html>

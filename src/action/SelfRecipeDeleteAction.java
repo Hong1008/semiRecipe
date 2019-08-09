@@ -8,18 +8,18 @@ import model.SelfRecipeDAO;
 
 public class SelfRecipeDeleteAction {
 	public void execute(HttpServletRequest req) {
-		String saveDirectory = "/img_self";
+		String saveDirectory = "/selfRecipe/img_self";
 		SelfRecipeDAO dao = SelfRecipeDAO.getInstance();
-		int self_num = Integer.parseInt(req.getParameter("self_num"));
-		String fileName = dao.fileMethod(self_num);
+		int recipe_id = Integer.parseInt(req.getParameter("recipe_id"));
+		String fileName = dao.fileMethod(recipe_id);
 		if (fileName != null) {
 			File file = new File(saveDirectory, fileName);
 			file.delete();
 		}
-		dao.primDeleteMethod(self_num);
-		dao.irdntDeleteMethod(self_num);
-		dao.selfRecipeDeleteMethod(self_num);
-		dao.stepDeleteMethod(self_num);
+		dao.primDeleteMethod(recipe_id);
+		dao.irdntDeleteMethod(recipe_id);
+		dao.selfRecipeDeleteMethod(recipe_id);
+		dao.stepDeleteMethod(recipe_id);
 	}
 
 }// end class

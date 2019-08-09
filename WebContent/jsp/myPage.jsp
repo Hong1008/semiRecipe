@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="/semiRecipe/js/myPage.js"></script>
 <style type="text/css">
@@ -36,7 +36,7 @@
 
 .myPageList {
 	font-weight: bold;
-	width: 15%;
+	width: 25%;
 }
 
 input {
@@ -67,6 +67,13 @@ td p input {
 	margin-right: 10px;
 }
 
+td {
+	height: 150px;
+}
+#userIcon > img{
+	width: 100px;
+	height: 100px;
+}
 </style>
 </head>
 <body>
@@ -74,23 +81,32 @@ td p input {
 	<table id="myPageBody">
 		<caption>마이페이지</caption>
 		<tr class="content">
+			<td class="profile" rowspan="2">프로필</td>
 			<td class="myPageList">아이디</td>
 			<td id="loginId">${dto.user_id}</td>
 		</tr>
 		<tr class="content">
+			<td class="myPageList">아이콘</td>
+			<td id="userIcon"><img src="${dto.user_icon}"></td>
+			<td>
+				<input type="button" value="변경" id="iconChangeBtn" />
+			</td>
+		</tr>
+		<tr class="content">
 			<td class="myPageList">비밀번호</td>
-			<td class="pwHide" style="display: none;">
+			<td class="pwHide">
 				<p>현재 비밀번호 :</p>
 				<p>변경 후 비밀번호 :</p>
+				<p>변경 후 비밀번호 확인 :</p>
 			</td>
-			<td class="pwHide" style="display: none;">
+			<td class="pwHide">
 				<p><input type="password" id="now_pw"></p>
 				<p><input type="password" id="new_pw"></p>
+				<p><input type="password" id="new_pw_confirm"></p>
 			</td>
 			<td>
 				<input type="button" value="변경" id="pwChangeBtn" />
 			</td>
-			
 		</tr>
 		<tr class="content">
 			<td class="myPageList">닉네임</td>
@@ -141,6 +157,10 @@ td p input {
 		<input type="button" value="취소" id="modCancleBtn" />
 		<input type="button" value="수정 완료" id="modFinishBtn" />
 	</div>
+	
+	
+	
+	
 	
 </body>
 </html>

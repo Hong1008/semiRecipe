@@ -49,14 +49,15 @@ public class SelfRecipeDAO {
 
 	public List<PrimDTO> primListMethod(PageDTO pdto) {
 		List<PrimDTO> prList = new ArrayList<PrimDTO>();
-		PrimDTO dto = new PrimDTO();
+		
 		try {
 			conn = init();
 			String sql = "select recipe_id, recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm from primary ";
 			sql += "where recipe_type = 's'"; 
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {;
+			while (rs.next()) {
+				PrimDTO dto = new PrimDTO();
 				dto.setRECIPE_ID(rs.getInt("recipe_id"));
 				dto.setRECIPE_NM_KO(rs.getString("recipe_nm_ko"));
 				dto.setSUMRY(rs.getString("sumry"));
@@ -67,6 +68,7 @@ public class SelfRecipeDAO {
 				dto.setLEVEL_NM(rs.getString("level_nm"));
 				prList.add(dto);
 			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -84,14 +86,13 @@ public class SelfRecipeDAO {
 		SelfRecipeDTO dto = new SelfRecipeDTO();
 		try {
 			conn = init();
-			String sql = "select p.recipe_id, user_id, self_num, self_date ";
-			sql	+= "from selfrecipe s, primary p where s.recipe_id = p.recipe_id and recipe_type = 's'";
+			String sql = "select s.recipe_id, user_id, self_date from selfrecipe s, primary p where S.RECIPE_ID=P.RECIPE_ID";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			
 			while (rs.next()) {
 				dto.setRecipe_id(rs.getInt("recipe_id"));
 				dto.setUser_id(rs.getString("user_id"));
-				dto.setSelf_num(rs.getInt("self_num"));
 				dto.setSelf_date(rs.getDate("self_date"));
 				srList.add(dto);
 			}
@@ -137,18 +138,17 @@ public class SelfRecipeDAO {
 
 	public List<StepDTO> stepListMethod(PageDTO pdto) {
 		List<StepDTO> stList = new ArrayList<StepDTO>();
-		StepDTO dto = new StepDTO();
+		StepDTO stdto = new StepDTO();
 		try {
 			conn = init();
-			String sql = "select cooking_no, p.recipe_id, step_tip ";
-				sql	+= "from step s, primary p where s.recipe_id = p.recipe_id and recipe_type = 's'";
+			String sql = "select cooking_no, recipe_id  from step where  recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, stdto.getRECIPE_ID());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				dto.setCOOKING_NO(rs.getInt("cooking_no"));
-				dto.setSTEP_TIP(rs.getString("step_tip"));
-				dto.setRECIPE_ID(rs.getInt("recipe_id"));
-				stList.add(dto);
+				stdto.setCOOKING_NO(rs.getInt("cooking_no"));
+				stdto.setRECIPE_ID(rs.getInt("recipe_id"));
+				stList.add(stdto);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -166,26 +166,26 @@ public class SelfRecipeDAO {
 	
 	// -------------------------------------------------------------------뷰 시작
 	
-	public List<PrimDTO> primViewMethod(int self_num) {
-		List<PrimDTO> prList = new ArrayList<PrimDTO>();
+	public PrimDTO primViewMethod(int recipe_id) {
+		PrimDTO prdto = new PrimDTO();
 		try {
 			conn = init();
 			String sql = "select recipe_id, recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm ";
-			sql += "from primary p, selfrecipe s where self_num = '" + self_num + "'"; 
+			sql += "from primary where recipe_id = ?"; 
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				PrimDTO dto = new PrimDTO();
-				dto.setRECIPE_ID(rs.getInt("recipe_id"));
-				dto.setRECIPE_NM_KO(rs.getString("recipe_nm_ko"));
-				dto.setSUMRY(rs.getString("sumry"));
-				dto.setIMG_URL(rs.getString("img_url"));
-				dto.setTY_NM(rs.getString("ty_nm"));
-				dto.setCOOKING_TIME(rs.getString("cooking_time"));
-				dto.setCALORIE(rs.getString("calorie"));
-				dto.setLEVEL_NM(rs.getString("level_nm"));
-				prList.add(dto);
+				prdto.setRECIPE_ID(rs.getInt("recipe_id"));
+				prdto.setRECIPE_NM_KO(rs.getString("recipe_nm_ko"));
+				prdto.setSUMRY(rs.getString("sumry"));
+				prdto.setIMG_URL(rs.getString("img_url"));
+				prdto.setTY_NM(rs.getString("ty_nm"));
+				prdto.setCOOKING_TIME(rs.getString("cooking_time"));
+				prdto.setCALORIE(rs.getString("calorie"));
+				prdto.setLEVEL_NM(rs.getString("level_nm"));
 			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -195,25 +195,25 @@ public class SelfRecipeDAO {
 				e.printStackTrace();
 			}
 		}
-		return prList;
+		return prdto;
 	}// end primViewMethod()
 	
-	public List<IrdntDTO> irdntViewMethod(int self_num) {
+	public List<IrdntDTO> irdntViewMethod(int recipe_id) {
 		List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
 		try {
 			conn = init();
-			String sql = "select irdnt_sn, importance, p.recipe_id, irdnt_nm ";
-			sql	+= "from irdnt i, (select p.recipe_id, self_num from primary p, selfrecipe s where self_num = '" + self_num + "') t";
-			sql += "where i.recipe_id = t.recipe_id "; 
+			String sql = "select irdnt_sn, importance, recipe_id, irdnt_nm, irdnt_ty_nm from irdnt where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				IrdntDTO dto = new IrdntDTO();
-				dto.setIRDNT_SN(rs.getInt("irdnt_sn"));
-				dto.setRECIPE_ID(rs.getInt("recipe_id"));
-				dto.setIMPORTANCE(rs.getString("importance"));
-				dto.setIRDNT_NM(rs.getString("irdnt_nm"));
-				irList.add(dto);
+				IrdntDTO irdto = new IrdntDTO();
+				irdto.setIRDNT_SN(rs.getInt("irdnt_sn"));
+				irdto.setRECIPE_ID(rs.getInt("recipe_id"));
+				irdto.setIMPORTANCE(rs.getString("importance"));
+				irdto.setIRDNT_NM(rs.getString("irdnt_nm"));
+				irdto.setIRDNT_TY_NM(rs.getString("irdnt_ty_nm"));
+				irList.add(irdto);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -227,21 +227,19 @@ public class SelfRecipeDAO {
 		return irList;
 	}// end irdntViewMethod()
 	
-	public List<SelfRecipeDTO> selfRecipeViewMethod(int self_num) {
-		List<SelfRecipeDTO> srList = new ArrayList<SelfRecipeDTO>();
+	public SelfRecipeDTO selfRecipeViewMethod(int recipe_id) {
+		SelfRecipeDTO srdto = new SelfRecipeDTO();
 		try {
 			conn = init();
-			String sql = "select p.recipe_id, user_id, self_num, self_date ";
-			sql	+= "from selfrecipe where self_num = '" + self_num + "'";
+			String sql = "select recipe_id, user_id, self_date, self_views from selfrecipe where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				SelfRecipeDTO dto = new SelfRecipeDTO();
-				dto.setRecipe_id(rs.getInt("recipe_id"));
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setSelf_num(rs.getInt("self_num"));
-				dto.setSelf_date(rs.getDate("self_date"));
-				srList.add(dto);
+				srdto.setRecipe_id(rs.getInt("recipe_id"));
+				srdto.setUser_id(rs.getString("user_id"));
+				srdto.setSelf_date(rs.getDate("self_date"));
+				srdto.setSelf_views(rs.getString("self_views"));
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -252,23 +250,23 @@ public class SelfRecipeDAO {
 				e.printStackTrace();
 			}
 		}
-		return srList;
+		return srdto;
 	}// end selfRecipeViewMethod()
 	
-	public List<StepDTO> stepViewMethod(int self_num) {
+	public List<StepDTO> stepViewMethod(int recipe_id) {
 		List<StepDTO> stList = new ArrayList<StepDTO>();
 		try {
 			conn = init();
-			String sql = "select cooking_no, p.recipe_id, step_tip ";
-			sql	+= "from step s, (select p.recipe_id, self_num from primary p, selfrecipe s where self_num = '" + self_num + "') t";
-			sql	+= "where s.recipe_id = t.recipe_id";
+			String sql = "select cooking_no, recipe_id, step_tip from step where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			rs = pstmt.executeQuery();
 		while (rs.next()) {
-			StepDTO dto = new StepDTO();
-			dto.setCOOKING_NO(rs.getInt("cooking_no"));
-			dto.setSTEP_TIP(rs.getString("step_tip"));
-			dto.setRECIPE_ID(rs.getInt("recipe_id"));
+			StepDTO stdto = new StepDTO();
+			stdto.setCOOKING_NO(rs.getInt("cooking_no"));
+			stdto.setSTEP_TIP(rs.getString("step_tip"));
+			stdto.setRECIPE_ID(rs.getInt("recipe_id"));
+			stList.add(stdto);
 		}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -281,14 +279,20 @@ public class SelfRecipeDAO {
 		}
 		return stList;
 	}// end stepViewMethod()
-	// -------------------------------------------------------------------뷰 끝
-
 	
-	// -------------------------------------------------------------------검색 시작
-	public List<PrimDTO> primSearchMethod(){
-		List<PrimDTO> prList = new ArrayList<PrimDTO>();
+	public List<IrdntTYDTO> irdntTyViewMethod(int recipe_id) {
+		List<IrdntTYDTO> irtList = new ArrayList<IrdntTYDTO>();
 		try {
 			conn = init();
+			String sql = "select irdnt_nm from irdnt where recipe_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				IrdntTYDTO irtdto = new IrdntTYDTO();
+				irtdto.setIrdnt_nm(rs.getString("irdnt_nm"));
+				irtList.add(irtdto);
+			}			
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -298,28 +302,143 @@ public class SelfRecipeDAO {
 				e.printStackTrace();
 			}
 		}
-		return prList;
-	}
+		return irtList;
+	}// end indntTyViewMethod()	
 	
+	// -------------------------------------------------------------------뷰 끝
+
 	
+	// -------------------------------------------------------------------검색 시작
+	public PrimDTO primSearchMethod(int recipe_id){
+		PrimDTO prdto = new PrimDTO();
+		try {
+			conn = init();
+			String sql = "select recipe_id, recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm ";
+			sql += "from primary where recipe_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				prdto.setRECIPE_ID(rs.getInt("recipe_id"));
+				prdto.setRECIPE_NM_KO(rs.getString("recipe_nm_ko"));
+				prdto.setSUMRY(rs.getString("sumry"));
+				prdto.setIMG_URL(rs.getString("img_url"));
+				prdto.setTY_NM(rs.getString("ty_nm"));
+				prdto.setCOOKING_TIME(rs.getString("cooking_time"));
+				prdto.setCALORIE(rs.getString("calorie"));
+				prdto.setLEVEL_NM(rs.getString("level_nm"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return prdto;
+	}// end primSearchMethod()
+	
+	public SelfRecipeDTO selfSearchMethod(int recipe_id){
+		SelfRecipeDTO srdto = new SelfRecipeDTO();
+		try {
+			conn = init();
+			String sql = "select recipe_id, user_id, self_date from selfrecipe where recipe_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				srdto.setRecipe_id(rs.getInt("recipe_id"));
+				srdto.setUser_id(rs.getString("user_id"));
+				srdto.setSelf_date(rs.getDate("self_date"));
+				srdto.setSelf_views(rs.getString("self_views"));
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return srdto;
+	}// end selfSearchMethod()
+	
+	public List<IrdntDTO> irdntSearchMethod(int recipe_id){
+		List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
+		try {
+			conn = init();
+			String sql ="select irdnt_sn, importance, recipe_id, irdnt_nm, irdnt_ty_nm from irdnt where recipe_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				IrdntDTO irdto = new IrdntDTO();
+				irdto.setIRDNT_SN(rs.getInt("irdnt_sn"));
+				irdto.setIMPORTANCE(rs.getString("importance"));
+				irdto.setIRDNT_NM(rs.getString("irdnt_nm"));
+				irdto.setIRDNT_TY_NM(rs.getString("irdnt_ty_nm"));
+				irList.add(irdto);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return irList;
+	}// end irdntSearchMethod()
+	
+	public List<StepDTO> steptSearchMethod(int recipe_id){
+		List<StepDTO> stList = new ArrayList<StepDTO>();
+		StepDTO stdto = new StepDTO();
+		try {
+			conn = init();
+			String sql = "select cooking_no, recipe_id from step where  recipe_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				stdto.setCOOKING_NO(rs.getInt("cooking_no"));
+				stdto.setRECIPE_ID(rs.getInt("recipe_id"));
+				stList.add(stdto);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return stList;
+	}// end steptSearchMethod()
 	// -------------------------------------------------------------------검색 끝
 	
 	
 	// -------------------------------------------------------------------글쓰기 시작
-	public void primInsertMethod(PrimDTO dto) {
+	public void primInsertMethod(PrimDTO prdto) {
 		try {
 			conn = init();
-			String sql = "insert into primary (recipe_id, recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm) ";
-			sql += "values(?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into primary (recipe_id, recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm, recipe_type, nation_nm) ";
+			sql += "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getRECIPE_ID());
-			pstmt.setString(2, dto.getRECIPE_NM_KO());
-			pstmt.setString(3, dto.getSUMRY());
-			pstmt.setString(4, dto.getIMG_URL());
-			pstmt.setString(5, dto.getTY_NM());
-			pstmt.setString(6, dto.getCOOKING_TIME());
-			pstmt.setString(7, dto.getCALORIE());
-			pstmt.setString(8, dto.getLEVEL_NM());
+			pstmt.setInt(1, prdto.getRECIPE_ID());
+			pstmt.setString(2, prdto.getRECIPE_NM_KO());
+			pstmt.setString(3, prdto.getSUMRY());
+			pstmt.setString(4, prdto.getIMG_URL());
+			pstmt.setString(5, prdto.getTY_NM());
+			pstmt.setString(6, prdto.getCOOKING_TIME());
+			pstmt.setString(7, prdto.getCALORIE());
+			pstmt.setString(8, prdto.getLEVEL_NM());
+			pstmt.setString(9, "s");
+			pstmt.setString(10, prdto.getNATION_NM());
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -332,15 +451,15 @@ public class SelfRecipeDAO {
 		}
 	}// end primInsertMethod()
 
-	public void selfRecipeInsertMethod(SelfRecipeDTO dto) {
+	public void selfRecipeInsertMethod(SelfRecipeDTO srdto) {
 		try {
 			conn = init();
-			String sql = "insert into selfrecipe (recipe_id, user_id, self_num) ";
-			sql += "values(?, ?, ?)";
+
+			String sql = "insert into selfrecipe (recipe_id, user_id, self_date) ";
+			sql += "values(?, ?, sysdate)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getRecipe_id());
-			pstmt.setString(2, dto.getUser_id());
-			pstmt.setInt(3, dto.getSelf_num());
+			pstmt.setInt(1, srdto.getRecipe_id());
+			pstmt.setString(2, srdto.getUser_id());
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -353,17 +472,19 @@ public class SelfRecipeDAO {
 		}
 	}// end selfRecipeInsertMethod()
 
-	public void irdntInsertMethod(IrdntDTO dto) {
+	public void irdntInsertMethod(List<IrdntDTO> irdList) {
 		try {
 			conn = init();
 			String sql = "insert into irdnt (irdnt_sn, importance, recipe_id, irdnt_nm) ";
 			sql += "values(?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getIRDNT_SN());
-			pstmt.setString(2, dto.getIMPORTANCE());
-			pstmt.setInt(3, dto.getRECIPE_ID());
-			pstmt.setString(4, dto.getIRDNT_NM());
+			for (int i = 0; i < irdList.size(); i++) {
+			pstmt.setInt(1, irdList.get(i).getIRDNT_SN());
+			pstmt.setString(2, irdList.get(i).getIMPORTANCE());
+			pstmt.setInt(3, irdList.get(i).getRECIPE_ID());
+			pstmt.setString(4, irdList.get(i).getIRDNT_NM());
 			pstmt.executeUpdate();
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -375,16 +496,17 @@ public class SelfRecipeDAO {
 		}
 	}// end irdntInsertMethod()
 
-	public void stepInsertMethod(StepDTO dto) {
+	public void stepInsertMethod(StepDTO stdto) {
 		try {
 			conn = init();
-			String sql = "insert into step (recipe_id, cooking_no, cooking_dc, step_tip) ";
-			sql += "valuse(?, ?, ?, ?)";
+			int riMax = recipeIdMax();
+			String sql = "insert into step (recipe_id, cooking_no, cooking_dc) ";
+			sql += "values(?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, dto.getRECIPE_ID());
-			pstmt.setInt(2, dto.getCOOKING_NO());
-			pstmt.setString(3, dto.getCOOKING_DC());
-			pstmt.setString(4, dto.getSTEP_TIP());
+			pstmt.setInt(1, stdto.getRECIPE_ID());
+			pstmt.setInt(2, stdto.getCOOKING_NO());
+			pstmt.setString(3, stdto.getCOOKING_DC());
+			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -395,16 +517,39 @@ public class SelfRecipeDAO {
 			}
 		}
 	}// end stepInsertMethod()
+
 	// -------------------------------------------------------------------글쓰기 끝
+	
+	// -------------------------------------------------------------------레시피 아이디 큰값시작
+	public int recipeIdMax () {	
+		int riMax = 0;
+		try {
+			conn = init();
+			String sql = "select max(recipe_id) from primary";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			riMax = rs.getInt(1);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				exit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return riMax;		
+	}
+	// -------------------------------------------------------------------레시피 아이디 큰값끝
 
-
-		
+	
 	// -------------------------------------------------------------------수정하기 시작
 	public void primUpdateMethod(PrimDTO dto) {
 		try {
 			conn = init();
 			String sql = "update primary set recipe_nm_ko = ?, sumry = ?, img_url = ?, ty_nm = ?, cooking_time = ?, calorie = ?, level_nm = ? ";
-			sql += "where recipe_id = '" + dto.getRECIPE_ID() + "'";
+			sql += "where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getRECIPE_NM_KO());
 			pstmt.setString(2, dto.getSUMRY());
@@ -412,7 +557,8 @@ public class SelfRecipeDAO {
 			pstmt.setString(4, dto.getTY_NM());
 			pstmt.setString(4, dto.getCOOKING_TIME());
 			pstmt.setString(6, dto.getCALORIE());
-			pstmt.setString(6, dto.getLEVEL_NM());
+			pstmt.setString(7, dto.getLEVEL_NM());
+			pstmt.setInt(8, dto.getRECIPE_ID());
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -425,14 +571,12 @@ public class SelfRecipeDAO {
 		}
 	}// end primUpdateMethod()
 
-	public void updateMethod(SelfRecipeDTO dto) {
+	public void selfRecipeUpdateMethod(SelfRecipeDTO dto) {
 		try {
 			conn = init();
-			String sql = "update primary set user_id = ?, self_num = ? ";
-			sql += "where recipe_id = '" + dto.getRecipe_id() + "'";
+			String sql = "update primary set self_date = sysdate where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getUser_id());
-			pstmt.setInt(2, dto.getSelf_num());
+			pstmt.setInt(1, dto.getRecipe_id());
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -443,17 +587,17 @@ public class SelfRecipeDAO {
 				e.printStackTrace();
 			}
 		}
-	}// end updateMethod()
+	}// end selfRecipeUpdateMethod()
 	
 	public void irdntUpdateMethod(IrdntDTO dto) {
 		try {
 			conn = init();
-			String sql = "update irdnt set irdnt_sn = ?, importance = ?, irdnt_nm = ?";
-			sql += "where recipe_id = '" + dto.getRECIPE_ID() + "'";
+			String sql = "update irdnt set irdnt_sn = ?, importance = ?, irdnt_nm = ? where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dto.getIRDNT_SN());
 			pstmt.setString(2, dto.getIMPORTANCE());
 			pstmt.setString(3, dto.getIRDNT_NM());
+			pstmt.setInt(4, dto.getRECIPE_ID());
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -466,15 +610,18 @@ public class SelfRecipeDAO {
 		}
 	}// end irdntUpdateMethod()
 	
-	public void stepUpdateMethod(StepDTO dto) {
+	public void stepUpdateMethod(List<StepDTO> stList) {
 		try {
 			conn = init();
-			String sql = "update step set cooking_no = ?, cooking_dc = ?, step_tip = ?";
-			sql += "where recipe_id = '" + dto.getRECIPE_ID() + "'";
+			String sql = "update step set cooking_no = ?, cooking_dc = ? where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
-			
-			
-			pstmt.executeUpdate();
+			for (int i = 0; i < stList.size(); i++) {
+				pstmt.setInt(1, stList.get(i).getCOOKING_NO());
+				pstmt.setString(2, stList.get(i).getCOOKING_DC());
+				pstmt.setInt(3, stList.get(i).getRECIPE_ID());
+				pstmt.addBatch();
+			}
+			pstmt.executeBatch();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -489,12 +636,12 @@ public class SelfRecipeDAO {
 
 	
 	// -------------------------------------------------------------------삭제하기 시작
-	public void primDeleteMethod(int self_num) {
+	public void primDeleteMethod(int recipe_id) {
 		try {
 			conn = init();
-			String sql = "delete from primary where recipe_id in ";
-			sql += "(select recipe_id from selfrecipe where self_num = " + self_num + ")";
+			String sql = "delete from primary where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -507,11 +654,12 @@ public class SelfRecipeDAO {
 		}
 	}// end primDeleteMethod()
 	
-	public void selfRecipeDeleteMethod(int self_num) {
+	public void selfRecipeDeleteMethod(int recipe_id) {
 		try {
 			conn = init();
-			String sql = "delete from selfrecipe where self_num = " + self_num + "";
+			String sql = "delete from selfrecipe where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -524,12 +672,12 @@ public class SelfRecipeDAO {
 		}
 	}// end selfRecipeDeleteMethod()
 	
-	public void irdntDeleteMethod(int self_num) {
+	public void irdntDeleteMethod(int recipe_id) {
 		try {
 			conn = init();
-			String sql = "delete from irdnt where recipe_id in ";
-			sql += "(select recipe_id from selfrecipe where self_num = " + self_num + ")";
+			String sql = "delete from irdnt where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -542,12 +690,12 @@ public class SelfRecipeDAO {
 		}
 	}// end irdntDeleteMethod()
 	
-	public void stepDeleteMethod(int self_num) {
+	public void stepDeleteMethod(int recipe_id) {
 		try {
 			conn = init();
-			String sql = "delete from step where recipe_id in ";
-			sql += "(select recipe_id from selfrecipe where self_num = " + self_num + ")";
+			String sql = "delete from step where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			pstmt.executeUpdate();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
@@ -568,8 +716,9 @@ public class SelfRecipeDAO {
 		String fileName = null;
 		try {
 			conn = init();
-			String sql = "select img_url from primary where recipe_id = " + recipe_id +"";
+			String sql = "select img_url from primary where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				fileName = rs.getString("img_url");
@@ -589,12 +738,12 @@ public class SelfRecipeDAO {
 	
 	
 	// -------------------------------------------------------------------조회수 증가 시작
-	public void readCountMethod(int num) {
+	public void readCountMethod(int recipe_id) {
 		try {
 			conn = init();
-			String sql = "update board set readcount = readcount + 1 where num = ?";
+			String sql = "update board set self_views = self_views + 1 where num = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setInt(1, recipe_id);
 			pstmt.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
