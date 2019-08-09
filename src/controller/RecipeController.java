@@ -128,7 +128,6 @@ public class RecipeController extends HttpServlet {
 				insertList.executeMulti(req, resp);
 				next = "/selfRecipe/selfView.jsp";
 			}
-		}
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
 		}else if(path.equals("recipe/login")) {
