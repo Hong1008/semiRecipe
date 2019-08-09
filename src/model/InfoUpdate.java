@@ -24,6 +24,9 @@ public class InfoUpdate {
 			Date birthday = Date.valueOf(req.getParameter("birthday"));
 			dto.setUser_birthday(birthday);
 			dto.setUpdateName("user_birthday");
+		}else if(path.equals("/icon")) {
+			dto.setUser_icon(req.getParameter("icon"));
+			dto.setUpdateName("user_icon");
 		}
 		
 		HttpSession session = req.getSession();

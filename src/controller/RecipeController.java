@@ -15,6 +15,8 @@ import action.CheckNowPw;
 import action.ComInsertAction;
 import action.ComListAction;
 import action.IrdntAction;
+import action.KakaoLoginAction;
+import action.CommentAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
