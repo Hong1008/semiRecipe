@@ -9,6 +9,9 @@ $(document).ready(function() {
 	$("#imgInput").change(function(){
 		imagePreview(this);
 	});
+	
+	
+	
 });// end ready()
 
 
