@@ -11,6 +11,7 @@ $(document)
 			
 			//재로 사이드메뉴 열기/닫기
 			$('#side_btn').on('click', function() {
+				
 				if (isopen) {
 					$('#side_menu').animate({
 						right : -700

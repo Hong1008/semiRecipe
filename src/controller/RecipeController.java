@@ -126,7 +126,9 @@ public class RecipeController extends HttpServlet {
 			}else {				
 				SelfInsertAction insertList = new SelfInsertAction();
 				insertList.executeMulti(req, resp);
-				next = "/selfRecipe/selfView.jsp";
+				SelfRecipeDAO dao = SelfRecipeDAO.getInstance();
+				int riMax = dao.recipeIdMax();
+				resp.sendRedirect("selfView?recipe_id="+riMax);
 			}
 		
 		}else if(path.equals("recipe/loginForm")) {
