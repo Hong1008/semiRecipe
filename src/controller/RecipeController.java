@@ -12,8 +12,9 @@ import javax.servlet.http.HttpSession;
 import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.CheckNowPw;
+import action.ComInsertAction;
+import action.ComListAction;
 import action.IrdntAction;
-import action.CommentAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
@@ -100,10 +101,17 @@ public class RecipeController extends HttpServlet {
 			IrdntAction irdnt = new IrdntAction();
 			irdnt.execute(req, resp);
 			next = "/review/irdntList.jsp";
-		}else if(path.equals("recipe/selfRecipe")) { //  작성할 부분
+		}else if(path.equals("recipe/selfRecipe")) {
 			SelfListAction selfList = new SelfListAction();
 			selfList.execute(req, resp);
 			next = "/selfRecipe/selfBoard.jsp";				
+		}else if(path.equals("recipe/comList")) {
+			ComListAction comList = new ComListAction();
+			comList.execute(req,resp);
+			next = "/jsp/comment.jsp";				
+		}else if(path.equals("recipe/insertCom")) {
+			ComInsertAction insertCom = new ComInsertAction();
+			insertCom.execute(req,resp);
 		}else if(path.equals("recipe/selfView")) { //  셀프 뷰
 			SelfViewAction viewList = new SelfViewAction();
 			viewList.execute(req, resp);
@@ -120,8 +128,7 @@ public class RecipeController extends HttpServlet {
 				insertList.executeMulti(req, resp);
 				next = "/selfRecipe/selfView.jsp";
 			}
-		}else if(path.equals("recipe/qna")) {
-			next = "/jsp/qna.jsp";
+		}
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
 		}else if(path.equals("recipe/login")) {
@@ -157,11 +164,6 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/myPage")) {
 			MyPageAction myPage = new MyPageAction();
 			myPage.execute(req, resp);
-		}else if(path.equals("recipe/comment")) {
-			//////////////////////////////////////////////////////////
-			CommentAction comment = new CommentAction();
-			comment.execute(req, resp);
-			//////////////////////////////////////////////////////////
 		}else if(path.indexOf("recipe/infoUpdate/")>-1) {
 			InfoUpdate update = new InfoUpdate(); 
 			update.execute(req, resp);

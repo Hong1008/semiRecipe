@@ -4,10 +4,10 @@ $(document).ready(
 			var column = '';
 			var order = '';
 			var nation_nm = '';
-			var recipe_nm_ko = '';
-			var searchType = '';
 			$('.sort,.ing_menu_li,.icon-search,#searchText').on('click keydown',
 					function listAjax(key) {
+						var recipe_nm_ko = '';
+						var searchType = '';
 						if ($(this).is('.sort')) {
 							column = $(this).children('.column').val();
 							order = $(this).children('.order').val();
@@ -44,6 +44,7 @@ $(document).ready(
 							else if ($('#sortNM .order').val() == 'asc')
 								$('#sortNM .order').val('desc');
 						}
+						$('#searchText').val('');
 						return false;
 					})
 
