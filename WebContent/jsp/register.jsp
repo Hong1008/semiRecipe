@@ -128,7 +128,8 @@ body {
 				<br/>
 				<button id="iconSelectBtn">아이콘 선택하기</button>
 			</div>
-			<input type="hidden" id="user_icon" name="user_icon" value="" />
+			<input type="hidden" id="user_icon" name="user_icon" />
+			<input type="hidden" id="user_icon_before" name="user_icon" />
 			<div class="iconwrap">
 				<c:forEach var="iconArr" items="<%=fList %>" varStatus="status">
 					<a class="icon" href=""><img alt="" src="/semiRecipe/img/icon/${iconArr}"></a>
@@ -137,28 +138,28 @@ body {
 			<h3>
 				<label for="id">아이디</label>
 			</h3>
-			<input type="text" id="id" name="id" maxlength="20" required="required" value="${param.id }" />
+			<input class="val" type="text" id="id" name="id" maxlength="20" required="required" value="${param.id }" />
 			<p>
 				<span class="error_next_box" id="idMsg" role="alert"></span>
 			</p>
 			<h3>
 				<label for="pw">비밀번호</label>
 			</h3>
-			<input type="password" id="pw" name="pw" maxlength="20" required="required" />
+			<input class="val" type="password" id="pw" name="pw" maxlength="20" required="required" />
 			<p>
 				<span class="error_next_box" id="pwMsg" role="alert"></span>
 			</p>
 			<h3>
 				<label for="pwConfirm">비밀번호 확인</label>
 			</h3>
-			<input type="password" id="pwConfirm" name="pwConfirm" maxlength="20" required="required" />
+			<input class="val" type="password" id="pwConfirm" name="pwConfirm" maxlength="20" required="required" />
 			<p>
 				<span class="error_next_box" id="pwConfirmMsg" role="alert"></span>
 			</p>
 			<h3>
 				<label for="nickname">닉네임</label>
 			</h3>
-			<input type="text" id="nickname" name="nickname" maxlength="20"
+			<input class="val" type="text" id="nickname" name="nickname" maxlength="20"
 				required="required" value="${param.nickname }" />
 			<p>
 				<span class="error_next_box" id="nicknameMsg" role="alert"></span>
@@ -169,21 +170,21 @@ body {
 				</h3>
 				<div class="bir_wrap">
 					<div class="bir_yy">
-						<span class="ps_box"> <select id="yy" name="yy" class="sel" aria-label="년" required="required">
+						<span class="ps_box"> <select id="yy" name="yy" class="sel val" aria-label="년" required="required">
 								<option value="">년</option>
 						</select>
 						</span>
 					</div>
 
 					<div class="bir_mm">
-						<span class="ps_box"> <select id="mm" name="mm" class="sel" aria-label="월" required="required">
+						<span class="ps_box"> <select id="mm" name="mm" class="sel val" aria-label="월" required="required">
 								<option value="">월</option>
 						</select>
 						</span>
 					</div>
 
 					<div class=" bir_dd">
-						<span class="ps_box"> <select id="dd" name="dd" class="sel" aria-label="일" required="required">
+						<span class="ps_box"> <select id="dd" name="dd" class="sel val" aria-label="일" required="required">
 								<option value="">일</option>
 						</select>
 						</span>
@@ -197,7 +198,7 @@ body {
 	</div>
 	<p class=resultBtns>
 		<input class="result" id="cancleBtn" type="reset" value="취소" /> 
-		<input class="result" id="joinBtn" type="button" value="회원가입" />
+		<input class="result" id="joinBtn" type="submit" value="회원가입" />
 	</p>
 </body>
 </html>

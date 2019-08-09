@@ -218,6 +218,8 @@ public class MemberDAO {
 				pstmt.setString(1, dto.getUser_nickname());
 			} else if(dto.getUpdateName().equals("user_birthday")) {
 				pstmt.setDate(1, dto.getUser_birthday());
+			} else if(dto.getUpdateName().equals("user_icon")) {
+				pstmt.setString(1, dto.getUser_icon());
 			}
 			
 			pstmt.setString(2, dto.getUser_id());

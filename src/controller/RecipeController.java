@@ -13,6 +13,7 @@ import action.CheckIdAction;
 import action.CheckNicknameAction;
 import action.CheckNowPw;
 import action.IrdntAction;
+import action.KakaoLoginAction;
 import action.CommentAction;
 import action.LoginAction;
 import action.LogoutAction;

@@ -36,7 +36,7 @@
 					if (res != 1) {
 						alert("회원정보를 다시 확인해주세요.");
 					} else {
-						location.href = '/semiRecipe/recipe/home';
+						history.go(-1);
 					}
 				}
 			});
@@ -71,7 +71,7 @@
 								'&nickname='+nickname+'&kakao_id=' + kakao_id;
 					}
 				} else {
-					location.href = '/semiRecipe/recipe/home';
+					history.go(-1);
 				}
 			}
 		});

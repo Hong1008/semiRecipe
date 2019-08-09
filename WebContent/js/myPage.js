@@ -1,8 +1,16 @@
 $(document).ready(function() {
+	$('.pwHide').css('visibility','hidden');
+	$('.nHide').css('visibility','hidden');
+	$('.birthHide').css('visibility','hidden');
+	$('.iconHide').css('visibility','hidden');
+	
+	var preImgSrc = $('#user_icon img').attr('src');
+	
 	$('#pwChangeBtn').on('click', function() {
-		if ($('.pwHide').css('display') == "none") { // 변경버튼 처음 눌렀을 때
-			$('.pwHide').css('display','table-cell');
-		} else {
+		if ($('.pwHide').css('visibility') == "hidden") { // 변경버튼 처음 눌렀을 때
+			$('.pwHide').css('visibility','visible');
+			return false;
+		} else { 
 			var now_pw = $('#now_pw').val();
 			var new_pw = $('#new_pw').val();
 			var new_pw_confirm = $('#new_pw_confirm').val();
@@ -37,11 +45,39 @@ $(document).ready(function() {
 		}
 	});
 	
+	$('#pwChangeCancleBtn').on('click', function() {
+		$('.pwHide').css('visibility','hidden');
+		return false;
+	});
+	
+	$('.iconHide a').on('click',function() {
+		var src = $(this).children().attr('src');
+		$('#user_icon img').attr('src', src);
+		return false;
+	});
 	
 	
-	$('#nChangeBtn').on('click', function() { // 변경버튼 눌렀을 때
-		if ($('#nBox').css('display') == "none") { // 변경버튼 처음 눌렀을 때
-			first();
+	$('#iconChangeBtn').on('click', function() { // 아이콘 변경버튼 눌렀을 때
+		if ($('.iconHide').css('visibility') == "hidden") { // 변경버튼 처음 눌렀을 때
+			$('.iconHide').css('visibility','visible');
+		} else { // 변경버튼 눌러서 입력 값 설정한 후 다시 변경버튼 눌렀을 때
+			$('.iconHide').css('visibility','hidden');
+		}
+		return false;
+
+	});
+	
+	$('#iconChangeCancleBtn').on('click', function() {
+		$('.iconHide').css('visibility','hidden');
+		$('#user_icon img').attr('src', preImgSrc);
+		return false;
+	});
+	
+	
+	$('#nChangeBtn').on('click', function() { // 닉네임 변경버튼 눌렀을 때
+		if ($('.nHide').css('visibility') == "hidden") { // 변경버튼 처음 눌렀을 때
+			$('.nHide').css('visibility','visible');
+			return false;
 		} else { // 변경버튼 눌러서 입력 값 설정한 후 다시 변경버튼 눌렀을 때
 			var nickname = $('#nBox').val();
 			var nonchar = /^[가-힣a-zA-Z0-9]{2,10}$/;
@@ -77,45 +113,47 @@ $(document).ready(function() {
 		}
 
 	});
-
-	$('#nChangeCancleBtn').on('click', function() {			// 닉네임 변경 버튼 누른 후 취소 버튼 눌렀을 때
-		$('#nValue').css('display', 'inline');
-		$('#nBox').css('display', 'none');
-		$('#nChangeCancleBtn').css('display', 'none');
-	});
 	
+	$('#nChangeCancleBtn').on('click', function() {
+		$('.nHide').css('visibility','hidden');
+		return false;
+	});
+
 	$('#birthChangeBtn').on('click', function() {		// 생년월일 수정 버튼 눌렀을 때
 		var year = $('#yy').val();
 		var month = $('#mm').val();
 		var day = $('#dd').val();
 		
-		if(month<10){
-			month = "0"+month;
-		}
-		if(day<10){
-			day = "0"+day;
-		}
-		
-		
-		if($('.newBirthday').css('display')=="none"){		// 처음 눌렀을 때 (수정 전)
-			$('#birthValue').css('display','none');
-			$('.newBirthday').css('display','table-cell');
+		if($('.birthHide').css('visibility') == "hidden"){		// 처음 눌렀을 때 (수정 전)
+			$('.birthHide').css('visibility','visible');
 			getBirthday();
-		} else {										// 수정 후에 눌렀을 때
+			return false;
+		} else {									// 수정 후에 눌렀을 때
 			if(year!="" && month!="" && day!="") {
+				if(month<10){
+					month = "0"+month;
+				}
+				if(day<10){
+					day = "0"+day;
+				}
+				
 				var chk = confirm('수정하시겠습니까?');
 				if (chk) {				// 확인을 누르면
 					$('#birthValue').text(year+"-"+month+"-"+day);
 					birthChangeAfter();
+					return false;
 				}
 			}else {
 				alert("생년월일을 정확하게 선택해주세요.");
 				return false;
 			}
-			
 		}
 		
-		
+	});
+	
+	$('#birthChangeCancleBtn').on('click', function() {
+		$('.birthHide').css('visibility','hidden');
+		return false;
 	});
 	
 	$('#yy').change(function(){
@@ -137,23 +175,32 @@ $(document).ready(function() {
 	$('#modCancleBtn').on('click', function() {				// 제일 하단에 취소 버튼 눌렀을 때
 		var cancleCheck = confirm('수정을 취소하시겠습니까?'); 
 		if(cancleCheck) {
-			location.href='/semiRecipe/recipe/home';
+			history.go(-1);
 		} 
 	});
 	
 	$('#modFinishBtn').on('click', function() {				// 제일 하단에 수정 완료 버튼 눌렀을 때
+		var icon_src = $('#user_icon img').attr('src').split("/");
+		var new_icon = $('#user_icon img').attr('src').split("/")[icon_src.length-1];
+		
 		var new_nickname = $('#nValue').text();
 		var new_pw = $('#new_pw').val();
 		var new_birth = $('#birthValue').text();
 		
+		if($('.pwHide').css('visibility')=='visible'){
+			alert('비밀번호 변경을 확인해주세요.');
+			return false;
+		}
+		
+		if($('.nHide').css('visibility')=='visible'){
+			alert('닉네임 변경을 확인해주세요.');
+			return false;
+		}
+		
 		var modCheck = confirm('수정하시겠습니까?'); 
-		if(modCheck) {
-			
+		if(modCheck) {			// 확인 버튼을 눌렀으면
 			if(new_nickname!="") {
 				updateNickname(new_nickname);
-			}else{
-				alert("닉네임 변경 버튼을 누르세요");
-				return false;
 			}
 			
 			if(new_pw!="") {
@@ -164,12 +211,13 @@ $(document).ready(function() {
 				updateBirthday(new_birth);
 			}
 			
-			alert('수정 완료되었습니다.');
-			var goHome = confirm('홈으로 가시겠습니까?');
-			
-			if(goHome){
-				location.href='/semiRecipe/recipe/home';
+			if(preImgSrc!=new_icon){
+				updateIcon(new_icon);
 			}
+			
+			
+			alert('수정 완료되었습니다.');
+			history.go(-1);
 			
 		} 
 	});
@@ -177,25 +225,16 @@ $(document).ready(function() {
 
 });
 
-function first() {	// 변경버튼 처음 눌렀을 때
-	$('#nValue').css('display', 'none');
-	$('#nBox').css('display', 'inline');
-	$('#nChangeCancleBtn').css('display', 'inline');
-}
-
 function nChangeAfter() {
-	$('#nBox').css('display', 'none');
-	$('#nValue').css('display', 'inline');
-	$('#nChangeCancleBtn').css('display', 'none');
+	$('.nHide').css('visibility','hidden');
 } 
 
 function pwChangeAfter() {
-	$('.pwHide').css('display','none');
+	$('.pwHide').css('visibility','hidden');
 }
 
 function birthChangeAfter() {
-	$('#birthValue').css('display','inline');
-	$('.newBirthday').css('display','none');
+	$('.birthHide').css('visibility','hidden');
 } 
 
 
@@ -227,6 +266,17 @@ function updateBirthday(new_birth) {
 		dataType : 'text',
 		url : '/semiRecipe/recipe/infoUpdate/birthday',
 		data : 'birthday=' + new_birth,
+		success : function() {
+		}
+	});
+}
+
+function updateIcon(new_icon) {
+	$.ajax({
+		type : 'POST',
+		dataType : 'text',
+		url : '/semiRecipe/recipe/infoUpdate/icon',
+		data : 'icon=' + new_icon,
 		success : function() {
 		}
 	});
