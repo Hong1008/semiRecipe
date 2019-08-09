@@ -35,6 +35,18 @@
       "css": "book-open",
       "code": 59395,
       "src": "iconic"
+    },
+    {
+      "uid": "bcdc294bb787b15203b82f2be8096548",
+      "css": "star",
+      "code": 59396,
+      "src": "typicons"
+    },
+    {
+      "uid": "1e77a2yvsq3owssduo2lcgsiven57iv5",
+      "css": "pencil",
+      "code": 59397,
+      "src": "typicons"
     }
   ]
 }

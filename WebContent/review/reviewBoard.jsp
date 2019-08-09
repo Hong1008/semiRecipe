@@ -19,11 +19,13 @@ $(document).ready(function() {
  			url: 'reviewview',
  			success: function(res){
  				$('#view').html(res);
+				$('html, body').animate( { scrollTop : 500 }, 400);
  			}
-     	
  		});
 		return false;
 	});
+	
+	
 });
 </script>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
