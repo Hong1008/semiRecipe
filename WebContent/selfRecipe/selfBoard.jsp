@@ -93,9 +93,11 @@
 	<!-- 하단 버튼 부분 시작 -->
 		<section>
 			<div id = "buttonLine">
-				<a href="selfRecipe" class="icon-th-large-outline"> 목록</a>
-				<a href="insertSelfRecipe" class="icon-comment" > 쓰기</a>
-				<input type="hidden" id="user_id" value="${sessionScope.loginID }">
+				<a href="selfRecipe" class="icon-th-thumb-empty"> 목록</a>
+				<c:if test="${not empty sessionScope.loginID }">
+				<a href="insertSelfRecipe" class="icon-comment"> 쓰기</a>
+				<a href="insertSelfRecipe" class="icon-comment"> 삭제</a>
+				</c:if>
 			</div>
 		</section>
 <!-- 하단 버튼 부분 끝 -->
