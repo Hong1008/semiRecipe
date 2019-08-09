@@ -1,4 +1,3 @@
-<%@page import="model.PrimDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,7 +5,6 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
 	rel="stylesheet">	
-<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 
 <div id='R_header' class='R_div'>
 	<div id='R_image'>
@@ -72,5 +70,9 @@
 </div>
 
 <div id='CMT' class='R_div'>
-	<jsp:include page="../jsp/comment.jsp"/>	
+	<input type="hidden" id="key" value="${recipe_id}">
+	<div id="primary">
+
+		
+	</div>	
 </div>

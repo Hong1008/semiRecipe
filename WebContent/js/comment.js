@@ -24,6 +24,7 @@ $(document).ready(function(){
 		$('#CMT_input').css({'border-bottom':'1px solid rgba(10,10,10,0.2)'});				
 		$('#CMT_submit').hide();
 		$('#CMT_reset').hide();
+		$('#CMT_input').val('');
 		star_num=0;
 		rating(star_num);
 	})
@@ -55,8 +56,8 @@ $(document).ready(function(){
 		rating(num,id)
 		
 	}
-
-
+	
+	
 })
 function rating(num,id){
 	for(var i=1;i<=5;i++){

@@ -79,6 +79,20 @@ public class PrimDAO extends RecipeDAO {
 		}
 	}
 	
+	public void primRating(int recipe_id) {
+		String sql = "update primary set rating = (select avg(rating) from recipe_comment where recipe_id = ?) where recipe_id = ?";
+		
+		try {
+			pstmt = updatePstmt(sql);
+			pstmt.setInt(1, recipe_id);
+			pstmt.setInt(2, recipe_id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public PrimDTO listView(int recipe_id){
 		PrimDTO dto = new PrimDTO();
 		String sql = "select recipe_nm_ko, img_url, prim_views, rating, nation_nm, ty_nm, cooking_time, calorie, level_nm,sumry from primary where recipe_type = 'p' and recipe_id = "+recipe_id;
@@ -100,8 +114,6 @@ public class PrimDAO extends RecipeDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			exit();
 		}
 		return dto;
 	}
@@ -112,16 +124,17 @@ public class PrimDAO extends RecipeDAO {
 		if(nation_nm!= null && !nation_nm.isEmpty()) {
 			sql += "and nation_nm = '"+nation_nm+"' ";
 		}
+		if(column!=null && !column.isEmpty() && order!=null && !order.isEmpty()) {
+			sql += "order by "+column+" "+order;
+		}
 		if(recipe_nm_ko!= null && !recipe_nm_ko.isEmpty()) {
+			sql = "select recipe_nm_ko, img_url, prim_views, rating, recipe_id, nation_nm from primary where recipe_type = 'p' ";
 			switch(searchType) {
 			case "both": sql += "and recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' or"
 					+ " recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%')"; break;
 			case "recipe_nm_ko": sql += "and recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' "; break;
 			case "irdnt_nm": sql += "and recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%') "; break;
 			}
-		}
-		if(column!=null && !column.isEmpty() && order!=null && !order.isEmpty()) {
-			sql += "order by "+column+" "+order;
 		}
 		System.out.println(sql);
 		try {
@@ -141,8 +154,6 @@ public class PrimDAO extends RecipeDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			exit();
 		}
 		return aList;
 	}

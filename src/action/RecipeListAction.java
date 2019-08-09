@@ -20,6 +20,7 @@ public class RecipeListAction {
 			String recipe_nm_ko = req.getParameter("recipe_nm_ko");
 			String searchType = req.getParameter("searchType");
 			req.setAttribute("recList", dao.sortView(column, order,nation_nm,recipe_nm_ko,searchType));
+			dao.exit();
 		}
 	}
 }

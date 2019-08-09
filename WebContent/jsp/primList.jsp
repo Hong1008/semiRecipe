@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="/semiRecipe/css/sideMenu.css">
 <link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 <script src="/semiRecipe/js/primList.js"></script>
+<script src="/semiRecipe/js/showRecipe.js"></script>
 <style>
 #main .thumbnails {
     display: inline-block;
@@ -96,6 +97,7 @@
 
 #category{
 	margin-top: 30px;
+	display: inline-block;
 }
 
 .js-load span{
@@ -132,7 +134,10 @@
 	
 	<div id='selected_recipe'></div>
 	
-	<a href="#" class="sort" id="sortView"> <input type="hidden"
+	
+	<!-- Wrapper -->
+	<div id="wrapper">
+<a href="#" class="sort" id="sortView"> <input type="hidden"
 		class="column" value="prim_views"> <input type="hidden"
 		class="order" value="desc"> <input type="hidden"
 		class="nation_nm" value=""> 조회수순
@@ -147,9 +152,6 @@
 		class="order" value="asc"> <input type="hidden"
 		class="nation_nm" value=""> 가나다순
 	</a>
-	<!-- Wrapper -->
-	<div id="wrapper">
-
 		<section id="category">
 			<ul id='ing_menu'>
 				<c:forEach items="${requestScope.nation_nm }" var="ty">
@@ -184,5 +186,6 @@
 	<!-- <script src="/semiRecipe/assets/js/jquery.min.js"></script> -->
 	<!-- <script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script> -->
 	<!-- <script src="/semiRecipe/assets/js/skel.min.js"></script> -->
+	
 </body>
 </html>
