@@ -130,7 +130,6 @@ public class RecipeController extends HttpServlet {
 				int riMax = dao.recipeIdMax();
 				resp.sendRedirect("selfView?recipe_id="+riMax);
 			}
-		
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
 		}else if(path.equals("recipe/login")) {
