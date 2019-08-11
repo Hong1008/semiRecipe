@@ -3,7 +3,10 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CommentDAO extends RecipeDAO {
@@ -28,12 +31,15 @@ public class CommentDAO extends RecipeDAO {
 			sql += " and review_num='"+key+"' ";
 		}
 		sql += "and c.user_id = u.user_id order by com_num";
+		System.out.println(sql);
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
 				CommentDTO dto = new CommentDTO();
 				dto.setUser_id(rs.getString(1));
-				dto.setCom_time(rs.getString(2));
+				String com_time = rs.getString(2);
+				com_time = showTime(com_time);
+				dto.setCom_time(com_time);
 				dto.setCom_content(rs.getString(3));
 				dto.setRating(rs.getInt(4));
 				dto.setUser_icon(rs.getString(5));
@@ -45,6 +51,39 @@ public class CommentDAO extends RecipeDAO {
 		} 
 		return aList;
 	}//end listmethod
+	
+	public String showTime(String com_time) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		com_time = com_time.replace(".0", "");
+		try {
+			Date org = sdf.parse(com_time);
+			long diff = System.currentTimeMillis() - org.getTime();
+			long diffYear = diff/(24*60*60*1000)/30/12;
+	    	long diffMonth = diff/(24*60*60*1000)/30;
+	    	long diffDay = diff/(24*60*60*1000);
+	    	long diffHour = diff/(60*60*1000);
+	    	long diffMin = diff/(60*1000);
+	    	long diffSec = diff/(1000);
+	    	if(diffSec<60) {
+	    		com_time = diffSec+"초전";
+	    	}else if(diffMin<60) {
+	    		com_time = diffMin+"분전";
+	    	}else if(diffHour<24) {
+	    		com_time = diffHour+"시간전";
+	    	}else if(diffDay<=30) {
+	    		com_time = diffDay+"일전";
+	    	}else if(diffMonth<12) {
+	    		com_time = diffMonth+"달전";
+	    	}else if(diffMonth>=12) {
+	    		com_time = diffYear+"년전";
+	    	}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return com_time;
+	}
 	
 	public void insertCom(CommentDTO dto, int key) {
 		String com_board = dto.getCom_board();
