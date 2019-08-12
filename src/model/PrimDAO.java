@@ -80,12 +80,18 @@ public class PrimDAO extends RecipeDAO {
 	}
 	
 	public void primRating(int recipe_id) {
-		String sql = "update primary set rating = (select round(avg(rating),2) from recipe_comment where recipe_id = ?) where recipe_id = ?";
+		String sql = "update primary set rating = ((select sum(rating) from recipe_comment where recipe_id =?) " + 
+				"+(select sum(review_rate) from review where recipe_id = ?)) " + 
+				"/(select count(*) from (select recipe_id from review where recipe_id=? union all select recipe_id from recipe_comment where recipe_id=?)) " + 
+				"where recipe_id = ?";
 		
 		try {
 			pstmt = updatePstmt(sql);
 			pstmt.setInt(1, recipe_id);
 			pstmt.setInt(2, recipe_id);
+			pstmt.setInt(3, recipe_id);
+			pstmt.setInt(4, recipe_id);
+			pstmt.setInt(5, recipe_id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -136,7 +142,6 @@ public class PrimDAO extends RecipeDAO {
 			case "irdnt_nm": sql += "and recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%') "; break;
 			}
 		}
-		System.out.println(sql);
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
@@ -192,7 +197,6 @@ public class PrimDAO extends RecipeDAO {
 				dto.setIMG_URL(rs.getString("IMG_URL"));
 				aList.add(dto);
 			}
-			System.out.println(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
