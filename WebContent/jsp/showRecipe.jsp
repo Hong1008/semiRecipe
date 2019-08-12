@@ -5,7 +5,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
 	rel="stylesheet">	
-
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 <div id='R_header' class='R_div'>
 	<div id='R_image'>
 		<img src="${requestScope.prim.IMG_URL }">
@@ -70,9 +70,12 @@
 </div>
 
 <div id='CMT' class='R_div'>
+	<span id='comment_num'>댓글 00개</span>
+	<select name="order" id="order">
+		<option value="com_time">최근날짜순</option>
+		<option value="rating">별점순</option>
+	</select>
 	<input type="hidden" id="key" value="${recipe_id}">
 	<div id="primary">
-
-		
 	</div>	
 </div>

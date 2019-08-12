@@ -15,6 +15,7 @@ import action.CheckNowPw;
 import action.ComInsertAction;
 import action.ComListAction;
 import action.IrdntAction;
+import action.KakaoLoginAction;
 import action.LoginAction;
 import action.LogoutAction;
 import action.MyPageAction;
@@ -93,7 +94,8 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/reviewinsert")) {
 			ReviewInsertAction revInsert = new ReviewInsertAction();
 			revInsert.execute(req, resp);
-			next="/review/reviewBoard.jsp";
+			//next="/review/reviewBoard.jsp";
+			resp.sendRedirect("review");
 		}else if(path.equals("recipe/reviewview")) {
 			ReviewViewAction revView = new ReviewViewAction();
 			revView.execute(req, resp);

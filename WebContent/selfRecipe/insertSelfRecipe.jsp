@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
 <%@include file="../jsp/menu.jsp"%>
-<%@include file="../jsp/sideMenu.jsp" %>
+<%-- <%@include file="../jsp/sideMenu.jsp" %> --%>
 <!DOCTYPE html>
 
 <html>
@@ -27,6 +27,8 @@
 </head>
 
 <body onContextmenu="return false">
+
+			<jsp:include page="../jsp/sideMenu.jsp"/>	
 	
 	<form name="frm" method="post" enctype="multipart/form-data" action="insertSelfRecipe">
 		<c:if test="${!empty param.user_id }">
@@ -41,6 +43,7 @@
 					<li><input type="button" class="w_btn" id="insertImg" value="이미지 삽입"></li>
 					<li class="image_part"><input type="text" id="recipe_nm_ko" name="recipe_nm_ko" required="required"   autocomplete="off" placeholder="요리요리요 이름은!" /></li>
 					<li class="image_part"><textarea id="sumry" name="sumry" rows="4" cols="100" required="required" autocomplete="off" placeholder="요리를 소개해 주세요!" required="required" /></textarea></li>
+
 				</ul>
 		</section>
 	

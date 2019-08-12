@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
@@ -73,3 +74,19 @@
 	</div>
 	</c:forEach>
 </div>
+
+<div id='CMT' class='R_div'>
+	<select name="order" id="order">
+		<option value="com_time">최근날짜순</option>
+		<option value="rating">별점순</option>
+	</select>
+	<input type="hidden" id="key" value="${prdto.RECIPE_ID}">
+	<div id="selfrecipe">
+
+		
+	</div>	
+</div>
+	
+	<script type="text/javascript">
+		comList();
+	</script>

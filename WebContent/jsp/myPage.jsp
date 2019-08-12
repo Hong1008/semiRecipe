@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -15,7 +17,7 @@
 
 #myPageBody {
 	margin: 0 auto;
-	width: 700px;
+	width: 800px;
 	height: 700px;
 	border-top: 1px solid #e8e9ed;
 	border-collapse: collapse;
@@ -26,17 +28,19 @@
 	font-weight: bold;
 }
 
-#myPageBody td {
+#myPageBody > tbody > tr > td {
 	border-bottom: 1px solid #e8e9ed;
+	width: 100px;
+	height: 150px;
+	color: #a4a4a4;
+    font-size: 13px;
 }
 
-#myPageBody .content {
-	height: 25%;
-}
-
-.myPageList {
+#myPageBody td.profile, #myPageBody td.private, #myPageBody td.myPageList {
 	font-weight: bold;
-	width: 25%;
+	width: 12%;
+	color: black;
+    font-size: 15px;
 }
 
 input {
@@ -48,10 +52,6 @@ input {
 	padding: 15px;
 }
 
-span {
-	width: 50px;
-}
-
 td p {
 	height: 25px;
 }
@@ -61,65 +61,127 @@ td p input {
 }
 
 #yy, #mm, #dd {
-	width: 147px;
+	width: 100px;
 	height: 30px;
 	float: left;
 	margin-right: 10px;
 }
 
-td {
-	height: 150px;
-}
-#userIcon > img{
+#user_icon > img{
 	width: 100px;
 	height: 100px;
 }
+
+.btns {
+	border-radius: 5px;
+	color: #ffffff;
+	text-decoration: none;
+    border: 1px solid #0199df;
+    background-color: #0199df;
+    padding: 6px 24px;
+}
+
+.iconHide img {
+    width: 35px;
+    height: 35px;
+    border: 1px solid white;
+}
+
+
+
+tr:nth-child(2) {
+	width: 10px;
+}
+
 </style>
 </head>
 <body>
+<%
+	String file = application.getRealPath("/img/icon");
+	File f = new File(file);
+	String[] fileNames = f.list();
+	File[] fileObjects = f.listFiles();
+	
+	ArrayList<String> fList = new ArrayList<String>(); 
+	
+	for (int i = 0; i < fileObjects.length; i++) {
+		if (!fileObjects[i].isDirectory()) {
+			if(fileNames[i].indexOf("cooker")>-1)
+				fList.add(fileNames[i]);
+		}
+	}
+%>
 	<c:set value="${requestScope.dto}" var="dto" />
 	<table id="myPageBody">
 		<caption>마이페이지</caption>
-		<tr class="content">
-			<td class="profile" rowspan="2">프로필</td>
+		<tr class="content">	<!-- 아이디 -->
+			<td class="profile" rowspan="3">프로필</td>
 			<td class="myPageList">아이디</td>
-			<td id="loginId">${dto.user_id}</td>
+			<td id="loginId" colspan="3">${dto.user_id}</td>
 		</tr>
-		<tr class="content">
-			<td class="myPageList">아이콘</td>
-			<td id="userIcon"><img src="${dto.user_icon}"></td>
+		<tr class="content">	<!-- 아이콘 -->
+			<td class="myPageList">아이콘 </td>
+			<td id="user_icon"><img src="/semiRecipe/img/icon/${dto.user_icon}"></td>
 			<td>
-				<input type="button" value="변경" id="iconChangeBtn" />
-			</td>
-		</tr>
-		<tr class="content">
-			<td class="myPageList">비밀번호</td>
-			<td class="pwHide">
-				<p>현재 비밀번호 :</p>
-				<p>변경 후 비밀번호 :</p>
-				<p>변경 후 비밀번호 확인 :</p>
-			</td>
-			<td class="pwHide">
-				<p><input type="password" id="now_pw"></p>
-				<p><input type="password" id="new_pw"></p>
-				<p><input type="password" id="new_pw_confirm"></p>
+				<div class="iconHide">
+					<c:forEach var="iconArr" items="<%=fList %>" varStatus="status" begin="0" end="<%=fList.size() %>" >
+						<c:if test="${iconArr!=dto.user_icon}">
+							<a class="icon" href=""><img alt="" src="/semiRecipe/img/icon/${iconArr}"></a>
+						</c:if>
+						<c:if test="${status.index==(status.end-1)/2}">
+							<br/>
+						</c:if>
+					</c:forEach>
+				</div>
 			</td>
 			<td>
-				<input type="button" value="변경" id="pwChangeBtn" />
+				<a href="" id="iconChangeBtn" class="btns">변경</a>
+				<a href="" id="iconChangeCancleBtn" class="iconHide btns">취소</a>
 			</td>
 		</tr>
-		<tr class="content">
+		<tr class="content">	<!-- 닉네임 -->
 			<td class="myPageList">닉네임</td>
 			<td id="nickname">
 				<span id="nValue">${dto.user_nickname}</span>
-				<input type="text" class="box" id="nBox" style="display: none;" value="${dto.user_nickname}"/>
-				<input type="button" value="변경" id="nChangeBtn" />
-				<input type="button" value="취소" id="nChangeCancleBtn" style="display: none;" />
-			</td>     
+			</td>
+			<td>	
+				<input type="text" class="nHide" id="nBox" value="${dto.user_nickname}"/>
+			</td>
+			<td>
+				<a href="" id="nChangeBtn" class="btns">변경</a>
+				<a href="" id="nChangeCancleBtn" class="nHide btns">되돌리기</a>
+			</td>
 		</tr>
-		<tr class="content">
+		<tr class="content">	<!-- 비밀번호 -->
+			<td class="private" rowspan="2">개인정보</td>
+			<td class="myPageList">비밀번호</td>
+			<td colspan="1">
+				<div class="pwHide">
+					<p>현재 비밀번호 :</p>
+					<p>변경 후 비밀번호 :</p>
+					<p>변경 후 비밀번호 확인 :</p>
+				</div>
+			</td>
+			<td>
+				<div class="pwHide">
+					<p><input type="password" id="now_pw"></p>
+					<p><input type="password" id="new_pw"></p>
+					<p><input type="password" id="new_pw_confirm"></p>
+				</div>
+			</td>
+			<td>
+				<a href="" id="pwChangeBtn" class="btns">변경</a>
+				<a href="" id="pwChangeCancleBtn" class="pwHide btns">취소</a>
+			</td>
+		</tr>
+		
+		<tr class="content">	<!-- 생년월일 -->
 			<td class="myPageList">생년월일</td>
-			<td class="newBirthday" style="display: none;">
+			<td>
+				<span id="birthValue">${dto.user_birthday}</span>
+			</td>
+			
+			<td class="birthHide">
 				<div class="bir_wrap">
 			    	<div class="bir_yy">
 						<span class="ps_box">
@@ -146,10 +208,12 @@ td {
 					</div>
 				</div>
 			</td>
+			
 			<td>
-				<span id="birthValue">${dto.user_birthday}</span>
-				<input type="button" value="변경" id="birthChangeBtn" />
+				<a href="" id="birthChangeBtn" class="btns">변경</a>
+				<a href="" id="birthChangeCancleBtn" class="birthHide btns">취소</a>
 			</td>
+			
 		</tr>
 	</table>
 

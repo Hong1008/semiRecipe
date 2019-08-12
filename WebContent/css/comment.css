@@ -1,6 +1,18 @@
 *:focus {
     outline: none;
 }
+
+.swal-button{	
+	background-color:#F29F05;
+}
+
+.swal-button:not([disabled]):hover{	
+	background-color:#e28F05;
+}
+
+.swal-button--cancel{
+	color:#fef7e9;
+}
 #CMT {
 	padding-bottom: 10px;
     margin-bottom: 100px;
@@ -17,7 +29,7 @@
 }
 
 
-.CMT_icon {
+.CMT_icon img{
 	background: gray;
 	height: 47px;
     width: 47px;
@@ -137,4 +149,15 @@
 
 .rate_num{
 	display: none;
+}
+
+#showMore{
+	padding: 3px;
+    text-decoration: none;
+    color: #FFF5E6;
+    background-color: rgba(242, 159, 5, 0.8);
+    border: 1px solid #F29F05;
+    border-radius: 0.2rem;
+    font-size: 20px;
+    margin-top: 20px;
 }

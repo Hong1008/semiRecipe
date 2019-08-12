@@ -16,7 +16,6 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 
-<link rel="stylesheet" href="/semiRecipe/css/sideMenu.css">
 <link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 <script src="/semiRecipe/js/primList.js"></script>
 <script src="/semiRecipe/js/showRecipe.js"></script>
@@ -74,7 +73,7 @@
 #ing_menu {
 	list-style-type: none;
 	height: 50px;
-	width: 1200px;
+	width: 900px;
 }
 
 .ing_menu_li {
@@ -98,6 +97,7 @@
 
 #category{
 	margin-top: 30px;
+	margin-left: 10%;
 	display: inline-block;
 }
 

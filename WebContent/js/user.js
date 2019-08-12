@@ -4,16 +4,22 @@ $(document).ready(function() {
 	appendYear();
 	$('.iconwrap').css('visibility', 'hidden');
 	
-	$('#user_icon').val($('#icon').attr('src'));
+	var icon_src = $('#icon').attr('src').split("/");
+	var user_icon = $('#icon').attr('src').split("/")[icon_src.length-1];
+
+	$('#user_icon').val(user_icon);
+	$('#user_icon_before').val($('#icon').attr('src'));
 	
-	$('a').click(function(){
+	$('.iconwrap a').click(function(){
 		var src = $(this).children().attr('src');
 		$('#icon').attr('src',src);
 		return false;
 	});	
 	
 	$('#iconSelectBtn').on('click', function() {	// 아이콘 선택하기 버튼 누르면
-		$('#user_icon').val($('#icon').attr('src'));
+		$('#user_icon_before').val($('#icon').attr('src'));
+		$('#user_icon').val($('#icon').attr('src').split("/")[icon_src.length-1]);
+		
 		if($('.iconwrap').css('visibility')=='hidden'){	// 맨 처음 눌렀을 때
 			$('.iconwrap').css('visibility', 'visible');
 			$(this).text('아이콘 선택완료');
@@ -39,7 +45,7 @@ $(document).ready(function() {
 			$('form').submit();
 		}
 		
-		return false;
+		return;
 	});
 	
 	$('#yy').change(function(){
@@ -236,13 +242,14 @@ function changeErrorMsg(eventId, showErrorMsg){
 }
 
 function inputChk() {
-	var input=$('input').not('#kakao_id');
-	var num=input.length-1;
-	for(i=0;i<=num;i++){
-		if(input.val()==""){
-			alert($(this).attr('id'));
+	var result = true;
+	$('.val').each(function(idx, ele) {
+		if ($(ele).val() == "") {
+			$(ele).focus();
+			result = false;
 			return false;
 		}
-	}
-	return true;
+	});
+	return result;
 }
+
