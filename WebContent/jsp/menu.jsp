@@ -5,8 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <link rel="stylesheet" href="/semiRecipe/css/menu.css">
@@ -17,6 +16,8 @@
 	margin: 0;
 	padding: 0;
 }
+
+
 </style>
 
 </head>
@@ -29,16 +30,17 @@
 			<img src="/semiRecipe/img/LOGO_white.png">
 		</div>
 		<div id='log_container'>
-			<!--------------------------- 이미지 수정해야됨 ------------------------->
-			<img src="/semiRecipe/img/food_test.jpg" id='myPage'>
+			<a href="/semiRecipe/recipe/myPage" id='myPage'>MY PAGE</a>
+			
 			<c:choose>
 				<c:when test="${empty sessionScope.loginID}">
-					<img src="/semiRecipe/img/menu_login.png" id='login'>
+					<a href="/semiRecipe/recipe/loginForm" id='login'>LOGIN</a>
 				</c:when>
 				<c:otherwise>
-					<img src="/semiRecipe/img/menu_logout.png" id='logout'>
+					<a href="/semiRecipe/recipe/logout" id='logout'>LOGOUT</a>
 				</c:otherwise>
 			</c:choose>
+			
 		</div>
 		<div id='menu_container'>
 			<ul id="menu_ul">

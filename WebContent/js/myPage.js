@@ -126,7 +126,12 @@ $(document).ready(function() {
 		
 		if($('.birthHide').css('visibility') == "hidden"){		// 처음 눌렀을 때 (수정 전)
 			$('.birthHide').css('visibility','visible');
+			
+			removeYear();
+			removeMonth();
+			removeDay();
 			getBirthday();
+
 			return false;
 		} else {									// 수정 후에 눌렀을 때
 			if(year!="" && month!="" && day!="") {
@@ -151,7 +156,7 @@ $(document).ready(function() {
 		
 	});
 	
-	$('#birthChangeCancleBtn').on('click', function() {
+	$('#birthChangeCancleBtn').on('click', function() {			// 생일 변경 취소 버튼 눌렀을 때
 		$('.birthHide').css('visibility','hidden');
 		return false;
 	});
@@ -162,6 +167,7 @@ $(document).ready(function() {
 		removeMonth();
 		removeDay();
 		appendMonth();
+		return false;
 	});
 	
 	$('#mm').change(function(){
@@ -169,13 +175,14 @@ $(document).ready(function() {
 		var day = validDate($('#yy').val(), $('#mm').val());
 		removeDay();
 		appendDay(day);
+		return false;
 	});
 	
 	
 	$('#modCancleBtn').on('click', function() {				// 제일 하단에 취소 버튼 눌렀을 때
 		var cancleCheck = confirm('수정을 취소하시겠습니까?'); 
 		if(cancleCheck) {
-			history.go(-1);
+			location.href=document.referrer;
 		} 
 	});
 	
@@ -217,7 +224,7 @@ $(document).ready(function() {
 			
 			
 			alert('수정 완료되었습니다.');
-			history.go(-1);
+			location.href=document.referrer;
 			
 		} 
 	});
@@ -337,6 +344,10 @@ function appendYear() {
 	for(var i=1900;i<=year;i++) {
 		selectValue.add(new Option(i+"년",i));                        
 	}
+}
+
+function removeYear() {
+	$("#yy.sel option:gt(0)").remove();
 }
 
 function appendMonth() {
