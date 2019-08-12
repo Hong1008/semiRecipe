@@ -17,6 +17,7 @@ public class ReviewListAction {
 		List<ReviewDTO> aList = dao.listMethod();
 		
 		HttpSession session = req.getSession();
+		session.removeAttribute("reviewList");
 		session.setAttribute("reviewList", aList);
 	//	req.setAttribute("aList", aList);
 	}

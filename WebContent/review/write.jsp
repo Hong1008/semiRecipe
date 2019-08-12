@@ -31,9 +31,10 @@
 		$('.starRev span').click(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
+			$('#review_rate').val($('.starR.on').length);
 			return false;
 		});
-
+		$('#review_rate').val($('.starR.on').length);
 		search();
 
 		function search() {
@@ -93,7 +94,7 @@
 
 			$('#irdntList').css('display', 'block');
 			$('#recipeSelectList').css('display', 'none');
-
+			$('#recipe_id').val($(this).val());
 		});
 
 		$('#deleteBtn').on('click', function() {
@@ -103,46 +104,8 @@
 			$('#irdntList').css('display', 'none');
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
-		});
-
-		var recipe_id = "";
-
-		$('.icon-comment').on('click', function() {
-			// alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
-			//alert($('#revRecipeSelect').val());
-			$('#recipeSelectList li').each(function(index, element) {
-				//	alert($(this).attr('id'));
-
-				if ($(this).attr('id') == $('#revRecipeSelect').val()) {
-					recipe_id = $(this).val();
-				}
-			});
-
-			var text = CKEDITOR.instances.editor1.getData();
-
-			$.ajax({
-				type : 'POST',
-				dataType : 'text',
-				//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
-				data : {
-					recipe_id : recipe_id,
-					review_content : text,
-					user_id : $('#user_id').val(),
-					review_subject : $('#review_subject').val(),
-					user_nickname : $('#user_nickname').val(),
-					review_rate : $('.starR.on').length
-				},
-				url : 'reviewinsert',
-				success : function() {
-					location.href = "/semiRecipe/recipe/review";
-				}
-
-			});
-
-			return false;
-
-			//	$('form').submit();
-		});
+			$('#recipe_id').val('');
+		})
 
 	});
 </script>
@@ -262,6 +225,8 @@ td, tr {
 	<div id="writeframe">
 		<form name="frm" method="post" enctype="multipart/form-data"
 			action="/semiRecipe/recipe/reviewinsert" id="writeform">
+			<input type="hidden" name="review_rate" id="review_rate">
+			<input type="hidden" name="recipe_id" id="recipe_id">
 			<input type="hidden" name="user_nickname"
 				value="${requestScope.mdto.user_nickname}" id="user_nickname" /> <input
 				type="hidden" name="user_id" value="${requestScope.mdto.user_id}"
@@ -270,7 +235,7 @@ td, tr {
 				<tr>
 					<td width="20%" align="center">레시피 선택</td>
 					<td width="80%"><input type="text" id="revRecipeSelect"
-						name="recipe" placeholder="레시피 검색"
+						 placeholder="레시피 검색"
 						style="width: 300px; height: 20px; font-size: 15px;" /><input
 						type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
@@ -341,7 +306,7 @@ td, tr {
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button class="icon-comment">확인</button>
+						<button class="icon-comment" type="submit">확인</button>
 				</tr>
 				<tr>
 					<td height="20px"></td>

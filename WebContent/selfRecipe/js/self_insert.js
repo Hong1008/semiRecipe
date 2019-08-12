@@ -1,20 +1,59 @@
 $(document).ready(function() {
+	insertImg();
 	numberClick();
 	selfRecipeDivAddDel(); 
 	cookingTime();
 	irdntDrop();
 	totalCalorie();
 	backAction();
-	
+
 	$("#imgInput").change(function(){
 		imagePreview(this);
 	});
 	
-	
-	
+	checkfiile();
+	insertImgCheck();
+	submitAction();
 });// end ready()
+/*이미지 삽입 버튼*/
+function insertImg(){
+	$('#insertImg').on('click', function(){
+		$('#imgInput').click();
+	})
+	
+}
 
 
+//이미지삽입 체크
+function insertImgCheck(){ 
+	$('form').submit(function(){
+		var str = $('#imgInput').val();
+		if(str.length < 1){
+			alert('이미지를 선택하세요.');
+			return false;
+		}
+	});
+}
+
+
+
+/*이미지 확장자 체크*/
+function checkfiile(){
+	var pattern = /([^\s]+(?=\.(jpg|gif|png|bmp|jpeg))\.\2)/;
+	var file = $('#imgInput');
+	$(file).on('change propertychange', function(){
+		if (!pattern.test(file.val()))
+			alert("이미지 파일만 등록 가능합니다.");
+			return false;
+	});
+	
+/*	if(this.files[0].size > 50000000) {
+		alert('5MB 이하만 첨부할 수 있습니다.');
+		$(file).val();
+		return false;
+	}*/
+}
+	
 /* 이미지 업로드시 이미지 바로보이기 */
 function imagePreview(input) {	
 	if (input.files && input.files[0]) {		
@@ -68,8 +107,9 @@ function irdntDrop(){
 		alert("재료추가테스트");
 					}
 				}
-			});
+		});
 };
+
 
 	/* 세부 레시피 입력창 추가 삭제 */
 function selfRecipeDivAddDel() {
@@ -88,7 +128,7 @@ function selfRecipeDivAddDel() {
 	}
 	/*서브밋*/
 /*function submitAction() {
-		$('#rg_add').on('click', function(){
+		$('#submit').on('click', function(){
 			$('#frm').submit();
 		});	
 }*/

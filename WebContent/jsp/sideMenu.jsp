@@ -11,10 +11,8 @@
 	<div id='side_btn'>
 		<img src="/semiRecipe/img/home_open_btn.png">
 	</div>
-	<div id='search_div'>
-		<label for='search'><img
-			src="/semiRecipe/img/home_search_img.PNG"></label><input type="text"
-			name="search" autocomplete="off">
+	<div id='search_div'><input type="text"
+			name="search" autocomplete="off" placeholder="재료를 검색하세요">
 	</div>
 	<div id='ingredients_div'>
 		<div id='ingredients_menu_div'>
@@ -28,8 +26,9 @@
 		</div>
 		<div id='ing_maker'>
 			<c:forEach items="${requestScope.aList }" var="dto">
-				<div class='ingredients' id='${dto.irdnt_nm}'>${dto.irdnt_nm}<input
-						type="hidden" id='${dto.ty_nm }' />
+				<div class='ingredients' id='${dto.irdnt_nm}'>
+					${dto.irdnt_nm}
+					<input type="hidden" id='${dto.ty_nm }' />
 				</div>
 			</c:forEach>
 		</div>
