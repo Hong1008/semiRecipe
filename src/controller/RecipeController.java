@@ -26,12 +26,14 @@ import action.ReviewViewAction;
 import action.ReviewWriteAction;
 import action.SelfDeleteAciont;
 import action.SelfListAction;
+import action.SelfUpdateAction;
 import action.SelfViewAction;
 import action.SelfInsertAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
 import model.IrdntTYDAO;
+import model.PrimDTO;
 import model.ReviewInsertAction;
 import model.SelfRecipeDAO;
 
@@ -123,13 +125,15 @@ public class RecipeController extends HttpServlet {
 			SelfViewAction viewList = new SelfViewAction();
 			viewList.execute(req, resp);
 			next = "/selfRecipe/selfView.jsp";	
-		}else if(path.equals("recipe/insertSelfRecipe")) { //  셀프 인서트
+		}else if(path.equals("recipe/selfInsert")) { //  셀프 인서트
+			System.out.println("셀프인서트");
 			if(method.equalsIgnoreCase("get")){
+				System.out.println("겟방식확인");
 				IrdntTYDAO dao = new IrdntTYDAO();
 				req.setAttribute("aList", dao.list());
 				req.setAttribute("tList", dao.tyList());
 				dao.exit();
-				next = "/selfRecipe/insertSelfRecipe.jsp";				
+				next = "/selfRecipe/selfInsert.jsp";				
 			}else {				
 				SelfInsertAction insertList = new SelfInsertAction();
 				insertList.executeMulti(req, resp);
@@ -142,7 +146,16 @@ public class RecipeController extends HttpServlet {
 				del.execute(req, resp);
 				//resp.sendRedirect("selfRecipe?pageNum=" + req.getParameter("pageNum"));
 				//삭제 후 마지막 페이지 유지
-			
+		}else if(path.equals("recipe/selfUpdate")) { //  셀프 수정
+			/*
+			 * if(method.equalsIgnoreCase("get")){ IrdntTYDAO dao = new IrdntTYDAO();
+			 * req.setAttribute("aList", dao.list()); req.setAttribute("tList",
+			 * dao.tyList()); dao.exit(); next = "/selfRecipe/selfUpdate.jsp"; }else {
+			 * SelfUpdateAction suUpdate = new SelfUpdateAction();
+			 * suUpdate.executeMulti(req, resp); SelfRecipeDAO dao =
+			 * SelfRecipeDAO.getInstance(); PrimDTO prdto = new PrimDTO();
+			 * resp.sendRedirect("selfView?recipe_id="+ prdto.getRECIPE_ID()); }
+			 */
 			
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";

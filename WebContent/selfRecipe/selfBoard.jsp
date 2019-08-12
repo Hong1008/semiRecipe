@@ -86,23 +86,16 @@
 		
 		<!-- 화면 위로 올리기 시작	 -->	
 	<div id="quick_menu">
-		<a href="#">top</a>
+		<p><a href="#">top</a></p>
+		<p><a href="selfRecipe" "> 목록</a></p>
+			<p><a href="selfInsert" > 쓰기</a></p>
+		<p><c:if test="${not empty sessionScope.loginID }">
+			<a href="selfInsert" > 쓰기</a>
+			<a href="#">수정</a>
+		</c:if></p>
 	</div>	
 <!-- 화면 위로 올리기 끝 -->
 
-		
-	<!-- 하단 버튼 부분 시작 -->
-		<section>
-			<div id = "buttonLine">
-				<a href="selfRecipe" class="icon-th-thumb-empty"> 목록</a>
-				<c:if test="${not empty sessionScope.loginID }">
-				<a href="insertSelfRecipe" class="icon-comment"> 쓰기</a>
-				<input type="button" class="del" value="삭제" />
-<!-- 			<a href="#" class="icon-comment"> 삭제</a> -->
-				</c:if>
-			</div>
-		</section>
-<!-- 하단 버튼 부분 끝 -->
 	</div>
 </body>
 </html>

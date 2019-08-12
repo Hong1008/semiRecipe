@@ -66,6 +66,7 @@ $(document).ready(function(){
 				})
 		
 	
+				
 	
 	/*recipe_id 보내주는 부분*/
 	$('.js-load	').on('click', function() {

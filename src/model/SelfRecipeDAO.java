@@ -50,12 +50,12 @@ public class SelfRecipeDAO {
 	// ------------------------------------------------------------------- 정렬 시작
 	public List<HashMap<String, String>> sortView(String column, String order, String recipe_nm_ko, String searchType){
 		List<HashMap<String, String>> aList = new ArrayList<HashMap<String,String>>();
-		String sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id from primary p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
+		String sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id, nation_nm from primary p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
 		if(column!=null && !column.isEmpty() && order!=null && !order.isEmpty()) {
 			sql += "order by "+column+" "+order;
 		}
 		if(recipe_nm_ko!= null && !recipe_nm_ko.isEmpty()) {
-			sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id from primary p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
+			sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id from primary, nation_nm p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
 			switch(searchType) {
 			case "both": sql += "and (recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' or"
 					+ " recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%'))"; break;
@@ -138,34 +138,7 @@ public class SelfRecipeDAO {
 		}
 		return prList;
 	}// end primListMethod()
-/*
-	public List<SelfRecipeDTO> selfRecipeListMethod(PageDTO pdto) {
-		List<SelfRecipeDTO> srList = new ArrayList<SelfRecipeDTO>();
-		SelfRecipeDTO dto = new SelfRecipeDTO();
-		try {
-			conn = init();
-			String sql = "select s.recipe_id, user_id, self_date from selfrecipe s, primary p where S.RECIPE_ID=P.RECIPE_ID";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				dto.setRecipe_id(rs.getInt("recipe_id"));
-				dto.setUser_id(rs.getString("user_id"));
-				dto.setSelf_date(rs.getDate("self_date"));
-				srList.add(dto);
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				exit();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return srList;
-	}// end selfRecipeListMethod()
-*/
+
 	public List<IrdntDTO> irdntListMethod(PageDTO pdto) {
 		List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
 		IrdntDTO dto = new IrdntDTO();
@@ -246,7 +219,6 @@ public class SelfRecipeDAO {
 				pvmap.put("user_id", rs.getString("user_id"));
 				pvmap.put("self_date", rs.getString("self_date"));
 				pvmap.put("self_views", rs.getString("self_views"));
-
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -290,33 +262,7 @@ public class SelfRecipeDAO {
 		}
 		return irList;
 	}// end irdntViewMethod()
-	/*
-	public SelfRecipeDTO selfRecipeViewMethod(int recipe_id) {
-		SelfRecipeDTO srdto = new SelfRecipeDTO();
-		try {
-			conn = init();
-			String sql = "select recipe_id, user_id, self_date, self_views from selfrecipe where recipe_id = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, recipe_id);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				srdto.setRecipe_id(rs.getInt("recipe_id"));
-				srdto.setUser_id(rs.getString("user_id"));
-				srdto.setSelf_date(rs.getDate("self_date"));
-				srdto.setSelf_views(rs.getString("self_views"));
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				exit();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return srdto;
-	}// end selfRecipeViewMethod()
-	*/
+
 	public List<StepDTO> stepViewMethod(String recipe_id) {
 		List<StepDTO> stList = new ArrayList<StepDTO>();
 		try {
