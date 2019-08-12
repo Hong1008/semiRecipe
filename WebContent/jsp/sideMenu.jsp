@@ -28,8 +28,9 @@
 		</div>
 		<div id='ing_maker'>
 			<c:forEach items="${requestScope.aList }" var="dto">
-				<div class='ingredients' id='${dto.irdnt_nm}'>${dto.irdnt_nm}<input
-						type="hidden" id='${dto.ty_nm }' />
+				<div class='ingredients' id='${dto.irdnt_nm}'>
+					${dto.irdnt_nm}
+					<input type="hidden" id='${dto.ty_nm }' />
 				</div>
 			</c:forEach>
 		</div>

@@ -73,7 +73,7 @@ function rating(num,id){
 		classNM='';
 	}
 	for(var i=1;i<=5;i++){
-		console.log(id+i);
+		console.log('id='+id+'i='+i+'num='+num);
 		if(i<=num)
 		$(id+i+classNM).css('opacity','0.9');
 		else
