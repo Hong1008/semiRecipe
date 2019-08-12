@@ -80,13 +80,14 @@
 		<option value="com_time">최근날짜순</option>
 		<option value="rating">별점순</option>
 	</select>
-	<input type="hidden" id="key" value="${prdto.RECIPE_ID}">
+	<input type="hidden" id="key" value="${prdto.recipe_id}">
 	<div id="selfrecipe">
 
 		
 	</div>	
 </div>
-	
+	<link rel="stylesheet" href="/semiRecipe/css/comment.css">
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 	<script type="text/javascript">
 		comList();
 	</script>

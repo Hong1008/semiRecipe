@@ -80,7 +80,7 @@ public class ReviewDAO {
 		ReviewDTO dto=new ReviewDTO();
 //		String sql = "select review_subject, review_rate, review_date, review_views, review_url, user_nickname, RECIPE_ID from review where review_num=?";
 		String sql = "select * from (select rownum as rn, a.* from " + 
-				"(select review_subject, review_content, review_rate, review_date, review_views, review_url, user_nickname, RECIPE_ID " + 
+				"(select review_num,review_subject, review_content, review_rate, review_date, review_views, review_url, user_nickname, RECIPE_ID " + 
 				"from review " + 
 				"order by review_num desc)a)b\n" + 
 				"where rn=?";
@@ -97,6 +97,7 @@ public class ReviewDAO {
 				dto.setReview_url(rs.getString("review_url"));
 				dto.setUser_nickname(rs.getString("user_nickname"));
 				dto.setRecipe_id(rs.getInt("recipe_id"));
+				dto.setReview_num(rs.getInt("review_num"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

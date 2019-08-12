@@ -80,11 +80,24 @@ public class PrimDAO extends RecipeDAO {
 	}
 	
 	public void primRating(int recipe_id) {
-		String sql = "update primary set rating = round(((select sum(rating) from recipe_comment where recipe_id =?) " + 
-				"+(select sum(review_rate) from review where recipe_id = ?)) " + 
-				"/(select count(*) from (select recipe_id from review where recipe_id=? union all select recipe_id from recipe_comment where recipe_id=?)),2) " + 
+		String sql = "update primary set rating = round("
+				+ "("
+				+ "(select sum(rating) from recipe_comment where recipe_id =?)"
+				+ "+"
+				+ "nvl("
+				+ "(select sum(review_rate) from review where recipe_id = ?)"
+				+ ",0)"
+				+ ")"
+				+ "/nvl("
+				+ "(select count(*) from "
+				+ "(select recipe_id from review where recipe_id=? "
+				+ "union all select recipe_id from recipe_comment where recipe_id=?)"
+				+ ")"
+				+ ","
+				+ "(select count(*) from recipe_comment where recipe_id =?)"
+				+ ")"
+				+ ",2) " + 
 				"where recipe_id = ?";
-		
 		try {
 			pstmt = updatePstmt(sql);
 			pstmt.setInt(1, recipe_id);
@@ -92,6 +105,7 @@ public class PrimDAO extends RecipeDAO {
 			pstmt.setInt(3, recipe_id);
 			pstmt.setInt(4, recipe_id);
 			pstmt.setInt(5, recipe_id);
+			pstmt.setInt(6, recipe_id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -13,3 +13,4 @@
 		</a>
 	</div>
 </c:forEach>
+<script src="/semiRecipe/js/showRecipe.js"></script>
