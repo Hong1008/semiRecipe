@@ -83,7 +83,7 @@ public class IrdntDAO extends RecipeDAO {
 	public void setImportance(HashMap<Integer, Integer> map, int recipe_id) {		
 		System.out.println("set");
 		String sql = "update irdnt set importance = "
-				+ "(importance*(select count(*) from review where recipe_id = ?)+?)/((select count(*) from review where recipe_id = ?)+1)"
+				+ "round((importance*(select count(*) from review where recipe_id = ?)+?)/((select count(*) from review where recipe_id = ?)+1),2)"
 				+ " where recipe_id = ? and irdnt_sn = ?";
 		Iterator<Integer> keys =  map.keySet().iterator();
 		List<Integer> irdnt_sn = new ArrayList<Integer>();

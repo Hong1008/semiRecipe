@@ -86,6 +86,7 @@
 		
 	</div>	
 </div>
-	
+	<link rel="stylesheet" href="/semiRecipe/css/comment.css">
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 	<script type="text/javascript">
 	</script>
