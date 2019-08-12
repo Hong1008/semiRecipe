@@ -1,6 +1,16 @@
+<%@page
+	import="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="java.io.File, java.util.List, java.io.IOException"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,12 +45,11 @@
 				recipes_name[i] = $('.recipes').eq(i).text();
 			} //배열에 이름들을 저장
 
-			
 			$('#revRecipeSelect').on('keyup', function() {
 				var search = $('#revRecipeSelect').val();//현재 인풋창의 값을 받아옴
 				var search_len = Hangul.disassemble(search).length;//현재 인풋창의 자음+모음수
 				search = Hangul.assemble(search);
-				
+
 				$('.recipes').hide();
 				for (var i = 0; i < recipes_num; i++) {
 					//맞는것 실행시켜줌
@@ -96,48 +105,7 @@
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
 			$('#recipe_id').val('');
-		});
-		
-        var recipe_id="";
-		
-       /*  $('.icon-comment').on('click', function() {
-			// alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
-			//alert($('#revRecipeSelect').val());
-			// $('#recipeSelectList li').each(function(index,element){
-            //	alert($(this).attr('id'));
-            
-            /* 	if($(this).attr('id')==$('#revRecipeSelect').val()){
-            		recipe_id = $(this).val();
-            	}
-       		 }); */
-			 
-         	//var text = CKEDITOR.instances.editor1.getData();
-         	/* 
-         	$.ajax({
-     			type: 'POST',
-     			dataType: 'text',
-     		//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
-     			data : {
-     				recipe_id : recipe_id,
-     				review_content : text,
-     				user_id : $('#user_id').val(),
-     				review_subject : $('#review_subject').val(),
-     				user_nickname : $('#user_nickname').val(),
-     				review_rate : $('.starR.on').length
-     			},
-     			url: 'reviewinsert',
-     			success: function(){
-     				location.href="/semiRecipe/recipe/review";
-     			}
-         	
-     		}); 
-         	
-         	//return false;
-         	
-         	
-
-		//	$('form').submit();
-		}); */
+		})
 
 	});
 </script>
@@ -315,8 +283,18 @@ td, tr {
 					<td width="80%"><textarea name="review_content" id="editor1"
 							rows="30" cols="80"></textarea></td>
 				</tr>
+
+
 				<script>
 					CKEDITOR.replace('editor1');
+
+					CKEDITOR.replace('editor1',{
+							filebrowserUploadUrl:'/semiRecipe/ckeditor/upload.jsp'
+					});
+
+
+
+				//	window.parent.CKEDITOR.tools.callFunction(1, "${url}", "전송완료");
 				</script>
 
 				<tr>

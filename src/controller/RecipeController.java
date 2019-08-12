@@ -100,8 +100,7 @@ public class RecipeController extends HttpServlet {
 			ReviewViewAction revView = new ReviewViewAction();
 			revView.execute(req, resp);
 			next="/review/view.jsp";
-		}
-		else if(path.equals("recipe/irdnt")) {
+		} else if(path.equals("recipe/irdnt")) {
 			IrdntAction irdnt = new IrdntAction();
 			irdnt.execute(req, resp);
 			next = "/review/irdntList.jsp";
