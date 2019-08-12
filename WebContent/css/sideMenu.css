@@ -2,13 +2,12 @@
 #side_menu {
 	width: 700px;
 	height: 700px;
-	background-color: rgba(240, 210, 210, 0.9);
+	background-color: rgba(250, 250, 250, 0.9);
 	position: fixed;
 	top: 150px;
 	right: -700px;
 	border-radius: 30px;
 }
-
 
 /*사이드버튼*/
 #side_btn {
@@ -51,12 +50,11 @@
 
 /*재료div*/
 #ingredients_div {
-	width: 600px;
+	width: 650px;
 	height: 550px;
 	position: fixed;
-	margin-left: 80px;
+	margin-left: 71px;
 	margin-top: 120px;
-	/*overflow: hidden;*/
 }
 
 /*재료 메뉴부분*/
@@ -64,8 +62,6 @@
 	height: 50px;
 	width: 600px;
 	overflow: hidden;
-	margin: 0;
-	padding: 0;
 }
 
 #ingredients_menu_div img {
@@ -77,13 +73,14 @@
 }
 
 #ing_m_right {
-	margin-left: 570px;
+	margin-left: 583px;
 	opacity: 0.6;
 }
 
 #ing_m_left {
 	transform: rotate(180deg);
 	opacity: 0.6;
+	margin-left: -30px;
 }
 
 #ing_menu {
@@ -93,35 +90,42 @@
 }
 
 .ing_menu_li {
-	width: 150px;
-	height: 50px;
+	width: 135px;
+	height: 45px;
 	float: left;
 	font-family: 'Noto Sans KR';
 	font-size: 22px;
 	font-weight: bold;
 	text-align: center;
 	cursor: pointer;
+	background: rgb(210, 210, 210);
+	border-radius: 24px;
+	margin-right: 15px;
+	padding-top: 5px;
 }
 
 /*재료부분*/
+.ingredients {
+	width: 113px;
+    height: 113px;
+    float: left;
+    box-sizing: border-box;
+    text-align: center;
+    padding-top: 45px;
+    font-family: 'Noto Sans KR';
+    font-size: 19px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-left: 7px;
+    margin-top: 7px;
+    background: rgb(220,220,220,0.8);
+    border-radius: 69px;
+    border: 1px solid rgba(10,10,10,0.9);
+}
+
 #ing_maker {
 	width: 620px;
 	overflow-y: scroll;
 	height: 480px;
 }
-
-.ingredients {
-	width: 120px;
-	height: 120px;
-	float: left;
-	box-sizing: border-box;
-	border: 1px rgb(20, 20, 20) solid;
-	text-align: center;
-	padding-top: 45px;
-	font-family: 'Noto Sans KR';
-	font-size: 20px;
-	padding-right: 20px;
-	padding-left: 20px;
-}
-
 /************사이드메뉴 끝***********/
