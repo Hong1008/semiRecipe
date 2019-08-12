@@ -22,6 +22,7 @@ $(document).ready(
 						}
 						
 						if(key.keyCode == 13 || $(this).is('.icon-search')){
+							$('#selected_recipe').empty();
 							recipe_nm_ko = $('#searchText').val();
 							searchType = $('#searchDrop').val();
 						}

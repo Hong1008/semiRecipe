@@ -3,7 +3,7 @@
 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/semiRecipe/css/recipe.css">
 <link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_recipe.css">
-
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 <div id='R_header' class='R_div'>
 		
 	<span id='user_id'>${requestScope.srdto.user_id } </span>
@@ -75,12 +75,16 @@
 </div>
 
 <div id='CMT' class='R_div'>
+	<select name="order" id="order">
+		<option value="com_time">최근날짜순</option>
+		<option value="rating">별점순</option>
+	</select>
 	<input type="hidden" id="key" value="${prdto.RECIPE_ID}">
 	<div id="selfrecipe">
 
 		
 	</div>	
-	</div>
+</div>
 	
 	<script type="text/javascript">
 		comList();

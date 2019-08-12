@@ -1,6 +1,6 @@
 var star_rate=0;
 var star_num=0;
-
+var rownum=5;
 $(document).ready(function(){	
 	$('#CMT_input').on('focus',function(){
 		if($(this).val()==""){
@@ -48,27 +48,47 @@ $(document).ready(function(){
 	var con = $('.rated_div');
 	for(var i=0;i<con.length;i++ ){
 		var num = con.eq(i).find('.rate_num').attr('id');
-		var id = '#'+con.eq(i).attr('id')+" #rate_";
+		var id = '#'+con.eq(i).attr('id')+".rated_div #rate_";
 		rating(num,id)
 		
 	}
 	
+	$('#4.rated_div #rate_3.rated').click(function(){
+		alert("dfs");
+	});
 	
+	$('#CMT #order').change(function(){
+		comList();
+	})
+	
+	$('#showMore').click(function(){
+		rownum = parseInt($('#CMT .rated_div').last().attr('id'))+5;
+		
+		comList();
+	})
 })
 function rating(num,id){
+	var classNM = ".rated";
+	if(id=='#star_'){
+		classNM='';
+	}
 	for(var i=1;i<=5;i++){
 		console.log('id='+id+'i='+i+'num='+num);
 		if(i<=num)
-		$(id+i).css('opacity','0.9');
+		$(id+i+classNM).css('opacity','0.9');
 		else
-			$(id+i).css('opacity','0.3');
+			$(id+i+classNM).css('opacity','0.3');
 	}
 }
 function comList(){
+	
+	
+	if(typeof rownum == "undefined" || rownum == null || rownum == "")
+		rownum = 5;
 	$.ajax({
 		type:'POST',
 		dataType:'text',
-		data:'com_board='+$('#CMT>div').attr('id')+'&key='+$('#CMT #key').val(),
+		data:'com_board='+$('#CMT>div').attr('id')+'&key='+$('#CMT #key').val()+'&order='+$('#CMT #order').val()+'&rownum='+rownum,
 		url:'comList',
 		success: function(res){
 			$('#CMT>div').html(res);

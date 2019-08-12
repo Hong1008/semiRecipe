@@ -23,7 +23,7 @@ public class IrdntDAO extends RecipeDAO {
 	
 	public List<IrdntDTO> mainList(int recipe_id){
 		List<IrdntDTO> aList = new ArrayList<IrdntDTO>();
-		String sql = "select irdnt_nm, irdnt_cpcty, importance, recipe_id from irdnt where recipe_id = "+recipe_id+" and irdnt_ty_nm != '양념'";
+		String sql = "select irdnt_nm, irdnt_cpcty, importance, recipe_id, irdnt_sn from irdnt where recipe_id = "+recipe_id+" and irdnt_ty_nm != '양념'";
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {
@@ -32,6 +32,7 @@ public class IrdntDAO extends RecipeDAO {
 				dto.setIRDNT_CPCTY(rs.getString(2));
 				dto.setIMPORTANCE(rs.getString(3));
 				dto.setRECIPE_ID(rs.getInt(4));
+				dto.setIRDNT_SN(rs.getInt(5));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
@@ -42,7 +43,7 @@ public class IrdntDAO extends RecipeDAO {
 
 	public List<IrdntDTO> subList(int recipe_id) {
 		List<IrdntDTO> aList = new ArrayList<IrdntDTO>();
-		String sql = "select irdnt_nm, irdnt_cpcty, importance, recipe_id from irdnt where recipe_id = "+recipe_id+"and irdnt_ty_nm = '양념'";
+		String sql = "select irdnt_nm, irdnt_cpcty, importance, recipe_id, irdnt_sn from irdnt where recipe_id = "+recipe_id+"and irdnt_ty_nm = '양념'";
 		try {
 			rs =queryStmt(sql);
 			while(rs.next()) {
@@ -51,6 +52,7 @@ public class IrdntDAO extends RecipeDAO {
 				dto.setIRDNT_CPCTY(rs.getString(2));
 				dto.setIMPORTANCE(rs.getString(3));
 				dto.setRECIPE_ID(rs.getInt(4));
+				dto.setIRDNT_SN(rs.getInt(5));
 				aList.add(dto);
 			}
 		} catch (SQLException e) {
