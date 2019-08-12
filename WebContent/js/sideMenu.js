@@ -1,17 +1,21 @@
 var name = "";
-var anim=true;
 var isopen = false;
 $(document)
 .ready(
 		function() {
-			setInterval(function() {
-				if(anim)
-				$('#side_btn').animate({'margin-left':'-120px'},500).animate({'margin-left':'-100px'},500);
+			var sideBtnAnim = setInterval(function() {
+				if(!isopen)
+					$('#side_btn').animate({'margin-left':'-120px'},500).animate({'margin-left':'-101px'},500);
 			},1000);
-			
+
 			//재로 사이드메뉴 열기/닫기
 			$('#side_btn').on('click', function() {
 				if (isopen) {
+					sideBtnAnim = setInterval(function() {
+						if(!isopen)
+							$('#side_btn').animate({'margin-left':'-120px'},500).animate({'margin-left':'-101px'},500);
+					},1000);
+					isopen = false;
 					console.log('닫힘');
 					$('#side_menu').animate({
 						right : -700
@@ -19,43 +23,42 @@ $(document)
 					$('#side_btn img').css({
 						'transform' : 'rotate(180deg)'
 					});
-					$('#side_btn').clearQueue().animate({
+					$('#side_btn').animate({
 						'margin-left' : -100
 					}, 1200);
-					isopen = false;
-					anim = true;
-					
+
 				} else {
+					isopen = true;
 					console.log('열림');
-					
+
+					$('#side_btn').stop();
+					clearInterval(sideBtnAnim);
 
 					var ig= $('.ingredients');
 					console.log(ig.length);
 					for(var i=0;i<ig.length;i++){
-							console.log(ig.eq(i).attr('id').length);
-							if(ig.eq(i).attr('id').length>=5){
-								ig.eq(i).css({
-									'padding-top':'28px'
-								});								
-							}if(ig.eq(i).attr('id').length>=9){
-								ig.eq(i).css({
-									'padding-top':'32px',
-									'font-size':'15px'
-								});								
-							}
+						if(ig.eq(i).attr('id').length>=5){
+							ig.eq(i).css({
+								'padding-top':'28px'
+							});								
+						}if(ig.eq(i).attr('id').length>=9){
+							ig.eq(i).css({
+								'padding-top':'32px',
+								'font-size':'15px'
+							});					
+						}			
+
 					}
-					
+
 					$('#side_menu').animate({
 						right : 0
 					}, 800);
 					$('#side_btn img').css({
 						'transform' : 'rotate(0)'
 					});
-					$('#side_btn').clearQueue().animate({
+					$('#side_btn').animate({
 						'margin-left' : 0
 					}, 300);
-					isopen = true;
-					anim = false;
 				}
 			});
 
@@ -146,14 +149,14 @@ $(document)
 
 			//재료 항목 이동 버튼
 			var ing_m_cnt=0;
-			$('#ing_m_left').on('click',function(){
+			$('#ing_m_right').on('click',function(){
 				var left = $('#ing_menu').css('margin-left').split('p')[0];
 				if(ing_m_cnt>-4)
 					ing_m_cnt--;
 				$('#ing_menu').animate({'margin-left':(ing_m_cnt*150)+'px'},200);
 			});
 
-			$('#ing_m_right').on('click',function(){
+			$('#ing_m_left').on('click',function(){
 				var left = $('#ing_menu').css('margin-left').split('p')[0];
 				if(ing_m_cnt<0)
 					ing_m_cnt++;
@@ -173,6 +176,6 @@ $(document)
 					}
 				})
 			})
-			
+
 
 		})

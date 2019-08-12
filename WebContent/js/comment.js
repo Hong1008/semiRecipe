@@ -1,6 +1,7 @@
 var star_rate=0;
 var star_num=0;
 var rownum=5;
+
 $(document).ready(function(){	
 	$('#CMT_input').on('focus',function(){
 		if($(this).val()==""){
@@ -73,7 +74,6 @@ function rating(num,id){
 		classNM='';
 	}
 	for(var i=1;i<=5;i++){
-		console.log('id='+id+'i='+i+'num='+num);
 		if(i<=num)
 		$(id+i+classNM).css('opacity','0.9');
 		else
@@ -102,7 +102,19 @@ function insertCom(){
 	var com_board = $('#CMT>div').attr('id');
 	var key = $('#CMT #key').val();
 	if(user_id==''){
-		alert('먼저 로그인을 해주세요');
+		//alert('먼저 로그인을 해주세요');
+		swal({
+			  title: "먼저 로그인을 해주세요!!><",
+			  text: "로그인 창으로 이동하시겠습니까?",
+			  icon: "error",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+			    location.href='loginForm';
+			  } 
+			});
 		return;
 	}
 	$.ajax({

@@ -7,31 +7,44 @@ $(document)
 			$('html, body').css({'overflow': 'hidden', 'height': '100%'});
 			
 
-			//드롭하는부분
-			var select_num = 0;			
+			//드롭하는부분		
 			$('#selected_ing_div')
 			.droppable(
 					{
 						drop : function(event, ui) {
+							//처음 드랍이면 아래로 이동
 							if(startPage){
 								$('html, body').animate({scrollTop : '1200px'}, 800);
 								$('html, body').css({'overflow': 'auto', 'height': 'auto'});
 								startPage=false;
 							}
-							select_num++;
-							if (select_num < 6) {
-								var selected = $(
-								'#selected_ing_list')
-								.html()
-								+ " <div class='selected_ing'><button class='close_ing'></button><p>"
-								+ name
-								+ "</p></div>";
-								$('#selected_ing_list')
-								.html(selected);
-								viewList();
-							} else {
-								alert("재료는 5개까지만 선택 가능합니다.");
+							var aaaa= $('.selected_ing');
+							var selected = false;
+							for(var i=0; i<aaaa.length;i++){
+								if(aaaa.eq(i).children('p').text() == name){
+									selected=true;
+								}
 							}
+							if(selected){
+								alert("이미 선택된 재료입니다..");								
+							}else{			
+								console.log($('.selected_ing').length);
+								if ($('.selected_ing').length < 5) {
+									var selected = $(
+									'#selected_ing_list')
+									.html()
+									+ " <div class='selected_ing'><button class='close_ing'></button><p>"
+									+ name
+									+ "</p></div>";
+									$('#selected_ing_list')
+									.html(selected);
+									viewList();
+								} else {
+									alert("재료는 5개까지만 선택 가능합니다.");
+								}
+							}
+								
+							
 
 							//드롭된 재료들 삭제
 							$('.close_ing')
@@ -42,7 +55,6 @@ $(document)
 										.parents(
 										'.selected_ing')
 										.remove();
-										select_num--;
 										viewList();
 									})
 						}

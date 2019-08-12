@@ -6,6 +6,11 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
 	rel="stylesheet">
 <script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
+
+
+<!-- ************************************************* -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- ************************************************* -->
 	
 <div class="insertCom">
 	<div class='CMT_icon'></div>
