@@ -16,7 +16,6 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 
-<link rel="stylesheet" href="/semiRecipe/css/sideMenu.css">
 <link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 <script src="/semiRecipe/js/primList.js"></script>
 <script src="/semiRecipe/js/showRecipe.js"></script>

@@ -80,9 +80,9 @@ public class PrimDAO extends RecipeDAO {
 	}
 	
 	public void primRating(int recipe_id) {
-		String sql = "update primary set rating = ((select sum(rating) from recipe_comment where recipe_id =?) " + 
+		String sql = "update primary set rating = round(((select sum(rating) from recipe_comment where recipe_id =?) " + 
 				"+(select sum(review_rate) from review where recipe_id = ?)) " + 
-				"/(select count(*) from (select recipe_id from review where recipe_id=? union all select recipe_id from recipe_comment where recipe_id=?)) " + 
+				"/(select count(*) from (select recipe_id from review where recipe_id=? union all select recipe_id from recipe_comment where recipe_id=?)),2) " + 
 				"where recipe_id = ?";
 		
 		try {
@@ -136,8 +136,8 @@ public class PrimDAO extends RecipeDAO {
 		if(recipe_nm_ko!= null && !recipe_nm_ko.isEmpty()) {
 			sql = "select recipe_nm_ko, img_url, prim_views, rating, recipe_id, nation_nm from primary where recipe_type = 'p' ";
 			switch(searchType) {
-			case "both": sql += "and recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' or"
-					+ " recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%')"; break;
+			case "both": sql += "and (recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' or"
+					+ " recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%'))"; break;
 			case "recipe_nm_ko": sql += "and recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' "; break;
 			case "irdnt_nm": sql += "and recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%') "; break;
 			}
