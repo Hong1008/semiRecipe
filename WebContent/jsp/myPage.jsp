@@ -61,7 +61,7 @@ td p input {
 }
 
 #yy, #mm, #dd {
-	width: 100px;
+	width: 80px;
 	height: 30px;
 	float: left;
 	margin-right: 10px;
@@ -72,7 +72,7 @@ td p input {
 	height: 100px;
 }
 
-.btns {
+.btns{
 	border-radius: 5px;
 	color: #ffffff;
 	text-decoration: none;
@@ -91,6 +91,16 @@ td p input {
 
 tr:nth-child(2) {
 	width: 10px;
+}
+
+#modCancleBtn, #modFinishBtn{
+	border-radius: 5px;
+	color: #ffffff;
+	text-decoration: none;
+    border: 1px solid #0199df;
+    background-color: #0199df;
+    padding: 6px 8px 24px;
+    line-height: 20px;
 }
 
 </style>
@@ -128,7 +138,8 @@ tr:nth-child(2) {
 						<c:if test="${iconArr!=dto.user_icon}">
 							<a class="icon" href=""><img alt="" src="/semiRecipe/img/icon/${iconArr}"></a>
 						</c:if>
-						<c:if test="${status.index==(status.end-1)/2}">
+						
+						<c:if test="${status.count==((status.end+1)/2)-1}">
 							<br/>
 						</c:if>
 					</c:forEach>
@@ -149,7 +160,7 @@ tr:nth-child(2) {
 			</td>
 			<td>
 				<a href="" id="nChangeBtn" class="btns">변경</a>
-				<a href="" id="nChangeCancleBtn" class="nHide btns">되돌리기</a>
+				<a href="" id="nChangeCancleBtn" class="nHide btns">취소</a>
 			</td>
 		</tr>
 		<tr class="content">	<!-- 비밀번호 -->
@@ -181,30 +192,32 @@ tr:nth-child(2) {
 				<span id="birthValue">${dto.user_birthday}</span>
 			</td>
 			
-			<td class="birthHide">
-				<div class="bir_wrap">
-			    	<div class="bir_yy">
-						<span class="ps_box">
-							<select id="yy" name="yy" class="sel" aria-label="년" required="required" >
-								<option value="">년</option>
-							</select>
-						</span>
-					</div>
-				
-					<div class="bir_mm">
-						<span class="ps_box">
-							<select id="mm" name="mm" class="sel" aria-label="월" required="required" >
-								<option value="">월</option>
-							</select>
-						</span>
-					</div>
-				
-					<div class=" bir_dd">
-						<span class="ps_box">
-							<select id="dd" name="dd" class="sel" aria-label="일" required="required" >
-								<option value="">일</option>
-							</select>
-						</span>
+			<td>
+				<div class="birthHide">
+					<div class="bir_wrap" >
+				    	<div class="bir_yy">
+							<span class="ps_box">
+								<select id="yy" name="yy" class="sel" aria-label="년" required="required" >
+									<option value="">년</option>
+								</select>
+							</span>
+						</div>
+					
+						<div class="bir_mm">
+							<span class="ps_box">
+								<select id="mm" name="mm" class="sel" aria-label="월" required="required" >
+									<option value="">월</option>
+								</select>
+							</span>
+						</div>
+					
+						<div class=" bir_dd">
+							<span class="ps_box">
+								<select id="dd" name="dd" class="sel" aria-label="일" required="required" >
+									<option value="">일</option>
+								</select>
+							</span>
+						</div>
 					</div>
 				</div>
 			</td>

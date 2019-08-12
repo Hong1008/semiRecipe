@@ -31,7 +31,7 @@ body {
 
 .wrap {
 	display: block;
-	margin: 0 auto;
+	margin: 50px auto;
 	width: 600px;
 }
 
@@ -46,7 +46,6 @@ body {
 .result {
 	width: 220px;
 	height: 45px;
-	margin-top: 25px;
 	margin-right: 18px;
 	display: inline-block;
     color: #fff;
@@ -75,11 +74,14 @@ body {
 	color: red;
 }
 
-
 .iconwrap img {
     width:40px;
     height:40px;
     border: 1px solid white;
+}
+.iconwrap{
+	margin-top: 15px;
+	margin-bottom: 12px;
 }
 
 #icon {

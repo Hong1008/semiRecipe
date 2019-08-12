@@ -55,28 +55,24 @@
 }
 
 #log_container {
-	width: 120px;
+	width: 220px;
 	height: 30px;
 	position: absolute;
 	right: 30px;
 	top: 20px;
-	z-index: 0;
-	position: fixed;
+	z-index: 1;
 }
 
-#myPage {
-	width: 65px;
-	height: 18px;
-	float: left;
-	cursor: pointer;
-	margin-right: 15px;
-	margin-top: 10px;
-}
-
-#login, #logout {
-	width: 32px;
-	cursor: pointer;
-	float: left;
+#log_container a {
+	text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    padding: 0 0 0 10px;
+    letter-spacing: 1px;
+    font-style: italic;
+    font-size: 20px;
+    margin: 3px;
+    font-weight: 100;
 }
 
 #menu1 img {
@@ -95,3 +91,4 @@
 #logo_container img {
 	width: 100%;
 }
+
