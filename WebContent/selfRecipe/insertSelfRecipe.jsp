@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
 <%@include file="../jsp/menu.jsp"%>
-<%@include file="../jsp/sideMenu.jsp" %>
+<%-- <%@include file="../jsp/sideMenu.jsp" %> --%>
 <!DOCTYPE html>
 
 <html>
@@ -17,9 +17,6 @@
 <!--웹폰트-->
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap" rel="stylesheet">
 
-<!--sidemenu js/css  -->
-<link rel="stylesheet" href="/semiRecipe/css/sideMenu.css">
-<script type="text/javascript" src="/semiRecipe/js/sideMenu.js"></script>
 
 
 <!-- 드래그/드랍 + 한글-->
@@ -32,6 +29,8 @@
 </head>
 
 <body onContextmenu="return false">
+
+			<jsp:include page="../jsp/sideMenu.jsp"/>	
 	
 	<form name="frm" method="post" enctype="multipart/form-data" action="insertSelfRecipe">
 		<c:if test="${!empty param.user_id }">
@@ -39,8 +38,8 @@
 		</c:if>
 		
 		<!-- 이미지 요리이름 간략소개 -->
-		<section id='SR_header' class='SR_div'>
-				<ul id='SR_image'>
+		<section id='R_header' class='R_div'>
+				<ul id='R_image'>
 					<li class="image_part" ><img id='image_preview' class="image_preview" src='#' /></li>
 					<li class="image_part"><input type="file" id='imgInput' name="img_url" required="required" /></li>
 					<li class="image_part"><input type="text" id="recipe_nm_ko" name="recipe_nm_ko" required="required" placeholder="나만의 요리 이름을 지어주세요!" /></li>
@@ -49,7 +48,7 @@
 		</section>
 	
 		<!-- 세부항목 -->
-		<section id='SR_info' class='SR_div'>
+		<section id='R_info' class='SR_div'>
 			<!------------------ 아이디 바꿔야함 -------------->
 			<div id='food_class_part'>
 				<p>음식분류 </p>
@@ -71,7 +70,7 @@
 				<span>m</span>
 			</div>
 		
-			<div id='SR_cal_part' >
+			<div id='R_cal_part' >
 				<input type="hidden" id="calorie" name="calorie" required="required"/>
 				<p>칼로리</p>
 				<span id="R_cal_four" class="R_cal">0</span> <span id="R_cal_three" class="R_cal">0</span> 
@@ -87,7 +86,7 @@
 		</section>
 	
 		<!-- 재료 작성란 -->
-		<section id='SR_importance' class='SR_div'>
+		<section id='R_importance' class='R_div'>
 			<h3>장바구니</h3>
 			<div id='container' class='test'>
 				<div id='main_contents'>
@@ -119,7 +118,7 @@
 		</section>
 
 		<!-- 세부레시피 작성란 -->
-		<section id='SR_recipeDiv' class='SR_div'>
+		<section id='R_recipeDiv' class='R_div'>
 			<h3>조리 순서</h3>
 			<table class="self_recipeDiv_part">
 				<tr>
@@ -137,7 +136,7 @@
 		
 		
 		
-		<section id='rg_section' class='SR_div'>
+		<section id='rg_section' class='R_div'>
 		<input type="submit" class="w_btn" id="submit" value="등록"/>
 		<input type="reset" class="w_btn" id="reset" value="취소"/>
 		</section>

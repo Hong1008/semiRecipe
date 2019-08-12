@@ -11,8 +11,8 @@ $(document)
 			
 			//재로 사이드메뉴 열기/닫기
 			$('#side_btn').on('click', function() {
-				
 				if (isopen) {
+					console.log('닫힘');
 					$('#side_menu').animate({
 						right : -700
 					}, 800);
@@ -24,7 +24,27 @@ $(document)
 					}, 1200);
 					isopen = false;
 					anim = true;
+					
 				} else {
+					console.log('열림');
+					
+
+					var ig= $('.ingredients');
+					console.log(ig.length);
+					for(var i=0;i<ig.length;i++){
+							console.log(ig.eq(i).attr('id').length);
+							if(ig.eq(i).attr('id').length>=5){
+								ig.eq(i).css({
+									'padding-top':'28px'
+								});								
+							}if(ig.eq(i).attr('id').length>=9){
+								ig.eq(i).css({
+									'padding-top':'32px',
+									'font-size':'15px'
+								});								
+							}
+					}
+					
 					$('#side_menu').animate({
 						right : 0
 					}, 800);
@@ -153,5 +173,6 @@ $(document)
 					}
 				})
 			})
+			
 
 		})

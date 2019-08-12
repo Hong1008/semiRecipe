@@ -32,14 +32,12 @@ $(document).ready(function(){
 	
 	$('.star').on('click',function(){
 		star_num=$(this).attr('id').split('_')[1];
-		console.log('star_num='+star_num);
 		rating(star_num,'#star_');
 		$('#rate').attr('value',star_num);
 	})
 	
 	$('.star').on('mouseover',function(){
 		star_rate=$(this).attr('id').split('_')[1];
-		console.log('star_rate='+star_rate);
 		rating(star_rate,'#star_');
 	})	
 
@@ -51,8 +49,6 @@ $(document).ready(function(){
 	for(var i=0;i<con.length;i++ ){
 		var num = con.eq(i).find('.rate_num').attr('id');
 		var id = '#'+con.eq(i).attr('id')+" #rate_";
-		console.log('num:' + num);
-		console.log('id:' + id);
 		rating(num,id)
 		
 	}
@@ -61,7 +57,7 @@ $(document).ready(function(){
 })
 function rating(num,id){
 	for(var i=1;i<=5;i++){
-		console.log(id+i);
+		console.log('id='+id+'i='+i+'num='+num);
 		if(i<=num)
 		$(id+i).css('opacity','0.9');
 		else
