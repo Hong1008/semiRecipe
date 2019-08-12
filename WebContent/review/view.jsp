@@ -23,13 +23,17 @@
    .viewerTable, .viewerTableSecond{
    	margin-left: 20px;
    	margin-right: 20px;
-     width :760px;
-	 text-align: center;
+    width :760px;
+	text-align: center;
    }
    #review_title_first{
    	 height: 50px;
    }
    #review_title_second{
+   	 height:50px;
+   }
+   
+   #review_content{
    	 height: 100%;
    	 min-height : 300px;
    }
@@ -38,7 +42,7 @@
      font-weight: 800;
    }
    #revContentSpace{
-   	 border-top: solid 1px rgb(200, 200, 200);
+   	 border-top: solid 1.5px #000000;
    	 padding-top : 8px;
    	}
 </style>
@@ -51,7 +55,7 @@
 	</div> --%>
 	
 	<div id="view_post" >
-	<c:set value="${sessionScope.viewer}" var="viewer"/>
+	<c:set value="${requestScope.viewer}" var="viewer"/>
 		<table class="viewerTable">
 		<tr id="review_title_first">
 			<td width = "555px" colspan="2" align ="left" id="revTitleSpace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${viewer.review_subject}</td>  

@@ -14,9 +14,10 @@ public class ReviewViewAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		ReviewDAO dao = new ReviewDAO();
 		int num = Integer.parseInt(req.getParameter("review_num"));
+		dao.readCountMethod(num);
 		ReviewDTO aList = dao.viewMethod(num);
+		req.setAttribute("viewer", aList);
 		
-		HttpSession session = req.getSession();
-		session.setAttribute("viewer", aList);
+		
 	}
 }
