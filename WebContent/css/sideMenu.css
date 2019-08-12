@@ -6,16 +6,17 @@
 	position: fixed;
 	top: 150px;
 	right: -700px;
-	border-radius: 30px;
+	border-radius: 110px;
 }
 
 /*사이드버튼*/
 #side_btn {
 	width: 100px;
 	height: 100px;
-	margin-top: 250px;
+	margin-top: 300px;
 	margin-left: -100px;
 	position: fixed;
+    cursor: pointer;
 }
 
 #side_btn img {
@@ -31,16 +32,17 @@
 }
 
 #search_div input {
-	width: 320px;
-	height: 36px;
-	position: fixed;
-	margin-top: 4px;
-	border: 1px;
-	border-radius: 11px;
-	margin-left: 40px;
-	padding-left: 11px;
-	font-size: 16px;
-}
+	width: 326px;
+    height: 44px;
+    position: fixed;
+    margin-top: 12px;
+    border: 1px;
+    border-radius: 9px;
+    margin-left: -1px;
+    padding-left: 13px;
+    font-size: 22px;
+    box-shadow: 0px 2px 5px 0px rgb(147, 144, 144);
+    }
 
 #search_div label img {
 	margin-left: -50px;
@@ -59,9 +61,9 @@
 
 /*재료 메뉴부분*/
 #ingredients_menu_div {
-	height: 50px;
-	width: 600px;
-	overflow: hidden;
+	height: 60px;
+    width: 586px;
+    overflow: hidden;
 }
 
 #ingredients_menu_div img {
@@ -85,27 +87,28 @@
 
 #ing_menu {
 	list-style-type: none;
-	height: 50px;
-	width: 1200px;
+    height: 58px;
+    width: 1200px;
+    border-bottom: 1px solid black;
 }
 
 .ing_menu_li {
 	width: 135px;
-	height: 45px;
-	float: left;
-	font-family: 'Noto Sans KR';
-	font-size: 22px;
-	font-weight: bold;
-	text-align: center;
-	cursor: pointer;
-	background: rgb(210, 210, 210);
-	border-radius: 24px;
-	margin-right: 15px;
-	padding-top: 5px;
+    height: 45px;
+    float: left;
+    font-family: 'Noto Sans KR';
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    background: rgba(35, 35, 35,1);
+    margin-right: 15px;
+    padding-top: 5px;
+    color: rgb(250,250,250);
 }
 
 /*재료부분*/
 .ingredients {
+    cursor: pointer;
 	width: 113px;
     height: 113px;
     float: left;
@@ -118,13 +121,14 @@
     padding-left: 20px;
     margin-left: 7px;
     margin-top: 7px;
-    background: rgb(220,220,220,0.8);
+    background: rgb(10,10,10,0.6);
     border-radius: 69px;
-    border: 1px solid rgba(10,10,10,0.9);
+    border: 1px solid rgba(250,250,250,1);
+    color: rgba(250,250,250,1);
 }
 
 #ing_maker {
-	width: 620px;
+    width: 660px;
 	overflow-y: scroll;
 	height: 480px;
 }
