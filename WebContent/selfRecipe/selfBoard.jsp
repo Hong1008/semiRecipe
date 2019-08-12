@@ -12,13 +12,27 @@
 <script src="/semiRecipe/assets/js/jquery.poptrox.min.js"></script>
 <script src="/semiRecipe/assets/js/skel.min.js"></script>
 <script type="text/javascript" src="/semiRecipe/selfRecipe/js/self_board.js"></script>
-<link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 <link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_board.css">
+<link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
+
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i" rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-ea422c41/css/fontello.css">
 
 </head>
 <body>
+	<!-- hidden div -->
+	<div id="hidden"></div>
+	<div id="selected_recipe"></div>
+	
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<!-- 한식 양식 퓨전 등 표시해주는  -->
+		<section id="category">
+
+		</section>
+
+		<!-- Main -->
+		<section id="main">
 <!-- 검색 부분  시작 -->
 	<div id="searchLine">
 		<select name="searchDrop" id="searchDrop">
@@ -30,6 +44,7 @@
 		<input type="button" class="icon-search" value="검색">
 	</div>
 <!-- 검색 부분  끝 -->
+
 <!-- 정렬부분 시작 -->
 	<a href="#" class="sort" id="sortView"> 
 	<input type="hidden" class="column" value="self_views"> 
@@ -47,38 +62,22 @@
 	<input type="hidden" class="nation_nm" value=""> 가나다순
 	</a>
 <!-- 정렬부분 끝 -->
-	<!-- hidden div -->
-	<div id="hidden"></div>
-	<div id="selected_recipe"></div>
-	
-	<!-- Wrapper -->
-	<div id="wrapper">
-		<!-- 한식 양식 퓨전 등 표시해주는  -->
-		<section id="category">
-
-		</section>
-
-		<!-- Main -->
-		<section id="main">
-
 			<!-- Thumbnails -->
 			
 		<section class="thumbnails">
 			<c:forEach items="${requestScope.prList}" var="prList" varStatus="i">
-				<div class="js-load" id="${prList.RECIPE_ID }">
-					<a href="#"> <img src="/semiRecipe/selfRecipe/img_self/${prList.IMG_URL}" alt="main_image" />
-					<h3>${prList.RECIPE_NM_KO}</h3>
-					</a> 
-					<c:forEach items="${requestScope.srList }" var="srList" begin="${i.index }" end="${i.index }">
-						<span>${srList.user_id }</span>
-						<span>${srList.self_date }</span>
-						<input type="hidden" name="recipe_id" value="${srList.recipe_id }"/>
-					
-						<span><img alt="" src="/semiRecipe/img/views.png"> ${srList.self_views }</span>&nbsp;&nbsp;
-						<span><img alt="" src="/semiRecipe/img/rating.png">  ${prList.RATING }</span>
-						<input type="hidden" id="${prList.NATION_NM }" value="${prList.NATION_NM }"/>
-					</c:forEach>
-					
+				<div class="js-load" id="${prList.recipe_id }">
+					<span><a href="#"> <img src="/semiRecipe/selfRecipe/img_self/${prList.img_url}" alt="main_image" />
+					<h3>${prList.recipe_nm_ko}</h3></a> </span>
+					<span>
+					<c:set var="recipe_id" value="${prList.recipe_id }"/>
+					<span>${prList.user_id }</span>
+					<span>${prList.self_date }</span>
+					<input type="hidden" name="recipe_id" value="${prList.recipe_id }"/>
+					<span><img alt="" src="/semiRecipe/img/views.png"> ${prList.self_views }</span>&nbsp;&nbsp;
+					<span><img alt="" src="/semiRecipe/img/rating.png">  ${prList.rating }</span>
+					<input type="hidden" id="${prList.nation_nm }" value="${prList.nation_nm }"/>
+					</span>
 				</div>
 			</c:forEach>
 		</section>
@@ -89,6 +88,7 @@
 		<a href="#">top</a>
 	</div>	
 <!-- 화면 위로 올리기 끝 -->
+
 		
 	<!-- 하단 버튼 부분 시작 -->
 		<section>
@@ -96,7 +96,8 @@
 				<a href="selfRecipe" class="icon-th-thumb-empty"> 목록</a>
 				<c:if test="${not empty sessionScope.loginID }">
 				<a href="insertSelfRecipe" class="icon-comment"> 쓰기</a>
-				<a href="insertSelfRecipe" class="icon-comment"> 삭제</a>
+				<input type="button" class="del" value="삭제" />
+<!-- 			<a href="#" class="icon-comment"> 삭제</a> -->
 				</c:if>
 			</div>
 		</section>

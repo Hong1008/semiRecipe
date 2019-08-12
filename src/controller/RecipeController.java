@@ -23,6 +23,7 @@ import action.RegisterAction;
 import action.ReviewListAction;
 import action.ReviewViewAction;
 import action.ReviewWriteAction;
+import action.SelfDeleteAciont;
 import action.SelfListAction;
 import action.SelfViewAction;
 import action.SelfInsertAction;
@@ -32,6 +33,7 @@ import model.InfoUpdate;
 import model.IrdntTYDAO;
 import model.ReviewInsertAction;
 import model.SelfRecipeDAO;
+
 
 @WebServlet("/recipe/*")
 public class RecipeController extends HttpServlet {
@@ -67,7 +69,7 @@ public class RecipeController extends HttpServlet {
 			next = "/jsp/showRecipe.jsp";
 		}else if(path.equals("recipe/list")) {
 			RecipeListAction list = new RecipeListAction();
-			list.execute(req, resp);
+			list.execute(req, resp);////////////////////////////////////////////////////////////////////
 			next = "/jsp/primList.jsp";
 			if(method.equalsIgnoreCase("POST")) {
 				next = "/ajax/listResult.jsp";
@@ -101,10 +103,6 @@ public class RecipeController extends HttpServlet {
 			IrdntAction irdnt = new IrdntAction();
 			irdnt.execute(req, resp);
 			next = "/review/irdntList.jsp";
-		}else if(path.equals("recipe/selfRecipe")) {
-			SelfListAction selfList = new SelfListAction();
-			selfList.execute(req, resp);
-			next = "/selfRecipe/selfBoard.jsp";				
 		}else if(path.equals("recipe/comList")) {
 			ComListAction comList = new ComListAction();
 			comList.execute(req,resp);
@@ -112,6 +110,13 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/insertCom")) {
 			ComInsertAction insertCom = new ComInsertAction();
 			insertCom.execute(req,resp);
+		}else if(path.equals("recipe/selfRecipe")) {
+			SelfListAction selfList = new SelfListAction();// 셀프 리스트 
+			selfList.execute(req, resp);////////////////////////////////////////////////////////////////////////////
+			next = "/selfRecipe/selfBoard.jsp";		
+			if(method.equalsIgnoreCase("POST")) {
+				next = "/ajax/selfList.jsp";
+			}
 		}else if(path.equals("recipe/selfView")) { //  셀프 뷰
 			SelfViewAction viewList = new SelfViewAction();
 			viewList.execute(req, resp);
@@ -130,6 +135,13 @@ public class RecipeController extends HttpServlet {
 				int riMax = dao.recipeIdMax();
 				resp.sendRedirect("selfView?recipe_id="+riMax);
 			}
+		}else if (path.equals("deleteSelfRecipe")) {
+				SelfDeleteAciont del = new SelfDeleteAciont();
+				del.execute(req, resp);
+				//resp.sendRedirect("selfRecipe?pageNum=" + req.getParameter("pageNum"));
+				//삭제 후 마지막 페이지 유지
+			
+			
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
 		}else if(path.equals("recipe/login")) {

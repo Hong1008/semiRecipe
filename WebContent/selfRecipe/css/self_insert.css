@@ -10,6 +10,18 @@ body { background-color: #FFF5E6; }
 	font-size:  16x;
 }
 
+#R_header ul#R_image li:nth-of-type(2) {
+	display: none;
+} 
+
+
+/* #R_header ul#R_image textarea#sumry {
+        padding: 10px 10px;
+        font-size: 20px;
+} */
+
+
+
 .R_div {
 	margin: 0 auto;
 	width: 760px;
