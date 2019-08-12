@@ -79,33 +79,4 @@ $(document)
 				})
 			}
 
-			//스크롤 내리기전 사이드메뉴
-			$(document).scroll(function() {		
-				
-				if($(document).scrollTop() < 700){
-					$('.recipeBtn#nextBtn img').animate({'opacity':0},300);	
-					$('.recipeBtn#prevBtn img').animate({'opacity':0},300);	
-				}else{
-					$('.recipeBtn#nextBtn img').clearQueue().animate({'opacity':1},300);	
-					$('.recipeBtn#prevBtn img').clearQueue().animate({'opacity':1},300);	
-				}
-
-				//선택된 메뉴들
-				if($(document).scrollTop() < 600 ){
-					$('#selected_ing_div').css({'top':	'700px','opacity':1});	
-				}else if ($(document).scrollTop() < 1200 && $(document).scrollTop() >= 600) {
-					var marginT = 1300 - $(document).scrollTop();
-					$('#selected_ing_div').css({'top':marginT + 'px','opacity':1});
-				} else {
-					$('#selected_ing_div').css({'top':	'160px','opacity':0.5});					
-				}
-			});
-			//마우스 올리면 투명도 제거
-			$('#selected_ing_div').on('mouseover',function(){
-				$(this).clearQueue().animate({'opacity':1},300);
-			})
-			$('#selected_ing_div').on('mouseleave',function(){
-				if($(document).scrollTop() >= 650)
-					$(this).clearQueue().animate({'opacity':0.5},300);
-			})
 		});

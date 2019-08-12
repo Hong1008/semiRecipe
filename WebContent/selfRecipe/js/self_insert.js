@@ -23,7 +23,6 @@ function insertImg(){
 	
 }
 
-
 //이미지삽입 체크
 function insertImgCheck(){ 
 	$('form').submit(function(){
@@ -98,16 +97,35 @@ function cookingTime(){
 }
 
 	/*재료 드랍하기*/
-function irdntDrop(){
-	var select_num = 0;			
-	$('#R_importance').droppable({				
+function irdntDrop() {
+	var select_num = 0;
+	$('#R_importance').droppable({
 		drop : function(event, ui) {
-		select_num++;
-		if (select_num < 10) {
-		alert("재료추가테스트");
-					}
-				}
-		});
+			select_num++;
+			if (select_num < 10) {
+				var selected = $('#selected_ing_list').html()
+				+ " <div class='selected_ing'><input type ='hidden'value='"+name+"' id='ing'>" +
+						"<div class='close_ing'></div><p>"+ name
+				+ "</p><select name='imp' id='imp'><option value='필수'>필수</option>" +
+						"<option value='상'>상</option><option value='중'>중</option>" +
+						"<option value='하'>하</option></select></div>";				
+				$('#selected_ing_list')
+				.html(selected);
+			}
+			
+			//드롭된 재료들 삭제
+			$('.close_ing')
+			.on(
+					'click',
+					function() {
+						$(this)
+						.parents(
+						'.selected_ing')
+						.remove();
+						viewList();
+					})
+		}
+	});
 };
 
 

@@ -40,12 +40,24 @@
 
 #quick_menu {
     width: 65px;
-    height: 36px;
+    height: 64px;
 	background:#F29F05;
 	text-align: center;
 	position: absolute;
 	top: 80%;
 	left: 90%;
+}
+
+
+#quick_menu p:nth-of-type(3) {
+	
+    width: 65px;
+    height: 62px;
+	background:#F29F05;
+	text-align: center;
+	position: absolute;
+	top: 80%;
+	/* left: 90%; */
 }
 
 #quick_menu a{
@@ -92,34 +104,3 @@
 #searchDrop{
 	width: 120px;
 }
-/* 목록, 쓰기 버튼 */
-#buttonLine {
-	max-width: 68rem;
-	margin: 0 auto;
-	margin-bottom: 50px;
-}
-
-#buttonLine .icon-th-thumb-empty {
-	padding: 3px;
-	float: left;
-	text-decoration: none;
-	color: #FFF5E6;
-	background-color: rgba(242, 159, 5, 0.8);
-	border: 1px solid #F29F05;
-	border-radius: 0.2rem;
-	font-size: 20px;
-}
-
-#buttonLine .icon-comment {
-	padding: 3px;
-	float: right;
-	margin: 20px
-	text-decoration: none;
-	color: #FFF5E6;
-	background-color: rgba(242, 159, 5, 0.8);
-	border: 1px solid #F29F05;
-	border-radius: 0.2rem;
-	font-size: 20px;
-}
-/* 목록, 쓰기 버튼 끝 */
-

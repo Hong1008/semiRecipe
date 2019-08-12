@@ -2,9 +2,12 @@ package action;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -17,7 +20,7 @@ import model.StepDTO;
 
 public class SelfUpdateAction extends HttpServlet {
 	
-	public MultipartRequest executeMulti(HttpServletRequest req) {
+	public MultipartRequest executeMulti(HttpServletRequest req, HttpServletResponse resp)  {
 
 		MultipartRequest multi = null;
 		String saveDirectory = "/img_self";
@@ -57,16 +60,29 @@ public class SelfUpdateAction extends HttpServlet {
 		prdto.setCALORIE(multi.getParameter("calorie"));
 		
 		SelfRecipeDTO srdto = new SelfRecipeDTO();
-		
-		
+		srdto.setRecipe_id(Integer.parseInt(multi.getParameter("recipe_id")));
+		srdto.setUser_id(multi.getParameter("user_id"));
+	
+		List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
 		IrdntDTO irdto = new IrdntDTO();
-		
-		
-		StepDTO stdto = new StepDTO();
-		
-		
-		
-		
+		for (int i = 0; i < irList.size(); i++) {
+		irdto.setRECIPE_ID(Integer.parseInt(multi.getParameter("recipe_id")));
+		irdto.setIMPORTANCE(multi.getParameter("importance"));
+		irdto.setIRDNT_SN(Integer.parseInt(multi.getParameter("irdnt_sn")));
+		irdto.setIRDNT_NM(multi.getParameter("irdnt_nm"));
+		irList.add(irdto);
+		}
+				
+		String[] cooking_dc = multi.getParameterValues("recipe_dc");
+		List<StepDTO> stList = new ArrayList<StepDTO>();
+		for (int i = 0; i < cooking_dc.length; i++) {
+			StepDTO stdto = new StepDTO();
+			stdto.setRECIPE_ID(Integer.parseInt(multi.getParameter("recipe_id")));
+			stdto.setCOOKING_NO(i+1);
+			stdto.setCOOKING_DC(cooking_dc[i]);
+			stList.add(stdto);
+		}
+		dao.stepInsertMethod(stList);
 		
 		return multi;
 	}// end executeMulti()
