@@ -5,7 +5,7 @@ $(document).ready(function() {
 	cookingTime();
 	irdntDrop();
 	totalCalorie();
-	backAction();
+	//backAction();
 
 	$("#imgInput").change(function(){
 		imagePreview(this);
@@ -13,7 +13,7 @@ $(document).ready(function() {
 	
 	checkfiile();
 	insertImgCheck();
-	submitAction();
+
 });// end ready()
 /*이미지 삽입 버튼*/
 function insertImg(){
@@ -99,19 +99,33 @@ function cookingTime(){
 	/*재료 드랍하기*/
 function irdntDrop() {
 	var select_num = 0;
-	$('#R_importance').droppable({
+	$('.SR_ig_div').droppable({
 		drop : function(event, ui) {
-			select_num++;
-			if (select_num < 10) {
-				var selected = $('#selected_ing_list').html()
-				+ " <div class='selected_ing'><input type ='hidden'value='"+name+"' id='ing'>" +
-						"<div class='close_ing'></div><p>"+ name
-				+ "</p><select name='imp' id='imp'><option value='필수'>필수</option>" +
-						"<option value='상'>상</option><option value='중'>중</option>" +
-						"<option value='하'>하</option></select></div>";				
-				$('#selected_ing_list')
-				.html(selected);
+			
+			var aaaa= $('.selected_ing');
+			var selected = false;
+			for(var i=0; i<aaaa.length;i++){
+				if(aaaa.eq(i).children('p').text() == name){
+					selected=true;
+				}
 			}
+			if(selected){
+				alert("이미 선택된 재료입니다..");								
+			}else{	
+				if ($(this).children('.selected_ing').length < 5) {
+					var selected = $(this).html()
+					+ " <div class='selected_ing'><input type ='hidden'value='"+name+"' id='ing'>" +
+							"<div class='close_ing'></div><p>"+ name
+					+ "</p><select name='imp' id='imp'><option value='필수'>필수</option>" +
+							"<option value='상'>상</option><option value='중'>중</option>" +
+							"<option value='하'>하</option></select></div>";				
+					$(this).html(selected);
+				}else{
+					alert("재료가 너무많아..");						
+				}
+			}
+			
+			
 			
 			//드롭된 재료들 삭제
 			$('.close_ing')
@@ -144,20 +158,8 @@ function selfRecipeDivAddDel() {
 			i--
 		});
 	}
-	/*서브밋*/
-/*function submitAction() {
-		$('#submit').on('click', function(){
-			$('#frm').submit();
-		});	
-}*/
 
-/*취소시 뒤로가기*/
-function backAction() {
-	$('#reset').on('click', function(){
-		location.href="/semiRecipe/selfRecipe/selfBoard.jsp";
-	})
-	
-}
+
 
 
 	/*시간, 칼로리 클릭 업다운*/

@@ -283,6 +283,7 @@ td, tr {
 					<td width="200px" align="center">내용</td>
 					<td width="800px"><textarea name="review_content" id="summernote"
 							rows="30" cols="90"></textarea></td>
+
 				</tr>
 
 				<script>
