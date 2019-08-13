@@ -50,6 +50,7 @@
 	width: 620px;
 	border-bottom: 1px solid gray;
 	padding-bottom: 10px;
+	word-break:break-all;
 }
 
 .CMT_ID {

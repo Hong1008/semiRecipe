@@ -40,7 +40,7 @@ public class ShowRecipeAction {
 		req.setAttribute("hour", hour);
 		req.setAttribute("minute", zero+minute);
 		CommentDAO cdao = new CommentDAO();
-		req.setAttribute("total", cdao.getTotal(recipe_id));
+		req.setAttribute("total", cdao.getTotal(recipe_id));  
 		cdao.exit();
 	}
 
