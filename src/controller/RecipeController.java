@@ -14,6 +14,8 @@ import action.CheckNicknameAction;
 import action.CheckNowPw;
 import action.ComInsertAction;
 import action.ComListAction;
+import action.ImageUpload;
+import action.InfoUpdate;
 import action.IrdntAction;
 import action.KakaoLoginAction;
 import action.LoginAction;
@@ -21,6 +23,7 @@ import action.LogoutAction;
 import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
+import action.ReviewInsertAction;
 import action.ReviewListAction;
 import action.ReviewViewAction;
 import action.ReviewWriteAction;
@@ -31,10 +34,8 @@ import action.SelfViewAction;
 import action.SelfInsertAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
-import model.InfoUpdate;
 import model.IrdntTYDAO;
 import model.PrimDTO;
-import model.ReviewInsertAction;
 import model.SelfRecipeDAO;
 
 
@@ -98,6 +99,9 @@ public class RecipeController extends HttpServlet {
 			revInsert.execute(req, resp);
 			//next="/review/reviewBoard.jsp";
 			resp.sendRedirect("review");
+		}else if(path.equals("recipe/imageUpload")) {
+			ImageUpload imageUp = new ImageUpload();
+			imageUp.execute(req, resp);
 		}else if(path.equals("recipe/reviewview")) {
 			ReviewViewAction revView = new ReviewViewAction();
 			revView.execute(req, resp);
