@@ -104,26 +104,27 @@
 	-webkit-transform: rotate(-45deg);
 }
 
-
 /* 좌우 버튼 */
 .recipeBtn{		
+	display:block !important;
 	width: 110px;
-    height: 100%;
     position: fixed;
-    top: 0px;
-    background: rgba(5,5,5,0.2);
+    top: 549px;
+    background: rgba(5,5,5,0.5);
+    transform:translate(-50%,-50%);
+	border-radius: 23px;
+	cursor: pointer;
+	opacity: 0.5;
 }
 
 .recipeBtn img {	
     width: 100%;
-    margin-top: 250px;
 }
 
 #nextBtn{
-	right: 0px;
+	left: 75%;
 }
 
 #prevBtn{
-	left: 0px;
+	left: 25%;
 }
-

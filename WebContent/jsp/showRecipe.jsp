@@ -14,7 +14,7 @@ console.log(rate.length);
 for(var i=0; i<rate.length;i++){
 	console.log('a');
 	console.log($(rate.eq(i)).attr('id')*100/4+'%');
-	$(rate.eq(i)).css({'width':$(rate.eq(i)).attr('id')*100/4+'%','opacity':$(rate.eq(i)).attr('id')/4});
+	$(rate.eq(i)).css({'width':($(rate.eq(i)).attr('id')*100/4+'%'),'opacity':($(rate.eq(i)).attr('id')/4)});
 }
 </script>
 <div id='R_header' class='R_div'>
