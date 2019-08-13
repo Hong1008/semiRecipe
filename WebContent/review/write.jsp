@@ -122,16 +122,18 @@
 				}
 			});
 
-			var text = CKEDITOR.instances.editor1.getData();
-
-
+			oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+			contents =$('#ir1').val();
+			
+			
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
 				//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
 				data : {
 					recipe_id : recipe_id,
-					review_content : text,
+					recipe_nm_ko : $('#revRecipeSelect').val(),
+					review_content : contents,
 					user_id : $('#user_id').val(),
 					review_subject : $('#review_subject').val(),
 					user_nickname : $('#user_nickname').val(),
@@ -318,7 +320,7 @@ td, tr {
 
 				<tr>
 					<td width="200px" align="center" style="font-weight:bold">내용</td>
-					<td width="800px"><textarea name="review_content" id="ir" rows="10" cols="100"></textarea></td>
+					<td width="800px"><textarea name="review_content" id="ir1" rows="10" cols="100"></textarea></td>
 				</tr>
 				<script type="text/javascript">
 					var oEditors = [];
@@ -326,7 +328,7 @@ td, tr {
 					nhn.husky.EZCreator.createInIFrame({
 						oAppRef : oEditors,
 						elPlaceHolder : "ir1",
-						sSkinURI : "/semiRecipe/smartEditor/SmartEditor2Skin.html",
+						sSkinURI : "../smartEditor/SmartEditor2Skin.html",
 						fCreator : "createSEditor2"
 					});
 				</script>

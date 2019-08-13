@@ -14,6 +14,13 @@ public class ReviewDTO {
 	private String review_url;
 	private String user_id;
 	private int recipe_id;
+	private String recipe_nm_ko;
+	public String getRecipe_nm_ko() {
+		return recipe_nm_ko;
+	}
+	public void setRecipe_nm_ko(String recipe_nm_ko) {
+		this.recipe_nm_ko = recipe_nm_ko;
+	}
 	private String user_nickname;
 	
 	public ReviewDTO() {

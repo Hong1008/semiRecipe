@@ -24,6 +24,7 @@ import action.RegisterAction;
 import action.ReviewListAction;
 import action.ReviewViewAction;
 import action.ReviewWriteAction;
+import action.ReviewInsertAction;
 import action.SelfDeleteAciont;
 import action.SelfListAction;
 import action.SelfUpdateAction;
@@ -34,7 +35,6 @@ import action.ViewAction;
 import model.InfoUpdate;
 import model.IrdntTYDAO;
 import model.PrimDTO;
-import model.ReviewInsertAction;
 import model.SelfRecipeDAO;
 
 
@@ -96,8 +96,8 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/reviewinsert")) {
 			ReviewInsertAction revInsert = new ReviewInsertAction();
 			revInsert.execute(req, resp);
-			//next="/review/reviewBoard.jsp";
-			resp.sendRedirect("review");
+			next="/review/reviewBoard.jsp";
+			//resp.sendRedirect("review");
 		}else if(path.equals("recipe/reviewview")) {
 			ReviewViewAction revView = new ReviewViewAction();
 			revView.execute(req, resp);

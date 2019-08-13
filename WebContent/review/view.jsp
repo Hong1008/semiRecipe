@@ -58,18 +58,16 @@
 	<c:set value="${requestScope.viewer}" var="viewer"/>
 		<table class="viewerTable">
 		<tr id="review_title_first">
-			<td width = "555px" colspan="2" align ="left" id="revTitleSpace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${viewer.review_subject}</td>  
+			<td width = "555px" colspan="4" align ="left" id="revTitleSpace">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${viewer.review_subject}</td>  
 			<td width = "50px" id="revViewcount" class="icon-book-open"></td>
-			<td width = "50px" id="revViewcountSpace">${viewer.review_views}</td>
-			<td width = "50px" id="revCommcount" class="icon-chat"></td>
-			<td width = "50px" id="revCommcountSpace"></td>		
+			<td width = "50px" id="revViewcountSpace">${viewer.review_views}</td>	
 		</tr>
 		</table>
 		<table class="viewerTableSecond">
 		<tr id="review_title_second">
-			<td id="revWriter" class="icon-pencil" width = "48px"></td>
-			<td id="revWriterSpace" width = "195px" align ="left">&nbsp;&nbsp;${viewer.user_nickname}</td>
-			<td id="recipeID" width = "300px">레시피 아이디 ${viewer.recipe_id}</td>
+			<td id="revWriter" class="icon-pencil" width = "50px"></td>
+			<td id="revWriterSpace" width = "200px" align ="left">&nbsp;&nbsp;${viewer.user_nickname}</td>
+			<td id="recipeID" width = "300px">${viewer.recipe_nm_ko}</td>
 			<td id="revRate" class="icon-star" width ="50px"></td> 
 			<td id="revRateSpace" width="50px">${viewer.review_rate}</td> 			
 			<td id="revDate" width = "100px">${viewer.review_date}</td>

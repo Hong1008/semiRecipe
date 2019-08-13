@@ -17,7 +17,7 @@ public class ReviewViewAction {
 		dao.readCountMethod(num);
 		ReviewDTO aList = dao.viewMethod(num);
 		req.setAttribute("viewer", aList);
-		
+		dao.exit();
 		
 	}
 }
