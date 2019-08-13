@@ -486,14 +486,16 @@ public class SelfRecipeDAO {
 	public void irdntInsertMethod(List<IrdntDTO> irdList) {
 		try {
 			conn = init();
-			String sql = "insert into irdnt (irdnt_sn, importance, recipe_id, irdnt_nm) ";
-			sql += "values(?, ?, ?, ?)";
+			String sql = "insert into irdnt (irdnt_sn, importance, recipe_id, irdnt_nm, irdnt_ty_nm) ";
+			sql += "values(?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < irdList.size(); i++) {
-			pstmt.setInt(1, irdList.get(i).getIRDNT_SN());
+				int irdnt_sn = irdList.get(i).getRECIPE_ID()+i;
+			pstmt.setInt(1, irdnt_sn);
 			pstmt.setString(2, irdList.get(i).getIMPORTANCE());
 			pstmt.setInt(3, irdList.get(i).getRECIPE_ID());
 			pstmt.setString(4, irdList.get(i).getIRDNT_NM());
+			pstmt.setString(5, irdList.get(i).getIRDNT_TY_NM());
 			pstmt.executeUpdate();
 			}
 		} catch (ClassNotFoundException | SQLException e) {

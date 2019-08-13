@@ -23,9 +23,9 @@ body {
 }
 
 #main .thumbnails a {
-	margin-bottom: 1.5rem;
-	display: block;
-	text-decoration: none;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    text-decoration: none;
 }
 
 #main .thumbnails img {

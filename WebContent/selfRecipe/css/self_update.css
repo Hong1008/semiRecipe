@@ -1,4 +1,15 @@
 @charset "UTF-8";
+.sumry{
+  resize: none; /* 사용자 임의 변경 불가 */
+  /*resize: both; /* 사용자 변경이 모두 가능 */
+  /*resize: horizontal; /* 좌우만 가능 */
+  /*resize: vertical; /* 상하만 가능 */
+}
+.R_recipe{
+	 resize: none;
+}
+
+@charset "UTF-8";
 
 * {
 	font-family: 'Noto Sans KR';
@@ -8,27 +19,14 @@ body {
 	background-color: #FFF5E6;
 }
 
-.sumry{
-  resize: none; /* 사용자 임의 변경 불가 */
-  /*resize: both; /* 사용자 변경이 모두 가능 */
-  /*resize: horizontal; /* 좌우만 가능 */
-  /*resize: vertical; /* 상하만 가능 */
-}
-
 /* <!-- 이미지 요리이름 간략소개 --> */
 #R_header span {
 	display: inline-block;
 	font-size: 16x;
 }
 
-#R_header ul#R_image li:nth-of-type(2) {
-	display: none;
-}
 
-/* #R_header ul#R_image textarea#sumry {
-        padding: 10px 10px;
-        font-size: 20px;
-} */
+
 .R_div {
 	margin: 0 auto;
 	width: 760px;
@@ -60,6 +58,11 @@ body {
 	height: 300px;
 	border: 1px, solid, black;
 }
+
+/* #R_header ul#R_image li:nth-of-type(2) {
+	display: none;
+} */
+
 /* 요리이름 */
 #R_header #R_image .image_part #recipe_nm_ko {
 	width: 500px;
@@ -114,14 +117,12 @@ body {
 	
 }
 
-.SR_ig_div {
+.R_ig_div {
     height: 327px;
     width: 375px;
     display: inline-block;
     border: 1px solid lightgray;
-
-   
-    
+ 
 
 }
 /*************세부레시피 작성란****************/
@@ -129,12 +130,6 @@ body {
 	font-size: 23px;
 	line-height: 30px;
 }
-
-
-.R_recipe{
-	 resize: none;
-}
-
 
 #R_recipeDiv .self_recipeDiv_part {
 	border: 0px, solid, black;
@@ -199,4 +194,6 @@ body {
 	height: 30px;
 }
 
-
+#imgInput {
+	    display: none;
+}
