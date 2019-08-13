@@ -107,8 +107,12 @@
 			<div id='container' class='test'>
 				<div id='main_contents'>
 					<div id='selected_ing_div'>
-						<span id='tt'>이곳에 재료를 끌어다 놓으세요!</span>
-						<div id='selected_ing_list'></div>
+						<!-- <span id='tt'></span> -->
+						<div id='selected_ing_list'>
+						<div id="nor_irdnt" class="SR_ig_div"><input type="hidden" id="" name=""/><h4>일반재료는 이곳에 놓으세요!</h4></div>
+						
+						<div id="sea_irdnt" class="SR_ig_div"><input type="hidden" id="" name=""/><h4>양념은 이곳에 놓으세요!</h4></div>
+						</div>
 					</div>					
 				</div>
 			</div>
@@ -136,9 +140,8 @@
 
 
 		<section id='rg_section' class='R_div'>
-			<input type="submit" class="w_btn" id="submit" value="등록" /> <input
-				type="button" class="w_btn" id="back" value="취소"
-				onclick="location.href='selfRecipe'" />
+			<input type="submit" class="w_btn" id="submit" value="레시피 등록" /> 
+			<input type="button" class="w_btn" id="back" value="취소" onclick="location.href='selfRecipe'" />
 		</section>
 	</form>
 

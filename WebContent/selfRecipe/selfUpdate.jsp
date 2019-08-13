@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
-<%@include file="../jsp/menu.jsp"%>
+
 <%-- <%@include file="../jsp/sideMenu.jsp" %> --%>
 <!DOCTYPE html>
 
@@ -38,11 +38,12 @@
 		<!-- 이미지 요리이름 간략소개 -->
 		<section id='R_header' class='R_div'>
 				<ul id='R_image'>
-					<li class="image_part" ><img id='image_preview' class='image_preview' src='/semiRecipe/selfRecipe/img_self/${requestScope.prdto.img_url }' /></li>
-					<li class="image_part" id="image_part_hidden"><input type="file" id='imgInput' name="img_url" required="required" value="${requestScope.prdto.img_url }"/></li>
+					<li><span id='user_id'>${requestScope.prdto.user_id } </span>|<span id='recipe_id'>${requestScope.prdto.RECIPE_ID } </span></li>
+					<li class="image_part" ><img id='image_preview' class='image_preview' src="/semiRecipe/selfRecipe/img_self/${requestScope.prdto.IMG_URL }"/></li>
+					<li class="image_part" id="image_part_hidden"><input type="file" id='imgInput' name="img_url" required="required" value="${requestScope.prdto.IMG_URL }"/></li>
 					<li><input type="button" class="w_btn" id="insertImg" value="이미지 수정"></li>
-					<li class="image_part"><input type="text" id="recipe_nm_ko" name="recipe_nm_ko" required="required"   autocomplete="off" value="${requestScope.prdto.recipe_nm_ko }" /></li>
-					<li class="image_part"><textarea id="sumry" name="sumry" rows="4" cols="100" required="required" autocomplete="off" required="required" />${requestScope.prdto.sumry }</textarea></li>
+					<li class="image_part"><input type="text" id="recipe_nm_ko" name="recipe_nm_ko" required="required"   autocomplete="off" value="${requestScope.prdto.RECIPE_NM_KO }" /></li>
+					<li class="image_part"><textarea id="sumry" name="sumry" rows="4" cols="100" autocomplete="off" required="required" />${requestScope.prdto.SUMRY }</textarea></li>
 
 				</ul>
 		</section>
@@ -91,26 +92,36 @@
 			<div id='container' class='test'>
 				<div id='main_contents'>
 					<div id='selected_ing_div'>
-						<span id='tt'>이곳에 재료를 끌어다 놓으세요!</span>
-						<div id='selected_ing_list'></div>
-					</div>
-					<div id='selected_recipe_view'></div>
-					<div id='selected_recipe'></div>
-				</div>
-			</div>
-			<div id='normal_irdnt' class='R_ig_div'>
-				<div class='R_ing'>
-					<span></span>
-					<div class='R_rate_div'>
-						<div class="R_rate" id="${irdto.IMPORTANCE }"></div>
-					</div>
-					</div>
-	
-				<div id='' class='R_ig_div'>
-					<div class='R_ing'>
-						<span></span>
-						<div class='R_rate_div'>
-							<div class="R_rate" id=""></div>
+						<!-- <span id='tt'></span> -->
+						<div id='selected_ing_list'>
+							<div id="nor_irdnt" class="SR_ig_div">
+								<input type="hidden" id="" name="" />
+								<h4>일반재료는 이곳에 놓으세요!</h4>
+							</div>
+							<div id='일반재료' class='R_ig_div'>
+								<c:forEach items="${requestScope.irList }" var="irList">
+									<div class='R_ing'>
+										<span>${irList.IRDNT_NM }</span>
+										<div class='R_rate_div'>
+											<div class="R_rate" id="${irList.IMPORTANCE }"></div>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
+							<div id="sea_irdnt" class="SR_ig_div">
+								<input type="hidden" id="" name="" />
+								<h4>양념은 이곳에 놓으세요!</h4>
+							</div>
+							<div id='양념' class='R_ig_div'>
+								<c:forEach items="${requestScope.irList }" var="irList">
+									<div class='R_ing'>
+										<span>${irList.IRDNT_NM }</span>
+										<div class='R_rate_div'>
+											<div class="R_rate" id="${irList.IMPORTANCE }"></div>
+										</div>
+									</div>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -129,8 +140,8 @@
 				</tr>
 				<c:forEach items="${requestScope.stList}" var="stList">
 				<tr>
-					<td><span><c:out value="${stList.COOKING_NM }" /></span></td>
-					<td><textarea class='R_recipe' rows="3" cols="100" name="recipe_dc" ><c:out value="${stList.COOKING.DC }" /></textarea></td>
+					<td><span><c:out value="${stList.COOKING_NO }" /></span></td>
+					<td><textarea class='R_recipe' rows="3" cols="100" name="recipe_dc" ><c:out value="${stList.COOKING_DC }" /></textarea></td>
 				</tr>
 				</c:forEach>
 			</table>

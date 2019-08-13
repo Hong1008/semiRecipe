@@ -90,6 +90,7 @@ body {
 #R_importance {
 	padding-top: 10px;
 	padding-bottom: 30px;
+    height: 340px;
 }
 
 #R_importance  h3 {
@@ -97,6 +98,25 @@ body {
 	line-height: 30px;
 }
 
+/* 장바구니 상자 양/재료 */
+#nor_irdnt{
+	    float: left;
+}
+#sea_irdnt{
+	float: right;
+	
+}
+
+.SR_ig_div {
+    height: 327px;
+    width: 375px;
+    display: inline-block;
+    border: 1px solid;
+
+   
+    
+
+}
 /*************세부레시피 작성란****************/
 #R_recipeDiv  h3 {
 	font-size: 23px;
@@ -122,9 +142,11 @@ body {
     background: rgba(10,10,10,0.4);
     border-radius: 20px;
     margin-top: 10px;
+    float: left;
 }
 
-.selected_ing p {	display: inline-block;
+.selected_ing p {	
+	display: inline-block;
     margin-right: -2px;
     margin-left: 10px;
     font-size: 16px;
@@ -150,4 +172,18 @@ body {
     margin-right: 15px;
     margin-bottom: 2px;
     border-radius: 8px;
-    }
+}
+
+#submit {
+	margin: 10px, 0px;
+	width: 100px;
+	height: 30px;
+}
+
+#back {
+	margin: 10px, 0px;
+	width: 100px;
+	height: 30px;
+}
+
+
