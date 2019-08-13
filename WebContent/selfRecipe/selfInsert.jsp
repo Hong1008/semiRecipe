@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="x" uri="http://java.sun.com/jsp/jstl/xml"%>
 <%@include file="../jsp/menu.jsp"%>
-<%-- <%@include file="../jsp/sideMenu.jsp" %> --%>
 <!DOCTYPE html>
 
 <html>
@@ -36,7 +35,7 @@
 	<jsp:include page="../jsp/sideMenu.jsp" />
 
 	<form name="frm" method="post" enctype="multipart/form-data"
-		action="insertSelfRecipe">
+		action="selfInsert">
 		<c:if test="${!empty param.user_id }">
 			<input type="text" name="user_id" value="${param.user_id }" />
 		</c:if>
@@ -54,8 +53,8 @@
 					name="recipe_nm_ko" required="required" autocomplete="off"
 					placeholder="요리요리요 이름은!" /></li>
 				<li class="image_part"><textarea id="sumry" name="sumry"
-						rows="4" cols="100" required="required" autocomplete="off"
-						placeholder="요리를 소개해 주세요!" required="required" /></textarea></li>
+						class="sumry" rows="4" cols="100" required="required"
+						autocomplete="off" placeholder="요리를 소개해 주세요!" required="required" /></textarea></li>
 
 			</ul>
 		</section>
@@ -109,11 +108,17 @@
 					<div id='selected_ing_div'>
 						<!-- <span id='tt'></span> -->
 						<div id='selected_ing_list'>
-						<div id="nor_irdnt" class="SR_ig_div"><input type="hidden" id="" name=""/><h4>일반재료는 이곳에 놓으세요!</h4></div>
-						
-						<div id="sea_irdnt" class="SR_ig_div"><input type="hidden" id="" name=""/><h4>양념은 이곳에 놓으세요!</h4></div>
+							<div id="nor_irdnt" class="SR_ig_div">
+								<input type="hidden" id="" name="" />
+								<h4>일반재료는 이곳에 놓으세요!</h4>
+							</div>
+
+							<div id="sea_irdnt" class="SR_ig_div">
+								<input type="hidden" id="" name="" />
+								<h4>양념은 이곳에 놓으세요!</h4>
+							</div>
 						</div>
-					</div>					
+					</div>
 				</div>
 			</div>
 
@@ -140,8 +145,9 @@
 
 
 		<section id='rg_section' class='R_div'>
-			<input type="submit" class="w_btn" id="submit" value="레시피 등록" /> 
-			<input type="button" class="w_btn" id="back" value="취소" onclick="location.href='selfRecipe'" />
+			<input type="submit" class="w_btn" id="submit" value="레시피 등록" /> <input
+				type="button" class="w_btn" id="back" value="취소"
+				onclick="location.href='selfRecipe'" />
 		</section>
 	</form>
 

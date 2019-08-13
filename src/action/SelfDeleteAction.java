@@ -7,8 +7,10 @@ import model.SelfRecipeDAO;
 
 
 
-public class SelfDeleteAciont {
+public class SelfDeleteAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {		
+		
+		
 		SelfRecipeDAO dao = SelfRecipeDAO.getInstance();
 		dao.primDeleteMethod(Integer.parseInt(req.getParameter("recipe_id")));
 		dao.selfRecipeDeleteMethod(Integer.parseInt(req.getParameter("recipe_id")));

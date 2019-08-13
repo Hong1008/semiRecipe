@@ -3,6 +3,7 @@ package action;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -63,13 +64,24 @@ public class SelfInsertAction extends HttpServlet {
 		dao.selfRecipeInsertMethod(srdto);
 
 		List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
-		for (int i = 0; i < irList.size(); i++) {
+		String[] imp = multi.getParameterValues("imp");
+		String[] irdnt_ty_nm = multi.getParameterValues("irdnt_ty_nm");
+		String[] irdnt_nm = multi.getParameterValues("irdnt_nm");
+		
+		for (int i = 0; i < imp.length; i++) {
 			IrdntDTO irdto = new IrdntDTO();
 			irdto.setRECIPE_ID(riMax);
-			irdto.setIMPORTANCE(multi.getParameter("importance"));// 필요도
-			irdto.setIRDNT_SN(Integer.parseInt(multi.getParameter("irdnt_sn")));// 재료 순번
-	irdto.setIRDNT_NM(multi.getParameter("irdnt_nm"));// 재료명
+			irdto.setIMPORTANCE(imp[i]);// 필요도
+			irdto.setIRDNT_TY_NM(irdnt_ty_nm[i]);
+			irdto.setIRDNT_NM(irdnt_nm[i]);// 재료명
+			System.out.println(irdto.getIMPORTANCE());
+			System.out.println(irdto.getIRDNT_TY_NM());
+			System.out.println(irdto.getIRDNT_NM());
+			irList.add(irdto);
 		}
+		
+			
+		dao.irdntInsertMethod(irList);
 		 
 		String[] cooking_dc = multi.getParameterValues("recipe_dc");
 		List<StepDTO> stList = new ArrayList<StepDTO>();

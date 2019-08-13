@@ -5,15 +5,38 @@ $(document).ready(function() {
 	cookingTime();
 	irdntDrop();
 	totalCalorie();
-	backAction();
 
+	
+	$('.close_ing').on('click',function() {
+		$(this).parents('.selected_ing').remove();
+			viewList();
+	})
+
+
+	
 	$("#imgInput").change(function(){
 		imagePreview(this);
 	});
 	
 	checkfiile();
 	insertImgCheck();
-
+	
+	/*음식 분류 요리 난이도*/
+	$('.natioin_nm').each(function(i,v){
+		if($(v).val()==$('#nation_nmH').val()){
+			
+			$(v).attr('checked','checked');
+		}
+	})
+	
+	$('.level_nm').each(function(i,v){
+		if($(v).val() == $('#level_nmH').val()){
+			$(v).attr('checked', 'checked');
+		}
+	})
+	
+	$('.selected_ing #imp').val($('.selected_ing #impH').val());
+	
 });// end ready()
 /*이미지 삽입 버튼*/
 function insertImg(){
@@ -96,48 +119,69 @@ function cookingTime(){
 		})	
 }
 
+function cookingTeimView(){
+	var calorieH = $('#calorieH').val();
+	var h = 0;
+	var m = 0;
+	
+	h = calorieH / 60;
+	m = calorieH % 60;
+	$('#R_hour').text(h);
+	$('#R_minute_two').text(m);
+	
+	
+	
+}
+
 	/*재료 드랍하기*/
 function irdntDrop() {
-	var select_num = 0;
-	$('#nor_irdnt').droppable({drop : function(event, ui) {
-			select_num++;
-
-			if (select_num < 10) {
-				var selected = $('#nor_irdnt', '#sea_irdnt').html()
-					+ " <div class='selected_ing'><input type ='hidden'value='"
-					+ name
-					+ "' id='ing'>"
-					+ "<div class='close_ing'></div><p>"
-					+ name
-					+ "</p><select name='imp' id='imp'><option value='필수'>필수</option>"
-					+ "<option value='상'>상</option><option value='중'>중</option>"
-					+ "<option value='하'>하</option></select></div>";
-					$('#selected_ing_list').html(selected);
+	$('.R_ig_div').droppable({
+		drop : function(event, ui) {
+			var aaaa= $('.selected_ing');
+			var selected = false;
+			for(var i=0; i<aaaa.length;i++){
+				if(aaaa.eq(i).children('p').text() == name){
+					selected=true;
+				}
 			}
-
-	// 드롭된 재료들 삭제
-	$('.close_ing').on('click', function() {
-		$(this).parents('.selected_ing').remove();
-			viewList();
-		})
-	 }
+			if(selected){
+				alert("이미 선택된 재료입니다..");								
+			}else{	
+				if ($(this).children('.selected_ing').length < 5) {
+					var selected = $(this).html()
+					+ " <div class='selected_ing'><input type ='hidden'value='"+name+"' id='ing'>" +
+							"<div class='close_ing'></div><p>"+ name
+					+ "</p><select name='imp' id='imp'><option value='필수'>필수</option>" +
+							"<option value='상'>상</option><option value='중'>중</option>" +
+							"<option value='하'>하</option></select></div>";				
+					$(this).html(selected);
+				}else{
+					alert("재료가 너무많아..");						
+				}
+			}
+			
+			
+			
+			//드롭된 재료들 삭제
+			$('.close_ing') .on('click', function() {
+				$(this).parents('.selected_ing').remove();
+				viewList();
+			})
+			}
 	});
 };
 
 
 	/* 세부 레시피 입력창 추가 삭제 */
 function selfRecipeDivAddDel() {
-		var i = 1;
 		$('#w_add').on('click', function() {
-			if (i == 20) {return};
-			i++;
-			$('.self_recipeDiv_part').append("<tr><td><span>"+ i +"</span></td><td><textarea class='R_recipe' rows='3' cols='100' name='recipe_dc'></textarea></td></tr>");
+			if ($('.R_recipe').length == 20) {return};
+			$('.self_recipeDiv_part').append("<tr><td><span>"+ ($('.R_recipe').length+1) +"</span></td><td><textarea class='R_recipe' rows='3' cols='100' name='recipe_dc'></textarea></td></tr>");
 		});
 		
 		$('#w_del').on('click', function() {
-			if (i == 1) {return};
+			if ($('.R_recipe').length == 1) {return};
 			$(".self_recipeDiv_part tr").last().remove();
-			i--
 		});
 	}
 

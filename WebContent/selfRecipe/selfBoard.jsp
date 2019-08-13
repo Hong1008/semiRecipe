@@ -26,6 +26,8 @@
 <link rel="stylesheet"
 	href="/semiRecipe/fontello-ea422c41/css/fontello.css">
 
+<!-- 드래그/드랍 + 한글-->
+<script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
 </head>
 <body>
 	<!-- hidden div -->
@@ -97,12 +99,14 @@
 				<a href="selfRecipe""> 목록</a>
 			</p>
 			<!-- 	<p><a href="selfInsert" > 쓰기</a></p> -->
-			<p>
-				<a class="aHide" href="selfInsert"> 쓰기</a> <a class="aHide"
-					href="selfUpdate" id="update"> 수정</a>
-			</p>
-			<c:if test="${not empty sessionScope.loginID }">
 
+			<c:if test="${not empty sessionScope.loginID }">
+				<p>
+					<a class="aHide" href="selfInsert"> 쓰기</a> 
+					<a class="aHide" href="selfUpdate" id="update"> 수정</a> 
+					<!-- <a class="aHide" onClick="selfDelete();" id="del"> 삭제</a> -->
+					<a class="aHide"  id="del"> 삭제</a>
+				</p>
 			</c:if>
 		</div>
 		<!-- 화면 위로 올리기 끝 -->
