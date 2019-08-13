@@ -39,6 +39,7 @@
 	border-radius: 20px;
 	padding-left: 20px;
 	text-align: center;
+	box-shadow: inset 0 0 20px 0px rgba(0, 0, 0, 0.33);
 }
 
 #tt {
@@ -51,13 +52,17 @@
 
 /* 선택된 재료 박스 */
 .selected_ing {
-	height: 42px;
-	background-color: rgba(10, 10, 10, 0.6);
-	border-radius: 17px;
-	margin: 10px;
-	margin-left: 5px;
-	float: left;
+    height: 38px;
+    background-color: rgba(10, 10, 10, 0.6);
+    border-radius: 17px;
+    margin: 10px;
+    margin-left: 5px;
+    float: left;
+    border: 1px solid rgba(83, 83, 83, 0.14);
+        box-shadow: inset 0 0 12px 2px rgba(0, 0, 0, 0.16);
 }
+
+
 
 /* 선택된 재료 이름 */
 .selected_ing p {
@@ -78,20 +83,47 @@
 	border: none;
 	background-color: white;
 	opacity: 0.9;
-	cursor: pointer;
+	cursor: pointer;	
+    background: none;
 }
 
-.recipeBtn img {
-	width: 100px;
-	height: 100px;
-	position: fixed;
-	top: 50%;
+.x{
+	    width: 12px;
+    height: 2px;
+    background: #ffffffc4;
+    position: fixed;
+    margin-left: 3px;
+    margin-top: -1px;
 }
 
-.recipeBtn#nextBtn img {
-	right: 15%;
+.x1{
+	-webkit-transform: rotate(45deg);
 }
 
-.recipeBtn#prevBtn img {
-	left: 15%;
+.x2{
+	-webkit-transform: rotate(-45deg);
 }
+
+
+/* 좌우 버튼 */
+.recipeBtn{		
+	width: 110px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    background: rgba(5,5,5,0.2);
+}
+
+.recipeBtn img {	
+    width: 100%;
+    margin-top: 250px;
+}
+
+#nextBtn{
+	right: 0px;
+}
+
+#prevBtn{
+	left: 0px;
+}
+

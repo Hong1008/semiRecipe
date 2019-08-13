@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CommentDAO;
 import model.IrdntDAO;
 import model.PrimDAO;
 import model.PrimDTO;
@@ -37,6 +38,9 @@ public class ShowRecipeAction {
 			zero = "0";
 		req.setAttribute("hour", hour);
 		req.setAttribute("minute", zero+minute);
+		CommentDAO cdao = new CommentDAO();
+		req.setAttribute("total", cdao.getTotal(recipe_id));
+		cdao.exit();
 	}
 
 }

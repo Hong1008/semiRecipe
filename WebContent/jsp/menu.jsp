@@ -9,6 +9,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/css/menu.css">
 <script type="text/javascript" src="/semiRecipe/js/menu.js"></script>
 
@@ -48,11 +49,14 @@
 					src="/semiRecipe/img/menu02.PNG"></li>
 				<li class="menu_li" id='selfRecipe'><img
 					src="/semiRecipe/img/menu03.PNG"></li>
-					
 			</ul>
 		</div>
-
+				<div id='info'>
+			<h1 id='title'>여기에 글씨를 쓰면 됩니다. <br>아무렇게나 이쁘게 써주세요</h1>
+			<h3 id='sub'>작은글씨로 설명을 해주면 됩니다.</h3>
+		</div>
+		
+	<div id='test'></div>
 	</header>
-
 </body>
 </html>

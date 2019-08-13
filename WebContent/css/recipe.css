@@ -82,39 +82,25 @@
 .R_ing {
 	height: 40px;
 	width: 380px;
-	padding-top: 15px;
+	padding-top: 15px;	
+    font-weight: bold;
 }
 
 .R_rate_div {
-	width: 200px;
-	height: 25px;
-	background: rgb(220, 220, 220);
-	margin: 0 auto;
-	float: right;
-	margin-right: 60px;
+	width: 176px;
+    height: 29px;
+    background: rgb(220, 220, 220);
+    margin: 0 auto;
+    float: right;
+    margin-right: 60px;
 }
 
 .R_rate {
-	height: 25px;
-	background: rgb(255, 20, 20);
+	height: 29px;
+    background: #ce0000;
 }
 
-/***********삭제할부분**************/
-#일반재료 div:nth-child(1) .R_rate {
-	width: 100%;
-}
 
-#일반재료 div:nth-child(2) .R_rate {
-	width: 25%;
-}
-
-#일반재료 div:nth-child(3) .R_rate {
-	width: 100%;
-}
-
-#일반재료 div:nth-child(4) .R_rate {
-	width: 50%;
-} /***********삭제할부분**************/
 #R_recipeDiv {
 	padding: 20px 0;
 }

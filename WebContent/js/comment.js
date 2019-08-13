@@ -54,9 +54,6 @@ $(document).ready(function(){
 		
 	}
 	
-	$('#4.rated_div #rate_3.rated').click(function(){
-		alert("dfs");
-	});
 	
 	$('#CMT #order').change(function(){
 		comList();
@@ -81,8 +78,6 @@ function rating(num,id){
 	}
 }
 function comList(){
-	
-	
 	if(typeof rownum == "undefined" || rownum == null || rownum == "")
 		rownum = 5;
 	$.ajax({
@@ -124,6 +119,9 @@ function insertCom(){
 		+'&user_id='+user_id+'&rating='+rating+'&com_content='+com_content,
 		url:'insertCom',
 		success: function(res){
+			var total = $('#total').text();
+			total = parseInt(total)+1;
+			$('#total').text(total);
 			comList();
 		}
 	})
