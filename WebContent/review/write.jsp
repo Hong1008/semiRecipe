@@ -28,7 +28,6 @@
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -273,16 +272,14 @@ td, tr {
 			<input type="hidden" name="user_id" value="${requestScope.mdto.user_id}" id="user_id" />
 			<table id="recipeTable">
 				<tr height = "50px">
-					<td width="200px" align="center">레시피 선택</td>
+					<td width="200px" align="center" style="font-weight:bold">레시피 선택</td>
 					<td width="800px"><input type="text" id="revRecipeSelect"
-						placeholder="레시피 검색"
-
-						style="width: 300px; height: 20px; font-size: 15px;" /><input
-						type='button' id="deleteBtn" value="메뉴 삭제"></td>
+						placeholder="레시피 검색" style="width: 300px; height: 25px; font-size: 17px;" />
+						<input type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
 
 				<tr id="choo">
-					<td width="200px" align='center'></td>
+					<td width="200px" align='center' style="font-weight:bold"></td>
 					<td width="800px">
 						<div class="view" style="width: 820px; height: 500px;">
 							<div class="scrollBlind">
@@ -303,7 +300,7 @@ td, tr {
 				</tr>
 
 				<tr height = "50px">
-					<td width="200px" align="center">레시피 별점</td>
+					<td width="200px" align="center" style="font-weight:bold">레시피 별점</td>
 					<td width="800px">
 						<div class="starRev">
 							<span class="starR on">별1</span> <span class="starR on">별2</span>
@@ -314,17 +311,15 @@ td, tr {
 				</tr>
 
 				<tr height = "50px">
-					<td width="200px" align="center">제목</td>
-					<td width="800px"><input type="text" name="review_subject"
-						id="review_subject" style="width: 800px; height: 20px;" /></td>
+					<td width="200px" align="center" style="font-weight:bold" >제목</td>
+					<td width="800px" ><input type="text" name="review_subject"
+						id="review_subject" style="width: 800px; height: 25px; font-size: 17px;" /></td>
 				</tr>
 
 				<tr>
-
-					<td width="20%" align="center">내용</td>
-					<td width="80%"><textarea name="ir1" id="ir1" rows="10" cols="100"></textarea>
+					<td width="200px" align="center" style="font-weight:bold">내용</td>
+					<td width="800px"><textarea name="review_content" id="ir" rows="10" cols="100"></textarea></td>
 				</tr>
-
 				<script type="text/javascript">
 					var oEditors = [];
 
@@ -335,11 +330,6 @@ td, tr {
 						fCreator : "createSEditor2"
 					});
 				</script>
-
-				<tr>
-					<td width="200px" align="center">파일첨부</td>
-					<td width="800px" id="fileDiv"><input type="file" name="upload" /></td>
-				</tr>
 				<tr>
 					<td height="10px"></td>
 				</tr>
