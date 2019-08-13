@@ -125,9 +125,7 @@ public class RecipeController extends HttpServlet {
 			viewList.execute(req, resp);
 			next = "/selfRecipe/selfView.jsp";	
 		}else if(path.equals("recipe/selfInsert")) { //  셀프 인서트
-			System.out.println("셀프인서트");
 			if(method.equalsIgnoreCase("get")){
-				System.out.println("겟방식확인");
 				IrdntTYDAO dao = new IrdntTYDAO();
 				req.setAttribute("aList", dao.list());
 				req.setAttribute("tList", dao.tyList());
@@ -146,15 +144,21 @@ public class RecipeController extends HttpServlet {
 				//resp.sendRedirect("selfRecipe?pageNum=" + req.getParameter("pageNum"));
 				//삭제 후 마지막 페이지 유지
 		}else if(path.equals("recipe/selfUpdate")) { //  셀프 수정
-			/*
-			 * if(method.equalsIgnoreCase("get")){ IrdntTYDAO dao = new IrdntTYDAO();
-			 * req.setAttribute("aList", dao.list()); req.setAttribute("tList",
-			 * dao.tyList()); dao.exit(); next = "/selfRecipe/selfUpdate.jsp"; }else {
-			 * SelfUpdateAction suUpdate = new SelfUpdateAction();
-			 * suUpdate.executeMulti(req, resp); SelfRecipeDAO dao =
-			 * SelfRecipeDAO.getInstance(); PrimDTO prdto = new PrimDTO();
-			 * resp.sendRedirect("selfView?recipe_id="+ prdto.getRECIPE_ID()); }
-			 */
+			  if(method.equalsIgnoreCase("get")){ 
+				  IrdntTYDAO dao = new IrdntTYDAO();
+				  req.setAttribute("aList", dao.list()); 
+				  req.setAttribute("tList", dao.tyList()); 
+				  dao.exit(); 
+				  SelfViewAction viewList = new SelfViewAction();
+				  viewList.execute(req, resp);
+				  next = "/selfRecipe/selfUpdate.jsp";
+			  }else {
+				  SelfRecipeDAO dao = SelfRecipeDAO.getInstance(); 
+				  SelfUpdateAction suUpdate = new SelfUpdateAction();
+				  suUpdate.executeMulti(req, resp); 
+				  PrimDTO prdto = new PrimDTO();
+				  resp.sendRedirect("selfUdate?recipe_id="+ prdto.getRECIPE_ID()); }
+			 
 			
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
