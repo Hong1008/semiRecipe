@@ -27,8 +27,12 @@
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css"
+	rel="stylesheet">
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -113,42 +117,43 @@
 		var recipe_id = "";
 
 		$('.icon-comment').on('click', function() {
-			// alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
-			//alert($('#revRecipeSelect').val());
-			$('#recipeSelectList li').each(function(index, element) {
-				//	alert($(this).attr('id'));
+	         // alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
+	         //alert($('#revRecipeSelect').val());
+	         $('#recipeSelectList li').each(function(index, element) {
+	            //   alert($(this).attr('id'));
 
-				if ($(this).attr('id') == $('#revRecipeSelect').val()) {
-					recipe_id = $(this).val();
-				}
-			});
+	            if ($(this).attr('id') == $('#revRecipeSelect').val()) {
+	               recipe_id = $(this).val();
+	            }
+	         });
 
-			var text = CKEDITOR.instances.editor1.getData();
+	         oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+	         contents =$('#ir1').val();
+	         
+	         
+	         $.ajax({
+	            type : 'POST',
+	            dataType : 'text',
+	            data : {
+	               recipe_id : recipe_id,
+	               recipe_nm_ko : $('#revRecipeSelect').val(),
+	               review_content : contents,
+	               user_id : $('#user_id').val(),
+	               review_subject : $('#review_subject').val(),
+	               user_nickname : $('#user_nickname').val(),
+	               review_rate : $('.starR.on').length
+	            },
+	            url : 'reviewinsert',
+	            success : function() {
+	               location.href = "/semiRecipe/recipe/review";
+	            }
 
+	         });
 
-			$.ajax({
-				type : 'POST',
-				dataType : 'text',
-				//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
-				data : {
-					recipe_id : recipe_id,
-					review_content : text,
-					user_id : $('#user_id').val(),
-					review_subject : $('#review_subject').val(),
-					user_nickname : $('#user_nickname').val(),
-					review_rate : $('.starR.on').length
-				},
-				url : 'reviewinsert',
-				success : function() {
-					location.href = "/semiRecipe/recipe/review";
-				}
+	         return false;
 
-			});
-
-			return false;
-
-			//	$('form').submit();
-		});
+	         //   $('form').submit();
+	      });
 	});
 </script>
 <style type="text/css">
@@ -267,16 +272,17 @@ td, tr {
 	<div id="writeframe">
 		<form name="frm" method="post" enctype="multipart/form-data"
 			action="/semiRecipe/recipe/reviewinsert" id="writeform">
-			<input type="hidden" name="review_rate" id="review_rate"> 
-			<input type="hidden" name="recipe_id" id="recipe_id"> 
-			<input type="hidden" name="user_nickname" value="${requestScope.mdto.user_nickname}" id="user_nickname" /> 
-			<input type="hidden" name="user_id" value="${requestScope.mdto.user_id}" id="user_id" />
+			<input type="hidden" name="review_rate" id="review_rate"> <input
+				type="hidden" name="recipe_id" id="recipe_id"> <input
+				type="hidden" name="user_nickname"
+				value="${requestScope.mdto.user_nickname}" id="user_nickname" /> <input
+				type="hidden" name="user_id" value="${requestScope.mdto.user_id}"
+				id="user_id" />
 			<table id="recipeTable">
-				<tr height = "50px">
+				<tr height="50px">
 					<td width="200px" align="center">레시피 선택</td>
 					<td width="800px"><input type="text" id="revRecipeSelect"
 						placeholder="레시피 검색"
-
 						style="width: 300px; height: 20px; font-size: 15px;" /><input
 						type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
@@ -302,7 +308,7 @@ td, tr {
 					</td>
 				</tr>
 
-				<tr height = "50px">
+				<tr height="50px">
 					<td width="200px" align="center">레시피 별점</td>
 					<td width="800px">
 						<div class="starRev">
@@ -313,32 +319,43 @@ td, tr {
 					</td>
 				</tr>
 
-				<tr height = "50px">
+				<tr height="50px">
 					<td width="200px" align="center">제목</td>
 					<td width="800px"><input type="text" name="review_subject"
 						id="review_subject" style="width: 800px; height: 20px;" /></td>
 				</tr>
 
 				<tr>
-
-					<td width="20%" align="center">내용</td>
-					<td width="80%"><textarea name="ir1" id="ir1" rows="10" cols="100"></textarea>
+					<td width="200px" align="center">내용</td>
+					<td width="800px"><textarea name="ir1" id="ir1"></textarea>
 				</tr>
 
 				<script type="text/javascript">
+					var form = document.w_form; // 사용할 폼 이름으로 수정.
 					var oEditors = [];
 
 					nhn.husky.EZCreator.createInIFrame({
-						oAppRef : oEditors,
-						elPlaceHolder : "ir1",
-						sSkinURI : "/semiRecipe/smartEditor/SmartEditor2Skin.html",
-						fCreator : "createSEditor2"
-					});
+								oAppRef : oEditors,
+								elPlaceHolder : "ir1",
+								sSkinURI : "/semiRecipe/smartEditor/SmartEditor2Skin.html",
+								fCreator : "createSEditor2"
+							});
+
+					function insertIMG(frm) {
+						var filepath = form.filepath.value;
+						var sHTML = "<img src='" + filepath + "/" + fname + "' style='cursor:hand;' border='0'>";
+						// filepath 는 변수처리 혹은 직접 코딩해도 상관없음.
+						// imageUpload.asp 에서 insertIMG 호출시 경로를 포함하여 넣어주는 방법을 추천.
+						oEditors.getById["ir1"].exec("PASTE_HTML", [ sHTML ]);
+					}
 				</script>
+
+
 
 				<tr>
 					<td width="200px" align="center">파일첨부</td>
-					<td width="800px" id="fileDiv"><input type="file" name="upload" /></td>
+					<td width="800px" id="fileDiv"><input type="file"
+						name="upload" /></td>
 				</tr>
 				<tr>
 					<td height="10px"></td>
