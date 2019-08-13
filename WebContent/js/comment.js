@@ -54,15 +54,20 @@ $(document).ready(function(){
 		
 	}
 	
+
 	
 	$('#CMT #order').change(function(){
-		comList();
+		if($(this).val()=='com_time'){
+			
+		}else if($(this).val()=='rating'){
+			
+		}
 	})
 	
 	$('#showMore').click(function(){
 		rownum = parseInt($('#CMT .rated_div').last().attr('id'))+5;
 		
-		comList();
+		
 	})
 })
 function rating(num,id){
@@ -83,9 +88,10 @@ function comList(){
 	$.ajax({
 		type:'POST',
 		dataType:'text',
-		data:'com_board='+$('#CMT>div').attr('id')+'&key='+$('#CMT #key').val()+'&order='+$('#CMT #order').val()+'&rownum='+rownum,
+		data:'com_board='+$('#CMT>div').attr('id')+'&key='+$('#CMT #key').val(),
 		url:'comList',
 		success: function(res){
+			$('#CMT>div').empty();
 			$('#CMT>div').html(res);
 		}
 	})
