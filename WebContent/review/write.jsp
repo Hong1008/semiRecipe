@@ -10,21 +10,20 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/semiRecipe/smartEditor/js/HuskyEZCreator.js"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
-<script src="../ckeditor/ckeditor.js"></script>
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.starRev span').click(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
-			$('#review_rate').val($('.starR.on').length);
 			return false;
 		});
-		$('#review_rate').val($('.starR.on').length);
+
 		search();
 
 		function search() {
@@ -35,12 +34,11 @@
 				recipes_name[i] = $('.recipes').eq(i).text();
 			} //배열에 이름들을 저장
 
-			
 			$('#revRecipeSelect').on('keyup', function() {
 				var search = $('#revRecipeSelect').val();//현재 인풋창의 값을 받아옴
 				var search_len = Hangul.disassemble(search).length;//현재 인풋창의 자음+모음수
 				search = Hangul.assemble(search);
-				
+
 				$('.recipes').hide();
 				for (var i = 0; i < recipes_num; i++) {
 					//맞는것 실행시켜줌
@@ -85,7 +83,7 @@
 
 			$('#irdntList').css('display', 'block');
 			$('#recipeSelectList').css('display', 'none');
-			$('#recipe_id').val($(this).val());
+
 		});
 
 		$('#deleteBtn').on('click', function() {
@@ -95,50 +93,46 @@
 			$('#irdntList').css('display', 'none');
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
-			$('#recipe_id').val('');
 		});
-		
-        var recipe_id="";
-		
-       /*  $('.icon-comment').on('click', function() {
+
+		var recipe_id = "";
+
+		$('.icon-comment').on('click', function() {
 			// alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
 			//alert($('#revRecipeSelect').val());
-			// $('#recipeSelectList li').each(function(index,element){
-            //	alert($(this).attr('id'));
-            
-            /* 	if($(this).attr('id')==$('#revRecipeSelect').val()){
-            		recipe_id = $(this).val();
-            	}
-       		 }); */
-			 
-         	//var text = CKEDITOR.instances.editor1.getData();
-         	/* 
-         	$.ajax({
-     			type: 'POST',
-     			dataType: 'text',
-     		//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
-     			data : {
-     				recipe_id : recipe_id,
-     				review_content : text,
-     				user_id : $('#user_id').val(),
-     				review_subject : $('#review_subject').val(),
-     				user_nickname : $('#user_nickname').val(),
-     				review_rate : $('.starR.on').length
-     			},
-     			url: 'reviewinsert',
-     			success: function(){
-     				location.href="/semiRecipe/recipe/review";
-     			}
-         	
-     		}); 
-         	
-         	//return false;
-         	
-         	
+			$('#recipeSelectList li').each(function(index, element) {
+				//	alert($(this).attr('id'));
 
-		//	$('form').submit();
-		}); */
+				if ($(this).attr('id') == $('#revRecipeSelect').val()) {
+					recipe_id = $(this).val();
+				}
+			});
 
+			var text = CKEDITOR.instances.editor1.getData();
+
+			$.ajax({
+				type : 'POST',
+				dataType : 'text',
+				//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
+				data : {
+					recipe_id : recipe_id,
+					review_content : text,
+					user_id : $('#user_id').val(),
+					review_subject : $('#review_subject').val(),
+					user_nickname : $('#user_nickname').val(),
+					review_rate : $('.starR.on').length
+				},
+				url : 'reviewinsert',
+				success : function() {
+					location.href = "/semiRecipe/recipe/review";
+				}
+
+			});
+
+			return false;
+
+			//	$('form').submit();
+		});
 	});
 </script>
 <style type="text/css">
@@ -257,8 +251,6 @@ td, tr {
 	<div id="writeframe">
 		<form name="frm" method="post" enctype="multipart/form-data"
 			action="/semiRecipe/recipe/reviewinsert" id="writeform">
-			<input type="hidden" name="review_rate" id="review_rate">
-			<input type="hidden" name="recipe_id" id="recipe_id">
 			<input type="hidden" name="user_nickname"
 				value="${requestScope.mdto.user_nickname}" id="user_nickname" /> <input
 				type="hidden" name="user_id" value="${requestScope.mdto.user_id}"
@@ -267,7 +259,7 @@ td, tr {
 				<tr>
 					<td width="20%" align="center">레시피 선택</td>
 					<td width="80%"><input type="text" id="revRecipeSelect"
-						 placeholder="레시피 검색"
+						name="recipe" placeholder="레시피 검색"
 						style="width: 300px; height: 20px; font-size: 15px;" /><input
 						type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
@@ -312,12 +304,20 @@ td, tr {
 
 				<tr>
 					<td width="20%" align="center">내용</td>
-					<td width="80%"><textarea name="review_content" id="editor1"
-							rows="30" cols="80"></textarea></td>
+					<td width="80%"><textarea name="ir1" id="ir1" rows="10" cols="100"></textarea>
 				</tr>
-				<script>
-					CKEDITOR.replace('editor1');
+
+				<script type="text/javascript">
+					var oEditors = [];
+
+					nhn.husky.EZCreator.createInIFrame({
+						oAppRef : oEditors,
+						elPlaceHolder : "ir1",
+						sSkinURI : "/semiRecipe/smartEditor/SmartEditor2Skin.html",
+						fCreator : "createSEditor2"
+					});
 				</script>
+
 
 				<tr>
 					<td width="20%" align="center">파일첨부</td>
@@ -328,7 +328,7 @@ td, tr {
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button class="icon-comment" type="submit">확인</button>
+						<button class="icon-comment">확인</button>
 				</tr>
 				<tr>
 					<td height="20px"></td>
@@ -340,7 +340,6 @@ td, tr {
 			</table>
 		</form>
 	</div>
-
 </body>
 </html>
 
