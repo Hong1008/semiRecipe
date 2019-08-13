@@ -3,8 +3,6 @@ $(document).ready(function(){
 		showRecipe($(this).attr('id'),"#selected_recipe");
 		return false;
 	});
-	
-	
 })
 
 function showRecipe(selected,selector){
@@ -19,9 +17,7 @@ function showRecipe(selected,selector){
 		}
 	})
 	var offset = $(selector).offset();
-    $('html, body').animate({scrollTop : offset.top}, 400);
-    
-    
+    $('html, body').animate({scrollTop : offset.top}, 400);    
 }
 
 

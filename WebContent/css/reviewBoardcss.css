@@ -116,11 +116,13 @@ body {
 }
 
 .icon-search{
-	padding: 3px;
-	text-decoration: none;
-	color: #FFF5E6;
-	background-color: rgba(242, 159, 5, 0.8);
-	border: 1px solid #F29F05;
-	border-radius: 0.2rem;
-	font-size: 20px;
+    text-decoration: none;
+    color: #FFF5E6;
+    background-color: rgba(242, 159, 5, 0.8);
+    border: none;
+    border-radius: 0.2rem;
+    font-size: 18px;
+    width: 50px;
+    height: 32px;
+    margin-top: 24px;
 }

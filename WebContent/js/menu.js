@@ -4,9 +4,10 @@ $(document).ready(function(){
 		loc = loc.split('/');
 		loc=loc[loc.length-1];		
 		if(loc=='home'){
-			$('#header').css({'height':'1200px',
+			$('#header').css({'height':'1100px',
 				'background-image':'url("/semiRecipe/img/home_back.JPG")',
 				'background-position':'-135px -400px'});
+			$('#info').hide();
 			$('#menu_bar img').attr('src','/semiRecipe/img/home_back.JPG').css({
 				'margin-left':'-135px',
 				'margin-top':'-400px',
@@ -27,18 +28,18 @@ $(document).ready(function(){
 		})	
 	
 	$(document).scroll(function(){
-		var posy=500;
-		if(loc=='home'){	
-			posy=400;
-		}else{
-					}
-		if($(document).scrollTop()<500){
+		var posy=400;
+		if($(document).scrollTop()<1200){
 			var pos=$('#header').css('background-position-y');
-			pos=-posy-$(document).scrollTop()*0.43;
+			pos=-posy-$(document).scrollTop()*0.23;
 			$('#header').css('background-position-y',pos+'px');
 			$('#menu_bar img').css('margin-top',pos+'px');
-		}else{  			
-		}
+			$('#info').css('top',-pos+'px');
+		} 
+		$('#menu_bar img').css('opacity',(1000-$(document).scrollTop()*$(document).scrollTop()*0.0013)/1000);
+		$('#info').css('opacity',(1000-$(document).scrollTop()*$(document).scrollTop()*0.05)/1000);
+			
+		
 		
 	})
 	
