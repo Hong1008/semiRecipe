@@ -1,4 +1,3 @@
-
 <%@page
 	import="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"%>
 <%@page import="java.io.IOException"%>
@@ -21,7 +20,6 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="/semiRecipe/smartEditor/js/HuskyEZCreator.js"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
@@ -35,9 +33,10 @@
 		$('.starRev span').click(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
+			$('#review_rate').val($('.starR.on').length);
 			return false;
 		});
-
+		$('#review_rate').val($('.starR.on').length);
 		search();
 
 		function search() {
@@ -97,7 +96,7 @@
 
 			$('#irdntList').css('display', 'block');
 			$('#recipeSelectList').css('display', 'none');
-
+			$('#recipe_id').val($(this).val());
 		});
 
 		$('#deleteBtn').on('click', function() {
@@ -107,6 +106,10 @@
 			$('#irdntList').css('display', 'none');
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
+			$('#recipe_id').val('');
+		})
+		
+		
 
 		});
 
@@ -159,7 +162,7 @@ body {
 
 #writeframe {
 	height: 800px;
-	width: 1010px;
+	max-width: 68rem;
 	margin: 0 auto;
 	margin-top: 10px;
 }
@@ -276,6 +279,7 @@ td, tr {
 				id="user_id" />
 			<table id="recipeTable">
 
+
 				<tr height = "50px">
 					<td width="200px" align="center" style="font-weight:bold">레시피 선택</td>
 					<td width="800px"><input type="text" id="revRecipeSelect"
@@ -285,8 +289,8 @@ td, tr {
 				</tr>
 
 				<tr id="choo">
-					<td width="200px" align='center' style="font-weight:bold"></td>
-					<td width="800px">
+					<td width='20%' align='center'></td>
+					<td width='800px'>
 						<div class="view" style="width: 820px; height: 500px;">
 							<div class="scrollBlind">
 								<ul id='recipeSelectList'>
@@ -309,6 +313,7 @@ td, tr {
 					<td width="200px" align="center" style="font-weight:bold">레시피 별점</td>
 
 					<td width="800px">
+
 						<div class="starRev">
 							<span class="starR on">별1</span> <span class="starR on">별2</span>
 							<span class="starR on">별3</span> <span class="starR on">별4</span>
@@ -317,13 +322,14 @@ td, tr {
 					</td>
 				</tr>
 
-				<tr height = "50px">
-					<td width="200px" align="center" style="font-weight:bold" >제목</td>
-					<td width="800px" ><input type="text" name="review_subject"
-						id="review_subject" style="width: 800px; height: 25px; font-size: 17px;" /></td>
+				<tr>
+					<td width="20%" align="center">제목</td>
+					<td width="80%"><input type="text" name="review_subject"
+						id="review_subject" style="width: 800px; height: 20px;" /></td>
 				</tr>
 
 				<tr>
+
 					<td width="200px" align="center" style="font-weight:bold">내용</td>
 					<td width="800px"><textarea name="review_content" id="ir" rows="10" cols="100"></textarea></td>
 
@@ -353,7 +359,7 @@ td, tr {
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button class="icon-comment">확인</button>
+						<button class="icon-comment" type="submit">확인</button>
 				</tr>
 				<tr>
 					<td height="20px"></td>
@@ -365,7 +371,6 @@ td, tr {
 			</table>
 		</form>
 	</div>
-
 </body>
 </html>
 

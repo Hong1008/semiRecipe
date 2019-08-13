@@ -145,3 +145,17 @@ width: 141px;
     font-weight: bold;
 }
 
+#closeShow {
+	padding: 3px;
+	text-decoration: none;
+	color: #FFF5E6;
+	background-color: rgba(242, 159, 5, 0.8);
+	border-radius: 0.5rem;
+	border: none;
+	font-size: 18px;
+	margin-top: 21px;
+	width: 300px;
+	height: 58px;
+	box-shadow: inset 3px 0px 9px 1px rgba(255, 255, 255, 0.24);
+
+}
