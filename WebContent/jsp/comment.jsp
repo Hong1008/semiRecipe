@@ -12,7 +12,7 @@
 <!-- ************************************************* -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- ************************************************* -->
-	
+
 <div class="insertCom">
 	<div class='CMT_icon'></div>
 	<input type="hidden" id="user_id" value="${sessionScope.loginID }">

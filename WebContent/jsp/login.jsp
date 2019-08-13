@@ -13,14 +13,8 @@
 	$(document).ready(function() {
 		if($.cookie('id')){
 			$('#user_id').val($.cookie('id'));
+			$('#save_id').prop('checked','true');
 		}
-		
-		$('#save_id').on('click',function(){
-			if($('#save_id').prop('checked') && $('#user_id').val()!=""&&$('#user_pw').val()!=""){
-				$.cookie('id',$('#user_id').val());
-			};
-		});
-		
 		
 		$('#login').on('click', login);
 
@@ -36,13 +30,16 @@
 	});
 
 	function login() {
+		if($('#save_id').prop('checked') && $('#user_id').val()!="" && $('#user_pw').val()!=""){
+			$.cookie('id',$('#user_id').val());
+		};
+		
 		if ($('#user_id').val() != "" && $('#user_pw').val() != "") {
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
 				url : '/semiRecipe/recipe/login',
-				data : 'user_id=' + $('#user_id').val() + '&user_pw='
-						+ $('#user_pw').val(),
+				data : 'user_id=' + $('#user_id').val() + '&user_pw=' + $('#user_pw').val(),
 				success : function(res) {
 					if (res != 1) {
 						alert("회원정보를 다시 확인해주세요.");
@@ -52,10 +49,11 @@
 					}
 				}
 			});
-			return;
+			return false;
 		} else {
 			alert("아이디와 비밀번호를 모두 입력해주세요.");
 		}
+		
 	}
 	
 	function kakaoLogin(kakao_id, email, userNickName) {
@@ -166,32 +164,29 @@ html, body {
 	color: #000;
 	font-size: 14px;
 	padding: 19px 0 15px 0;
-	font-family: '돋움';
 }
 
 .login_box #login {
 	width: 100%;
 	height: 55px;
 	background-color: #00a6de;
-	color: #fff;
 	font-size: 16px;
 	padding: 17px 0 16px;
 	border: 0;
 	cursor: pointer;
-	font-family: '돋움';
+	font-weight: bold;
 }
 
 .login_box #kakao_login {
 	width: 100%;
 	height: 55px;
-	background-color: #b2ae40;
-	color: #fff;
+	background-color: #f9df33;
 	font-size: 16px;
 	padding: 17px 0 16px;
 	border: 0;
 	margin-top: 10px;
 	cursor: pointer;
-	font-family: '돋움';
+	font-weight: bold;
 }
 
 .login_box .last {

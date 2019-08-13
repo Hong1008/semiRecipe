@@ -24,8 +24,11 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
-<script src="../ckeditor/ckeditor.js"></script>
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.starRev span').click(function() {
@@ -225,9 +228,9 @@ td, tr {
 	<div id="writeframe">
 		<form name="frm" method="post" enctype="multipart/form-data"
 			action="/semiRecipe/recipe/reviewinsert" id="writeform">
-			<input type="hidden" name="review_rate" id="review_rate">
-			<input type="hidden" name="recipe_id" id="recipe_id">
-			<input type="hidden" name="user_nickname"
+			<input type="hidden" name="review_rate" id="review_rate"> <input
+				type="hidden" name="recipe_id" id="recipe_id"> <input
+				type="hidden" name="user_nickname"
 				value="${requestScope.mdto.user_nickname}" id="user_nickname" /> <input
 				type="hidden" name="user_id" value="${requestScope.mdto.user_id}"
 				id="user_id" />
@@ -235,7 +238,7 @@ td, tr {
 				<tr>
 					<td width="20%" align="center">레시피 선택</td>
 					<td width="80%"><input type="text" id="revRecipeSelect"
-						 placeholder="레시피 검색"
+						placeholder="레시피 검색"
 						style="width: 300px; height: 20px; font-size: 15px;" /><input
 						type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
@@ -280,10 +283,9 @@ td, tr {
 
 				<tr>
 					<td width="20%" align="center">내용</td>
-					<td width="80%"><textarea name="review_content" id="editor1"
+					<td width="80%"><textarea name="review_content" id="summernote"
 							rows="30" cols="80"></textarea></td>
 				</tr>
-
 
 				<script>
 					CKEDITOR.replace('editor1');
@@ -318,7 +320,14 @@ td, tr {
 			</table>
 		</form>
 	</div>
+<!-- include libraries(jQuery, bootstrap) -->
 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js -->
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 </body>
 </html>
 

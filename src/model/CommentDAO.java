@@ -116,4 +116,18 @@ public class CommentDAO extends RecipeDAO {
 		}
 		
 	}
+	
+	public String getTotal(int recipe_Id) {
+		String sql = "select count(*) from recipe_comment where recipe_id = "+recipe_Id;
+		String total="";
+		try {
+			rs=queryStmt(sql);
+			rs.next();
+			total = rs.getString(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return total;
+	}
 }

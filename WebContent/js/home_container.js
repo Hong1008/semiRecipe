@@ -1,4 +1,3 @@
-var startPage = true;
 $(document)
 .ready(
 		function() {			
@@ -12,16 +11,15 @@ $(document)
 			.droppable(
 					{
 						drop : function(event, ui) {
+							var selected_ing= $('.selected_ing');
 							//처음 드랍이면 아래로 이동
-							if(startPage){
-								$('html, body').animate({scrollTop : '1200px'}, 800);
+							if(selected_ing.length==0){
 								$('html, body').css({'overflow': 'auto', 'height': 'auto'});
-								startPage=false;
 							}
-							var aaaa= $('.selected_ing');
+							
 							var selected = false;
-							for(var i=0; i<aaaa.length;i++){
-								if(aaaa.eq(i).children('p').text() == name){
+							for(var i=0; i<selected_ing.length;i++){
+								if(selected_ing.eq(i).children('p').text() == name){
 									selected=true;
 								}
 							}
@@ -33,7 +31,8 @@ $(document)
 									var selected = $(
 									'#selected_ing_list')
 									.html()
-									+ " <div class='selected_ing'><button class='close_ing'></button><p>"
+									+ " <div class='selected_ing'><button class='close_ing'><div class='x1 x'></div>" +
+											"<div class='x2 x'></div></button><p>"
 									+ name
 									+ "</p></div>";
 									$('#selected_ing_list')
@@ -51,11 +50,16 @@ $(document)
 							.on(
 									'click',
 									function() {
-										$(this)
-										.parents(
-										'.selected_ing')
-										.remove();
-										viewList();
+										var selected_ing= $('.selected_ing');
+										if(selected_ing.length==1){
+											$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+											$(this).parents('.selected_ing').remove();
+											$('selected_recipe').hide();
+										}else{
+											$(this).parents('.selected_ing').remove();
+											viewList();
+										}
+																			
 									})
 						}
 					});
@@ -85,9 +89,15 @@ $(document)
 				if($(document).scrollTop() < 700){
 					$('.recipeBtn#nextBtn img').animate({'opacity':0},300);	
 					$('.recipeBtn#prevBtn img').animate({'opacity':0},300);	
+					$('.recipeBtn').animate({'opacity':0},300);
 				}else{
-					$('.recipeBtn#nextBtn img').clearQueue().animate({'opacity':1},300);	
-					$('.recipeBtn#prevBtn img').clearQueue().animate({'opacity':1},300);	
+					//$('.recipeBtn#nextBtn img').clearQueue().animate({'opacity':0.3},300);	
+					//$('.recipeBtn#prevBtn img').clearQueue().animate({'opacity':0.3},300);	
+					$('.recipeBtn').clearQueue().animate({'opacity':1},300);
+					var sideBtnAnim = setInterval(function() {
+						if(!isopen)
+							$('.recipeBtn img').animate({'opacity':0.8},500).animate({'opacity':0.3},500);
+					},1000);
 				}
 
 				//선택된 메뉴들

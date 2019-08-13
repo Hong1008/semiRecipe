@@ -52,7 +52,7 @@ public class ReviewInsertAction {
 				map.put(Integer.parseInt(key), Integer.parseInt(multi.getParameter(param)));
 			}
 		}
-		
+		System.out.println(multi.getParameter("review_content"));
 		dto.setReview_content(multi.getParameter("review_content"));
 		dto.setReview_rate(multi.getParameter("review_rate"));
 		dto.setUser_id(multi.getParameter("user_id"));

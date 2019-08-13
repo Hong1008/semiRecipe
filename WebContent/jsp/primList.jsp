@@ -20,6 +20,10 @@
 <script src="/semiRecipe/js/primList.js"></script>
 <script src="/semiRecipe/js/showRecipe.js"></script>
 <style>
+*:focus {
+	outline: none;
+}
+
 #main .thumbnails {
     display: inline-block;
     text-align: center;
@@ -76,16 +80,6 @@
 	width: 900px;
 }
 
-.ing_menu_li {
-	width: 150px;
-	height: 50px;
-	float: left;
-	font-family: 'Noto Sans KR';
-	font-size: 22px;
-	font-weight: bold;
-	text-align: center;
-	cursor: pointer;
-}
 
 .sort{
 	float: right;
@@ -112,9 +106,51 @@
 	display: inline;
 	vertical-align: bottom;
 }
+
+/*******************이해람바꿈********************/
 #searchDrop{
-	width: 120px;
+	width: 142px;
+    height: 39px;
+    -webkit-appearance: none;
+    border: none;
+    font-size: 18px;
+    padding-left: 0px;
+    background: rgb(255, 245, 230);
+    margin-left: -4px;
+    margin-top: 8px;
+    background-image: url(/semiRecipe/img/comment_1.png);
+    background-size: 133px;
+    color: #2d2d2dcf;
+    font-style: oblique;
+    font-weight: bold;
+    background-position-x: -8px;
 }
+
+#searchText{
+	font-size: 18px;
+    width: 191px;
+    height: 34px;
+    border: none;
+    font-weight: 100;
+    text-align: center;
+    box-shadow: 0 0 9px 0px rgba(56, 56, 56, 0.06);
+}
+
+
+.ing_menu_li {
+    width: 140px;
+    height: 39px;
+    float: left;
+    font-size: 21px;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+    padding-top: 5px;
+    background: rgba(13, 13, 13, 0.67);
+    color: #f1f1f1;
+}
+/*******************이해람바꿈********************/
+
 </style>
 
 </head>

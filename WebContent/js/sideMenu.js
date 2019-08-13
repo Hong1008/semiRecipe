@@ -7,6 +7,15 @@ $(document)
 				if(!isopen)
 					$('#side_btn').animate({'margin-left':'-120px'},500).animate({'margin-left':'-101px'},500);
 			},1000);
+			
+			$('.ingredients').on('mouseover',function(){
+				$(this).clearQueue().animate({'border-radius':'65px','background-color':'rgb(30,30,30,0.9)'},200);
+			})
+			
+			$('.ingredients').on('mouseleave',function(){
+				$(this).animate({'border-radius':'12px','background-color':'rgb(10,10,10,0.6)'},200);
+			})
+
 
 			//재로 사이드메뉴 열기/닫기
 			$('#side_btn').on('click', function() {
@@ -118,6 +127,7 @@ $(document)
 			.on(
 					'keyup',
 					function() {
+						$('#ingredients_menu_div ul li').removeClass('click');//선택된 항목을 삭제함
 						var search = $(this).val();//현재 인풋창의 값을 받아옴
 						var search_len = Hangul
 						.disassemble(search).length;//현재 인풋창의 자음+모음수
@@ -168,6 +178,8 @@ $(document)
 
 			//재료 항목 별 클릭
 			$('#ingredients_menu_div ul li').click(function(){
+				$('#ingredients_menu_div ul li').removeClass('click');
+				$(this).addClass('click');
 				var ty = $(this).attr('id');
 				$('.ingredients').hide();
 				$('.ingredients input').each(function(i,v){
@@ -176,6 +188,4 @@ $(document)
 					}
 				})
 			})
-
-
 		})
