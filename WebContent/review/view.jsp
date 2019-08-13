@@ -10,7 +10,6 @@
 <title>Review Board</title>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
-<link rel="stylesheet" href="/semiRecipe/css/comment.css">
 <style>
    #view_post{
    	height : 100%;
@@ -81,7 +80,7 @@
 		</tr>
 		</table>
 	</div>
-
+	
 	<%--<div>
 		<jsp:include page="../review/reviewBoard.jsp"></jsp:include>
 	</div> --%>

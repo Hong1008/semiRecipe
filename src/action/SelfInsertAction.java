@@ -63,15 +63,14 @@ public class SelfInsertAction extends HttpServlet {
 		srdto.setUser_id(user_id);
 		dao.selfRecipeInsertMethod(srdto);
 
-		// List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
-		// IrdntDTO irdto = new IrdntDTO();
-		// for (int i = 0; i < irList.size(); i++) {
-		// irdto.setRECIPE_ID(riMax);
-		// irdto.setIMPORTANCE(multi.getParameter("importance"));
-		// irdto.setIRDNT_SN(Integer.parseInt(multi.getParameter("irdnt_sn")));
-		// irdto.setIRDNT_NM(multi.getParameter("irdnt_nm"));
-		// irList.add(irdto);
-		// }
+		List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
+		for (int i = 0; i < irList.size(); i++) {
+			IrdntDTO irdto = new IrdntDTO();
+			irdto.setRECIPE_ID(riMax);
+			irdto.setIMPORTANCE(multi.getParameter("importance"));// 필요도
+			irdto.setIRDNT_SN(Integer.parseInt(multi.getParameter("irdnt_sn")));// 재료 순번
+	irdto.setIRDNT_NM(multi.getParameter("irdnt_nm"));// 재료명
+		}
 		 
 		String[] cooking_dc = multi.getParameterValues("recipe_dc");
 		List<StepDTO> stList = new ArrayList<StepDTO>();

@@ -15,6 +15,8 @@ public class SelfViewAction {
 	public void execute(HttpServletRequest req,  HttpServletResponse resp) {
 
 		String recipe_id = req.getParameter("recipe_id");
+		System.out.println(recipe_id);
+		System.out.println("레시피 아이디");
 		SelfRecipeDAO dao = SelfRecipeDAO.getInstance();
 		HashMap<String, String> pvmap = dao.primViewMethod(recipe_id);
 

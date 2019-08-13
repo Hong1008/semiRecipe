@@ -55,6 +55,7 @@ $(document).ready(function(){
 		
 	}
 	
+
 	
 	$('#CMT #order').change(function(){
 		comList();  
@@ -84,10 +85,11 @@ function comList(){
 	$.ajax({
 		type:'POST',
 		dataType:'text',
-		data:'com_board='+$('#CMT>div').attr('id')+'&key='+$('#CMT #key').val()+'&order='+$('#CMT #order').val()+'&rownum='+rownum,
+		data:'com_board='+$('#CMT>div').attr('id')+'&key='+$('#CMT #key').val(),
 		url:'comList',
 		success: function(res){
-			$('#CMT>div').html(res);  
+			$('#CMT>div').empty();
+			$('#CMT>div').html(res);
 		}
 	})
 }
