@@ -119,7 +119,7 @@ body {
 
 #writeframe {
 	height: 800px;
-	max-width: 68rem;
+	width: 1010px;
 	margin: 0 auto;
 	margin-top: 10px;
 }
@@ -228,24 +228,22 @@ td, tr {
 	<div id="writeframe">
 		<form name="frm" method="post" enctype="multipart/form-data"
 			action="/semiRecipe/recipe/reviewinsert" id="writeform">
-			<input type="hidden" name="review_rate" id="review_rate"> <input
-				type="hidden" name="recipe_id" id="recipe_id"> <input
-				type="hidden" name="user_nickname"
-				value="${requestScope.mdto.user_nickname}" id="user_nickname" /> <input
-				type="hidden" name="user_id" value="${requestScope.mdto.user_id}"
-				id="user_id" />
+			<input type="hidden" name="review_rate" id="review_rate"> 
+			<input type="hidden" name="recipe_id" id="recipe_id"> 
+			<input type="hidden" name="user_nickname" value="${requestScope.mdto.user_nickname}" id="user_nickname" /> 
+			<input type="hidden" name="user_id" value="${requestScope.mdto.user_id}" id="user_id" />
 			<table id="recipeTable">
-				<tr>
-					<td width="20%" align="center">레시피 선택</td>
-					<td width="80%"><input type="text" id="revRecipeSelect"
+				<tr height = "50px">
+					<td width="200px" align="center">레시피 선택</td>
+					<td width="800px"><input type="text" id="revRecipeSelect"
 						placeholder="레시피 검색"
 						style="width: 300px; height: 20px; font-size: 15px;" /><input
 						type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
 
 				<tr id="choo">
-					<td width='20%' align='center'></td>
-					<td width='800px'>
+					<td width="200px" align='center'></td>
+					<td width="800px">
 						<div class="view" style="width: 820px; height: 500px;">
 							<div class="scrollBlind">
 								<ul id='recipeSelectList'>
@@ -264,9 +262,9 @@ td, tr {
 					</td>
 				</tr>
 
-				<tr>
-					<td width="20%" align="center">레시피 별점</td>
-					<td width="80%">
+				<tr height = "50px">
+					<td width="200px" align="center">레시피 별점</td>
+					<td width="800px">
 						<div class="starRev">
 							<span class="starR on">별1</span> <span class="starR on">별2</span>
 							<span class="starR on">별3</span> <span class="starR on">별4</span>
@@ -275,16 +273,16 @@ td, tr {
 					</td>
 				</tr>
 
-				<tr>
-					<td width="20%" align="center">제목</td>
-					<td width="80%"><input type="text" name="review_subject"
+				<tr height = "50px">
+					<td width="200px" align="center">제목</td>
+					<td width="800px"><input type="text" name="review_subject"
 						id="review_subject" style="width: 800px; height: 20px;" /></td>
 				</tr>
 
 				<tr>
-					<td width="20%" align="center">내용</td>
-					<td width="80%"><textarea name="review_content" id="summernote"
-							rows="30" cols="80"></textarea></td>
+					<td width="200px" align="center">내용</td>
+					<td width="800px"><textarea name="review_content" id="summernote"
+							rows="30" cols="90"></textarea></td>
 				</tr>
 
 				<script>
@@ -298,10 +296,10 @@ td, tr {
 
 				//	window.parent.CKEDITOR.tools.callFunction(1, "${url}", "전송완료");
 				</script>
-
+  
 				<tr>
-					<td width="20%" align="center">파일첨부</td>
-					<td width="80%" id="fileDiv"><input type="file" name="upload" /></td>
+					<td width="200px" align="center">파일첨부</td>
+					<td width="800px" id="fileDiv"><input type="file" name="upload" /></td>
 				</tr>
 				<tr>
 					<td height="10px"></td>
