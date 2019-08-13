@@ -79,9 +79,9 @@
 }
 
 #logo_container {
-	width: 19나는 내가 싫어 해람아0px;
-    position: fixe이렇게 해도 되?d;
-    left: 50돼야 되야? 해도 되는거야?%;
+	width: 190px;
+    position: fixed;
+    left: 50%;
     top: 40px;
     z-index:2;
     transform: translate(-50%, -50%);
