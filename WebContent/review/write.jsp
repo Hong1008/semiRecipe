@@ -10,11 +10,11 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/semiRecipe/smartEditor/js/HuskyEZCreator.js"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
-<script src="../ckeditor/ckeditor.js"></script>
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -34,12 +34,11 @@
 				recipes_name[i] = $('.recipes').eq(i).text();
 			} //배열에 이름들을 저장
 
-			
 			$('#revRecipeSelect').on('keyup', function() {
 				var search = $('#revRecipeSelect').val();//현재 인풋창의 값을 받아옴
 				var search_len = Hangul.disassemble(search).length;//현재 인풋창의 자음+모음수
 				search = Hangul.assemble(search);
-				
+
 				$('.recipes').hide();
 				for (var i = 0; i < recipes_num; i++) {
 					//맞는것 실행시켜줌
@@ -95,48 +94,45 @@
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
 		});
-		
-        var recipe_id="";
-		
-        $('.icon-comment').on('click', function() {
+
+		var recipe_id = "";
+
+		$('.icon-comment').on('click', function() {
 			// alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
 			//alert($('#revRecipeSelect').val());
-			 $('#recipeSelectList li').each(function(index,element){
-            //	alert($(this).attr('id'));
-            
-            	if($(this).attr('id')==$('#revRecipeSelect').val()){
-            		recipe_id = $(this).val();
-            	}
-       		 });
-			 
-         	var text = CKEDITOR.instances.editor1.getData();
-         	
-         	$.ajax({
-     			type: 'POST',
-     			dataType: 'text',
-     		//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
-     			data : {
-     				recipe_id : recipe_id,
-     				review_content : text,
-     				user_id : $('#user_id').val(),
-     				review_subject : $('#review_subject').val(),
-     				user_nickname : $('#user_nickname').val(),
-     				review_rate : $('.starR.on').length
-     			},
-     			url: 'reviewinsert',
-     			success: function(){
-     				location.href="/semiRecipe/recipe/review";
-     			}
-         	
-     		});
-         	
-         	return false;
-         	
-         	
+			$('#recipeSelectList li').each(function(index, element) {
+				//	alert($(this).attr('id'));
 
-		//	$('form').submit();
+				if ($(this).attr('id') == $('#revRecipeSelect').val()) {
+					recipe_id = $(this).val();
+				}
+			});
+
+			var text = CKEDITOR.instances.editor1.getData();
+
+			$.ajax({
+				type : 'POST',
+				dataType : 'text',
+				//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
+				data : {
+					recipe_id : recipe_id,
+					review_content : text,
+					user_id : $('#user_id').val(),
+					review_subject : $('#review_subject').val(),
+					user_nickname : $('#user_nickname').val(),
+					review_rate : $('.starR.on').length
+				},
+				url : 'reviewinsert',
+				success : function() {
+					location.href = "/semiRecipe/recipe/review";
+				}
+
+			});
+
+			return false;
+
+			//	$('form').submit();
 		});
-
 	});
 </script>
 <style type="text/css">
@@ -308,12 +304,22 @@ td, tr {
 
 				<tr>
 					<td width="20%" align="center">내용</td>
-					<td width="80%"><textarea name="review_content" id="editor1"
-							rows="30" cols="80"></textarea></td>
+					<td width="80%"><textarea name="ir1" id="ir1" rows="10"
+							cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea>
+						</textarea>
 				</tr>
-				<script>
-					CKEDITOR.replace('editor1');
+
+				<script type="text/javascript">
+					var oEditors = [];
+
+					nhn.husky.EZCreator.createInIFrame({
+						oAppRef : oEditors,
+						elPlaceHolder : "ir1",
+						sSkinURI : "/semiRecipe/smartEditor/SmartEditor2Skin.html",
+						fCreator : "createSEditor2"
+					});
 				</script>
+
 
 				<tr>
 					<td width="20%" align="center">파일첨부</td>
@@ -336,7 +342,6 @@ td, tr {
 			</table>
 		</form>
 	</div>
-
 </body>
 </html>
 
