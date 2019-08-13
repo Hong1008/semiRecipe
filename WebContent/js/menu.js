@@ -41,18 +41,18 @@ $(document).ready(function(){
 	})
 	
 	function logoAnim() {
-		$('#logo_container').animate({'left':'50.5%'},50).animate({'left':'49.5%'},50);
-		$(this).css('width','75px');
+		$('#logo_container').animate({'left':'50.3%'},50).animate({'left':'49.7%'},50);
 	}
 	
 	$('#logo_container').on('mouseover',function(){
-		for(var i=0;i<50;i++)
+		$('#logo_container').animate({'width':'210px'},100);
+		for(var i=0;i<100;i++)
 			logoAnim();
 	})
 	
 	$('#logo_container').on('mouseleave',function(){
 		$(this).clearQueue().stop();
-		$(this).css('width','70px');
+		$(this).animate({'width':'190px'},300);
 	})
 	
 	$('.menu_li').click(function(){

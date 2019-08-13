@@ -81,7 +81,7 @@ for(var i=0; i<rate.length;i++){
 </div>
 
 <div id='CMT' class='R_div'>
-		<span id='comment_num'>댓글 <span id="total">${total }</span>개</span>
+		<span id='comment_num'>댓글 <span id="total">${total }</span>  개</span>
 	<select name="order" id="order">
 		<option value="com_time">최근날짜순</option>
 		<option value="rating">별점순</option>
