@@ -55,11 +55,11 @@
 		</c:forEach>
 	</div>
 	<div id='seasonig' class='R_ig_div'>
-	<c:forEach items="${requestScope.irList }" var="irList">
+	<c:forEach items="${requestScope.subIrList }" var="subIrList">
 		<div class='R_ing'>
-			<span>${irList.IRDNT_NM }</span>
+			<span>${subIrList.IRDNT_NM }</span>
 			<div class='R_rate_div'>
-				<div class="R_rate" id="${irList.IMPORTANCE }"></div>
+				<div class="R_rate" id="${subIrList.IMPORTANCE }"></div>
 			</div>
 		</div>
 		</c:forEach>

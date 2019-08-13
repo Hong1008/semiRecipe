@@ -1,5 +1,10 @@
 
 $(document).ready(function(){
+	selfDelete();
+	/*********************************************************************************/
+	
+	//irdntDrop();
+	
 
 		var list_cnt = 550;
 		var column = '';
@@ -82,8 +87,10 @@ $(document).ready(function(){
 			});
 			return false;
 	});
+	
+
+	
 		
-			
 	$('#update').on('click', function(){
 		var chk = $("input[name='radi']:checked").val();
 		alert(chk);
@@ -100,4 +107,11 @@ $(document).ready(function(){
 }); 
 
 
+function selfDelete(){
+$('#del').on('click', function(){
+	var chk = $("input[name='radi']:checked").val();	
+    window.location.href="selfDel?recipe_id="+chk;
+});
+
+}
 

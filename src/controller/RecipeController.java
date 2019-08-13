@@ -24,7 +24,7 @@ import action.RegisterAction;
 import action.ReviewListAction;
 import action.ReviewViewAction;
 import action.ReviewWriteAction;
-import action.SelfDeleteAciont;
+import action.SelfDeleteAction;
 import action.SelfListAction;
 import action.SelfUpdateAction;
 import action.SelfViewAction;
@@ -139,7 +139,7 @@ public class RecipeController extends HttpServlet {
 				resp.sendRedirect("selfView?recipe_id="+riMax);
 			}
 		}else if (path.equals("deleteSelfRecipe")) {
-				SelfDeleteAciont del = new SelfDeleteAciont();
+				SelfDeleteAction del = new SelfDeleteAction();
 				del.execute(req, resp);
 				//resp.sendRedirect("selfRecipe?pageNum=" + req.getParameter("pageNum"));
 				//삭제 후 마지막 페이지 유지
@@ -158,8 +158,10 @@ public class RecipeController extends HttpServlet {
 				  suUpdate.executeMulti(req, resp); 
 				  PrimDTO prdto = new PrimDTO();
 				  resp.sendRedirect("selfUdate?recipe_id="+ prdto.getRECIPE_ID()); }
-			 
-			
+		}else if(path.equals("recipe/selfDel")) {	//                  셀프 델리
+			SelfDeleteAction sfdel = new SelfDeleteAction();
+			sfdel.execute(req, resp);
+			resp.sendRedirect("selfRecipe");
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
 		}else if(path.equals("recipe/login")) {
