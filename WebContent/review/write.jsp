@@ -1,6 +1,16 @@
+<%@page
+	import="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"%>
+<%@page import="java.io.IOException"%>
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="java.io.File, java.util.List, java.io.IOException"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+
+<%@page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,16 +108,7 @@
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
 			$('#recipe_id').val('');
-		});
-
-		var recipe_id = "";
-
-		$('#summernote').summernote({
-            height: 300,                 // set editor height
-            minHeight: null,             // set minimum height of editor
-            maxHeight: null,             // set maximum height of editor
-            focus: true                  // set focus to editable area after initializing summernote
-    });
+		})
 
 	});
 </script>
@@ -286,6 +287,17 @@ td, tr {
 							rows="30" cols="80"></textarea></td>
 				</tr>
 
+				<script>
+					CKEDITOR.replace('editor1');
+
+					CKEDITOR.replace('editor1',{
+							filebrowserUploadUrl:'/semiRecipe/ckeditor/upload.jsp'
+					});
+
+
+
+				//	window.parent.CKEDITOR.tools.callFunction(1, "${url}", "전송완료");
+				</script>
 
 				<tr>
 					<td width="20%" align="center">파일첨부</td>

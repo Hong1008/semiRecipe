@@ -24,15 +24,19 @@ import action.RegisterAction;
 import action.ReviewListAction;
 import action.ReviewViewAction;
 import action.ReviewWriteAction;
+import action.SelfDeleteAciont;
 import action.SelfListAction;
+import action.SelfUpdateAction;
 import action.SelfViewAction;
 import action.SelfInsertAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
 import model.InfoUpdate;
 import model.IrdntTYDAO;
+import model.PrimDTO;
 import model.ReviewInsertAction;
 import model.SelfRecipeDAO;
+
 
 @WebServlet("/recipe/*")
 public class RecipeController extends HttpServlet {
@@ -68,7 +72,7 @@ public class RecipeController extends HttpServlet {
 			next = "/jsp/showRecipe.jsp";
 		}else if(path.equals("recipe/list")) {
 			RecipeListAction list = new RecipeListAction();
-			list.execute(req, resp);
+			list.execute(req, resp);////////////////////////////////////////////////////////////////////
 			next = "/jsp/primList.jsp";
 			if(method.equalsIgnoreCase("POST")) {
 				next = "/ajax/listResult.jsp";
@@ -98,15 +102,10 @@ public class RecipeController extends HttpServlet {
 			ReviewViewAction revView = new ReviewViewAction();
 			revView.execute(req, resp);
 			next="/review/view.jsp";
-		}
-		else if(path.equals("recipe/irdnt")) {
+		} else if(path.equals("recipe/irdnt")) {
 			IrdntAction irdnt = new IrdntAction();
 			irdnt.execute(req, resp);
 			next = "/review/irdntList.jsp";
-		}else if(path.equals("recipe/selfRecipe")) {
-			SelfListAction selfList = new SelfListAction();
-			selfList.execute(req, resp);
-			next = "/selfRecipe/selfBoard.jsp";				
 		}else if(path.equals("recipe/comList")) {
 			ComListAction comList = new ComListAction();
 			comList.execute(req,resp);
@@ -114,17 +113,26 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/insertCom")) {
 			ComInsertAction insertCom = new ComInsertAction();
 			insertCom.execute(req,resp);
+		}else if(path.equals("recipe/selfRecipe")) {
+			SelfListAction selfList = new SelfListAction();// 셀프 리스트 
+			selfList.execute(req, resp);////////////////////////////////////////////////////////////////////////////
+			next = "/selfRecipe/selfBoard.jsp";		
+			if(method.equalsIgnoreCase("POST")) {
+				next = "/ajax/selfList.jsp";
+			}
 		}else if(path.equals("recipe/selfView")) { //  셀프 뷰
 			SelfViewAction viewList = new SelfViewAction();
 			viewList.execute(req, resp);
 			next = "/selfRecipe/selfView.jsp";	
-		}else if(path.equals("recipe/insertSelfRecipe")) { //  셀프 인서트
+		}else if(path.equals("recipe/selfInsert")) { //  셀프 인서트
+			System.out.println("셀프인서트");
 			if(method.equalsIgnoreCase("get")){
+				System.out.println("겟방식확인");
 				IrdntTYDAO dao = new IrdntTYDAO();
 				req.setAttribute("aList", dao.list());
 				req.setAttribute("tList", dao.tyList());
 				dao.exit();
-				next = "/selfRecipe/insertSelfRecipe.jsp";				
+				next = "/selfRecipe/selfInsert.jsp";				
 			}else {				
 				SelfInsertAction insertList = new SelfInsertAction();
 				insertList.executeMulti(req, resp);
@@ -132,6 +140,22 @@ public class RecipeController extends HttpServlet {
 				int riMax = dao.recipeIdMax();
 				resp.sendRedirect("selfView?recipe_id="+riMax);
 			}
+		}else if (path.equals("deleteSelfRecipe")) {
+				SelfDeleteAciont del = new SelfDeleteAciont();
+				del.execute(req, resp);
+				//resp.sendRedirect("selfRecipe?pageNum=" + req.getParameter("pageNum"));
+				//삭제 후 마지막 페이지 유지
+		}else if(path.equals("recipe/selfUpdate")) { //  셀프 수정
+			/*
+			 * if(method.equalsIgnoreCase("get")){ IrdntTYDAO dao = new IrdntTYDAO();
+			 * req.setAttribute("aList", dao.list()); req.setAttribute("tList",
+			 * dao.tyList()); dao.exit(); next = "/selfRecipe/selfUpdate.jsp"; }else {
+			 * SelfUpdateAction suUpdate = new SelfUpdateAction();
+			 * suUpdate.executeMulti(req, resp); SelfRecipeDAO dao =
+			 * SelfRecipeDAO.getInstance(); PrimDTO prdto = new PrimDTO();
+			 * resp.sendRedirect("selfView?recipe_id="+ prdto.getRECIPE_ID()); }
+			 */
+			
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
 		}else if(path.equals("recipe/login")) {

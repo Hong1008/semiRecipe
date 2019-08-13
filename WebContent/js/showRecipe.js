@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('.thumbnails .js-load').on('click',function(){
+	$('.thumbnails>div>div').on('click',function(){
 		showRecipe($(this).attr('id'),"#selected_recipe");
 		return false;
 	});

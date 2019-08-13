@@ -31,14 +31,33 @@
 	margin: 10px 10px;
 }
 
+.js-load span:after{
+	color:#8D4738;
+	font-size: 0.75rem;
+	display: inline-block;
+} 
+
+
 #quick_menu {
     width: 65px;
-    height: 36px;
+    height: 64px;
 	background:#F29F05;
 	text-align: center;
 	position: absolute;
 	top: 80%;
 	left: 90%;
+}
+
+
+#quick_menu p:nth-of-type(3) {
+	
+    width: 65px;
+    height: 62px;
+	background:#F29F05;
+	text-align: center;
+	position: absolute;
+	top: 80%;
+	/* left: 90%; */
 }
 
 #quick_menu a{
@@ -77,12 +96,6 @@
 	margin-top: 30px;
 }
 
-.js-load span{
-	color:#8D4738;
-	font-size: 0.75rem;
-	display: inline-block;
-}
-
 #main .thumbnails .js-load span>img{
 	width: 20px;
 	display: inline;
@@ -91,4 +104,3 @@
 #searchDrop{
 	width: 120px;
 }
-

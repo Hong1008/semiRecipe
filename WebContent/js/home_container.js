@@ -118,4 +118,5 @@ $(document)
 				if($(document).scrollTop() >= 650)
 					$(this).clearQueue().animate({'opacity':0.5},300);
 			})
+			
 		});

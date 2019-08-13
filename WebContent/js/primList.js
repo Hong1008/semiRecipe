@@ -34,7 +34,7 @@ $(document).ready(
 									+ '&searchType=' + searchType,
 							url : 'list',
 							success : function(res) {
-								$('.thumbnails>div div').remove();
+								$('.thumbnails>div').empty();
 								$('.thumbnails>div').html(res);
 								$('.thumbnails').height(550);
 							}
@@ -44,6 +44,18 @@ $(document).ready(
 								$('#sortNM .order').val('asc');
 							else if ($('#sortNM .order').val() == 'asc')
 								$('#sortNM .order').val('desc');
+						}
+						if (column == 'prim_views') {
+							if ($('#sortView .order').val() == 'desc')
+								$('#sortView .order').val('asc');
+							else if ($('#sortView .order').val() == 'asc')
+								$('#sortView .order').val('desc');
+						}
+						if (column == 'rating') {
+							if ($('#sortRate .order').val() == 'desc')
+								$('#sortRate .order').val('asc');
+							else if ($('#sortRate .order').val() == 'asc')
+								$('#sortRate .order').val('desc');
 						}
 						$('#searchText').val('');
 						return false;

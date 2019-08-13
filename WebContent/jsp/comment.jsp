@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/semiRecipe/css/comment.css">
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
 	rel="stylesheet">
-<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
+
 
 
 <!-- ************************************************* -->

@@ -7,14 +7,11 @@ $(document).ready(function(){
 		var nation_nm = '';
 		var recipe_nm_ko = '';
 		var searchType = '';
-		$('.sort,.ing_menu_li,.icon-search,#searchText').on('click keydown',
+		$('.sort,.icon-search,#searchText').on('click keydown',
 				function listAjax(key) {
 					if ($(this).is('.sort')) {
 						column = $(this).children('.column').val();
 						order = $(this).children('.order').val();
-					}
-					if ($(this).is('.ing_menu_li')) {
-						nation_nm = $(this).attr('id');
 					}
 					if($(this).is('#searchText')){
 						if(key.keyCode != 13){
@@ -26,16 +23,17 @@ $(document).ready(function(){
 						recipe_nm_ko = $('#searchText').val();
 						searchType = $('#searchDrop').val();
 					}
+					
 					$.ajax({
 						type : 'POST',
 						dataType : 'text',
 						data : 'column=' + column + '&order=' + order
-								+ '&nation_nm=' + nation_nm + '&recipe_nm_ko=' + recipe_nm_ko
+								 + '&recipe_nm_ko=' + recipe_nm_ko
 								+ '&searchType=' + searchType,
-						url : 'list',
+						url : 'selfRecipe',
 						success : function(res) {
-							$('.thumbnails>div div').remove();
-							$('.thumbnails>div').html(res);
+							$('.thumbnails>div').remove();
+							$('.thumbnails').html(res);
 							$('.thumbnails').height(550);
 						}
 					})
@@ -59,8 +57,7 @@ $(document).ready(function(){
 		var defTop = parseInt($('#quick_menu').css("top"));
 		$(document).scroll(
 				function() {
-					if ($(document).height() == ($(window).height() + $(
-							document).scrollTop())) {
+					if ($(document).height() == ($(window).height() + $(document).scrollTop())) {
 						load('.thumbnails', list_cnt);
 					}
 					$('#quick_menu').stop().animate({
@@ -69,10 +66,12 @@ $(document).ready(function(){
 				})
 		
 	
+				
 	
 	/*recipe_id 보내주는 부분*/
-	$('.js-load').on('click', function() {
+	$('.js-load	').on('click', function() {
 		console.log('js-load');
+		console.log( $(this).attr('id'));
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
@@ -82,10 +81,6 @@ $(document).ready(function(){
 			});
 			return false;
 	});		
-		
-		
-		
-
 }); 
 
 

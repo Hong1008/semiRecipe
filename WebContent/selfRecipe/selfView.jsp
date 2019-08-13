@@ -1,28 +1,29 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/semiRecipe/css/recipe.css">
-<link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_recipe.css">
-<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
+<link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_board.css">
+
 <div id='R_header' class='R_div'>
 		
-	<span id='user_id'>${requestScope.srdto.user_id } </span>
-	<span id='recipe_id'>${requestScope.prdto.RECIPE_ID } </span>
-	<span id='self_views'><img width="14" height="14" alt="조회수" src="/semiRecipe/img/views.png"> ${requestScope.srdto.self_views } </span>
-	<span id='self_date'>D:${requestScope.srdto.self_date } </span>
+	<span id='user_id'>${requestScope.prdto.user_id } </span>|
+	<span id='recipe_id'>${requestScope.prdto.recipe_id } </span>|
+	<span id='self_views'><img width="14" height="14" alt="조회수" src="/semiRecipe/img/views.png"> ${requestScope.prdto.self_views } </span>|
+	<span id='self_date'>D:${requestScope.prdto.self_date } </span>|
 
 	<div id='R_image'>
-		<img src="/semiRecipe/selfRecipe/img_self/${requestScope.prdto.IMG_URL }">
+		<img src="/semiRecipe/selfRecipe/img_self/${requestScope.prdto.img_url }">
 	
 	</div>
-	<h1>${requestScope.prdto.RECIPE_NM_KO }</h1>
-	<h2>${requestScope.prdto.SUMRY }</h2>
+	<h1>${requestScope.prdto.recipe_nm_ko }</h1>
+	<h2>${requestScope.prdto.sumry }</h2>
 </div>
 <div id='R_info' class='R_div'>
 	<!------------------ 아이디바꿔야함 -------------->
 	<div id='food_class'>
 		<p>음식분류</p>
-		<span>${requestScope.prdto.NATION_NM }</span>
+		<span>${requestScope.prdto.nation_nm }</span>
 	</div>
 	<div id='cook_time'>
 		<p>조리시간</p>
@@ -31,11 +32,11 @@
 	</div>
 	<div id='calorie'>
 		<p>칼로리</p>
-		<span id="R_cal">${requestScope.prdto.CALORIE }</span> <span>kcal</span>
+		<span id="R_cal">${requestScope.prdto.calorie }</span> <span>kcal</span>
 	</div>
 	<div id='grade'>
 		<p>난이도</p>
-		<span>${requestScope.prdto.LEVEL_NM }</span>
+		<span>${requestScope.prdto.level_nm }</span>
 	</div>
 </div>
 
@@ -79,13 +80,13 @@
 		<option value="com_time">최근날짜순</option>
 		<option value="rating">별점순</option>
 	</select>
-	<input type="hidden" id="key" value="${prdto.RECIPE_ID}">
+	<input type="hidden" id="key" value="${prdto.recipe_id}">
 	<div id="selfrecipe">
 
 		
 	</div>	
 </div>
-	
+	<link rel="stylesheet" href="/semiRecipe/css/comment.css">
+<script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
 	<script type="text/javascript">
-		comList();
 	</script>

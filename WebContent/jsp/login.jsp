@@ -6,11 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="/semiRecipe/js/jquery.cookie.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		if($.cookie('id')){
+			$('#user_id').val($.cookie('id'));
+			$('#save_id').prop('checked','true');
+		}
+		
 		$('#login').on('click', login);
 
 		$("input").keypress(function(e) {
@@ -25,25 +30,30 @@
 	});
 
 	function login() {
+		if($('#save_id').prop('checked') && $('#user_id').val()!="" && $('#user_pw').val()!=""){
+			$.cookie('id',$('#user_id').val());
+		};
+		
 		if ($('#user_id').val() != "" && $('#user_pw').val() != "") {
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
 				url : '/semiRecipe/recipe/login',
-				data : 'user_id=' + $('#user_id').val() + '&user_pw='
-						+ $('#user_pw').val(),
+				data : 'user_id=' + $('#user_id').val() + '&user_pw=' + $('#user_pw').val(),
 				success : function(res) {
 					if (res != 1) {
 						alert("회원정보를 다시 확인해주세요.");
 					} else {
-						history.go(-1);
+					//	alert(document.referrer);
+						location.href=document.referrer;
 					}
 				}
 			});
-			return;
+			return false;
 		} else {
 			alert("아이디와 비밀번호를 모두 입력해주세요.");
 		}
+		
 	}
 	
 	function kakaoLogin(kakao_id, email, userNickName) {
@@ -56,22 +66,24 @@
 				if (res != 1) {
 					var chk = confirm("등록되지 않은 회원입니다. 카카오톡 정보로 회원가입 하시겠습니까?");
 					if(chk){
-						var id = "";
-						var nickname = "";
-						
-						if(!typeof email=="undefined"){
+						if(!(typeof email=="undefined")){
 							id = email.split("@")[0];
+						}else{
+							id = "";
 						}
 						
-						if(!typeof userNickName=="undefined"){
+						
+						if(!(typeof userNickName=="undefined")){
 							nickname = userNickName;
+						}else{
+							nickname = "";
 						}
 						
 						location.href = '/semiRecipe/recipe/registerForm?id='+id+
 								'&nickname='+nickname+'&kakao_id=' + kakao_id;
 					}
 				} else {
-					history.go(-1);
+					location.href=document.referrer;
 				}
 			}
 		});
@@ -96,14 +108,18 @@ html, body {
 	padding: 0px;
 }
 
-.wrapper {
-	width: 100%;
-	height: 100%;
-	background-image: url(/semiRecipe/img/food_test.jpg);
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	font-family: '돋움';
+.wrapper:after {
+    content: "";
+	position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    width: 100%;
+    height: 100%;
+    background-image: url(/semiRecipe/img/login_back.jpg);
+    z-index: -1;
+    top: 0;
 }
 
 .main {
@@ -122,12 +138,11 @@ html, body {
 }
 
 .login_box {
-	width: 337px;
+	width: 400px;
 	height: 400px;
 	padding: 45px 44px 38px 44px;
 	margin: 0 auto;
 	background-color: #fff;
-	opacity: 0.8;
 	border-radius: 5px;
 	border: 1px solid #ebebeb;
 }
@@ -149,32 +164,29 @@ html, body {
 	color: #000;
 	font-size: 14px;
 	padding: 19px 0 15px 0;
-	font-family: '돋움';
 }
 
 .login_box #login {
 	width: 100%;
 	height: 55px;
 	background-color: #00a6de;
-	color: #fff;
 	font-size: 16px;
 	padding: 17px 0 16px;
 	border: 0;
 	cursor: pointer;
-	font-family: '돋움';
+	font-weight: bold;
 }
 
 .login_box #kakao_login {
 	width: 100%;
 	height: 55px;
-	background-color: #b2ae40;
-	color: #fff;
+	background-color: #f9df33;
 	font-size: 16px;
 	padding: 17px 0 16px;
 	border: 0;
 	margin-top: 10px;
 	cursor: pointer;
-	font-family: '돋움';
+	font-weight: bold;
 }
 
 .login_box .last {
@@ -209,7 +221,7 @@ html, body {
 						placeholder="비밀번호를 입력하세요">
 				</div>
 				<div class="check">
-					<label><input type="checkbox">아이디 저장</label>
+					<label><input type="checkbox" id="save_id">아이디 저장</label>
 				</div>
 				<div>
 					<input id="login" type="submit" value="로그인">
@@ -246,11 +258,12 @@ html, body {
 					success : function(res) {
 						console.log(res);
 						var kakao_id = res.id; //유저가 등록한 계정
-						console.log(kakao_id, email, userNickName);
 						var email = res.kaccount_email; //유저가 등록한 계정
 						var userNickName = res.properties.nickname; //유저가 등록한 별명
 						
-						kakaoLogin(kakao_id);
+						console.log(kakao_id, email, userNickName);
+						
+						kakaoLogin(kakao_id, email, userNickName);
 					},
 					fail : function(error) {
 						alert(JSON.stringify(error));

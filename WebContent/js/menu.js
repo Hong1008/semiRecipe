@@ -47,25 +47,16 @@ $(document).ready(function(){
 		var id = $(this).attr('id');
 		location.href='/semiRecipe/recipe/'+id;
 	})
-	
-	$('#myPage').click(function(){
-		var id = $(this).attr('id');
-		location.href='/semiRecipe/recipe/'+id;
-	})
-	
+		
 	$('.home').click(function(){
 		var id = $(this).attr('class');
 		location.href='/semiRecipe/recipe/'+id;
 	})
 	
-	$('#login').click(function(){
-		var id = $(this).attr('id');
-		location.href='/semiRecipe/recipe/'+id+'Form';
-	})
-	
 	$('#logout').click(function(){
-		alert("로그아웃 되셨습니다.");
-		var id = $(this).attr('id');
-		location.href='/semiRecipe/recipe/'+id;
+		var log = confirm('로그아웃 하시겠습니까?');
+		if(!log){
+			return false;
+		}
 	})
 })
