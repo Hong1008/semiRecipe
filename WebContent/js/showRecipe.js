@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 	$('.thumbnails>div>div').on('click',function(){
 		showRecipe($(this).attr('id'),"#selected_recipe");

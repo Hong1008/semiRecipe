@@ -1,3 +1,4 @@
+
 var star_rate=0;
 var star_num=0;
 var rownum=5;

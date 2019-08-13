@@ -38,9 +38,21 @@ $(document).ready(function(){
 		} 
 		$('#menu_bar img').css('opacity',(1000-$(document).scrollTop()*$(document).scrollTop()*0.0013)/1000);
 		$('#info').css('opacity',(1000-$(document).scrollTop()*$(document).scrollTop()*0.05)/1000);
-			
-		
-		
+	})
+	
+	function logoAnim() {
+		$('#logo_container').animate({'left':'50.5%'},50).animate({'left':'49.5%'},50);
+		$(this).css('width','75px');
+	}
+	
+	$('#logo_container').on('mouseover',function(){
+		for(var i=0;i<50;i++)
+			logoAnim();
+	})
+	
+	$('#logo_container').on('mouseleave',function(){
+		$(this).clearQueue().stop();
+		$(this).css('width','70px');
 	})
 	
 	$('.menu_li').click(function(){

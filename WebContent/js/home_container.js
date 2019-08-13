@@ -4,8 +4,6 @@ $(document)
 			//$("html, body").animate({ scrollTop: 0 }, 1);
 
 			$('html, body').css({'overflow': 'hidden', 'height': '100%'});
-			
-
 			//드롭하는부분		
 			$('#selected_ing_div')
 			.droppable(
@@ -86,18 +84,15 @@ $(document)
 			//스크롤 내리기전 사이드메뉴
 			$(document).scroll(function() {		
 				
-				if($(document).scrollTop() < 700){
-					$('.recipeBtn#nextBtn img').animate({'opacity':0},300);	
-					$('.recipeBtn#prevBtn img').animate({'opacity':0},300);	
+				if($(document).scrollTop() < 600){
+					//$('.recipeBtn#nextBtn').animate({'opacity':0},300);	
+					//$('.recipeBtn#prevBtn').animate({'opacity':0},300);	
 					$('.recipeBtn').animate({'opacity':0},300);
 				}else{
 					//$('.recipeBtn#nextBtn img').clearQueue().animate({'opacity':0.3},300);	
 					//$('.recipeBtn#prevBtn img').clearQueue().animate({'opacity':0.3},300);	
-					$('.recipeBtn').clearQueue().animate({'opacity':1},300);
-					var sideBtnAnim = setInterval(function() {
-						if(!isopen)
-							$('.recipeBtn img').animate({'opacity':0.8},500).animate({'opacity':0.3},500);
-					},1000);
+					$('.recipeBtn').clearQueue().animate({'opacity':0.5},300);
+
 				}
 
 				//선택된 메뉴들
@@ -118,5 +113,7 @@ $(document)
 				if($(document).scrollTop() >= 650)
 					$(this).clearQueue().animate({'opacity':0.5},300);
 			})
+			
+
 			
 		});
