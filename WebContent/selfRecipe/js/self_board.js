@@ -7,6 +7,7 @@ $(document).ready(function(){
 		var nation_nm = '';
 		var recipe_nm_ko = '';
 		var searchType = '';
+
 		$('.sort,.icon-search,#searchText').on('click keydown',
 				function listAjax(key) {
 					if ($(this).is('.sort')) {
@@ -69,18 +70,34 @@ $(document).ready(function(){
 				
 	
 	/*recipe_id 보내주는 부분*/
-	$('.js-load	').on('click', function() {
+	$('.js-load span a').on('click', function() {
 		console.log('js-load');
-		console.log( $(this).attr('id'));
+		console.log( $(this).parents().parents().attr('id'));
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
-				data : 'recipe_id=' + $(this).attr('id'),
+				data : 'recipe_id=' + $(this).parents().parents().attr('id'),
 				url : 'selfView',
 				success : function(res) { $('#selected_recipe').html(res);}
 			});
 			return false;
-	});		
+	});
+		
+			
+	$('#update').on('click', function(){
+		var chk = $("input[name='radi']:checked").val();
+		alert(chk);
+		$.ajax({
+			type : 'GET',
+			dataType : 'text',
+			data : 'recipe_id=' + chk,
+			url : 'selfUpdate',
+			success : function(res) { $('#selected_recipe').html(res);}
+		});
+		return false;
+	});
+
 }); 
+
 
 
