@@ -20,23 +20,28 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/semiRecipe/smartEditor/js/HuskyEZCreator.js"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 
-
+<link
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
+	rel="stylesheet">
+<link
+	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css"
+	rel="stylesheet">
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.starRev span').click(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
-			$('#review_rate').val($('.starR.on').length);
 			return false;
 		});
-		$('#review_rate').val($('.starR.on').length);
+
 		search();
 
 		function search() {
@@ -96,7 +101,7 @@
 
 			$('#irdntList').css('display', 'block');
 			$('#recipeSelectList').css('display', 'none');
-			$('#recipe_id').val($(this).val());
+
 		});
 
 		$('#deleteBtn').on('click', function() {
@@ -106,10 +111,6 @@
 			$('#irdntList').css('display', 'none');
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
-			$('#recipe_id').val('');
-		})
-		
-		
 
 		});
 
@@ -162,7 +163,7 @@ body {
 
 #writeframe {
 	height: 800px;
-	max-width: 68rem;
+	width: 1010px;
 	margin: 0 auto;
 	margin-top: 10px;
 }
@@ -278,19 +279,17 @@ td, tr {
 				type="hidden" name="user_id" value="${requestScope.mdto.user_id}"
 				id="user_id" />
 			<table id="recipeTable">
-
-
-				<tr height = "50px">
-					<td width="200px" align="center" style="font-weight:bold">레시피 선택</td>
+				<tr height="50px">
+					<td width="200px" align="center">레시피 선택</td>
 					<td width="800px"><input type="text" id="revRecipeSelect"
-						placeholder="레시피 검색" style="width: 300px; height: 25px; font-size: 17px;" />
-						<input type='button' id="deleteBtn" value="메뉴 삭제"></td>
-
+						placeholder="레시피 검색"
+						style="width: 300px; height: 20px; font-size: 15px;" /><input
+						type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
 
 				<tr id="choo">
-					<td width='20%' align='center'></td>
-					<td width='800px'>
+					<td width="200px" align='center'></td>
+					<td width="800px">
 						<div class="view" style="width: 820px; height: 500px;">
 							<div class="scrollBlind">
 								<ul id='recipeSelectList'>
@@ -309,11 +308,9 @@ td, tr {
 					</td>
 				</tr>
 
-				<tr height = "50px">
-					<td width="200px" align="center" style="font-weight:bold">레시피 별점</td>
-
+				<tr height="50px">
+					<td width="200px" align="center">레시피 별점</td>
 					<td width="800px">
-
 						<div class="starRev">
 							<span class="starR on">별1</span> <span class="starR on">별2</span>
 							<span class="starR on">별3</span> <span class="starR on">별4</span>
@@ -322,25 +319,22 @@ td, tr {
 					</td>
 				</tr>
 
-				<tr>
-					<td width="20%" align="center">제목</td>
-					<td width="80%"><input type="text" name="review_subject"
+				<tr height="50px">
+					<td width="200px" align="center">제목</td>
+					<td width="800px"><input type="text" name="review_subject"
 						id="review_subject" style="width: 800px; height: 20px;" /></td>
 				</tr>
 
 				<tr>
-
-					<td width="200px" align="center" style="font-weight:bold">내용</td>
-
-					<td width="800px"><textarea name="review_content" id="ir1" rows="10" cols="100"></textarea></td>
-
+					<td width="200px" align="center">내용</td>
+					<td width="800px"><textarea name="ir1" id="ir1"></textarea>
 				</tr>
+
 				<script type="text/javascript">
 					var form = document.w_form; // 사용할 폼 이름으로 수정.
 					var oEditors = [];
 
 					nhn.husky.EZCreator.createInIFrame({
-
 								oAppRef : oEditors,
 								elPlaceHolder : "ir1",
 								sSkinURI : "/semiRecipe/smartEditor/SmartEditor2Skin.html",
@@ -356,12 +350,19 @@ td, tr {
 					}
 				</script>
 
+
+
+				<tr>
+					<td width="200px" align="center">파일첨부</td>
+					<td width="800px" id="fileDiv"><input type="file"
+						name="upload" /></td>
+				</tr>
 				<tr>
 					<td height="10px"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button class="icon-comment" type="submit">확인</button>
+						<button class="icon-comment">확인</button>
 				</tr>
 				<tr>
 					<td height="20px"></td>
@@ -373,6 +374,7 @@ td, tr {
 			</table>
 		</form>
 	</div>
+
 </body>
 </html>
 
