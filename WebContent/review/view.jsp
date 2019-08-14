@@ -44,6 +44,7 @@
    #revContentSpace{
    	 border-top: solid 1.5px #000000;
    	 padding-top : 8px;
+     word-break:break-all;
    	}
 </style>
 

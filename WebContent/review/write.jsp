@@ -276,7 +276,7 @@ td, tr {
 				<tr height = "50px">
 					<td width="200px" align="center" style="font-weight:bold">레시피 선택</td>
 					<td width="800px"><input type="text" id="revRecipeSelect"
-						placeholder="레시피 검색" style="width: 300px; height: 25px; font-size: 17px;" />
+						placeholder="레시피 검색" style="width: 300px; height: 25px; font-size: 17px;" required/>
 						<input type='button' id="deleteBtn" value="메뉴 삭제"></td>
 				</tr>
 
