@@ -3,7 +3,9 @@ package action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,12 +18,29 @@ import model.ReviewDTO;
 public class ReviewListAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		ReviewDAO dao = new ReviewDAO();
-		List<ReviewDTO> aList = dao.listMethod();
+	//	System.out.println(req.getParameter("searchKey"));
+	//	System.out.println(req.getParameter("searchWord"));
+		
+		Map<String, String> searchMap = new HashMap<String, String>();
+		if(req.getParameter("searchKey")=="null") {
+			searchMap.put("searchKey","null");
+		}else {
+			searchMap.put("searchKey",req.getParameter("searchKey"));
+		}
+		
+		if(req.getParameter("searchWord")=="null") {
+			searchMap.put("searchWord","");
+		}else {
+			searchMap.put("searchWord",req.getParameter("searchWord"));
+		}
+		
+		
+		
+		List<ReviewDTO> aList = dao.listMethod(searchMap);
 		
 		HttpSession session = req.getSession();
 		session.removeAttribute("reviewList");
 		session.setAttribute("reviewList", aList);
-		
 		
 		int start = 0; 
 		int finish = 0;
@@ -37,7 +56,7 @@ public class ReviewListAction {
 			//	System.out.println(a.substring(start+5,finish-1));
 				imgList.add(a.substring(start+5,finish-1));
 			}else {
-				imgList.add("http://imgnews.naver.net/image/052/2017/12/18/201712181011528976_d_20171218101235511.jpg");
+				imgList.add("/semiRecipe/review/images/basicImage.png");
 			}
 		}
 		

@@ -27,6 +27,7 @@ import action.ReviewInsertAction;
 import action.ReviewListAction;
 import action.ReviewViewAction;
 import action.ReviewWriteAction;
+import action.Reviewdelete;
 import action.ReviewInsertAction;
 import action.SelfDeleteAction;
 import action.SelfListAction;
@@ -102,6 +103,9 @@ public class RecipeController extends HttpServlet {
 			revInsert.execute(req, resp);
 			//next="/review/reviewBoard.jsp";
 			resp.sendRedirect("review");
+		}else if(path.equals("recipe/reviewdelete")) {
+			Reviewdelete revDelete = new Reviewdelete();
+			revDelete.execute(req, resp);
 		}else if(path.equals("recipe/imageUpload")) {
 			ImageUpload imageUp = new ImageUpload();
 			imageUp.execute(req, resp);

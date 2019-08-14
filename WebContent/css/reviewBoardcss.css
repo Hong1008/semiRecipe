@@ -36,6 +36,10 @@ body {
 	display: block;
 }
 
+#main .thumbnails div {
+	max-width: 330px;
+}
+
 #main .thumbnails h3 {
 	border-left: 2px solid rgba(247, 206, 173, 0.3);
 	border-right: 2px solid rgba(247, 206, 173, 0.3);

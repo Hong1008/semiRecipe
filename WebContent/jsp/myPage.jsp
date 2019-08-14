@@ -1,4 +1,3 @@
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -16,6 +15,7 @@
 <style type="text/css">
 body {
 	background-color: #FFF5E6;
+	overflow-y:hidden;
 }
 
 * {
@@ -59,6 +59,7 @@ input {
 #finish {
 	text-align: center;
 	padding: 15px;
+	margin-bottom: 50px;
 }
 
 td p {
@@ -125,123 +126,118 @@ tr:nth-child(2) {
 			}
 		}
 	%>
+	<div id='myPageWrap'>
 	<c:set value="${requestScope.dto}" var="dto" />
 
-	<table id="myPageBody">
-		<caption>마이페이지</caption>
-		<tr class="content">
-			<!-- 아이디 -->
-			<td class="profile" rowspan="3">프로필</td>
-			<td class="myPageList">아이디</td>
-			<td id="loginId" colspan="3">${dto.user_id}</td>
-		</tr>
-		<tr class="content">
-			<!-- 아이콘 -->
-			<td class="myPageList">아이콘</td>
-			<td id="user_icon">
-				<img src="/semiRecipe/img/icon/${dto.user_icon}"></td>
-			<td>
-				<div class="iconHide">
-					<c:forEach var="iconArr" items="<%=fList%>" varStatus="status"
-						begin="0" end="<%=fList.size()%>">
-						<c:if test="${iconArr!=dto.user_icon}">
-							<a class="icon" href=""><img alt=""src="/semiRecipe/img/icon/${iconArr}"></a>
-						</c:if>
-
-						<c:if test="${status.count==((status.end+1)/2)-1}">
-							<br />
-						</c:if>
-					</c:forEach>
-				</div>
-			</td>
-			<td><a href="" id="iconChangeBtn" class="chgbtns">변경</a> <a
-				href="" id="iconChangeCancleBtn" class="iconHide canbtns">취소</a></td>
-		</tr>
-		<tr class="content">
-			<!-- 닉네임 -->
-			<td class="myPageList">닉네임</td>
-			<td id="nickname"><span id="nValue">${dto.user_nickname}</span>
-			</td>
-			<td><input type="text" class="nHide" id="nBox"
-				value="${dto.user_nickname}" /></td>
-			<td><a href="" id="nChangeBtn" class="chgbtns">변경</a> <a href=""
-				id="nChangeCancleBtn" class="nHide canbtns">취소</a></td>
-		</tr>
-		<tr class="content">
-			<!-- 비밀번호 -->
-			<td class="private" rowspan="2">개인정보</td>
-			<td class="myPageList">비밀번호</td>
-			<td colspan="1">
-				<div class="pwHide">
-					<p>현재 비밀번호 :</p>
-					<p>변경 후 비밀번호 :</p>
-					<p>변경 후 비밀번호 확인 :</p>
-				</div>
-			</td>
-			<td>
-				<div class="pwHide">
-					<p>
-						<input type="password" id="now_pw">
-					</p>
-					<p>
-						<input type="password" id="new_pw">
-					</p>
-					<p>
-						<input type="password" id="new_pw_confirm">
-					</p>
-				</div>
-			</td>
-			<td><a href="" id="pwChangeBtn" class="chgbtns">변경</a> <a
-				href="" id="pwChangeCancleBtn" class="pwHide canbtns">취소</a></td>
-		</tr>
-
-		<tr class="content">
-			<!-- 생년월일 -->
-			<td class="myPageList">생년월일</td>
-			<td><span id="birthValue">${dto.user_birthday}</span></td>
-
-			<td>
-				<div class="birthHide">
-					<div class="bir_wrap">
-						<div class="bir_yy">
-							<span class="ps_box"> <select id="yy" name="yy"
-								class="sel" aria-label="년" required="required">
-									<option value="">년</option>
-							</select>
-							</span>
-						</div>
-
-						<div class="bir_mm">
-							<span class="ps_box"> <select id="mm" name="mm"
-								class="sel" aria-label="월" required="required">
-									<option value="">월</option>
-							</select>
-							</span>
-						</div>
-
-						<div class=" bir_dd">
-							<span class="ps_box"> <select id="dd" name="dd"
-								class="sel" aria-label="일" required="required">
-									<option value="">일</option>
-							</select>
-							</span>
+		<table id="myPageBody">
+			<caption>마이페이지</caption>
+			<tr class="content">
+				<!-- 아이디 -->
+				<td class="profile" rowspan="3">프로필</td>
+				<td class="myPageList">아이디</td>
+				<td id="loginId" colspan="3">${dto.user_id}</td>
+			</tr>
+			<tr class="content">
+				<!-- 아이콘 -->
+				<td class="myPageList">아이콘</td>
+				<td id="user_icon">
+					<img src="/semiRecipe/img/icon/${dto.user_icon}"></td>
+				<td>
+					<div class="iconHide" style="width: 220px;">
+						<c:forEach var="iconArr" items="<%=fList%>" varStatus="status" begin="0" end="<%=fList.size()%>">
+							<c:if test="${iconArr!=dto.user_icon}">
+								<a class="icon" href=""><img alt=""src="/semiRecipe/img/icon/${iconArr}"></a>
+							</c:if>
+						</c:forEach>
+					</div>
+				</td>
+				<td><a href="" id="iconChangeBtn" class="chgbtns">변경</a> <a
+					href="" id="iconChangeCancleBtn" class="iconHide canbtns">취소</a></td>
+			</tr>
+			<tr class="content">
+				<!-- 닉네임 -->
+				<td class="myPageList">닉네임</td>
+				<td id="nickname"><span id="nValue">${dto.user_nickname}</span>
+				</td>
+				<td><input type="text" class="nHide" id="nBox"
+					value="${dto.user_nickname}" /></td>
+				<td><a href="" id="nChangeBtn" class="chgbtns">변경</a> <a href=""
+					id="nChangeCancleBtn" class="nHide canbtns">취소</a></td>
+			</tr>
+			<tr class="content">
+				<!-- 비밀번호 -->
+				<td class="private" rowspan="2">개인정보</td>
+				<td class="myPageList">비밀번호</td>
+				<td colspan="1">
+					<div class="pwHide">
+						<p>현재 비밀번호 :</p>
+						<p>변경 후 비밀번호 :</p>
+						<p>변경 후 비밀번호 확인 :</p>
+					</div>
+				</td>
+				<td>
+					<div class="pwHide">
+						<p>
+							<input type="password" id="now_pw">
+						</p>
+						<p>
+							<input type="password" id="new_pw">
+						</p>
+						<p>
+							<input type="password" id="new_pw_confirm">
+						</p>
+					</div>
+				</td>
+				<td><a href="" id="pwChangeBtn" class="chgbtns">변경</a> <a
+					href="" id="pwChangeCancleBtn" class="pwHide canbtns">취소</a></td>
+			</tr>
+	
+			<tr class="content">
+				<!-- 생년월일 -->
+				<td class="myPageList">생년월일</td>
+				<td><span id="birthValue">${dto.user_birthday}</span></td>
+	
+				<td>
+					<div class="birthHide">
+						<div class="bir_wrap">
+							<div class="bir_yy">
+								<span class="ps_box"> <select id="yy" name="yy"
+									class="sel" aria-label="년" required="required">
+										<option value="">년</option>
+								</select>
+								</span>
+							</div>
+	
+							<div class="bir_mm">
+								<span class="ps_box"> <select id="mm" name="mm"
+									class="sel" aria-label="월" required="required">
+										<option value="">월</option>
+								</select>
+								</span>
+							</div>
+	
+							<div class=" bir_dd">
+								<span class="ps_box"> <select id="dd" name="dd"
+									class="sel" aria-label="일" required="required">
+										<option value="">일</option>
+								</select>
+								</span>
+							</div>
 						</div>
 					</div>
-				</div>
-			</td>
-
-			<td><a href="" id="birthChangeBtn" class="chgbtns">변경</a> <a
-				href="" id="birthChangeCancleBtn" class="birthHide canbtns">취소</a></td>
-
-		</tr>
-	</table>
-
-	<div id="finish">
-		<a href="" id="modCancleBtn" class="canbtns">취소</a> <a href=""
-			id="modFinishBtn" class="chgbtns">저장</a>
-	</div>
-
-
+				</td>
+	
+				<td><a href="" id="birthChangeBtn" class="chgbtns">변경</a> <a
+					href="" id="birthChangeCancleBtn" class="birthHide canbtns">취소</a></td>
+	
+			</tr>
+		</table>
+	
+		<div id="finish">
+			<a href="" id="modCancleBtn" class="canbtns">취소</a> <a href=""
+				id="modFinishBtn" class="chgbtns">저장</a>
+		</div>
+</div>
 
 
 
