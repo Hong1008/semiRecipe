@@ -210,7 +210,7 @@ html, body {
 	<div class="wrapper">
 		<div class="main">
 			<div class="logo">
-				<img src="/semiRecipe/img/wellcome_logo2.png">
+				<img src="/semiRecipe/img/LOGO.png">
 			</div>
 			<div class="login_box">
 				<div class="input_login">

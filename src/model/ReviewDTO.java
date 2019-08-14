@@ -117,5 +117,4 @@ public class ReviewDTO {
 		this.recipe_nm_ko = recipe_nm_ko;
 	}
 
-
 }// end class

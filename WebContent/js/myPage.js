@@ -1,5 +1,13 @@
-
 $(document).ready(function() {
+	$(document).scrollTop($(document).height());	// 스크롤 맨 밑으로 내리기
+
+	$('#myPageWrap').on('scroll touchmove mousewheel', function(e) {
+		   e.preventDefault();
+		   e.stopPropagation(); 
+		   return false;
+	})	// 스크롤 고정
+	
+	
 	$('.pwHide').css('visibility','hidden');
 	$('.nHide').css('visibility','hidden');
 	$('.birthHide').css('visibility','hidden');
