@@ -76,8 +76,6 @@ $(document).ready(function(){
 	
 	/*recipe_id 보내주는 부분*/
 	$('.js-load span a').on('click', function() {
-		console.log('js-load');
-		console.log( $(this).parents().parents().attr('id'));
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
@@ -88,12 +86,13 @@ $(document).ready(function(){
 			return false;
 	});
 	
-
+		
 	
 		
 	$('#update').on('click', function(){
 		var chk = $("input[name='radi']:checked").val();
-		alert(chk);
+		if(chk.equals("undefined")){
+		alert("수정할 게시물을 클릭해 주세요!");}
 		$.ajax({
 			type : 'GET',
 			dataType : 'text',
