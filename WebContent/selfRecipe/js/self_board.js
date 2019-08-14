@@ -4,8 +4,17 @@ $(document).ready(function(){
 	/*********************************************************************************/
 	
 	//irdntDrop();
+		
+		$('#quick_menu a').click(function(){
+			if(!$('input[name="radi"]').attr('checked')){
+				alert("글을 선택하세요");
+				return false;
+			}
+		})
 	
-
+		
+	
+	
 		var list_cnt = 550;
 		var column = '';
 		var order = '';
@@ -93,7 +102,7 @@ $(document).ready(function(){
 		
 	$('#update').on('click', function(){
 		var chk = $("input[name='radi']:checked").val();
-		alert(chk);
+		
 		$.ajax({
 			type : 'GET',
 			dataType : 'text',
@@ -109,6 +118,9 @@ $(document).ready(function(){
 
 function selfDelete(){
 $('#del').on('click', function(){
+	if(!$('input[name="radi"]').attr('checked')){
+		return false;
+	}
 	var chk = $("input[name='radi']:checked").val();	
     window.location.href="selfDel?recipe_id="+chk;
 });

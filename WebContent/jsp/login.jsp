@@ -7,9 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="/semiRecipe/js/jquery.cookie.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		if($.cookie('id')){
@@ -43,16 +45,16 @@
 				data : 'user_id=' + $('#user_id').val() + '&user_pw=' + $('#user_pw').val(),
 				success : function(res) {
 					if (res != 1) {
-						alert("회원정보를 다시 확인해주세요.");
+						swal("회원정보를 다시 확인해주세요.");
 					} else {
-					//	alert(document.referrer);
+					//	swal(document.referrer);
 						location.href=document.referrer;
 					}
 				}
 			});
 			return false;
 		} else {
-			alert("아이디와 비밀번호를 모두 입력해주세요.");
+			swal("아이디와 비밀번호를 모두 입력해주세요.");
 		}
 		
 	}
@@ -267,12 +269,12 @@ html, body {
 						kakaoLogin(kakao_id, email, userNickName);
 					},
 					fail : function(error) {
-						alert(JSON.stringify(error));
+						swal(JSON.stringify(error));
 					}
 				});
 			},
 			fail : function(err) {
-				alert(JSON.stringify(err));
+				swal(JSON.stringify(err));
 			}
 		});
 		//]]>

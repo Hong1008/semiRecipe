@@ -20,8 +20,7 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
 	rel="stylesheet">
 
-<!-- 드래그/드랍 + 한글-->
-<script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
+
 
 <!-- insertSelfTecipe js/css-->
 <script type="text/javascript"
@@ -185,6 +184,6 @@
 			 <input type="button" class="w_btn" id="back" value="취소" onclick="location.href='selfView'" />
 		</section>
 	</form>
-
+<script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
 </body>
 </html>

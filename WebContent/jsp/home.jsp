@@ -16,6 +16,7 @@
 <!--home js/css  -->
 <link rel="stylesheet" href="/semiRecipe/css/home_container.css">
 <script type="text/javascript" src="/semiRecipe/js/home_container.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!-- 드래그/드랍 + 한글-->
 <script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
