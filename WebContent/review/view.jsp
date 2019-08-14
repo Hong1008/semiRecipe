@@ -47,6 +47,22 @@
    	 padding-top : 8px;
      word-break:break-all;
    	}
+   	#review_content #revContentSpace img {
+   	  max-width: 80%
+   	}
+   	.viewBtn{
+   		display : inline-block;
+   		float: right;
+   	}
+   	#modifyBtn, #deleteBtn{
+   	padding: 3px;
+	text-decoration: none;
+	color: #FFF5E6;
+	background-color: rgba(242, 159, 5, 0.8);
+	border: 1px solid #F29F05;
+	border-radius: 0.2rem;
+	font-size: 15px;
+   	}
 </style>
 
 </head>
@@ -77,8 +93,19 @@
 		<tr id="review_content">
 			<td id="revContentSpace" align = "center" colspan = "6" >${viewer.review_content}</td>
 		</tr>
-		</table>
 	</div>
+	</table>
+	<table>
+		<tr>
+			<td width="800px">
+			<div class="viewBtn">
+				<button id="modifyBtn">수정</button>
+				<button id="deleteBtn">삭제</button>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+			</td>
+		</tr>
+	</table>
 	
 	<%--<div>
 		<jsp:include page="../review/reviewBoard.jsp"></jsp:include>
