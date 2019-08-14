@@ -31,6 +31,6 @@ public class ReviewWriteAction {
 		
 		MemberDTO mdto = mdao.myPage(sessionChkId);
 		req.setAttribute("mdto", mdto);
-		
+
 	}
 }//end class

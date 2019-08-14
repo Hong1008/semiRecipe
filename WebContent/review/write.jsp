@@ -331,7 +331,8 @@ td, tr {
 				<tr>
 
 					<td width="200px" align="center" style="font-weight:bold">내용</td>
-					<td width="800px"><textarea name="review_content" id="ir" rows="10" cols="100"></textarea></td>
+
+					<td width="800px"><textarea name="review_content" id="ir1" rows="10" cols="100"></textarea></td>
 
 				</tr>
 				<script type="text/javascript">
@@ -339,6 +340,7 @@ td, tr {
 					var oEditors = [];
 
 					nhn.husky.EZCreator.createInIFrame({
+
 								oAppRef : oEditors,
 								elPlaceHolder : "ir1",
 								sSkinURI : "/semiRecipe/smartEditor/SmartEditor2Skin.html",
