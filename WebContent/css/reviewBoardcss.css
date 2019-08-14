@@ -30,7 +30,7 @@ body {
 
 #main .thumbnails img {
 	width: 100%;
-	max-width: 330px;
+	max-width: 310px;
 	border-top-left-radius: 0.2rem;
 	border-top-right-radius: 0.2rem;
 	display: block;
@@ -127,7 +127,7 @@ body {
     border: none;
     border-radius: 0.2rem;
     font-size: 18px;
-    width: 50px;
+    width: 70px;
     height: 32px;
     margin-top: 24px;
 }

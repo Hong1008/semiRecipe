@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,15 +58,14 @@ public class SelfRecipeDAO {
 			sql += "order by "+column+" "+order;
 		}
 		if(recipe_nm_ko!= null && !recipe_nm_ko.isEmpty()) {
-			sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id from primary, nation_nm p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
+			sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id from primary p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
 			switch(searchType) {
 			case "both": sql += "and (recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' or"
-					+ " recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%'))"; break;
+					+ " p.recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%'))"; break;
 			case "recipe_nm_ko": sql += "and recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' "; break;
-			case "irdnt_nm": sql += "and recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%') "; break;
+			case "irdnt_nm": sql += "and p.recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%') "; break;
 			}
 		}
-		System.out.println(sql);
 		try {
 			conn = init();
 			pstmt = conn.prepareStatement(sql);
@@ -72,12 +74,11 @@ public class SelfRecipeDAO {
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("recipe_id", rs.getString("recipe_id"));
 				map.put("user_id", rs.getString("user_id"));
-				map.put("self_date", rs.getString("self_date"));
+				map.put("self_date", showTime(rs.getString("self_date")));
 				map.put("recipe_nm_ko", rs.getString("recipe_nm_ko"));
 				map.put("img_url", rs.getString("img_url"));
 				map.put("rating", rs.getString("rating"));
 				map.put("self_views", rs.getString("self_views"));
-				map.put("nation_nm", rs.getString("nation_nm"));
 				aList.add(map);
 			}
 			
@@ -94,7 +95,38 @@ public class SelfRecipeDAO {
 	}
 	// ------------------------------------------------------------------- 정렬 끝	
 	
-	
+	public String showTime(String com_time) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		com_time = com_time.replace(".0", "");
+		try {
+			Date org = sdf.parse(com_time);
+			long diff = System.currentTimeMillis() - org.getTime();
+			long diffYear = diff/(24*60*60*1000)/30/12;
+	    	long diffMonth = diff/(24*60*60*1000)/30;
+	    	long diffDay = diff/(24*60*60*1000);
+	    	long diffHour = diff/(60*60*1000);
+	    	long diffMin = diff/(60*1000);
+	    	long diffSec = diff/(1000);
+	    	if(diffSec<60) {
+	    		com_time = diffSec+"초전";
+	    	}else if(diffMin<60) {
+	    		com_time = diffMin+"분전";
+	    	}else if(diffHour<24) {
+	    		com_time = diffHour+"시간전";
+	    	}else if(diffDay<=30) {
+	    		com_time = diffDay+"일전";
+	    	}else if(diffMonth<12) {
+	    		com_time = diffMonth+"달전";
+	    	}else if(diffMonth>=12) {
+	    		com_time = diffYear+"년전";
+	    	}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return com_time;
+	}
 	
 	// -------------------------------------------------------------------리스트 출력 메소드 시작
 
@@ -113,7 +145,7 @@ public class SelfRecipeDAO {
 				HashMap<String, String> map = new HashMap<String, String>();
 				map.put("recipe_id", rs.getString("recipe_id"));
 				map.put("user_id", rs.getString("user_id"));
-				map.put("self_date", rs.getString("self_date"));
+				map.put("self_date", showTime(rs.getString("self_date")));
 				map.put("recipe_nm_ko", rs.getString("recipe_nm_ko"));
 				map.put("sumry", rs.getString("sumry"));
 				map.put("img_url", rs.getString("img_url"));
@@ -757,7 +789,7 @@ public class SelfRecipeDAO {
 	public void readCountMethod(int recipe_id) {
 		try {
 			conn = init();
-			String sql = "update board set self_views = self_views + 1 where num = ?";
+			String sql = "update selfrecipe set self_views = self_views + 1 where recipe_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, recipe_id);
 			pstmt.executeUpdate();

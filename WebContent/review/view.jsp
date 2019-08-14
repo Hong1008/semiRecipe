@@ -27,40 +27,60 @@ $(document).ready(function(){
 </script>
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 <style>
-#view_post {
-	height: 100%;
-	min-height: 300px;
-	width: 800px;
-	margin: 0 auto;
-	border: solid 1px rgb(200, 200, 200);
-	background: rgb(250, 250, 250);
-	margin-bottom: 20px;
-	margin-top: 20px;
-}
 
-.viewerTable, .viewerTableSecond {
-	margin-left: 20px;
-	margin-right: 20px;
-	width: 760px;
+   #view_post{
+   	height : 100%;
+   	min-height :300px;
+   	width : 800px;
+   	margin : 0 auto;
+   	border: solid 1px rgb(200, 200, 200);
+   	background: rgb(250, 250, 250);
+   	margin-bottom : 20px;
+   	margin-top : 20px;
+   }
+   .viewerTable, .viewerTableSecond{
+   	margin-left: 20px;
+   	margin-right: 20px;
+    width :760px;
 	text-align: center;
-}
-
-#review_title_first {
-	height: 50px;
-}
-
-#review_title_second {
-	height: 50px;
-}
-
-#review_content {
-	height: 100%;
-	min-height: 300px;
-}
-
-#revTitle, #revTitleSpace {
-	font-weight: 800;
-}
+   }
+   #review_title_first{
+   	 height: 50px;
+   }
+   #review_title_second{
+   	 height:50px;
+   }
+   
+   #review_content{
+   	 height: 100%;
+   	 min-height : 300px;
+   }
+   
+   #revTitle, #revTitleSpace{
+     font-weight: 800;
+   }
+   #revContentSpace{
+   	 border-top: solid 1.5px #000000;
+   	 padding-top : 8px;
+     word-break:break-all;
+   	}
+   	#review_content #revContentSpace img {
+   	  max-width: 80%
+   	}
+   	.viewBtn{
+   		display : inline-block;
+   		float: right;
+   	}
+   	#modifyBtn, #deleteBtn{
+   	padding: 3px;
+	text-decoration: none;
+	color: #FFF5E6;
+	background-color: rgba(242, 159, 5, 0.8);
+	border: 1px solid #F29F05;
+	border-radius: 0.2rem;
+	font-size: 15px;
+   	}
+</style>
 
 #revContentSpace {
 	border-top: solid 1.5px #000000;
@@ -91,6 +111,7 @@ $(document).ready(function(){
 			</tr>
 		</table>
 		<table class="viewerTableSecond">
+
 			<tr id="review_title_second">
 				<td id="revWriter" class="icon-pencil" width="50px"></td>
 				<td id="revWriterSpace" width="200px" align="left">&nbsp;&nbsp;${viewer.user_nickname}</td>

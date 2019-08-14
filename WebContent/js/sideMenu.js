@@ -100,7 +100,7 @@ $(document)
 									selected);
 							viewList();
 						} else {
-							alert("재료는 5개까지만 선택 가능합니다.");
+							swal("재료는 5개까지만 선택 가능합니다..","다른 재료를 선택해주세요.","info");
 						}
 
 						//드롭된 재료들 삭제
@@ -125,7 +125,7 @@ $(document)
 				'id');
 			} //배열에 이름들을 저장
 
-			$('input')
+			$('#selected_div input')
 			.on(
 					'keyup',
 					function() {

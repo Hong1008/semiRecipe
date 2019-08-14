@@ -135,8 +135,7 @@ public class ReviewDAO {
 
 	// view 페이지(글 상세페이지)
 	public ReviewDTO viewMethod(int review_num){
-		
-	//	System.out.println("view 페이지(글 상세페이지) ");
+
 		ReviewDTO dto = new ReviewDTO();
 //		String sql = "select review_subject, review_rate, review_date, review_views, review_url, user_nickname, RECIPE_ID from review where review_num=?";
 		String sql = "select rownum as rn, a.* from " + 

@@ -96,7 +96,6 @@ $(document).ready(function(){
 	</div>
 	
 
-<input type="button" id="closeShow" value="닫기"/>	
 </div>
 <script type="text/javascript">
 comList();

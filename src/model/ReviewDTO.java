@@ -16,6 +16,24 @@ public class ReviewDTO {
 	private int recipe_id;
 	private String user_nickname;
 	private String recipe_nm_ko;
+	private String searchKey;
+	private String searchWord;
+
+	public String getSearchKey() {
+		return searchKey;
+	}
+
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
+
+	public String getSearchWord() {
+		return searchWord;
+	}
+
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
 
 	public ReviewDTO() {
 

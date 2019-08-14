@@ -26,11 +26,14 @@ $(document).ready(function() {
 			var isPW = /^[A-Za-z0-9`\-=\\\[\];',\./~!@#\$%\^&\*\(\)_\+|\{\}:"<>\?]{8,16}$/;
 			
 			if (now_pw == "" || new_pw == "") {
-				alert("현재 비밀번호와 변경 비밀번호를 모두 입력하셔야 합니다.");
+				//swal("현재 비밀번호와 변경 비밀번호를 모두 입력하셔야 합니다.");
+				swal("현재 비밀번호와 변경 비밀번호를 모두 입력하셔야 합니다.");
 			} else if (!isPW.test(new_pw)) {
-				alert("8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+				//swal("8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
+				swal("8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.");
 			} else if (new_pw!=new_pw_confirm) {
-				alert("비밀번호를 다시 확인해주세요.");
+				//swal("비밀번호를 다시 확인해주세요.");
+				swal("비밀번호를 다시 확인해주세요.");
 			} else {
 				$.ajax({
 					type : 'POST',
@@ -39,12 +42,23 @@ $(document).ready(function() {
 					data : 'loginId='+$('#loginId').text()+'&now_pw=' + now_pw,
 					success : function(res) {
 						if (res != "") {
-							alert(res);
+							swal(res);
 						} else {
-							var chk = confirm('수정하시겠습니까?');
+							/*var chk = confirm('수정하시겠습니까?');
 							if (chk) {				// 확인을 누르면
 								pwChangeAfter();
-							}
+							}*/
+							swal({
+								  title: "수정하시겠습니까?",
+								  icon: "warning",
+								  buttons: true,
+								  dangerMode: true,
+								})
+								.then((willDelete) => {
+								  if (willDelete) {
+									  pwChangeAfter();
+								  } 
+								});
 						}
 					}
 				});
@@ -92,11 +106,11 @@ $(document).ready(function() {
 			var nonchar = /^[가-힣a-zA-Z0-9]{2,10}$/;
 
 			if (nickname == "") {
-				alert("필수 정보입니다.");
+				swal("필수 정보입니다.");
 			} else if (!nonchar.test(nickname)) {
-				alert("2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.");
+				swal("2~10자의 한글, 영문, 숫자만 사용할 수 있습니다.");
 			} else if (nickname == '${dto.nickname}') {
-				alert("현재 사용중인 닉네임입니다.");
+				swal("현재 사용중인 닉네임입니다.");
 			} else {
 				$.ajax({
 					type : 'POST',
@@ -105,13 +119,25 @@ $(document).ready(function() {
 					data : 'nickname=' + nickname,
 					success : function(res) {
 						if (res != "") {
-							alert(res);
+							swal(res);
 						} else {
-							var chk = confirm('수정하시겠습니까?');
+							/*var chk = confirm('수정하시겠습니까?');
 							if (chk) {				// 확인을 누르면
 								$('#nValue').text(nickname);
 								nChangeAfter();
-							}
+							}*/
+							swal({
+								  title: "수정하시겠습니까?",
+								  icon: "warning",
+								  buttons: true,
+								  dangerMode: true,
+								})
+								.then((willDelete) => {
+								  if (willDelete) {
+									  $('#nValue').text(nickname);
+										nChangeAfter();
+								  } 
+								});
 						}
 
 					}
@@ -151,14 +177,27 @@ $(document).ready(function() {
 					day = "0"+day;
 				}
 				
-				var chk = confirm('수정하시겠습니까?');
+				/*var chk = confirm('수정하시겠습니까?');
 				if (chk) {				// 확인을 누르면
 					$('#birthValue').text(year+"-"+month+"-"+day);
 					birthChangeAfter();
 					return false;
-				}
+				}*/
+				swal({
+					  title: "수정하시겠습니까?",
+					  icon: "warning",
+					  buttons: true,
+					  dangerMode: true,
+					})
+					.then((willDelete) => {
+					  if (willDelete) {
+						  $('#birthValue').text(year+"-"+month+"-"+day);
+							birthChangeAfter();
+					  } 
+					});
+				return false;
 			}else {
-				alert("생년월일을 정확하게 선택해주세요.");
+				swal("생년월일을 정확하게 선택해주세요.");
 				return false;
 			}
 		}
@@ -189,10 +228,22 @@ $(document).ready(function() {
 	
 	
 	$('#modCancleBtn').on('click', function() {				// 제일 하단에 취소 버튼 눌렀을 때
-		var cancleCheck = confirm('수정을 취소하시겠습니까?'); 
+/*		var cancleCheck = confirm('수정을 취소하시겠습니까?'); 
 		if(cancleCheck) {
 			location.href=document.referrer;
-		} 
+		} */
+		swal({
+			  title: "수정을 취소하시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				  location.href=document.referrer;
+			  } 
+			});
+		return false;
 	});
 	
 	$('#modFinishBtn').on('click', function() {				// 제일 하단에 수정 완료 버튼 눌렀을 때
@@ -204,17 +255,49 @@ $(document).ready(function() {
 		var new_birth = $('#birthValue').text();
 		
 		if($('.pwHide').css('visibility')=='visible'){
-			alert('비밀번호 변경을 확인해주세요.');
+			swal('비밀번호 변경을 확인해주세요.');
 			return false;
 		}
 		
 		if($('.nHide').css('visibility')=='visible'){
-			alert('닉네임 변경을 확인해주세요.');
+			swal('닉네임 변경을 확인해주세요.');
 			return false;
 		}
 		
-		var modCheck = confirm('수정하시겠습니까?'); 
-		if(modCheck) {			// 확인 버튼을 눌렀으면
+		swal({
+			  title: "수정하시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {			// 확인 버튼을 눌렀으면
+						if(new_nickname!="") {
+							updateNickname(new_nickname);
+						}
+						
+						if(new_pw!="") {
+							updatePassword(new_pw);
+						}
+						
+						if(new_birth!="") {
+							updateBirthday(new_birth);
+						}
+						
+						if(preImgSrc!=new_icon){
+							updateIcon(new_icon);
+						}
+						
+						
+						swal('수정 완료되었습니다.');
+						location.href=document.referrer;
+						
+				
+			  } 
+			  
+			});
+		return false;
+		/*if(modCheck) {			// 확인 버튼을 눌렀으면
 			if(new_nickname!="") {
 				updateNickname(new_nickname);
 			}
@@ -232,10 +315,10 @@ $(document).ready(function() {
 			}
 			
 			
-			alert('수정 완료되었습니다.');
+			swal('수정 완료되었습니다.');
 			location.href=document.referrer;
 			
-		} 
+		} */
 	});
 	
 
