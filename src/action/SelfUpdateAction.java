@@ -73,7 +73,8 @@ public class SelfUpdateAction extends HttpServlet {
 		irdto.setIRDNT_NM(multi.getParameter("irdnt_nm"));
 		irList.add(irdto);
 		}
-				
+			
+		
 		String[] cooking_dc = multi.getParameterValues("recipe_dc");
 		List<StepDTO> stList = new ArrayList<StepDTO>();
 		for (int i = 0; i < cooking_dc.length; i++) {
@@ -83,7 +84,7 @@ public class SelfUpdateAction extends HttpServlet {
 			stdto.setCOOKING_DC(cooking_dc[i]);
 			stList.add(stdto);
 		}
-		dao.stepInsertMethod(stList);
+		dao.stepUpdateMethod(stList);
 		
 		return multi;
 	}// end executeMulti()

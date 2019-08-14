@@ -5,11 +5,19 @@ $(document).ready(function(){
 	
 	//irdntDrop();
 		
-		$('#quick_menu a').click(function(){
-			if(!$('input[name="radi"]').attr('checked')){
+		$('#quick_menu #update').click(function(){
+			var chk = false;
+			$('input[name="radi"]').each(function(i,v){
+				if($(v).prop('checked')){
+					chk=true;
+				}
+				
+			})
+			if(!chk){
 				alert("글을 선택하세요");
 				return false;
 			}
+			return true;
 		})
 	
 		
@@ -115,7 +123,15 @@ $(document).ready(function(){
 
 function selfDelete(){
 $('#del').on('click', function(){
-	if(!$('input[name="radi"]').attr('checked')){
+	var chk = false;
+	$('input[name="radi"]').each(function(i,v){
+		if($(v).prop('checked')){
+			chk=true;
+		}
+		
+	})
+	if(!chk){
+		alert("글을 선택하세요");
 		return false;
 	}
 	var chk = $("input[name='radi']:checked").val();	

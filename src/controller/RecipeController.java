@@ -164,7 +164,7 @@ public class RecipeController extends HttpServlet {
 				  SelfUpdateAction suUpdate = new SelfUpdateAction();
 				  suUpdate.executeMulti(req, resp); 
 				  PrimDTO prdto = new PrimDTO();
-				  resp.sendRedirect("selfUdate?recipe_id="+ prdto.getRECIPE_ID()); }
+				  resp.sendRedirect("selfRecipe");}
 		}else if(path.equals("recipe/selfDel")) {	//                  셀프 델리
 			SelfDeleteAction sfdel = new SelfDeleteAction();
 			sfdel.execute(req, resp);
