@@ -18,7 +18,7 @@
 <script type="text/javascript"
 	src="/semiRecipe/selfRecipe/js/self_board.js"></script>
 <link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_board.css">
-<link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
+
 
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
@@ -92,18 +92,13 @@
 
 		<!-- 화면 위로 올리기 시작	 -->
 		<div id="quick_menu">
-			<p>
-				<a href="#">top</a>
-			</p>
-			<p>
-				<a href="selfRecipe""> 목록</a>
-			</p>
+			<p><a href="#">top</a></p>
+			<p><a href="selfRecipe""> 목록</a></p>
 			<!-- 	<p><a href="selfInsert" > 쓰기</a></p> -->
-
 			<c:if test="${not empty sessionScope.loginID }">
 				<p>
-					<a class="aHide" href="selfInsert"> 쓰기</a> 
-					<a class="aHide" href="selfUpdate" id="update"> 수정</a> 
+					<a class="aHide" href="selfInsert"> 쓰기</a><br/>
+					<a class="aHide" href="selfUpdate" id="update"> 수정</a><br/>
 					<!-- <a class="aHide" onClick="selfDelete();" id="del"> 삭제</a> -->
 					<a class="aHide"  id="del"> 삭제</a>
 				</p>
