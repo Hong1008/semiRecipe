@@ -23,7 +23,7 @@ public class SelfUpdateAction extends HttpServlet {
 	public MultipartRequest executeMulti(HttpServletRequest req, HttpServletResponse resp)  {
 
 		MultipartRequest multi = null;
-		String saveDirectory = "/img_self";
+		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\semiRecipe\\selfRecipe\\img_self";
 		File file = new File(saveDirectory);
 
 		int maxPostSize = 6000000; // 약 5MB(5242880Byte) 파일저장 최대크기
