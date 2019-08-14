@@ -120,6 +120,11 @@ body {
 	display: inline-block;
 } 
 
+.js-load p{
+	color:#8D4738;
+	font-size: 0.75rem;
+}
+
 
 #quick_menu {
     width: 65px;

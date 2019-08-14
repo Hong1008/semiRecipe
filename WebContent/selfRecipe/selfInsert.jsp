@@ -43,7 +43,7 @@
 		<!-- 이미지 요리이름 간략소개 -->
 		<section id='R_header' class='R_div'>
 			<ul id='R_image'>
-				<li class="image_part"><img id='image_preview' class="image_preview" src='/semiRecipe/img/wellcome_main.png' /></li>
+				<li class="image_part"><img id='image_preview' class="image_preview" src='/semiRecipe/review/images/basicImage.png' /></li>
 				<li class="image_part" id="image_part_hidden">
 				<input type="file" id='imgInput' name="img_url" required="required" /></li>
 				<li><input type="button" class="w_btn" id="insertImg" value="이미지 삽입"></li>

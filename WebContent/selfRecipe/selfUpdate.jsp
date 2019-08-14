@@ -34,11 +34,11 @@
 	<jsp:include page="../jsp/sideMenu.jsp" />
 
 	<form name="frm" method="post" enctype="multipart/form-data"
-		action="insertSelfRecipe">
+		action="selfUpdate">
 		<c:if test="${!empty param.user_id }">
 			<input type="text" name="user_id" value="${param.user_id }" />
 		</c:if>
-
+	<input type="hidden" name="recipe_id" value="${requestScope.prdto.recipe_id }">
 		<!-- 이미지 요리이름 간략소개 -->
 		<section id='R_header' class='R_div'>
 			<ul id='R_image'>
