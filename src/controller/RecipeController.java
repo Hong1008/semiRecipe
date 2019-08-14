@@ -28,7 +28,7 @@ import action.ReviewListAction;
 import action.ReviewViewAction;
 import action.ReviewWriteAction;
 import action.ReviewInsertAction;
-import action.SelfDeleteAciont;
+import action.SelfDeleteAction;
 import action.SelfListAction;
 import action.SelfUpdateAction;
 import action.SelfViewAction;
