@@ -122,7 +122,7 @@ $(document).ready(function() {
 				</div>
 
 
-			</section>
+			 </section>
 			<form action="#" method="post" id="searchform">
 			<div id="searchLine">
 				<select name="searchDrop" id="searchDrop">
