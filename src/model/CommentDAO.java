@@ -19,13 +19,19 @@ public class CommentDAO extends RecipeDAO {
 
 	
 	
-	public List<CommentDTO> listMethod(String com_board, int key){
+	public List<CommentDTO> listMethod(String com_board, int key, String order, int rownum){
 		List<CommentDTO> aList = new ArrayList<CommentDTO>();
-		String sql = "select user_id,com_time,com_content,rating,user_icon,user_nickname from (select c.user_id as user_id,com_time,com_content,rating,user_icon,user_nickname"
-				+ " from recipe_comment c, user_table u "
+		String sql = "select user_id,com_time,com_content,rating,user_icon,user_nickname from (select c.user_id as user_id,com_time,com_content,rating,user_icon,user_nickname, rownum "
+				+ "from recipe_comment c, user_table u "
 				+ "where com_board='"+com_board+"'";
 				sql += " and recipe_id='"+key+"' ";
-		sql += "and c.user_id = u.user_id) order by rating desc";
+		sql += "and c.user_id = u.user_id order by ";
+		if(order.equalsIgnoreCase("com_time")) {
+			sql+="com_time desc)";
+		}else if(order.equalsIgnoreCase("rating")) {
+			sql+="rating desc)";
+		}
+		sql+=" where rownum <= "+rownum;
 		try {
 			rs = queryStmt(sql);
 			while(rs.next()) {

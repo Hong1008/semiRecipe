@@ -8,6 +8,13 @@ body {
 	background-color: #FFF5E6;
 }
 
+.sumry{
+  resize: none; /* 사용자 임의 변경 불가 */
+  /*resize: both; /* 사용자 변경이 모두 가능 */
+  /*resize: horizontal; /* 좌우만 가능 */
+  /*resize: vertical; /* 상하만 가능 */
+}
+
 /* <!-- 이미지 요리이름 간략소개 --> */
 #R_header span {
 	display: inline-block;
@@ -111,7 +118,7 @@ body {
     height: 327px;
     width: 375px;
     display: inline-block;
-    border: 1px solid;
+    border: 1px solid lightgray;
 
    
     
@@ -122,6 +129,12 @@ body {
 	font-size: 23px;
 	line-height: 30px;
 }
+
+
+.R_recipe{
+	 resize: none;
+}
+
 
 #R_recipeDiv .self_recipeDiv_part {
 	border: 0px, solid, black;

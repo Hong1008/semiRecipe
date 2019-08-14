@@ -20,23 +20,23 @@
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="/semiRecipe/smartEditor/js/HuskyEZCreator.js"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
 	rel="stylesheet">
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.starRev span').click(function() {
 			$(this).parent().children('span').removeClass('on');
 			$(this).addClass('on').prevAll('span').addClass('on');
+			$('#review_rate').val($('.starR.on').length);
 			return false;
 		});
-
+		$('#review_rate').val($('.starR.on').length);
 		search();
 
 		function search() {
@@ -96,7 +96,7 @@
 
 			$('#irdntList').css('display', 'block');
 			$('#recipeSelectList').css('display', 'none');
-
+			$('#recipe_id').val($(this).val());
 		});
 
 		$('#deleteBtn').on('click', function() {
@@ -106,50 +106,53 @@
 			$('#irdntList').css('display', 'none');
 			$('#recipeSelectList').css('display', 'block');
 			$('#revRecipeSelect').keyup();
+			$('#recipe_id').val('');
+		})
+		
+		
 
 		});
 
 		var recipe_id = "";
 
 		$('.icon-comment').on('click', function() {
-			// alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
-			//alert($('#revRecipeSelect').val());
-			$('#recipeSelectList li').each(function(index, element) {
-				//	alert($(this).attr('id'));
+	         // alert($('#recipeSelectList li').id($('#revRecipeSelect').val()).val());
+	         //alert($('#revRecipeSelect').val());
+	         $('#recipeSelectList li').each(function(index, element) {
+	            //   alert($(this).attr('id'));
 
-				if ($(this).attr('id') == $('#revRecipeSelect').val()) {
-					recipe_id = $(this).val();
-				}
-			});
+	            if ($(this).attr('id') == $('#revRecipeSelect').val()) {
+	               recipe_id = $(this).val();
+	            }
+	         });
 
-			oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
-			contents =$('#ir1').val();
-			
-			
-			$.ajax({
-				type : 'POST',
-				dataType : 'text',
-				//	data : 'recipe_id='+recipe_id+'&review_content='+text+'&user_id='+$('#user_id').val()+'&review_subject='+$('#review_subject').val() + '&user_nickname='+$('#user_nickname').val()+'&review_rate='+$('.starR.on').length,
-				data : {
-					recipe_id : recipe_id,
-					recipe_nm_ko : $('#revRecipeSelect').val(),
-					review_content : contents,
-					user_id : $('#user_id').val(),
-					review_subject : $('#review_subject').val(),
-					user_nickname : $('#user_nickname').val(),
-					review_rate : $('.starR.on').length
-				},
-				url : 'reviewinsert',
-				success : function() {
-					location.href = "/semiRecipe/recipe/review";
-				}
+	         oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+	         contents =$('#ir1').val();
+	         
+	         
+	         $.ajax({
+	            type : 'POST',
+	            dataType : 'text',
+	            data : {
+	               recipe_id : recipe_id,
+	               recipe_nm_ko : $('#revRecipeSelect').val(),
+	               review_content : contents,
+	               user_id : $('#user_id').val(),
+	               review_subject : $('#review_subject').val(),
+	               user_nickname : $('#user_nickname').val(),
+	               review_rate : $('.starR.on').length
+	            },
+	            url : 'reviewinsert',
+	            success : function() {
+	               location.href = "/semiRecipe/recipe/review";
+	            }
 
-			});
+	         });
 
-			return false;
+	         return false;
 
-			//	$('form').submit();
-		});
+	         //   $('form').submit();
+	      });
 	});
 </script>
 <style type="text/css">
@@ -159,7 +162,7 @@ body {
 
 #writeframe {
 	height: 800px;
-	width: 1010px;
+	max-width: 68rem;
 	margin: 0 auto;
 	margin-top: 10px;
 }
@@ -268,21 +271,26 @@ td, tr {
 	<div id="writeframe">
 		<form name="frm" method="post" enctype="multipart/form-data"
 			action="/semiRecipe/recipe/reviewinsert" id="writeform">
-			<input type="hidden" name="review_rate" id="review_rate"> 
-			<input type="hidden" name="recipe_id" id="recipe_id"> 
-			<input type="hidden" name="user_nickname" value="${requestScope.mdto.user_nickname}" id="user_nickname" /> 
-			<input type="hidden" name="user_id" value="${requestScope.mdto.user_id}" id="user_id" />
+			<input type="hidden" name="review_rate" id="review_rate"> <input
+				type="hidden" name="recipe_id" id="recipe_id"> <input
+				type="hidden" name="user_nickname"
+				value="${requestScope.mdto.user_nickname}" id="user_nickname" /> <input
+				type="hidden" name="user_id" value="${requestScope.mdto.user_id}"
+				id="user_id" />
 			<table id="recipeTable">
+
+
 				<tr height = "50px">
 					<td width="200px" align="center" style="font-weight:bold">레시피 선택</td>
 					<td width="800px"><input type="text" id="revRecipeSelect"
 						placeholder="레시피 검색" style="width: 300px; height: 25px; font-size: 17px;" />
 						<input type='button' id="deleteBtn" value="메뉴 삭제"></td>
+
 				</tr>
 
 				<tr id="choo">
-					<td width="200px" align='center' style="font-weight:bold"></td>
-					<td width="800px">
+					<td width='20%' align='center'></td>
+					<td width='800px'>
 						<div class="view" style="width: 820px; height: 500px;">
 							<div class="scrollBlind">
 								<ul id='recipeSelectList'>
@@ -303,7 +311,9 @@ td, tr {
 
 				<tr height = "50px">
 					<td width="200px" align="center" style="font-weight:bold">레시피 별점</td>
+
 					<td width="800px">
+
 						<div class="starRev">
 							<span class="starR on">별1</span> <span class="starR on">별2</span>
 							<span class="starR on">별3</span> <span class="starR on">별4</span>
@@ -312,32 +322,46 @@ td, tr {
 					</td>
 				</tr>
 
-				<tr height = "50px">
-					<td width="200px" align="center" style="font-weight:bold" >제목</td>
-					<td width="800px" ><input type="text" name="review_subject"
-						id="review_subject" style="width: 800px; height: 25px; font-size: 17px;" /></td>
+				<tr>
+					<td width="20%" align="center">제목</td>
+					<td width="80%"><input type="text" name="review_subject"
+						id="review_subject" style="width: 800px; height: 20px;" /></td>
 				</tr>
 
 				<tr>
+
 					<td width="200px" align="center" style="font-weight:bold">내용</td>
+
 					<td width="800px"><textarea name="review_content" id="ir1" rows="10" cols="100"></textarea></td>
+
 				</tr>
 				<script type="text/javascript">
+					var form = document.w_form; // 사용할 폼 이름으로 수정.
 					var oEditors = [];
 
 					nhn.husky.EZCreator.createInIFrame({
-						oAppRef : oEditors,
-						elPlaceHolder : "ir1",
-						sSkinURI : "../smartEditor/SmartEditor2Skin.html",
-						fCreator : "createSEditor2"
-					});
+
+								oAppRef : oEditors,
+								elPlaceHolder : "ir1",
+								sSkinURI : "/semiRecipe/smartEditor/SmartEditor2Skin.html",
+								fCreator : "createSEditor2"
+							});
+
+					function insertIMG(frm) {
+						var filepath = form.filepath.value;
+						var sHTML = "<img src='" + filepath + "/" + fname + "' style='cursor:hand;' border='0'>";
+						// filepath 는 변수처리 혹은 직접 코딩해도 상관없음.
+						// imageUpload.asp 에서 insertIMG 호출시 경로를 포함하여 넣어주는 방법을 추천.
+						oEditors.getById["ir1"].exec("PASTE_HTML", [ sHTML ]);
+					}
 				</script>
+
 				<tr>
 					<td height="10px"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<button class="icon-comment">확인</button>
+						<button class="icon-comment" type="submit">확인</button>
 				</tr>
 				<tr>
 					<td height="20px"></td>
@@ -349,7 +373,6 @@ td, tr {
 			</table>
 		</form>
 	</div>
-
 </body>
 </html>
 

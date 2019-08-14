@@ -1,3 +1,4 @@
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -94,7 +95,11 @@ body {
 }
 
 #logo {
-	width: 100%;
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    display: block;
+    cursor: pointer;
 }
 
 #registerForm {

@@ -14,6 +14,8 @@ import action.CheckNicknameAction;
 import action.CheckNowPw;
 import action.ComInsertAction;
 import action.ComListAction;
+import action.ImageUpload;
+import action.InfoUpdate;
 import action.IrdntAction;
 import action.KakaoLoginAction;
 import action.LoginAction;
@@ -21,6 +23,7 @@ import action.LogoutAction;
 import action.MyPageAction;
 import action.RecipeListAction;
 import action.RegisterAction;
+import action.ReviewInsertAction;
 import action.ReviewListAction;
 import action.ReviewViewAction;
 import action.ReviewWriteAction;
@@ -32,7 +35,6 @@ import action.SelfViewAction;
 import action.SelfInsertAction;
 import action.ShowRecipeAction;
 import action.ViewAction;
-import model.InfoUpdate;
 import model.IrdntTYDAO;
 import model.PrimDTO;
 import model.SelfRecipeDAO;
@@ -96,8 +98,11 @@ public class RecipeController extends HttpServlet {
 		}else if(path.equals("recipe/reviewinsert")) {
 			ReviewInsertAction revInsert = new ReviewInsertAction();
 			revInsert.execute(req, resp);
-			next="/review/reviewBoard.jsp";
-			//resp.sendRedirect("review");
+			//next="/review/reviewBoard.jsp";
+			resp.sendRedirect("review");
+		}else if(path.equals("recipe/imageUpload")) {
+			ImageUpload imageUp = new ImageUpload();
+			imageUp.execute(req, resp);
 		}else if(path.equals("recipe/reviewview")) {
 			ReviewViewAction revView = new ReviewViewAction();
 			revView.execute(req, resp);
@@ -139,7 +144,7 @@ public class RecipeController extends HttpServlet {
 				resp.sendRedirect("selfView?recipe_id="+riMax);
 			}
 		}else if (path.equals("deleteSelfRecipe")) {
-				SelfDeleteAciont del = new SelfDeleteAciont();
+				SelfDeleteAction del = new SelfDeleteAction();
 				del.execute(req, resp);
 				//resp.sendRedirect("selfRecipe?pageNum=" + req.getParameter("pageNum"));
 				//삭제 후 마지막 페이지 유지
@@ -158,8 +163,10 @@ public class RecipeController extends HttpServlet {
 				  suUpdate.executeMulti(req, resp); 
 				  PrimDTO prdto = new PrimDTO();
 				  resp.sendRedirect("selfUdate?recipe_id="+ prdto.getRECIPE_ID()); }
-			 
-			
+		}else if(path.equals("recipe/selfDel")) {	//                  셀프 델리
+			SelfDeleteAction sfdel = new SelfDeleteAction();
+			sfdel.execute(req, resp);
+			resp.sendRedirect("selfRecipe");
 		}else if(path.equals("recipe/loginForm")) {
 			next = "/jsp/login.jsp";
 		}else if(path.equals("recipe/login")) {

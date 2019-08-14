@@ -98,10 +98,8 @@ function cookingTime(){
 
 	/*재료 드랍하기*/
 function irdntDrop() {
-	var select_num = 0;
 	$('.SR_ig_div').droppable({
-		drop : function(event, ui) {
-			
+		drop : function(event, ui) {			
 			var aaaa= $('.selected_ing');
 			var selected = false;
 			for(var i=0; i<aaaa.length;i++){
@@ -113,12 +111,21 @@ function irdntDrop() {
 				alert("이미 선택된 재료입니다..");								
 			}else{	
 				if ($(this).children('.selected_ing').length < 5) {
+					var irdnt_ty_nm = $(this).attr('id');
+					var ty_nm = "";
+					
+					if(irdnt_ty_nm=='nor_irdnt'){
+						ty_nm = '주재료'
+					}else if(irdnt_ty_nm=='sea_irdnt'){
+						ty_nm = '양념'
+					}
 					var selected = $(this).html()
-					+ " <div class='selected_ing'><input type ='hidden'value='"+name+"' id='ing'>" +
-							"<div class='close_ing'></div><p>"+ name
+					+ " <div class='selected_ing'><input type ='hidden' name='irdnt_nm' value='"+name+"' id='ing'>" +
+							"<input type ='hidden' name='irdnt_ty_nm' value='"+ty_nm+"' id='ty_nm'><div class='close_ing'></div><p>"+ name
 					+ "</p><select name='imp' id='imp'><option value='필수'>필수</option>" +
 							"<option value='상'>상</option><option value='중'>중</option>" +
-							"<option value='하'>하</option></select></div>";				
+							"<option value='하'>하</option></select></div>";
+					
 					$(this).html(selected);
 				}else{
 					alert("재료가 너무많아..");						

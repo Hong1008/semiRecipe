@@ -1,7 +1,13 @@
+
 var showErrorMsg="";
 
 $(document).ready(function() {
 	appendYear();
+	
+	$('#logo').on('click',function() {
+		location.href = "/semiRecipe/recipe/home";
+	});
+	
 	$('.iconwrap').css('visibility', 'hidden');
 	
 	var icon_src = $('#icon').attr('src').split("/");
@@ -68,7 +74,7 @@ $(document).ready(function() {
 		if(!chk)	// 취소이면
 			return false;
 		else
-			location.href="/semiRecipe/recipe/home";
+			location.href=document.referrer;
 	});
 	
 	
