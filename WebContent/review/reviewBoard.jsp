@@ -101,8 +101,6 @@ $(document).ready(function() {
 					</c:forEach>
 				</div>
 
-
-			 </section>
 				
 				<div class="listLine">
 					<c:set value="${sessionScope.imgList}" var="imgList" />
