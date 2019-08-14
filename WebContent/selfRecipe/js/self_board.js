@@ -4,8 +4,25 @@ $(document).ready(function(){
 	/*********************************************************************************/
 	
 	//irdntDrop();
+		
+		$('#quick_menu #update').click(function(){
+			var chk = false;
+			$('input[name="radi"]').each(function(i,v){
+				if($(v).prop('checked')){
+					chk=true;
+				}
+				
+			})
+			if(!chk){
+				alert("글을 선택하세요");
+				return false;
+			}
+			return true;
+		})
 	
-
+		
+	
+	
 		var list_cnt = 550;
 		var column = '';
 		var order = '';
@@ -76,8 +93,6 @@ $(document).ready(function(){
 	
 	/*recipe_id 보내주는 부분*/
 	$('.js-load span a').on('click', function() {
-		console.log('js-load');
-		console.log( $(this).parents().parents().attr('id'));
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
@@ -88,12 +103,11 @@ $(document).ready(function(){
 			return false;
 	});
 	
-
+		
 	
 		
 	$('#update').on('click', function(){
 		var chk = $("input[name='radi']:checked").val();
-		alert(chk);
 		$.ajax({
 			type : 'GET',
 			dataType : 'text',
@@ -109,6 +123,17 @@ $(document).ready(function(){
 
 function selfDelete(){
 $('#del').on('click', function(){
+	var chk = false;
+	$('input[name="radi"]').each(function(i,v){
+		if($(v).prop('checked')){
+			chk=true;
+		}
+		
+	})
+	if(!chk){
+		alert("글을 선택하세요");
+		return false;
+	}
 	var chk = $("input[name='radi']:checked").val();	
     window.location.href="selfDel?recipe_id="+chk;
 });

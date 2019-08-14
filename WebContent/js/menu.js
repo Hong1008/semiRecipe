@@ -66,9 +66,21 @@ $(document).ready(function(){
 	})
 	
 	$('#logout').click(function(){
-		var log = confirm('로그아웃 하시겠습니까?');
+		/*var log = confirm('로그아웃 하시겠습니까?');
 		if(!log){
 			return false;
-		}
+		}*/
+		swal({
+			  title: "로그아웃 하시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				  location.href="/semiRecipe/recipe/logout";
+			  } 
+			});
+		return false;
 	})
 })

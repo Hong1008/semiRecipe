@@ -43,18 +43,12 @@
 		<!-- 이미지 요리이름 간략소개 -->
 		<section id='R_header' class='R_div'>
 			<ul id='R_image'>
-				<li class="image_part"><img id='image_preview'
-					class="image_preview" src='/img/logo.png' /></li>
-				<li class="image_part" id="image_part_hidden"><input
-					type="file" id='imgInput' name="img_url" required="required" /></li>
-				<li><input type="button" class="w_btn" id="insertImg"
-					value="이미지 삽입"></li>
-				<li class="image_part"><input type="text" id="recipe_nm_ko"
-					name="recipe_nm_ko" required="required" autocomplete="off"
-					placeholder="요리요리요 이름은!" /></li>
-				<li class="image_part"><textarea id="sumry" name="sumry"
-						class="sumry" rows="4" cols="100" required="required"
-						autocomplete="off" placeholder="요리를 소개해 주세요!" required="required" /></textarea></li>
+				<li class="image_part"><img id='image_preview' class="image_preview" src='/semiRecipe/review/images/basicImage.png' /></li>
+				<li class="image_part" id="image_part_hidden">
+				<input type="file" id='imgInput' name="img_url" required="required" /></li>
+				<li><input type="button" class="w_btn" id="insertImg" value="이미지 삽입"></li>
+				<li class="image_part"><input type="text" id="recipe_nm_ko" name="recipe_nm_ko" required="required" autocomplete="off" placeholder="요리요리요 이름은!" /></li>
+				<li class="image_part"><textarea id="sumry" name="sumry" class="sumry" rows="4" cols="100" required="required" autocomplete="off" placeholder="요리를 소개해 주세요!" required="required" /></textarea></li>
 
 			</ul>
 		</section>

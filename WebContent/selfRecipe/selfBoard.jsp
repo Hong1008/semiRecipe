@@ -17,8 +17,9 @@
 <script src="/semiRecipe/assets/js/skel.min.js"></script>
 <script type="text/javascript"
 	src="/semiRecipe/selfRecipe/js/self_board.js"></script>
+	
 <link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_board.css">
-<link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
+
 
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200i,300,300i,400,400i"
@@ -74,15 +75,16 @@
 					<div class="js-load" id="${prList.recipe_id }">
 						<span><a href="#"> <img src="/semiRecipe/selfRecipe/img_self/${prList.img_url}" alt="main_image" />
 								<h3>${prList.recipe_nm_ko}</h3></a> </span> 
-						<span> <c:set var="recipe_id" value="${prList.recipe_id }" /> <span>${prList.user_id }</span>
-							<span>${prList.self_date }</span> 
+						<span> <c:set var="recipe_id" value="${prList.recipe_id }" /> <p>작성자 : ${prList.user_id }</p>
+							<p>${prList.self_date }</p> 
 							<input type="hidden" name="recipe_id" value="${prList.recipe_id }" /> <span>
-							<img alt="" src="/semiRecipe/img/views.png">${prList.self_views }</span>&nbsp;&nbsp; <span>
+							<img alt="" src="/semiRecipe/img/views.png"> ${prList.self_views }</span>&nbsp;&nbsp; <span>
 							<img alt="" src="/semiRecipe/img/rating.png"> ${prList.rating }</span>
 							<input type="hidden" id="${prList.nation_nm }" value="${prList.nation_nm }" /> 
-							<input name ='radi' type="radio"  id="${prList.recipe_id }" value="${prList.recipe_id }"/>
+							
 							<c:if
-								test="${not empty sessionScope.loginID }">
+								test="${not empty sessionScope.loginID && prList.user_id==sessionScope.loginID }">
+								<input name ='radi' type="radio"  id="${prList.recipe_id }" value="${prList.recipe_id }"/>
 							</c:if>
 						</span>
 					</div>
@@ -92,18 +94,13 @@
 
 		<!-- 화면 위로 올리기 시작	 -->
 		<div id="quick_menu">
-			<p>
-				<a href="#">top</a>
-			</p>
-			<p>
-				<a href="selfRecipe""> 목록</a>
-			</p>
+			<p><a href="#">top</a></p>
+			<p><a href="selfRecipe""> 목록</a></p>
 			<!-- 	<p><a href="selfInsert" > 쓰기</a></p> -->
-
 			<c:if test="${not empty sessionScope.loginID }">
 				<p>
-					<a class="aHide" href="selfInsert"> 쓰기</a> 
-					<a class="aHide" href="selfUpdate" id="update"> 수정</a> 
+					<a class="aHide" href="selfInsert"> 쓰기</a><br/>
+					<a class="aHide" href="selfUpdate" id="update"> 수정</a><br/>
 					<!-- <a class="aHide" onClick="selfDelete();" id="del"> 삭제</a> -->
 					<a class="aHide"  id="del"> 삭제</a>
 				</p>

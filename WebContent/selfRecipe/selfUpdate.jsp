@@ -20,8 +20,7 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
 	rel="stylesheet">
 
-<!-- 드래그/드랍 + 한글-->
-<script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
+
 
 <!-- insertSelfTecipe js/css-->
 <script type="text/javascript"
@@ -35,11 +34,11 @@
 	<jsp:include page="../jsp/sideMenu.jsp" />
 
 	<form name="frm" method="post" enctype="multipart/form-data"
-		action="insertSelfRecipe">
+		action="selfUpdate">
 		<c:if test="${!empty param.user_id }">
 			<input type="text" name="user_id" value="${param.user_id }" />
 		</c:if>
-
+	<input type="hidden" name="recipe_id" value="${requestScope.prdto.recipe_id }">
 		<!-- 이미지 요리이름 간략소개 -->
 		<section id='R_header' class='R_div'>
 			<ul id='R_image'>
@@ -185,6 +184,6 @@
 			 <input type="button" class="w_btn" id="back" value="취소" onclick="location.href='selfView'" />
 		</section>
 	</form>
-
+<script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
 </body>
 </html>

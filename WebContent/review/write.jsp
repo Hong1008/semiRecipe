@@ -352,11 +352,7 @@ td, tr {
 
 
 
-				<tr>
-					<td width="200px" align="center">파일첨부</td>
-					<td width="800px" id="fileDiv"><input type="file"
-						name="upload" /></td>
-				</tr>
+				
 				<tr>
 					<td height="10px"></td>
 				</tr>

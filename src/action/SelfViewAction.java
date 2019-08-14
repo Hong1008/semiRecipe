@@ -25,7 +25,7 @@ public class SelfViewAction {
 		req.setAttribute("irList", irdao.mainList(Integer.parseInt(recipe_id)));
 		req.setAttribute("subIrList", irdao.subList(Integer.parseInt(recipe_id)));
 		req.setAttribute("stList", dao.stepViewMethod(recipe_id));
-
+		dao.readCountMethod(Integer.parseInt(recipe_id));
 
 		
 		int hour = 0;
