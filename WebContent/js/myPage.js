@@ -235,6 +235,7 @@ $(document).ready(function() {
 				  location.href=document.referrer;
 			  } 
 			});
+		return false;
 	});
 	
 	$('#modFinishBtn').on('click', function() {				// 제일 하단에 수정 완료 버튼 눌렀을 때
