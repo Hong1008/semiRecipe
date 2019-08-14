@@ -22,7 +22,8 @@ $(document)
 								}
 							}
 							if(selected){
-								alert("이미 선택된 재료입니다..");								
+								//alert("이미 선택된 재료입니다..");
+								swal("이미 선택된 재료입니다..","다른 재료를 선택해주세요.","info");
 							}else{			
 								console.log($('.selected_ing').length);
 								if ($('.selected_ing').length < 5) {
@@ -37,7 +38,8 @@ $(document)
 									.html(selected);
 									viewList();
 								} else {
-									alert("재료는 5개까지만 선택 가능합니다.");
+									//alert("재료는 5개까지만 선택 가능합니다.");
+									swal("재료는 5개까지만 선택 가능합니다..","다른 재료를 선택해주세요.","info");
 								}
 							}
 								

@@ -35,8 +35,11 @@ $(document).ready(function() {
 		}
 	})
 	
-	$('.selected_ing #imp').val($('.selected_ing #impH').val());
-	
+	$('.selected_ing #imp option').each(function(i,v){
+		if($(v).val() == $('.selected_ing #impH').val()){
+			$(v).attr('selected', 'selected');
+		}
+	})
 });// end ready()
 /*이미지 삽입 버튼*/
 function insertImg(){
@@ -135,8 +138,10 @@ function cookingTeimView(){
 
 	/*재료 드랍하기*/
 function irdntDrop() {
+	
 	$('.R_ig_div').droppable({
 		drop : function(event, ui) {
+			console.log("drop")
 			var aaaa= $('.selected_ing');
 			var selected = false;
 			for(var i=0; i<aaaa.length;i++){

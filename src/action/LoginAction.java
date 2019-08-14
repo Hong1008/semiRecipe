@@ -30,6 +30,9 @@ public class LoginAction {
 		if(cnt==1) {	// 회원일 때
 			session = req.getSession();
 			session.setAttribute("loginID", req.getParameter("user_id")); 	// loginID라는 이름으로 id 값을 세션에 저장
+			MemberDAO icon = MemberDAO.getInstance();
+			MemberDTO icdto = icon.myPage(req.getParameter("user_id"));
+			session.setAttribute("loginICON", icdto.getUser_icon());
 			session.setMaxInactiveInterval(30*60); 	// 30분
 		}else {
 			System.out.println("LoginAction 실패!");

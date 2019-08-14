@@ -54,9 +54,7 @@ $(document).ready(function(){
 		
 	}
 	
-	$('#4.rated_div #rate_3.rated').click(function(){
-		alert("dfs");
-	});
+
 	
 	$('#CMT #order').change(function(){
 		comList();

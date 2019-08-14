@@ -15,7 +15,7 @@
 <!-- ************************************************* -->
 
 <div class="insertCom">
-	<div class='CMT_icon'></div>
+	<div class='CMT_icon'><img alt="" src="/semiRecipe/img/icon/${sessionScope.loginICON}"></div>
 	<input type="hidden" id="user_id" value="${sessionScope.loginID }">
 
 	<textarea id='CMT_input' autocomplete='off' placeholder="댓글을 추가하세요"

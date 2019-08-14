@@ -17,6 +17,7 @@
 <script src="/semiRecipe/assets/js/skel.min.js"></script>
 <script type="text/javascript"
 	src="/semiRecipe/selfRecipe/js/self_board.js"></script>
+	
 <link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_board.css">
 
 
@@ -80,9 +81,10 @@
 							<img alt="" src="/semiRecipe/img/views.png">${prList.self_views }</span>&nbsp;&nbsp; <span>
 							<img alt="" src="/semiRecipe/img/rating.png"> ${prList.rating }</span>
 							<input type="hidden" id="${prList.nation_nm }" value="${prList.nation_nm }" /> 
-							<input name ='radi' type="radio"  id="${prList.recipe_id }" value="${prList.recipe_id }"/>
+							
 							<c:if
-								test="${not empty sessionScope.loginID }">
+								test="${not empty sessionScope.loginID && prList.user_id==sessionScope.loginID }">
+								<input name ='radi' type="radio"  id="${prList.recipe_id }" value="${prList.recipe_id }"/>
 							</c:if>
 						</span>
 					</div>

@@ -39,13 +39,13 @@ $(document).ready(function() {
 	
 	$('input[value="회원가입"]').click(function(){		// 회원가입 버튼을 누르면
 		if(!inputChk()) { 	// return값이 false이면
-			alert('빈 칸을 모두 입력해 주세요.'); 
+			swal('빈 칸을 모두 입력해 주세요.'); 
 		}else if($('.error_next_box').text()!=""){
-			alert("입력한 값을 확인해주세요.");
+			swal("입력한 값을 확인해주세요.");
 		}else if($('.iconwrap').css('visibility')=='visible') {
-			alert("아이콘 선택을 완료해주세요");
+			swal("아이콘 선택을 완료해주세요");
 		}else if($('#icon').attr('src').indexOf('default')>-1) {
-			alert("아이콘 선택을 완료해주세요");
+			swal("아이콘 선택을 완료해주세요");
 		}else{
 			$('form').attr('action','register');
 			$('form').submit();

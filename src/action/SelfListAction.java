@@ -42,7 +42,6 @@ public class SelfListAction extends HttpServlet{
 			String searchType = req.getParameter("searchType");			
 			
 			req.setAttribute("prList", dao.sortView(column, order, recipe_nm_ko, searchType));
-			System.out.println("***************************************"+ dao.sortView(column, order, recipe_nm_ko, searchType));
 			//req.setAttribute("srList", dao.selfRecipeListMethod(pdto));
 			try {
 				dao.exit();

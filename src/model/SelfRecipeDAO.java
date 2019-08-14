@@ -55,15 +55,14 @@ public class SelfRecipeDAO {
 			sql += "order by "+column+" "+order;
 		}
 		if(recipe_nm_ko!= null && !recipe_nm_ko.isEmpty()) {
-			sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id from primary, nation_nm p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
+			sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id from primary p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
 			switch(searchType) {
 			case "both": sql += "and (recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' or"
-					+ " recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%'))"; break;
+					+ " p.recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%'))"; break;
 			case "recipe_nm_ko": sql += "and recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' "; break;
-			case "irdnt_nm": sql += "and recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%') "; break;
+			case "irdnt_nm": sql += "and p.recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%') "; break;
 			}
 		}
-		System.out.println(sql);
 		try {
 			conn = init();
 			pstmt = conn.prepareStatement(sql);
@@ -77,7 +76,6 @@ public class SelfRecipeDAO {
 				map.put("img_url", rs.getString("img_url"));
 				map.put("rating", rs.getString("rating"));
 				map.put("self_views", rs.getString("self_views"));
-				map.put("nation_nm", rs.getString("nation_nm"));
 				aList.add(map);
 			}
 			
