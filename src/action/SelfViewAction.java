@@ -1,3 +1,4 @@
+
 package action;
 
 import java.sql.SQLException;
@@ -7,7 +8,7 @@ import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import model.IrdntDAO;
 import model.SelfRecipeDAO;
 
 public class SelfViewAction {
@@ -18,9 +19,11 @@ public class SelfViewAction {
 		System.out.println("레시피 아이디");
 		SelfRecipeDAO dao = SelfRecipeDAO.getInstance();
 		HashMap<String, String> pvmap = dao.primViewMethod(recipe_id);
-
+		
+		IrdntDAO irdao = new IrdntDAO();
 		req.setAttribute("prdto", pvmap);
-		req.setAttribute("irList", dao.irdntViewMethod(recipe_id));
+		req.setAttribute("irList", irdao.mainList(Integer.parseInt(recipe_id)));
+		req.setAttribute("subIrList", irdao.subList(Integer.parseInt(recipe_id)));
 		req.setAttribute("stList", dao.stepViewMethod(recipe_id));
 
 

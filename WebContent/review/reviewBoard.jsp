@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -77,31 +78,10 @@ $(document).ready(function() {
 				</c:forEach>
 				 --%>
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList">
+					<c:set value="${sessionScope.imgList}" var="imgList" />
+					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
 						<c:if test="${revList.review_num%4==1}">
-							<a href="#" id="${revList.review_num}"> <img src="${revList.review_url}" alt="" />				
-								<h3>${revList.review_subject}
-								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
-							
-							</a>
-						</c:if>
-					</c:forEach>
-				</div>
-				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList">
-						<c:if test="${revList.review_num%4==2}">
-							<a href="#" id="${revList.review_num}"> <img src="${revList.review_url}" alt="" />
-								<h3>${revList.review_subject} 
-								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
-							</a>
-						</c:if>
-					</c:forEach>
-				</div>
-
-				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList">
-						<c:if test="${revList.review_num%4==3}">
-							<a href="#" id="${revList.review_num}"> <img src="${revList.review_url}" alt="" />
+							<a href="#" id="${revList.review_num}"> <img src="${imgList[status.index]}" alt="" />				
 								<h3>${revList.review_subject}
 								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
 							</a>
@@ -109,12 +89,12 @@ $(document).ready(function() {
 					</c:forEach>
 				</div>
 				
-
 				<div class="listLine">
-					<c:forEach items="${sessionScope.reviewList}" var="revList">
-						<c:if test="${revList.review_num%4==0}">
-							<a href="#" id="${revList.review_num}"><img src="${revList.review_url}" alt="" /> 
-								<h3>${revList.review_subject}   
+					<c:set value="${sessionScope.imgList}" var="imgList" />
+					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
+						<c:if test="${revList.review_num%4==2}">
+							<a href="#" id="${revList.review_num}"> <img src="${imgList[status.index]}" alt="" />				
+								<h3>${revList.review_subject}
 								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
 							</a>
 						</c:if>
@@ -123,6 +103,32 @@ $(document).ready(function() {
 
 
 			 </section>
+				
+				<div class="listLine">
+					<c:set value="${sessionScope.imgList}" var="imgList" />
+					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
+						<c:if test="${revList.review_num%4==3}">
+							<a href="#" id="${revList.review_num}"> <img src="${imgList[status.index]}" alt="" />				
+								<h3>${revList.review_subject}
+								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
+							</a>
+						</c:if>
+					</c:forEach>
+				</div>
+				
+				<div class="listLine">
+					<c:set value="${sessionScope.imgList}" var="imgList" />
+					<c:forEach items="${sessionScope.reviewList}" var="revList" varStatus="status">
+						<c:if test="${revList.review_num%4==0}">
+							<a href="#" id="${revList.review_num}"> <img src="${imgList[status.index]}" alt="" />				
+								<h3>${revList.review_subject}
+								<br/><font color="#BC8F8F">${revList.user_nickname}</font></h3>
+							</a>
+						</c:if>
+					</c:forEach>
+				</div>
+				
+			</section>
 			<form action="#" method="post" id="searchform">
 			<div id="searchLine">
 				<select name="searchDrop" id="searchDrop">

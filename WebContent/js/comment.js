@@ -54,20 +54,18 @@ $(document).ready(function(){
 		
 	}
 	
-
+	$('#4.rated_div #rate_3.rated').click(function(){
+		alert("dfs");
+	});
 	
 	$('#CMT #order').change(function(){
-		if($(this).val()=='com_time'){
-			
-		}else if($(this).val()=='rating'){
-			
-		}
+		comList();
 	})
 	
 	$('#showMore').click(function(){
 		rownum = parseInt($('#CMT .rated_div').last().attr('id'))+5;
 		
-		
+		comList();
 	})
 })
 function rating(num,id){
@@ -83,12 +81,14 @@ function rating(num,id){
 	}
 }
 function comList(){
+	
+	
 	if(typeof rownum == "undefined" || rownum == null || rownum == "")
 		rownum = 5;
 	$.ajax({
 		type:'POST',
 		dataType:'text',
-		data:'com_board='+$('#CMT>div').attr('id')+'&key='+$('#CMT #key').val(),
+		data:'com_board='+$('#CMT>div').attr('id')+'&key='+$('#CMT #key').val()+'&order='+$('#CMT #order').val()+'&rownum='+rownum,
 		url:'comList',
 		success: function(res){
 			$('#CMT>div').empty();
@@ -125,9 +125,6 @@ function insertCom(){
 		+'&user_id='+user_id+'&rating='+rating+'&com_content='+com_content,
 		url:'insertCom',
 		success: function(res){
-			var total = $('#total').text();
-			total = parseInt(total)+1;
-			$('#total').text(total);
 			comList();
 		}
 	})

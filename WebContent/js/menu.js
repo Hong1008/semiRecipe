@@ -38,9 +38,21 @@ $(document).ready(function(){
 		} 
 		$('#menu_bar img').css('opacity',(1000-$(document).scrollTop()*$(document).scrollTop()*0.0013)/1000);
 		$('#info').css('opacity',(1000-$(document).scrollTop()*$(document).scrollTop()*0.05)/1000);
-			
-		
-		
+	})
+	
+	function logoAnim() {
+		$('#logo_container').animate({'left':'50.3%'},50).animate({'left':'49.7%'},50);
+	}
+	
+	$('#logo_container').on('mouseover',function(){
+		$('#logo_container').animate({'width':'210px'},100);
+		for(var i=0;i<100;i++)
+			logoAnim();
+	})
+	
+	$('#logo_container').on('mouseleave',function(){
+		$(this).clearQueue().stop();
+		$(this).animate({'width':'190px'},300);
 	})
 	
 	$('.menu_li').click(function(){

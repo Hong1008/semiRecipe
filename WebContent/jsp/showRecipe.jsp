@@ -6,18 +6,23 @@
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100&display=swap"
 	rel="stylesheet">	
 <script type="text/javascript" src="/semiRecipe/js/comment.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 var rate = $('.R_rate');
-console.log(rate);
-console.log(rate.length);
 for(var i=0; i<rate.length;i++){
-	console.log('a');
-	console.log($(rate.eq(i)).attr('id')*100/4+'%');
-	$(rate.eq(i)).css({'width':$(rate.eq(i)).attr('id')*100/4+'%','opacity':$(rate.eq(i)).attr('id')/4});
+	$(rate.eq(i)).css({'width':($(rate.eq(i)).attr('id')*100/4+'%'),'opacity':($(rate.eq(i)).attr('id')/4)});
 }
+$(document).ready(function(){
+	$('#closeShow').click(function(){
+		$('.R_div').remove();
+		var offset = $('#searchLine').offset();
+	    $('html, body').animate({scrollTop : offset.top}, 400);    
+	})
+})
 </script>
 <div id='R_header' class='R_div'>
+	<a href=""></a>
 	<div id='R_image'>
 		<img src="${requestScope.prim.IMG_URL }">
 	</div>
@@ -81,12 +86,18 @@ for(var i=0; i<rate.length;i++){
 </div>
 
 <div id='CMT' class='R_div'>
-		<span id='comment_num'>댓글 <span id="total">${total }</span>개</span>
+		<span id='comment_num'>댓글 <span id="total">${total }</span>  개</span>
 	<select name="order" id="order">
 		<option value="com_time">최근날짜순</option>
 		<option value="rating">별점순</option>
 	</select>
 	<input type="hidden" id="key" value="${recipe_id}">
 	<div id="primary">
-	</div>	
+	</div>
+	
+
+<input type="button" id="closeShow" value="닫기"/>	
 </div>
+<script type="text/javascript">
+comList();
+</script>

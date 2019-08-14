@@ -1,8 +1,11 @@
+
 $(document).ready(function(){
 	$('.thumbnails>div>div').on('click',function(){
 		showRecipe($(this).attr('id'),"#selected_recipe");
 		return false;
 	});
+	
+	
 })
 
 function showRecipe(selected,selector){
@@ -13,7 +16,7 @@ function showRecipe(selected,selector){
 		url:'showRecipe',
 		success: function(res){
 			$(selector).html(res);
-			comList();
+			
 		}
 	})
 	var offset = $(selector).offset();

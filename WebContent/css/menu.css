@@ -5,6 +5,7 @@
 	background-size: 2110px;
 	background-position: -135px -400px;
 	background-attachment: fixed;
+    z-index: 1;
 }
 
 #menu_bar {
@@ -15,6 +16,7 @@
 	background-size: 2110px;
 	background-position: -135px -560px;
 	background-attachment: fixed;
+	
 }
 
 #menu_bar img {
@@ -29,8 +31,9 @@
 	width: 800px;
 	height: 80px;
 	position: fixed;
-	margin-left: 115px;
+	    margin-left: 32px;
 	margin-top: 10px;
+	z-index: 1;
 }
 
 #menu_ul {
@@ -76,12 +79,12 @@
 }
 
 #logo_container {
-	width: 60px;
-	height: 60px;
-	position: fixed;
-	left: 30px;
-	top: 10px;
-	z-index: 0;
+	width: 190px;
+    position: fixed;
+    left: 50%;
+    top: 40px;
+    z-index:2;
+    transform: translate(-50%, -50%);
 }
 
 #logo_container img {

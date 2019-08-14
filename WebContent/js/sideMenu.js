@@ -1,3 +1,4 @@
+
 var name = "";
 var isopen = false;
 $(document)
@@ -9,7 +10,8 @@ $(document)
 			},1000);
 			
 			$('.ingredients').on('mouseover',function(){
-				$(this).clearQueue().animate({'border-radius':'65px','background-color':'rgb(30,30,30,0.9)'},200);
+				$(this).clearQueue().animate({'border-radius':'66px','background-color':'rgb(30,30,29,0.9)'},200);
+
 			})
 			
 			$('.ingredients').on('mouseleave',function(){
