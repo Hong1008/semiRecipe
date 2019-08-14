@@ -62,7 +62,7 @@ public class ReviewDAO {
 	//글 쓰기
 	public void insertMethod(ReviewDTO dto) {
 		String sql = "insert into review(review_num, review_content, review_rate, review_date, review_views, review_url, user_id, recipe_id,review_subject, user_nickname, recipe_nm_ko) "
-				+ "values(review_num_sequ.nextval, ?, ?, sysdate, 0, 'http://localhost:8090/semiRecipe/review/images/thumbs/04.jpg', ?, ?, ?, ?,?)";
+				+ "values(review_num_sequ.nextval, ?, ?, sysdate, 0, 'http://localhost:8090/semiRecipe/review/images/basicImage.png', ?, ?, ?, ?,?)";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getReview_content());
