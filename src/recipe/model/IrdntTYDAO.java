@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import login.model.CommonDAO;
+import recipe.CommonDAO;
 
 
 public class IrdntTYDAO extends CommonDAO{

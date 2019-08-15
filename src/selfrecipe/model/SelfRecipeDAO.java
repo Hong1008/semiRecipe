@@ -535,7 +535,24 @@ public class SelfRecipeDAO {
 			for (int i = 0; i < irdList.size(); i++) {
 				int irdnt_sn = irdList.get(i).getRECIPE_ID()*10+i;
 			pstmt.setInt(1, irdnt_sn);
-			pstmt.setString(2, irdList.get(i).getIMPORTANCE());
+			String importance = irdList.get(i).getIMPORTANCE();
+			int impnum=0;
+			switch (importance) {
+			case "필수":
+				impnum=4;
+				break;
+			case "상":
+				impnum=3;
+				break;
+			case "중":
+				impnum=2;
+				break;
+			case "하":
+				impnum=1;
+				break;
+			
+			}
+			pstmt.setInt(2, impnum);
 			pstmt.setInt(3, irdList.get(i).getRECIPE_ID());
 			pstmt.setString(4, irdList.get(i).getIRDNT_NM());
 			pstmt.setString(5, irdList.get(i).getIRDNT_TY_NM());

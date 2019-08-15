@@ -1,4 +1,4 @@
-package login.model;
+package recipe;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

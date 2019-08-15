@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-import login.model.CommonDAO;
+import recipe.CommonDAO;
 
 public class PrimDAO extends CommonDAO {
 	private DataSource ds; // DataSource ds 는 아파치톰캣이 제공하는 DBCP(DB Connection Pool)이다.
@@ -84,7 +84,7 @@ public class PrimDAO extends CommonDAO {
 	public void primRating(int recipe_id) {
 		String sql = "update primary set rating = round("
 				+ "("
-				+ "(select sum(rating) from recipe_comment where recipe_id =?)"
+				+ "nvl((select sum(rating) from recipe_comment where recipe_id =?),0)"
 				+ "+"
 				+ "nvl("
 				+ "(select sum(review_rate) from review where recipe_id = ?)"

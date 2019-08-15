@@ -4,6 +4,13 @@
 <%@taglib  prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/semiRecipe/css/recipe.css">
 <link rel="stylesheet" href="/semiRecipe/selfRecipe/css/self_board.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+var rate = $('.R_rate');
+for(var i=0; i<rate.length;i++){
+	$(rate.eq(i)).css({'width':($(rate.eq(i)).attr('id')*100/4+'%'),'opacity':($(rate.eq(i)).attr('id')/4)});
+}
+</script>
 
 <div id='R_header' class='R_div'>
 		

@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
-import login.model.CommonDAO;
+import recipe.CommonDAO;
 
 
 public class IrdntDAO extends CommonDAO {

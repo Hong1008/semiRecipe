@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import login.model.CommonDAO;
+import recipe.CommonDAO;
 
 public class CommentDAO extends CommonDAO {
 	private ResultSet rs;

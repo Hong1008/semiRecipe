@@ -59,7 +59,7 @@ public class ReviewListAction {
 				imgList.add("/semiRecipe/review/images/basicImage.png");
 			}
 		}
-		
+		session.removeAttribute("imgList");
 		session.setAttribute("imgList", imgList);
 				
 	//	req.setAttribute("aList", aList);

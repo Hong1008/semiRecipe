@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
-import login.model.CommonDAO;
+import recipe.CommonDAO;
 
 public class StepDAO extends CommonDAO {
 	private DataSource ds; // DataSource ds 는 아파치톰캣이 제공하는 DBCP(DB Connection Pool)이다.
