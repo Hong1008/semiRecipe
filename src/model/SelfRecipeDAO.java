@@ -32,7 +32,7 @@ public class SelfRecipeDAO {
 	public Connection init() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.OracleDriver");
 
-		String url = "jdbc:oracle:thin://@192.168.30.72:1521:xe";
+		String url = "jdbc:oracle:thin://@localhost:1521:xe";
 		String user = "hong";
 		String password = "1234";
 		return DriverManager.getConnection(url, user, password);
@@ -136,9 +136,9 @@ public class SelfRecipeDAO {
 			conn = init();
 			String sql = "select recipe_nm_ko, sumry, rating, self_views, img_url, ty_nm,"
 					+ " cooking_time, calorie, level_nm, nation_nm,"
-					+ " s.recipe_id, user_id, self_date "
-					+ "from selfrecipe s, primary p "
-					+ "where S.RECIPE_ID=P.RECIPE_ID and recipe_type = 's' ";
+					+ " s.recipe_id, u.user_id,user_nickname, self_date "
+					+ "from selfrecipe s, primary p, user_table u "
+					+ "where S.RECIPE_ID=P.RECIPE_ID and u.user_id=s.user_id and recipe_type = 's' ";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -156,6 +156,7 @@ public class SelfRecipeDAO {
 				map.put("nation_nm", rs.getString("nation_nm"));
 				map.put("rating", rs.getString("rating"));
 				map.put("self_views", rs.getString("self_views"));
+				map.put("user_nickname", rs.getString("user_nickname"));
 				prList.add(map);
 			}
 			
@@ -233,8 +234,8 @@ public class SelfRecipeDAO {
 		 HashMap<String, String> pvmap = new HashMap<String,String>();
 		try {
 			conn = init();
-			String sql = "select p.recipe_id, recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm, nation_nm, user_id, self_date, self_views ";
-			sql += "from primary p, selfrecipe s where p.recipe_id = s.recipe_id and recipe_type = 's' and p.recipe_id = ?"; 
+			String sql = "select p.recipe_id, recipe_nm_ko, sumry, img_url, ty_nm, cooking_time, calorie, level_nm, nation_nm, u.user_id, user_nickname, self_date, self_views ";
+			sql += "from primary p, selfrecipe s, user_table u where p.recipe_id = s.recipe_id and u.user_id = s.user_id and recipe_type = 's' and p.recipe_id = ?"; 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(recipe_id));
 			rs = pstmt.executeQuery();
@@ -249,8 +250,10 @@ public class SelfRecipeDAO {
 				pvmap.put("level_nm", rs.getString("level_nm"));
 				pvmap.put("nation_nm", rs.getString("nation_nm"));
 				pvmap.put("user_id", rs.getString("user_id"));
-				pvmap.put("self_date", rs.getString("self_date"));
+				String time = rs.getString("self_date");
+				pvmap.put("self_date", showTime(time));
 				pvmap.put("self_views", rs.getString("self_views"));
+				pvmap.put("user_nickname", rs.getString("user_nickname"));
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -265,6 +268,8 @@ public class SelfRecipeDAO {
 
 		return pvmap;
 	}// end primViewMethod()
+	
+	
 	
 	public List<IrdntDTO> irdntViewMethod(String recipe_id) {
 		List<IrdntDTO> irList = new ArrayList<IrdntDTO>();
@@ -522,7 +527,7 @@ public class SelfRecipeDAO {
 			sql += "values(?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			for (int i = 0; i < irdList.size(); i++) {
-				int irdnt_sn = irdList.get(i).getRECIPE_ID()+i;
+				int irdnt_sn = irdList.get(i).getRECIPE_ID()*10+i;
 			pstmt.setInt(1, irdnt_sn);
 			pstmt.setString(2, irdList.get(i).getIMPORTANCE());
 			pstmt.setInt(3, irdList.get(i).getRECIPE_ID());

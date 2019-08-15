@@ -147,7 +147,7 @@ public class RecipeController extends HttpServlet {
 				insertList.executeMulti(req, resp);
 				SelfRecipeDAO dao = SelfRecipeDAO.getInstance();
 				int riMax = dao.recipeIdMax();
-				resp.sendRedirect("selfView?recipe_id="+riMax);
+				resp.sendRedirect("selfRecipe");
 			}
 		}else if (path.equals("deleteSelfRecipe")) {
 				SelfDeleteAction del = new SelfDeleteAction();

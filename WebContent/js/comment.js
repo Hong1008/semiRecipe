@@ -124,6 +124,9 @@ function insertCom(){
 		url:'insertCom',
 		success: function(res){
 			comList();
+			var tot = $('#total').text();
+			tot = parseInt(tot)+1;
+			$('#total').text(tot);
 		}
 	})
 }

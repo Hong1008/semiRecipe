@@ -7,7 +7,6 @@
 <script type="text/javascript" src="/semiRecipe/js/sideMenu.js"></script>
 <script src="/semiRecipe/js/plugin/jquery-ui.min.js"></script>
 <script src="/semiRecipe/js/plugin/hangul.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <div id='side_menu'>
 	<div id='side_btn'>

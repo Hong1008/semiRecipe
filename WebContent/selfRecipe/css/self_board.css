@@ -73,9 +73,21 @@ body {
 }
 
 #searchDrop{
-	font-size:18px; 
-	width:70px; 
-	height:35px;
+	width: 142px;
+    height: 39px;
+    -webkit-appearance: none;
+    border: none;
+    font-size: 18px;
+    padding-left: 0px;
+    background: rgb(255, 245, 230);
+    margin-left: -4px;
+    margin-top: 8px;
+    background-image: url(/semiRecipe/img/comment_1.png);
+    background-size: 133px;
+    color: #2d2d2dcf;
+    font-style: oblique;
+    font-weight: bold;
+    background-position-x: -8px;
 }
 
 .icon-search{

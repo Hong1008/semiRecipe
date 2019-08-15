@@ -26,7 +26,7 @@ public class SelfInsertAction extends HttpServlet {
 		HttpSession session = req.getSession();
 		String user_id = (String) session.getAttribute("loginID");
 		MultipartRequest multi = null;
-		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\semiRecipe\\selfRecipe\\img_self";
+		String saveDirectory = req.getServletContext().getRealPath("")+"selfRecipe\\img_self";
 		System.out.println(req.getServletContext().getRealPath(""));
 		
 		File file = new File(saveDirectory);
@@ -75,9 +75,6 @@ public class SelfInsertAction extends HttpServlet {
 			irdto.setIMPORTANCE(imp[i]);// 필요도
 			irdto.setIRDNT_TY_NM(irdnt_ty_nm[i]);
 			irdto.setIRDNT_NM(irdnt_nm[i]);// 재료명
-			System.out.println(irdto.getIMPORTANCE());
-			System.out.println(irdto.getIRDNT_TY_NM());
-			System.out.println(irdto.getIRDNT_NM());
 			irList.add(irdto);
 		}
 		

@@ -125,7 +125,7 @@ $(document)
 				'id');
 			} //배열에 이름들을 저장
 
-			$('#selected_div input')
+			$('#side_menu input')
 			.on(
 					'keyup',
 					function() {

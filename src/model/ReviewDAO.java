@@ -142,9 +142,11 @@ public class ReviewDAO {
 				"(select review_num,review_subject, review_content, review_rate, review_date, review_views, review_url, user_nickname, user_id, RECIPE_ID, recipe_nm_ko " + 
 				"from review " + 
 				"order by review_num desc)a where review_num=?";
+				System.out.println(sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, review_num);
+			System.out.println(review_num);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto.setReview_subject(rs.getString("review_subject"));

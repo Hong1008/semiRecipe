@@ -12,11 +12,10 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.listLine a').on('click', function() {
-			console.log($(this).attr('id'));
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
-				data : 'review_num=' + $('#rev_num').val(),
+				data : 'review_num=' + $(this).prev('#rev_num').val(),
 				url : 'reviewview',
 				success : function(res) {
 					$('#view').html(res);
@@ -63,7 +62,25 @@
 <link rel="stylesheet" href="/semiRecipe/fontello-icon/css/fontello.css">
 <link rel="stylesheet" href="/semiRecipe/css/reviewBoardcss.css">
 
-
+<style>
+#searchKey{
+	width: 142px;
+    height: 39px;
+    -webkit-appearance: none;
+    border: none;
+    font-size: 18px;
+    padding-left: 0px;
+    background: rgb(255, 245, 230);
+    margin-left: -4px;
+    margin-top: 8px;
+    background-image: url(/semiRecipe/img/comment_1.png);
+    background-size: 133px;
+    color: #2d2d2dcf;
+    font-style: oblique;
+    font-weight: bold;
+    background-position-x: -8px;
+}
+</style>
 
 </head>
 

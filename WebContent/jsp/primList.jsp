@@ -32,6 +32,10 @@
     height: 1100px;
 }
 
+#main .thumbnails div{
+    max-width: none;
+}
+
 #main .thumbnails img{
 	width: 200px;
 }

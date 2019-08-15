@@ -7,10 +7,9 @@
 
 <div id='R_header' class='R_div'>
 		
-	<span id='user_id'>${requestScope.prdto.user_id } </span>|
-	<span id='recipe_id'>${requestScope.prdto.recipe_id } </span>|
-	<span id='self_views'><img width="14" height="14" alt="조회수" src="/semiRecipe/img/views.png"> ${requestScope.prdto.self_views } </span>|
-	<span id='self_date'>D:${requestScope.prdto.self_date } </span>
+	<span id='user_id'>${requestScope.prdto.user_nickname } </span>|
+	<span id='self_views'> &nbsp;<img width="14" height="14" alt="조회수" src="/semiRecipe/img/views.png"> ${requestScope.prdto.self_views } &nbsp;</span>|
+	<span id='self_date'>${requestScope.prdto.self_date } </span>
 
 	<div id='R_image'>
 		<img src="/semiRecipe/selfRecipe/img_self/${requestScope.prdto.img_url }">
