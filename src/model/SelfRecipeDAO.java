@@ -53,12 +53,12 @@ public class SelfRecipeDAO {
 	// ------------------------------------------------------------------- 정렬 시작
 	public List<HashMap<String, String>> sortView(String column, String order, String recipe_nm_ko, String searchType){
 		List<HashMap<String, String>> aList = new ArrayList<HashMap<String,String>>();
-		String sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id, nation_nm from primary p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
+		String sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, u.user_id,user_nickname, nation_nm from primary p, selfrecipe s, user_table u where p.recipe_id=s.recipe_id and u.user_id=s.user_id and recipe_type = 's' ";
 		if(column!=null && !column.isEmpty() && order!=null && !order.isEmpty()) {
 			sql += "order by "+column+" "+order;
 		}
 		if(recipe_nm_ko!= null && !recipe_nm_ko.isEmpty()) {
-			sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, user_id from primary p, selfrecipe s where p.recipe_id=s.recipe_id and recipe_type = 's' ";
+			sql = "select recipe_nm_ko, img_url, rating, p.recipe_id, self_views, self_date, u.user_id,user_nickname from primary p, selfrecipe s, user_table u where p.recipe_id=s.recipe_id and u.user_id=s.user_id and recipe_type = 's' ";
 			switch(searchType) {
 			case "both": sql += "and (recipe_nm_ko like '%'||'"+recipe_nm_ko+"'||'%' or"
 					+ " p.recipe_id in (select recipe_id from irdnt where irdnt_nm like '%'||'"+recipe_nm_ko+"'||'%'))"; break;
@@ -79,6 +79,7 @@ public class SelfRecipeDAO {
 				map.put("img_url", rs.getString("img_url"));
 				map.put("rating", rs.getString("rating"));
 				map.put("self_views", rs.getString("self_views"));
+				map.put("user_nickname", rs.getString("user_nickname"));
 				aList.add(map);
 			}
 			

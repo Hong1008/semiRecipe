@@ -33,7 +33,7 @@ body {
 
 #main .thumbnails img{
 	width: 100%;
-    max-width: 200px;
+    max-width: 500px;
     border-top-left-radius: 0.2rem;
     border-top-right-radius: 0.2rem;
     display: block;
@@ -123,7 +123,7 @@ body {
 .js-load{
 	display: inline-block;
 	margin: 10px 10px;
-	width: 200px;
+	width: 300px;
 }
 
 .js-load span:after{

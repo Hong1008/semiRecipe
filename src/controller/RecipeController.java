@@ -194,7 +194,7 @@ public class RecipeController extends HttpServlet {
 			HttpSession session = req.getSession();
 			session.setAttribute("loginID", req.getParameter("id")); 	// loginID라는 이름으로 id 값을 세션에 저장
 			MemberDAO icon = MemberDAO.getInstance();
-			MemberDTO icdto = icon.myPage(req.getParameter("user_id"));
+			MemberDTO icdto = icon.myPage(req.getParameter("id"));
 			session.setAttribute("loginICON", icdto.getUser_icon());
 			session.setMaxInactiveInterval(30*60); 	// 30분
 			

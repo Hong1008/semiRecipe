@@ -55,8 +55,8 @@ $(document).ready(function(){
 								+ '&searchType=' + searchType,
 						url : 'selfRecipe',
 						success : function(res) {
-							$('.thumbnails>div').remove();
-							$('.thumbnails').html(res);
+							$('.thumbnails>div').empty();
+							$('.thumbnails>div').html(res);
 							$('.thumbnails').height(550);
 						}
 					})
@@ -92,13 +92,18 @@ $(document).ready(function(){
 				
 	
 	/*recipe_id 보내주는 부분*/
-	$('.js-load span a').on('click', function() {
+	$('.thumbnails .js-load span a').on('click', function() {
+		console.log('sdsdfdf');
 			$.ajax({
 				type : 'POST',
 				dataType : 'text',
 				data : 'recipe_id=' + $(this).parents().parents().attr('id'),
 				url : 'selfView',
-				success : function(res) { $('#selected_recipe').html(res);}
+				success : function(res) {
+					$('#selected_recipe').html(res);
+					var offset = $('#selected_recipe').offset();
+				    $('html, body').animate({scrollTop : offset.top}, 400);    
+					}
 			});
 			return false;
 	});

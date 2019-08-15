@@ -71,6 +71,7 @@
 			<!-- Thumbnails -->
 
 			<section class="thumbnails">
+			<div id="listSize">
 				<c:forEach items="${requestScope.prList}" var="prList" varStatus="i">
 					<div class="js-load" id="${prList.recipe_id }">
 						<span><a href="#"> <img src="/semiRecipe/selfRecipe/img_self/${prList.img_url}" alt="main_image" />
@@ -89,6 +90,7 @@
 						</span>
 					</div>
 				</c:forEach>
+				</div>
 			</section>
 		</section>
 

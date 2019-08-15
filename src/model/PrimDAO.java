@@ -94,8 +94,7 @@ public class PrimDAO extends RecipeDAO {
 				+ "union all select recipe_id from recipe_comment where recipe_id=?)"
 				+ ")"
 				+ ","
-				+ "(select count(*) from recipe_comment where recipe_id =?)"
-				+ ")"
+				+ "decode((select count(*) from recipe_comment where recipe_id =?),0,1,(select count(*) from recipe_comment where recipe_id =?)))"
 				+ ",2) " + 
 				"where recipe_id = ?";
 		try {
@@ -106,6 +105,7 @@ public class PrimDAO extends RecipeDAO {
 			pstmt.setInt(4, recipe_id);
 			pstmt.setInt(5, recipe_id);
 			pstmt.setInt(6, recipe_id);
+			pstmt.setInt(7, recipe_id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
