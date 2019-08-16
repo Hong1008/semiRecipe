@@ -22,3 +22,20 @@
 						</span>
 					</div>
 				</c:forEach>
+				
+				<script type="text/javascript">
+				$('.thumbnails .js-load span a').on('click', function() {
+					$.ajax({
+						type : 'POST',
+						dataType : 'text',
+						data : 'recipe_id=' + $(this).parents().parents().attr('id'),
+						url : 'selfView',
+						success : function(res) {
+							$('#selected_recipe').html(res);
+							var offset = $('#selected_recipe').offset();
+						    $('html, body').animate({scrollTop : offset.top}, 400);    
+							}
+					});
+					return false;
+			});
+				</script>
