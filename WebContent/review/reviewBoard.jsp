@@ -111,8 +111,8 @@
 
 			<section class="thumbnails">
 				<div class="listLine">
-					<c:set value="${sessionScope.imgList}" var="imgList" />
-					<c:forEach items="${sessionScope.reviewList}" var="revList"
+					<c:set value="${requestScope.imgList}" var="imgList" />
+					<c:forEach items="${requestScope.reviewList}" var="revList"
 						varStatus="status">
 						<c:if test="${revList.rn%4==1}">
 							<input type="hidden" id="rev_num" value="${revList.review_num }">
@@ -127,8 +127,8 @@
 				</div>
 
 				<div class="listLine">
-					<c:set value="${sessionScope.imgList}" var="imgList" />
-					<c:forEach items="${sessionScope.reviewList}" var="revList"
+					<c:set value="${requestScope.imgList}" var="imgList" />
+					<c:forEach items="${requestScope.reviewList}" var="revList"
 						varStatus="status">
 						<c:if test="${revList.rn%4==2}">
 							<input type="hidden" id="rev_num" value="${revList.review_num }">
@@ -143,8 +143,8 @@
 				</div>
 
 				<div class="listLine">
-					<c:set value="${sessionScope.imgList}" var="imgList" />
-					<c:forEach items="${sessionScope.reviewList}" var="revList"
+					<c:set value="${requestScope.imgList}" var="imgList" />
+					<c:forEach items="${requestScope.reviewList}" var="revList"
 						varStatus="status">
 						<c:if test="${revList.rn%4==3}">
 							<input type="hidden" id="rev_num" value="${revList.review_num }">
@@ -159,8 +159,8 @@
 				</div>
 
 				<div class="listLine">
-					<c:set value="${sessionScope.imgList}" var="imgList" />
-					<c:forEach items="${sessionScope.reviewList}" var="revList"
+					<c:set value="${requestScope.imgList}" var="imgList" />
+					<c:forEach items="${requestScope.reviewList}" var="revList"
 						varStatus="status">
 						<c:if test="${revList.rn%4==0}">
 							<input type="hidden" id="rev_num" value="${revList.review_num }">
