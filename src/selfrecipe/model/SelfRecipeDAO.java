@@ -37,7 +37,7 @@ public class SelfRecipeDAO {
 	public Connection init() throws ClassNotFoundException, SQLException {
 		Class.forName("oracle.jdbc.OracleDriver");
 
-		String url = "jdbc:oracle:thin://@http://192.168.30.72:1521:xe";
+		String url = "jdbc:oracle:thin://@192.168.30.72:1521:xe";
 		String user = "hong";
 		String password = "1234";
 		return DriverManager.getConnection(url, user, password);

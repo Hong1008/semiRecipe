@@ -114,7 +114,7 @@ $(document).ready(function(){
 			<tr id="review_title_second">
 				<td id="revWriter" class="icon-pencil" width="50px"></td>
 				<td id="revWriterSpace" width="200px" align="left">&nbsp;&nbsp;${viewer.user_nickname}</td>
-				<td id="recipeID" width="300px"><a href="http://http://192.168.30.72:8080/semiRecipe/recipe/showRecipe?recipe_id=${viewer.recipe_id}" onclick="window.open(this.href, '_blank', 'width=body.50%, height=this.100%');return false;" >${viewer.recipe_nm_ko}</td>
+				<td id="recipeID" width="300px"><a href="http://192.168.30.72:8080/semiRecipe/recipe/showRecipe?recipe_id=${viewer.recipe_id}" onclick="window.open(this.href, '_blank', 'width=body.50%, height=this.100%');return false;" >${viewer.recipe_nm_ko}</td>
 				<td id="revRate" class="icon-star" width="50px"></td>
 				<td id="revRateSpace" width="50px">${viewer.review_rate}</td>
 				<td id="revDate" width="100px">${viewer.review_date}</td>
