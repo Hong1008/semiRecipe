@@ -39,8 +39,8 @@ public class ReviewListAction {
 		List<ReviewDTO> aList = dao.listMethod(searchMap);
 		
 		HttpSession session = req.getSession();
-		session.removeAttribute("reviewList");
-		session.setAttribute("reviewList", aList);
+//		session.removeAttribute("reviewList");
+		req.setAttribute("reviewList", aList);
 		
 		int start = 0; 
 		int finish = 0;
@@ -59,8 +59,8 @@ public class ReviewListAction {
 				imgList.add("/semiRecipe/review/images/basicImage.png");
 			}
 		}
-		session.removeAttribute("imgList");
-		session.setAttribute("imgList", imgList);
+	//	req.removeAttribute("imgList");
+		req.setAttribute("imgList", imgList);
 				
 	//	req.setAttribute("aList", aList);
 	}
