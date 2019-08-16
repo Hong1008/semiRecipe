@@ -39,7 +39,8 @@ public class ReviewListAction {
 		List<ReviewDTO> aList = dao.listMethod(searchMap);
 		
 		HttpSession session = req.getSession();
-		session.removeAttribute("reviewList");
+		
+		
 		session.setAttribute("reviewList", aList);
 		
 		int start = 0; 
