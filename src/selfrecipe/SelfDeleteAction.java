@@ -16,6 +16,7 @@ public class SelfDeleteAction {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {		
 		
 		
+		
 		SelfRecipeDAO dao = SelfRecipeDAO.getInstance();
 		String saveDirectory = "C:\\study\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\semiRecipe\\selfRecipe\\img_self";
 		File file = new File(saveDirectory);
