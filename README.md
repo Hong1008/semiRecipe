@@ -8,6 +8,8 @@
 - 개발도구 : jdk1.8.0_101, SQL Developer, Eclipse 4.12
 - 데이터베이스 : Oracle 11g
 - Language : Java, SQL, Javascript, html, css
+- 주요기술 : Servlet, jquery, ajax, Kakao Login API, SmartEditor2
+- 플러그인 : [jquery-ui.js](https://jqueryui.com/draggable/), [hangul.js](https://github.com/e-/Hangul.js/), [sweetalert.js](https://sweetalert.js.org/)
 
 # 주요기능
 ### 1) 사용자가 선택한 식재료를 기반으로 레시피 추천 기능 제공
@@ -27,8 +29,8 @@
 
 # 팀원
 
-- 홍철민
-- 이해람
-- 양지수
-- 최범식
-- 강지영
+- 홍철민 (레시피 게시판 구현 , DB설계, 댓글, 메인 페이지 구현)
+- 이해람 (메인 및 메뉴 디자인, 사이드재료박스 디자인 및 구현, 레시피 상세페이지 디자인)
+- 양지수 (회원가입, 로그인, 카카오 아이디로 로그인, 마이페이지, 리뷰 게시판 구현)
+- 최범식 (나만의 레시피 게시판 구현, DB설계)
+- 강지영 (리뷰 게시판 구현, 게시판 기본 디자인)
