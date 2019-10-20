@@ -1,5 +1,5 @@
 # semiRecipe
-
+보고서:[최종보고서](https://github.com/Hong1008/semiRecipe/tree/master/report)
 # 프로젝트 소개
 <img src="/gitImg/home.PNG"/><br/>
 식재료를 입력하면 그 재료를 사용한 레시피를 추천하며 개인의 레시피를 공유할 수 있는 사이트
