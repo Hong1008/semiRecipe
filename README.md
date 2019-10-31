@@ -8,7 +8,7 @@
 - 개발도구 : jdk1.8.0_101, SQL Developer, Eclipse 4.12
 - 데이터베이스 : Oracle 11g
 - 언어 : Java, SQL, Javascript, html, css
-- 주요기술 : Servlet, jquery, ajax, Kakao Login API, SmartEditor2
+- 주요기술 : Servlet/jsp, jquery, ajax, Kakao Login API, SmartEditor2
 - 플러그인 : [jquery-ui.js](https://jqueryui.com/draggable/), [hangul.js](https://github.com/e-/Hangul.js/), [sweetalert.js](https://sweetalert.js.org/)
 
 # 주요기능
